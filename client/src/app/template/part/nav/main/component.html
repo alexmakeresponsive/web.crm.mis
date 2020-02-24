@@ -1,0 +1,16 @@
+<div class="d-flex justify-content-between">
+  <ul class="nav">
+    <li *ngFor="let item of itemsDefault" class="nav-item">
+      <a [routerLink]=item.link class="nav-link">{{item.text}}</a>
+    </li>
+  </ul>
+
+  <ul class="nav">
+    <li class="nav-item">
+      <a routerLink="/login" class="nav-link">Login</a>
+    </li>
+    <li class="nav-item">
+      <a routerLink="" class="nav-link" (click)="logout()">Logout</a>
+    </li>
+  </ul>
+</div>
