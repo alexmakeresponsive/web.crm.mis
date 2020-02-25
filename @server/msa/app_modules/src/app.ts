@@ -4,7 +4,11 @@ import createError  from 'http-errors';
 import logger       from 'morgan';
 import * as routeMsa  from './route/msa';
 
+import {AppTest} from './app.test';
+
 const app              = express();
+const appTest = new AppTest();
+      appTest.tt();
 
 app.use(cors({
     "origin": "http://0.0.0.0:4202",
