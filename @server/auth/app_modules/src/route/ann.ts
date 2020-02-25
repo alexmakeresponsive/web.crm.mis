@@ -2,8 +2,8 @@ import express, {NextFunction, Request, Response} from 'express';
 
 import {RequestWithSession} from '../model/session/type';
 
-import * as modelUser from '../model/user/model';
-import * as resourceUser from '../model/user/resource';
+import * as modelUser       from '../model/user/model';
+import * as resourceUser    from '../model/user/resource';
 import * as resourceSession from '../model/session/resource';
 
 

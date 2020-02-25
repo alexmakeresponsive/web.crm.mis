@@ -50,7 +50,7 @@ export class PageMainLoginComponent implements OnInit{
     const customerData = this.form.value;
 
     return this.http.post<any>(
-      'http://0.0.0.0:8202/ann/login',
+      'http://0.0.0.0:8202/auth/login',
       {
         data: customerData
       }

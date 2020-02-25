@@ -46,7 +46,7 @@ export class PartNavMainComponent {
   logout(): Observable<any> | Subscription {
     console.log('logout');
     return this.http.post<any>(
-      'http://0.0.0.0:8202/ann/logout',
+      'http://0.0.0.0:8202/auth/logout',
       {}
     ).pipe(
       retry(0),

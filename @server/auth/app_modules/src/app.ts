@@ -35,10 +35,10 @@ app.use(session({
     })
 }));
 
-
-app.post("/ann/login",  routeAnn.login);
-app.post("/ann/logout", routeAnn.logout);
-app.get("/ann/check",  routeAnn.check);
+// auth - name of server
+app.post("/auth/login",  routeAnn.login);
+app.post("/auth/logout", routeAnn.logout);
+app.get("/auth/check",  routeAnn.check);
 
 
 app.use(function(req, res, next) {

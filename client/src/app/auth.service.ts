@@ -69,7 +69,7 @@ export class AuthService  {
       console.log('fetch status...');
 
       this.http.get<any>(
-          'http://0.0.0.0:8202/ann/check',
+          'http://0.0.0.0:8202/auth/check',
           {}
         ).pipe(
           retry(0),
@@ -93,7 +93,7 @@ export class AuthService  {
 
   // async isAuth2() {
   //   this.async2data = await this.http.get<CheckResponse>(
-  //     'http://0.0.0.0:8202/ann/check',
+  //     'http://0.0.0.0:8202/auth/check',
   //     {}
   //   ).toPromise();
   //
@@ -106,7 +106,7 @@ export class AuthService  {
   async isAuth3() {
     try {
       await this.http.get<CheckResponse>(
-        'http://0.0.0.0:8202/ann/check',
+        'http://0.0.0.0:8202/auth/check',
         {}
       ).toPromise()
         .then(
