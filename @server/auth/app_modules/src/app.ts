@@ -4,13 +4,13 @@ import createError  from 'http-errors';
 import logger       from 'morgan';
 import session      from 'express-session';
 import connectSessoinMongo from 'connect-mongo';
+import {configDbMongoSession} from './config/db/session/mongo';
+import * as routeAnn  from './route/ann';
 
 
 const app              = express();
 const MongoStore = connectSessoinMongo(session);
 
-
-import * as routeAnn  from './route/ann';
 
 app.use(cors({
     "origin": "http://0.0.0.0:4202",
@@ -27,11 +27,11 @@ app.use(session({
     saveUninitialized: true,
     cookie: {
         httpOnly: true,
-        maxAge: 1000 * 60
+        maxAge: 1000 * 60 * 4
     },
     name: 'mongo.session_id',
     store: new MongoStore({
-        url: 'mongodb://mongoadmin:secret@172.17.0.2:27017',
+        url: `mongodb://${configDbMongoSession['user']}:${configDbMongoSession['password']}@${configDbMongoSession['host']}:${configDbMongoSession['port']}`,
     })
 }));
 

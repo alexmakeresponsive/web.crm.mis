@@ -1,63 +1,15 @@
-import connection from '../../bootstrap/db/user/mysql.js';
+import connection from '../../bootstrap/db/user/mysql';
 
 const table = 'users';
 
-var db = {
-    all: () => {
-        return new Promise((resolve, reject) => {
+export const findByLogin = (login:string) => {
+    return new Promise((resolve, reject) => {
+        connection.query(`SELECT * FROM ${table} WHERE login_user = ?`, [login], function (err, rows, fields) {
+            if (err) {
+                return reject(err);
+            };
 
-            connection.query(`SELECT * FROM ${table}`, function (err, rows, fields) {
-                if (err) {
-                    return reject(err);
-                };
-
-                // console.log('The solution is: ', JSON.stringify(rows));
-                // next();
-                return resolve(rows);
-            });
-
-            // res.json({hola:1});
-            // connection.end();
-        })
-    },
-
-    one: (id) => {
-        return new Promise((resolve, reject) => {
-
-            connection.query(`SELECT * FROM ${table} WHERE id_user = ?`, [id], function (err, rows, fields) {
-                if (err) {
-                    return reject(err);
-                };
-
-                // console.log('The solution is: ', JSON.stringify(rows));
-                // next();
-                // console.log(rows);
-                return resolve(rows);
-            });
-
-            // res.json({hola:1});
-            // connection.end();
-        })
-    },
-
-    findByLogin: (login) => {
-        return new Promise((resolve, reject) => {
-            connection.query(`SELECT * FROM ${table} WHERE login_user = ?`, [login], function (err, rows, fields) {
-                if (err) {
-                    return reject(err);
-                };
-
-                // console.log('The solution is: ', JSON.stringify(rows));
-                // next();
-                // console.log(rows);
-
-                return resolve(rows);
-            });
-
-            // res.json({hola:1});
-            // connection.end();
-        })
-    }
+            return resolve(rows);
+        });
+    })
 };
-
-export default db;

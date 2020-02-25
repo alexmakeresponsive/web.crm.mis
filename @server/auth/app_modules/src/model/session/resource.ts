@@ -1,20 +1,27 @@
-import connection from '../../bootstrap/db/user/mysql.js';
+import client from "../../bootstrap/db/session/mongo";
 
+const dbName    = 'test';
 const tableName = 'sessions';
 
-let table = {
-    findBySessionID: (id) => {
-        return new Promise((resolve, reject) => {
+export const findBySessionID = (id:any) => {
+    return new Promise((resolve, reject) => {
 
-            connection.query(`SELECT * FROM ${tableName} WHERE session_id = ?`, [id], function (err, rows, fields) {
-                if (err) {
-                    return reject(err);
-                };
+        client.connect((err:any) => {
+            const collection = client.db(dbName).collection(tableName);
 
-                return resolve(rows);
+            // console.log('id for find: ', id);
+
+            // collection.find().toArray((err:any, docs:any) => {
+            //     console.log("Found ALL the following records");
+            //     console.log(docs);
+            // });
+
+            collection.find({_id: id}).toArray((err:any, docs:any) => {
+                // console.log("Found the following records");
+                // console.log(docs);
+                // client.close();
+                resolve(docs);
             });
-        })
-    }
+        });
+    });
 };
-
-export default table;

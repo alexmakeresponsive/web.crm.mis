@@ -1,5 +1,5 @@
 import mysql from 'mysql';
-import config from '../../../config/db/user';
+import config from '../../../config/db/user/mysql';
 
 var connection = mysql.createConnection({
     host:       config.get('host'),
