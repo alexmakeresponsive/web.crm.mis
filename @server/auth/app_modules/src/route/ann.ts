@@ -1,5 +1,7 @@
 import express, {NextFunction, Request, Response} from 'express';
 
+import generatorTokenJWT from 'jsonwebtoken';
+
 import {RequestWithSession} from '../model/session/type';
 
 import * as modelUser       from '../model/user/model';
@@ -12,11 +14,7 @@ export const login = async (req:Request, res:Response, next:NextFunction) => {
     const passw = req.body.data.password;
 
     try {
-        // console.log('findByLogin: start');
         let results:any = await resourceUser.findByLogin(login);
-        // console.log('findByLogin: stop');
-
-        // console.log('findByLogin results', results);
 
         if (results.length === 0) {
             res.status(404).json({
@@ -24,20 +22,60 @@ export const login = async (req:Request, res:Response, next:NextFunction) => {
             });
         }
 
-
-
         if (modelUser.isValidPassword(results[0], passw)) {
             req!.session!.user = {
                 id:     results[0].id_user,
                 status: 'authorized'
             };
 
-            // console.log(results[0]);
+
+            // remove data from model.app and module.service for old token
+            // then create new tokens
+
+            // every service need self token
+            // var tokenAccess = generatorTokenJWT.sign({
+            //     "id_user": "11",
+            //     "service_access_list": ['msa', 'lpu'],
+            //     "role_list": ['msa_user', 'lpu_user'],
+            //     "role_access": "all",
+            //     "time_expired": "YYYY-MM-DD hh:mm:ss"
+            // }, 'shhhhh');
+            var tokenRefresh = generatorTokenJWT.sign({
+                "id_user": "11",
+                "timestemp_expired": "47334788378377834"
+            }, 'shhhhh');
+
+            console.log(tokenRefresh);
+
+            // get roles for every service from model.service for id_user
+            // create tokenAccess for every service
 
             res.status(200).json({
                 id: results[0].id_user,
                 name: results[0].name_user,
+                // tokenList: {
+                //     tokenAccess,
+                //     tokenRefresh
+                //     serviceName_1: {
+                //          tokenAccess,
+                //          tokenRefresh - serviceName_1.tokenRefresh === serviceName_2.tokenRefresh
+                //     }
+                //     ..
+                //     serviceName_n: {
+                //          tokenAccess,
+                //          tokenRefresh -
+                //     }
+                // }
+                // tokenAccessList: {
+                //     serviceName_1: 'tokenAccess_1',
+                //     serviceName_2: 'tokenAccess_2',
+                // },
+                // tokenRefresh: 'tokenRefresh'
             });
+
+                // write data to model app for refresh token
+                // create log.txt for control create tokens
+
         } else {
             res.status(403).json({
                 message: `Login or password not valid`
@@ -68,6 +106,13 @@ export const check = async (request:Request, res:Response, next:NextFunction) =>
 
     // console.log('route: check');
     // console.log('req: ', req.sessionID);
+
+    // when user press F5 and cookie not expired this method return object: {status: 'authorized'}
+    // refresh is ready to action if only angular send refresh token to backend
+    // if user press F5 angular destroy all memory data with refresh and access tokens
+    // so in this case backend check sessionID and if session id is matched
+    // backend must remove old tokens and create new
+
 
     try {
         let results:any = await resourceSession.findBySessionID(request.sessionID);
@@ -102,3 +147,11 @@ export const check = async (request:Request, res:Response, next:NextFunction) =>
     }
 };
 
+export const refresh = (request:Request, res:Response, next:NextFunction) => {
+    // refresh mean: find decoded refreshToken data in model.client, create new refresh and access tokens
+    // if find is fail angular must redirect user to login page
+    //
+    // do background http post request before timeExpired -1 minute
+    // or
+    // for every user http request to service check timestemp_expired and if needed do refresh http post request
+};

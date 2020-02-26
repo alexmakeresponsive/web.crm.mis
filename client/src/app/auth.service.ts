@@ -12,6 +12,7 @@ import { CheckResponse } from './model/auth/check.response'
 @Injectable({providedIn: 'root'})
 export class AuthService  {
   user = {
+    role: 'guest',
     status: {
       auth: 'not-authorized'
     }
@@ -47,6 +48,14 @@ export class AuthService  {
     });
 
     this.user.status.auth = 'authorized';
+
+    // var this.keychain.tokenList = r.tokenList
+
+    // var this.user.role = jwt.decode(tokenAccess).role;
+
+
+
+
   }
 
   logout() {

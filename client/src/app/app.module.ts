@@ -56,6 +56,8 @@ import { PageMainErrorComponent } from './template/page/main/error/component';
       { path: '', component: PageMainHomeComponent, canActivate: [AuthGuard]  },
       { path: 'about', component: PageMainAboutComponent, canActivate: [AuthGuard]  },
 
+      // { path: 'service/msa/ticket', component: PageServiceMsaTicketComponent, canActivate: [AuthGuard /*,AuthorizationGuard*/]  },
+
       { path: 'login', component: PageMainLoginComponent},
       { path: '**', component: PageMainErrorComponent},
     ]),

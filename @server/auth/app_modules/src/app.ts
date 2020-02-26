@@ -38,6 +38,7 @@ app.use(session({
 // auth - name of server
 app.post("/auth/login",  routeAnn.login);
 app.post("/auth/logout", routeAnn.logout);
+app.post("/auth/refresh", routeAnn.refresh);
 app.get("/auth/check",  routeAnn.check);
 
 
