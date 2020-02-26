@@ -1,4 +1,4 @@
-import connection from '../../bootstrap/db/user/mysql';
+
 
 const table = 'users';
 
