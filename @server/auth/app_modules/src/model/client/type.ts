@@ -10,4 +10,5 @@ export type Client = {
     id_user:number;
     // browser_fingerprint:string;     // if user open more than one browser - next version feature
     timestemp_expired:number;
+    datetime_expired:string;
 }

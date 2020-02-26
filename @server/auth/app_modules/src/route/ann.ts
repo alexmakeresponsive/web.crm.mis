@@ -67,8 +67,8 @@ export const login = async (req:Request, res:Response, next:NextFunction) => {
                 //     }
                 // }
                 // tokenAccessList: {
-                //     serviceName_1: 'tokenAccess_1',
-                //     serviceName_2: 'tokenAccess_2',
+                //     msa: 'tokenAccess_1',
+                //     lpu: 'tokenAccess_2',
                 // },
                 // tokenRefresh: 'tokenRefresh'
             });
