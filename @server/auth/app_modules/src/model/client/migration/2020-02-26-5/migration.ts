@@ -17,7 +17,8 @@ connection.beginTransaction(function(err) {
                         CREATE TABLE IF NOT EXISTS client (
                             id_user INT PRIMARY KEY,
                             timestemp_expired VARCHAR(100) NOT NULL,
-                            datetime_expired DATETIME NOT NULL
+                            datetime_expired DATETIME NOT NULL,
+                            secret_word VARCHAR(100) NOT NULL
                         )  ENGINE=INNODB;
                     `, function (error, results, fields) {
             if (error) {

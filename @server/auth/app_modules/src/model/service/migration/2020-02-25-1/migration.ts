@@ -15,7 +15,8 @@ connection.beginTransaction(function(err) {
 
         connection.query(`
                         CREATE TABLE IF NOT EXISTS service (
-                            id_user INT PRIMARY KEY,
+                            id INT PRIMARY KEY AUTO_INCREMENT,
+                            id_user INT,
                             id_service VARCHAR(50) NOT NULL,
                             list_user_role VARCHAR(555) NOT NULL
                         )  ENGINE=INNODB;

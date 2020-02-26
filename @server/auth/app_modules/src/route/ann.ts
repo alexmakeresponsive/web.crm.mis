@@ -1,12 +1,10 @@
 import express, {NextFunction, Request, Response} from 'express';
 
-import generatorTokenJWT from 'jsonwebtoken';
-
-import {RequestWithSession} from '../model/session/type';
-
-import * as modelUser       from '../model/user/model';
-import * as resourceUser    from '../model/user/resource';
-import * as resourceSession from '../model/session/resource';
+import * as modelUser         from '../model/user/model';
+import * as modelClient       from '../model/client/model';
+import * as resourceClient    from '../model/client/resource';
+import * as resourceUser      from '../model/user/resource';
+import * as resourceSession   from '../model/session/resource';
 
 
 export const login = async (req:Request, res:Response, next:NextFunction) => {
@@ -14,73 +12,46 @@ export const login = async (req:Request, res:Response, next:NextFunction) => {
     const passw = req.body.data.password;
 
     try {
-        let results:any = await resourceUser.findByLogin(login);
+        let resultsFromResourceUser:any = await resourceUser.findByLogin(login);
 
-        if (results.length === 0) {
+        if (resultsFromResourceUser.length === 0) {
             res.status(404).json({
                 message: `User with login ${login} not found`
             });
         }
 
-        if (modelUser.isValidPassword(results[0], passw)) {
-            req!.session!.user = {
-                id:     results[0].id_user,
-                status: 'authorized'
-            };
-
-
-            // remove data from model.app and module.service for old token
-            // then create new tokens
-
-            // every service need self token
-            // var tokenAccess = generatorTokenJWT.sign({
-            //     "id_user": "11",
-            //     "service_access_list": ['msa', 'lpu'],
-            //     "role_list": ['msa_user', 'lpu_user'],
-            //     "role_access": "all",
-            //     "time_expired": "YYYY-MM-DD hh:mm:ss"
-            // }, 'shhhhh');
-            var tokenRefresh = generatorTokenJWT.sign({
-                "id_user": "11",
-                "timestemp_expired": "47334788378377834"
-            }, 'shhhhh');
-
-            console.log(tokenRefresh);
-
-            // get roles for every service from model.service for id_user
-            // create tokenAccess for every service
-
-            res.status(200).json({
-                id: results[0].id_user,
-                name: results[0].name_user,
-                // tokenList: {
-                //     tokenAccess,
-                //     tokenRefresh
-                //     serviceName_1: {
-                //          tokenAccess,
-                //          tokenRefresh - serviceName_1.tokenRefresh === serviceName_2.tokenRefresh
-                //     }
-                //     ..
-                //     serviceName_n: {
-                //          tokenAccess,
-                //          tokenRefresh -
-                //     }
-                // }
-                // tokenAccessList: {
-                //     msa: 'tokenAccess_1',
-                //     lpu: 'tokenAccess_2',
-                // },
-                // tokenRefresh: 'tokenRefresh'
-            });
-
-                // write data to model app for refresh token
-                // create log.txt for control create tokens
-
-        } else {
+        if (!modelUser.isValidPassword(resultsFromResourceUser[0], passw)) {
             res.status(403).json({
                 message: `Login or password not valid`
             });
         }
+
+        req!.session!.user = {
+            id:     resultsFromResourceUser[0].id_user,
+            status: 'authorized'
+        };
+
+        // remove refresh data from model.client
+        let resultsFromResourceClient:any = await resourceClient.removeOldRefreshData(resultsFromResourceUser[0].id_user);
+
+        if(!resultsFromResourceClient.hasOwnProperty('fieldCount')) {
+            throw new Error('fieldCount not exist');
+        }
+
+
+        const tokenRefresh:any    = await modelClient.createRefreshTokenAfterLogin(resultsFromResourceUser[0].id_user);
+
+        const tokenAccessList:any = await modelClient.createAccessTokenList(resultsFromResourceUser[0].id_user);
+
+
+        res.status(200).json({
+            id:     resultsFromResourceUser[0].id_user,
+            name:   resultsFromResourceUser[0].name_user,
+            tokenAccessList:    tokenAccessList,
+            tokenRefresh:       tokenRefresh
+        });
+
+        // create log.txt for control create tokens
 
     } catch (e) {
         console.log(e);
