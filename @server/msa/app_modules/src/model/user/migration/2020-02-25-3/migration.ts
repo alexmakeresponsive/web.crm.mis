@@ -20,7 +20,7 @@ connection.beginTransaction(function(err) {
             // return new Promise(resolve => setTimeout(resolve, 300));
 
             connection.query(`
-                    INSERT INTO users (id_user, role, role_access)
+                    INSERT INTO user (id_user, role, role_access)
                     VALUES ('${user.id_user}', '${user.role}', '${user.role_access}')
                     `, function (error, results, fields) {
                 if (error) {

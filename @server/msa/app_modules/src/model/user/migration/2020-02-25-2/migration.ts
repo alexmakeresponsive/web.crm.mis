@@ -21,7 +21,7 @@ connection.beginTransaction(function(err) {
                 });
             }
             connection.query(`
-                        CREATE TABLE IF NOT EXISTS users (
+                        CREATE TABLE IF NOT EXISTS user (
                             id_user INT PRIMARY KEY,
                             role CHAR(25) NOT NULL,
                             role_access CHAR(25) NOT NULL

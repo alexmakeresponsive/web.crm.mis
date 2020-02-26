@@ -1,6 +1,6 @@
 
 
-const table = 'users';
+const table = 'user';
 
 export const findAll = () => {
     return new Promise((resolve, reject) => {
