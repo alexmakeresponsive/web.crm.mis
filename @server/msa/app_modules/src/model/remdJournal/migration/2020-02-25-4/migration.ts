@@ -15,7 +15,12 @@ connection.beginTransaction(function(err) {
 
         connection.query(`
                         CREATE TABLE IF NOT EXISTS remd_journal (
-                            
+                            id INT AUTO_INCREMENT PRIMARY KEY,
+                            title VARCHAR(20),
+                            initiator_name VARCHAR(70),
+                            initiator_post VARCHAR(50),
+                            date_departure DATETIME,
+                            status VARCHAR(20)
                         )  ENGINE=INNODB;
                     `, function (error, results, fields) {
             if (error) {
