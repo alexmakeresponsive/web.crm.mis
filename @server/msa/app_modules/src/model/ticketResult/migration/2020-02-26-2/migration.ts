@@ -1,7 +1,7 @@
 import connection from '../../../../bootstrap/db/msa/mysql';
 
 
-// ts-node ./app_modules/src/model/ticketJournal/migration/2020-02-26-1/migration.ts
+// ts-node ./app_modules/src/model/ticketResult/migration/2020-02-26-2/migration.ts
 
 
 connection.beginTransaction(function(err) {
@@ -16,7 +16,7 @@ connection.beginTransaction(function(err) {
         }
 
         connection.query(`
-                        CREATE TABLE IF NOT EXISTS ticket_journal (
+                        CREATE TABLE IF NOT EXISTS ticket_result (
                             id INT AUTO_INCREMENT PRIMARY KEY,
                             date DATE,
 
@@ -31,11 +31,7 @@ connection.beginTransaction(function(err) {
                             msa_level VARCHAR(20),
                         
                             commission_members VARCHAR(555),
-                            status VARCHAR(20),
-                        
-                            msa_date DATE,
-                            
-                            result VARCHAR(20)
+                            status VARCHAR(20)
                         )  ENGINE=INNODB;
                     `, function (error, results, fields) {
             if (error) {
