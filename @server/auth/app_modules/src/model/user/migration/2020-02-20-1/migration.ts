@@ -1,6 +1,6 @@
 import connection from '../../../../bootstrap/db/main/mysql';
 
-// ts-node ./app_modules/src/model/user/migration/2020-02-25-1/migration.ts
+// ts-node ./app_modules/src/model/user/migration/2020-02-20-1/migration.ts
 
 connection.beginTransaction(function(err) {
     if (err) { throw err; }
@@ -14,12 +14,8 @@ connection.beginTransaction(function(err) {
         }
 
         connection.query(`
-                        CREATE TABLE IF NOT EXISTS service_msa (
-                            id_user INT PRIMARY KEY,
-                            token_type CHAR(25) NOT NULL,
-                            token_signature_secret VARCHAR(255) NOT NULL,
-                            token_timestamp_expired TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-                        )  ENGINE=INNODB;
+                        ALTER TABLE user
+                        ADD login_user VARCHAR(255) NOT NULL
                     `, function (error, results, fields) {
             if (error) {
                 return connection.rollback(function() {

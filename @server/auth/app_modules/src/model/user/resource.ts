@@ -1,6 +1,6 @@
-import connection from '../../bootstrap/db/user/mysql';
+import connection from '../../bootstrap/db/main/mysql';
 
-const table = 'users';
+const table = 'user';
 
 export const findByLogin = (login:string) => {
     return new Promise((resolve, reject) => {
