@@ -49,7 +49,7 @@ export class AuthService  {
       return false;
     }
 
-    let t = 1000 * 4;
+    let t = 1000 * 60;
 
     setTimeout(() => {
       this.http.post<any>(

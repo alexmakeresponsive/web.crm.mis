@@ -37,7 +37,7 @@ app.use(session({
     saveUninitialized: true,
     cookie: {
         httpOnly: true,
-        maxAge: 1000 * 60 * 4
+        maxAge: 1000 * 60 * 15
     },
     name: 'mongo.session_id',
     store: new MongoStore({
