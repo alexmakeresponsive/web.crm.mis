@@ -1,0 +1,10 @@
+
+<div class="wrapper">
+  <ul>
+    <li *ngFor="let item of list" [className]="item.isActive ? 'active' : 'inactive'">
+      <a routerLink="{{item.href}}" >
+        {{item.title}}
+      </a>
+    </li>
+  </ul>
+</div>

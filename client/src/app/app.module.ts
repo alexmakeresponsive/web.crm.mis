@@ -16,12 +16,22 @@ import { AuthGuard } from "./auth.guard";
 import { AppComponent } from './app.component';
 
 import { PartHeaderDefaultComponent } from './template/part/header/default/component';
+import { PartHeaderMsaComponent } from './template/part/header/msa/component';
+
 import { PartNavMainComponent }       from './template/part/nav/main/component';
+import { PartNavHomeComponent }       from './template/part/nav/home/component';
+
+import { PartNavMsaComponent }       from './template/part/nav/service/msa/component';
 
 import { PageMainLoginComponent } from './template/page/main/login/component';
 import { PageMainHomeComponent }  from './template/page/main/home/component';
 import { PageMainAboutComponent }  from './template/page/main/about/component';
 import { PageMainErrorComponent } from './template/page/main/error/component';
+
+import { PageServiceMsaRemdJournalComponent } from './template/page/service/msa/remdJournal/component';
+import { PageServiceMsaTicketComponent } from './template/page/service/msa/ticket/component';
+import { PageServiceMsaTicketJournalComponent } from './template/page/service/msa/ticketJournal/component';
+import { PageServiceMsaTicketResultComponent } from './template/page/service/msa/ticketResult/component';
 
 
 
@@ -33,13 +43,22 @@ import { PageMainErrorComponent } from './template/page/main/error/component';
     AppComponent,
 
     PartHeaderDefaultComponent,
+    PartHeaderMsaComponent,
 
     PartNavMainComponent,
+    PartNavHomeComponent,
+
+    PartNavMsaComponent,
 
     PageMainLoginComponent,
     PageMainHomeComponent,
     PageMainAboutComponent,
-    PageMainErrorComponent
+    PageMainErrorComponent,
+
+    PageServiceMsaRemdJournalComponent,
+    PageServiceMsaTicketComponent,
+    PageServiceMsaTicketJournalComponent,
+    PageServiceMsaTicketResultComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,6 +78,12 @@ import { PageMainErrorComponent } from './template/page/main/error/component';
       // { path: 'service/msa/ticket', component: PageServiceMsaTicketComponent, canActivate: [AuthGuard /*,AuthorizationGuard*/]  },
 
       { path: 'login', component: PageMainLoginComponent},
+
+      { path: 'service/msa/ticket', component: PageServiceMsaTicketComponent, canActivate: [AuthGuard] },
+      { path: 'service/msa/journal', component: PageServiceMsaTicketJournalComponent, canActivate: [AuthGuard] },
+      { path: 'service/msa/result', component: PageServiceMsaTicketResultComponent, canActivate: [AuthGuard] },
+      { path: 'service/msa/remd', component: PageServiceMsaRemdJournalComponent, canActivate: [AuthGuard] },
+
       { path: '**', component: PageMainErrorComponent},
     ]),
   ],
