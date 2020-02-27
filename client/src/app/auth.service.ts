@@ -8,6 +8,9 @@ import { Subscription, Observable, throwError } from 'rxjs';
 import { retry, catchError, delay } from 'rxjs/operators';
 
 import { CheckResponse } from './model/auth/check.response'
+import { Keychain } from './model/auth/keychain'
+
+import { AuthorizationService } from "./authorization.service";
 
 @Injectable({providedIn: 'root'})
 export class AuthService  {
@@ -18,6 +21,11 @@ export class AuthService  {
     }
   };
 
+  private keychain:Keychain = {
+    tokenAccessList: null,
+    tokenRefresh: null
+  };
+
   async2data: CheckResponse;
   async2dataIsFetched: boolean;
 
@@ -25,7 +33,30 @@ export class AuthService  {
   constructor(
     private http: HttpClient,
     private router: Router,
+    private authorizationService: AuthorizationService,
   ) {
+  }
+
+  getKeyChain() {
+    return this.keychain;
+  }
+
+  refreshTokenListBackground() {
+    let t = 1000 * 4;
+
+    setTimeout(() => {
+      this.http.post<any>(
+        'http://0.0.0.0:8202/auth/refresh',
+        {
+          refreshToken: this.keychain.tokenRefresh
+        }
+      ).pipe(
+        retry(0),
+        catchError(this.handleError.bind(this))
+      ).subscribe(r => {
+        console.log('refreshTokenListBackground: ', r);
+      });
+    }, t);
   }
 
   handleError(error) {
@@ -43,19 +74,18 @@ export class AuthService  {
 
   login(r) {
     window.localStorage.user = JSON.stringify({
-      name:   r.name,
-      id:     r.id
+      name:   r.user.name,
     });
 
     this.user.status.auth = 'authorized';
 
-    // var this.keychain.tokenList = r.tokenList
+    console.log('r: ', r);
+    this.authorizationService.RoleList = r.roleList;
 
-    // var this.user.role = jwt.decode(tokenAccess).role;
+    this.keychain.tokenAccessList = r.tokenAccessList;
+    this.keychain.tokenRefresh    = r.tokenRefresh;
 
-
-
-
+    this.refreshTokenListBackground();
   }
 
   logout() {
@@ -75,7 +105,7 @@ export class AuthService  {
 
     return new Promise((res, rej) => {
 
-      console.log('fetch status...');
+      // console.log('fetch status...');
 
       this.http.get<any>(
           'http://0.0.0.0:8202/auth/check',
@@ -85,12 +115,12 @@ export class AuthService  {
           catchError(this.handleError.bind(this))
         ).subscribe(r => {
           if(r.status === 'authorized') {
-            console.log('user is authorized');
+            // console.log('user is authorized');
 
             this.user.status.auth = 'authorized';
             res(true);
           } else {
-            console.log('user is not-authorized');
+            // console.log('user is not-authorized');
 
             this.user.status.auth = 'not-authorized';
             this.router.navigateByUrl('login');
@@ -120,12 +150,12 @@ export class AuthService  {
       ).toPromise()
         .then(
           res => {
-            console.log("res: ", res);
+            // console.log("res: ", res);
             this.async2data = res;
             this.async2dataIsFetched = true;
           },
           rej => {
-            console.log("rej: ", rej);
+            // console.log("rej: ", rej);
             this.async2dataIsFetched = false;
           }
         );
@@ -134,7 +164,7 @@ export class AuthService  {
     }
 
 
-    console.log('isAuth2');
+    // console.log('isAuth2');
 
     return false;
   }

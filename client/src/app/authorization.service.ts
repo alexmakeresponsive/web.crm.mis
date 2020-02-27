@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
 
+
+
 @Injectable({providedIn: 'root'})
 export class AuthorizationService  {
   private message = {
     error: "Недостаточно прав для просмотра данного раздела",
     info:  "Раздел доступен только для просмотра",
   };
+
+  RoleList;
 
   AuthorizationList = {
     'PageServiceMsaTicketComponent': {

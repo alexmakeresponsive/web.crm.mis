@@ -18,8 +18,25 @@ export const removeOldRefreshData = (id_user:string) => {
 export const setNewRefreshData = (data:any) => {
     return new Promise((resolve, reject) => {
         connection.query(`
-            INSERT INTO ${table} (id_user, timestemp_expired, datetime_expired, secret_word) 
-            VALUES (${data.id_user}, '${data.timestemp_expired}', '${data.datetime_expired}', '${data.secret_word}')
+                INSERT INTO ${table} (id_user, timestemp_expired, datetime_expired, secret_word) 
+                VALUES (${data.id_user}, '${data.timestemp_expired}', '${data.datetime_expired}', '${data.secret_word}')
+            `, (err, rows, fields) => {
+            if (err) {
+                return reject(err);
+            };
+
+            return resolve(rows);
+        });
+    })
+};
+
+export const findOldRefreshData = (decodedRefreshTokenOld:any) => {
+    return new Promise((resolve, reject) => {
+        connection.query(`
+                SELECT * FROM ${table} WHERE 
+                id_user = ${decodedRefreshTokenOld.id_user} AND 
+                timestemp_expired = '${decodedRefreshTokenOld.timestemp_expired}' AND 
+                datetime_expired = '${decodedRefreshTokenOld.datetime_expired}'
             `, (err, rows, fields) => {
             if (err) {
                 return reject(err);

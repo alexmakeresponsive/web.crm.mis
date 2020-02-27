@@ -5,6 +5,7 @@ import * as modelClient       from '../model/client/model';
 import * as resourceClient    from '../model/client/resource';
 import * as resourceUser      from '../model/user/resource';
 import * as resourceSession   from '../model/session/resource';
+import * as resourceService from "../model/service/resource";
 
 
 export const login = async (req:Request, res:Response, next:NextFunction) => {
@@ -39,14 +40,17 @@ export const login = async (req:Request, res:Response, next:NextFunction) => {
         }
 
 
-        const tokenRefresh:any    = await modelClient.createRefreshTokenAfterLogin(resultsFromResourceUser[0].id_user);
+        const tokenRefresh:any    = await modelClient.createRefreshToken(resultsFromResourceUser[0].id_user);
 
-        const tokenAccessList:any = await modelClient.createAccessTokenList(resultsFromResourceUser[0].id_user);
+        let resultServiceData:any = await resourceService.getServiceData(resultsFromResourceUser[0].id_user);
+        const tokenAccessList:any = await modelClient.createAccessTokenList(resultsFromResourceUser[0].id_user, resultServiceData);
 
 
         res.status(200).json({
-            id:     resultsFromResourceUser[0].id_user,
-            name:   resultsFromResourceUser[0].name_user,
+            roleList: resultServiceData,
+            user: {
+                name: resultsFromResourceUser[0].name_user,
+            },
             tokenAccessList:    tokenAccessList,
             tokenRefresh:       tokenRefresh
         });
@@ -118,7 +122,22 @@ export const check = async (request:Request, res:Response, next:NextFunction) =>
     }
 };
 
-export const refresh = (request:Request, res:Response, next:NextFunction) => {
+export const refresh = async (request:any, res:Response, next:NextFunction) => {
+
+    const refreshTokenOld:string = request.body.refreshToken;
+    const decodedRefreshTokenOld:any = modelClient.decodeRefreshToken(refreshTokenOld);
+
+    const tokenRefresh:any      = await modelClient.refreshRefreshToken(decodedRefreshTokenOld, modelClient.createRefreshToken);
+
+    const resultServiceData:any = await resourceService.getServiceData(decodedRefreshTokenOld.id_user);
+    const tokenAccessList:any   = await modelClient.createAccessTokenList(decodedRefreshTokenOld.id_user, resultServiceData);
+
+    res.status(200).json({
+        response: 'has new refresh and access tokens',
+        tokenAccessList:    tokenAccessList,
+        tokenRefresh:       tokenRefresh
+    });
+
     // refresh mean: find decoded refreshToken data in model.client, create new refresh and access tokens
     // if find is fail angular must redirect user to login page
     //

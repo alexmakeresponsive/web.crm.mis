@@ -11,6 +11,16 @@ import * as routeAnn  from './route/ann';
 const app              = express();
 const MongoStore = connectSessoinMongo(session);
 
+const {
+    SESSION_MONGO_USERNAME,
+    SESSION_MONGO_PASSWORD,
+    SESSION_MONGO_HOSTNAME,
+    SESSION_MONGO_PORT,
+    SESSION_MONGO_DB
+} = process.env;
+
+
+
 
 app.use(cors({
     "origin": "http://0.0.0.0:4202",
