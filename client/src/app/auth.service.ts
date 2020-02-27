@@ -42,6 +42,13 @@ export class AuthService  {
   }
 
   refreshTokenListBackground() {
+
+    console.log('start refreshTokenListBackground...');
+
+    if (this.user.status.auth === 'not-authorized') {
+      return false;
+    }
+
     let t = 1000 * 4;
 
     setTimeout(() => {
@@ -55,6 +62,11 @@ export class AuthService  {
         catchError(this.handleError.bind(this))
       ).subscribe(r => {
         console.log('refreshTokenListBackground: ', r);
+
+        this.keychain.tokenAccessList = r.tokenAccessList;
+        this.keychain.tokenRefresh    = r.tokenRefresh;
+
+        this.refreshTokenListBackground();
       });
     }, t);
   }

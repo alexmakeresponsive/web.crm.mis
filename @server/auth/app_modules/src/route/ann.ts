@@ -133,15 +133,7 @@ export const refresh = async (request:any, res:Response, next:NextFunction) => {
     const tokenAccessList:any   = await modelClient.createAccessTokenList(decodedRefreshTokenOld.id_user, resultServiceData);
 
     res.status(200).json({
-        response: 'has new refresh and access tokens',
         tokenAccessList:    tokenAccessList,
         tokenRefresh:       tokenRefresh
     });
-
-    // refresh mean: find decoded refreshToken data in model.client, create new refresh and access tokens
-    // if find is fail angular must redirect user to login page
-    //
-    // do background http post request before timeExpired -1 minute
-    // or
-    // for every user http request to service check timestemp_expired and if needed do refresh http post request
 };
