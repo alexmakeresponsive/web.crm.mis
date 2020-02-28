@@ -172,10 +172,15 @@ export class AuthService  {
         {}
       ).toPromise()
         .then(
-          res => {
+          (r:any) => {
             // console.log("res: ", res);
-            this.async2data = res;
+            this.async2data = r;
             this.async2dataIsFetched = true;
+
+            this.authorizationService.RoleList = r.roleList;
+
+            this.keychain.tokenAccessList = r.tokenAccessList;
+            this.keychain.tokenRefresh    = r.tokenRefresh;
           },
           rej => {
             // console.log("rej: ", rej);

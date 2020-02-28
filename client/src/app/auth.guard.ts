@@ -44,7 +44,7 @@ export class AuthGuard implements CanActivate {
       return false;
     }
 
-    let async2data =  this.authService.async2data;    console.log(async2data);
+    let async2data =  this.authService.async2data;    // console.log(async2data);
 
     if(async2data.status === 'authorized') {
       return true;

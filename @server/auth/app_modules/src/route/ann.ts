@@ -105,16 +105,31 @@ export const check = async (request:Request, res:Response, next:NextFunction) =>
 
         let sess = JSON.parse(results[0].session);
         let status;
+        let id_user;
 
 
-        status = sess.hasOwnProperty('user') ? 'authorized' : 'not-authorized';
 
-        // console.log(results[0]);
+            status = sess.hasOwnProperty('user') ? 'authorized' : 'not-authorized';
+            id_user = sess.user.id;
+
+        if (status !== 'authorized') {
+            res.status(200).json({
+                status: status
+            });
+            return;
+        }
+
+        const tokenRefresh:any    = await modelClient.createRefreshToken(id_user);
+
+        let resultServiceData:any = await resourceService.getServiceData(id_user);
+        const tokenAccessList:any = await modelClient.createAccessTokenList(id_user, resultServiceData);
 
         res.status(200).json({
-            status: status
+            status: status,
+            roleList: resultServiceData,
+            tokenAccessList:    tokenAccessList,
+            tokenRefresh:       tokenRefresh
         });
-
 
     } catch (e) {
         console.log(e);
