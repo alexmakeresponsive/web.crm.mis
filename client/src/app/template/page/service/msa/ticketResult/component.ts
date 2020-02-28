@@ -49,7 +49,7 @@ export class PageServiceMsaTicketResultComponent {
   }
 
   loadData() {
-    console.log('loadData...');
+    // console.log('loadData...');
 
     const keychain = this.authService.getKeyChain();
 
@@ -68,7 +68,7 @@ export class PageServiceMsaTicketResultComponent {
     ).toPromise()
       .then(
         res => {
-          console.log("res: ", res.data);
+          // console.log("res: ", res.data);
 
           this.tableBody = res.data;
           this.storageData.ticketResult = res.data;

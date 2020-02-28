@@ -91,7 +91,7 @@ export class AuthService  {
 
     this.user.status.auth = 'authorized';
 
-    console.log('r: ', r);
+    // console.log('r: ', r);
     this.authorizationService.RoleList = r.roleList;
 
     this.keychain.tokenAccessList = r.tokenAccessList;
@@ -120,7 +120,7 @@ export class AuthService  {
   isAuth() {
     const status = this.user.status.auth;
 
-    console.log(status);
+    // console.log(status);
 
     if (status === 'authorized') {
       return true;
