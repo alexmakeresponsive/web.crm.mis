@@ -1,4 +1,7 @@
 export class Keychain {
-  tokenAccessList:object;
+  tokenAccessList: {
+    msa:string;
+    lpu:string;
+  };
   tokenRefresh:string;
 }

@@ -43,33 +43,7 @@ export class PartNavMainComponent {
   //   return item;
   // });
 
-  logout(): Observable<any> | Subscription {
-    console.log('logout');
-    return this.http.post<any>(
-      'http://0.0.0.0:8202/auth/logout',
-      {}
-    ).pipe(
-      retry(0),
-      catchError(this.handleError.bind(this))
-    ).subscribe(r => {
-      // console.log(r);
-      this.authService.logout();
-
-      this.router.navigateByUrl('/login');
-    });
+  logout() {
+    this.authService.logout();
   }
-
-  handleError(error) {
-    let errorMessage = '';
-
-    if (error.error instanceof ErrorEvent) {
-      // client-side error
-      errorMessage = `Error: ${error.error.message}`;
-    } else {
-      // server-side error
-      console.log(error);
-    }
-    return throwError(errorMessage);
-  }
-
 }

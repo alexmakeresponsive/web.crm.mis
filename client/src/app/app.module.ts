@@ -32,6 +32,7 @@ import { PageServiceMsaRemdJournalComponent } from './template/page/service/msa/
 import { PageServiceMsaTicketComponent } from './template/page/service/msa/ticket/component';
 import { PageServiceMsaTicketJournalComponent } from './template/page/service/msa/ticketJournal/component';
 import { PageServiceMsaTicketResultComponent } from './template/page/service/msa/ticketResult/component';
+import { PageServiceMsaTicketResultItemComponent } from './template/page/service/msa/ticketResultItem/component';
 
 
 
@@ -59,6 +60,7 @@ import { PageServiceMsaTicketResultComponent } from './template/page/service/msa
     PageServiceMsaTicketComponent,
     PageServiceMsaTicketJournalComponent,
     PageServiceMsaTicketResultComponent,
+    PageServiceMsaTicketResultItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,6 +84,7 @@ import { PageServiceMsaTicketResultComponent } from './template/page/service/msa
       { path: 'service/msa/ticket', component: PageServiceMsaTicketComponent, canActivate: [AuthGuard] },
       { path: 'service/msa/journal', component: PageServiceMsaTicketJournalComponent, canActivate: [AuthGuard] },
       { path: 'service/msa/result', component: PageServiceMsaTicketResultComponent, canActivate: [AuthGuard] },
+      { path: 'service/msa/result/item/:id', component: PageServiceMsaTicketResultItemComponent, canActivate: [AuthGuard] },
       { path: 'service/msa/remd', component: PageServiceMsaRemdJournalComponent, canActivate: [AuthGuard] },
 
       { path: '**', component: PageMainErrorComponent},

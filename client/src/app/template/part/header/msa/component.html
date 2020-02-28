@@ -11,7 +11,9 @@
         <div class="d-flex align-items-center">
           <div class="d-flex">
             <div class="d-flex flex-column justify-content-center align-items-end">
-              <span>Наталья Александровна</span>
+              <span>
+                Наталья Александровна
+              </span>
               <span>зам. гл. врача по КЭР</span>
             </div>
             <div>
@@ -24,7 +26,7 @@
             </button>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
               <a ngbDropdownItem routerLink="/">Главная страница</a>
-              <a ngbDropdownItem routerLink="/">Выйти</a>
+              <a ngbDropdownItem routerLink="" (click)="logout()">Выйти</a>
             </div>
           </div>
         </div>

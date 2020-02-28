@@ -104,6 +104,17 @@ export class AuthService  {
     window.localStorage.removeItem('user');
 
     this.user.status.auth = 'not-authorized';
+
+    this.http.post<any>(
+      'http://0.0.0.0:8202/auth/logout',
+      {}
+    ).pipe(
+      retry(0),
+      catchError(this.handleError.bind(this))
+    ).subscribe(r => {
+      console.log('logout');
+      this.router.navigateByUrl('/login');
+    });
   }
 
   isAuth() {

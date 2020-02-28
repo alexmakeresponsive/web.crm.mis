@@ -12,7 +12,7 @@ export class PartNavMsaComponent {
 
   getPath():string {
     const p:string = this.location.path();
-    console.log(p);
+    // console.log(p);
 
     return p;
   }

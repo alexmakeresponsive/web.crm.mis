@@ -1,10 +1,10 @@
 import connection from '../../bootstrap/db/main/mysql';
 
-const table = 'user';
+const table = 'ticket_result';
 
-export const findByIdUser = (id_user:string) => {
+export const getData = () => {
     return new Promise((resolve, reject) => {
-        connection.query(`SELECT * FROM ${table} WHERE id_user = ${id_user}`, (err, rows, fields) => {
+        connection.query(`SELECT * FROM ${table}`, (err, rows, fields) => {
             if (err) {
                 return reject(err);
             };

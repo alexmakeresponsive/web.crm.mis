@@ -1,0 +1,48 @@
+<part-header-msa></part-header-msa>
+
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <part-nav-msa></part-nav-msa>
+    </div>
+    <div class="col-9">
+      <h3>Результаты по {{data.name_last + ' ' + data.name_first + ' ' + data.patronymic}}</h3>
+      <a routerLink="/service/msa/result">Назад</a>
+      <p></p>
+      <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+          <th scope="col">Параметр</th>
+          <th scope="col">Значене</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr scope="col">
+            <td>Дата направления</td><td>{{data.date}}</td>
+          </tr>
+          <tr scope="col">
+            <td>ФИО</td><td>{{data.name_last + ' ' + data.name_first + ' ' + data.patronymic}}</td>
+          </tr>
+          <tr scope="col">
+            <td>Пол</td><td>{{data.gender}}</td>
+          </tr>
+          <tr scope="col">
+            <td>Дата рождения</td><td>{{data.date_born}}</td>
+          </tr>
+          <tr scope="col">
+            <td>Диангоз</td><td>{{data.diagnosis}}</td>
+          </tr>
+          <tr scope="col">
+            <td>Вид МСЭ</td><td>{{data.msa_level}}</td>
+          </tr>
+          <tr scope="col">
+            <td>Комиссия</td><td>{{data.commission_members}}</td>
+          </tr>
+          <tr scope="col">
+            <td>Статус</td><td>{{data.status}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

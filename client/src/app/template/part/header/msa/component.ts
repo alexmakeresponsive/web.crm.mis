@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from "../../../../auth.service";
 
 @Component({
   selector: 'part-header-msa',
@@ -6,5 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./component.scss']
 })
 export class PartHeaderMsaComponent {
+  constructor(
+    private authService: AuthService
+  ) {
+  }
 
+  logout() {
+    this.authService.logout();
+  }
 }

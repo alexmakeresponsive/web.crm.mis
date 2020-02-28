@@ -1,4 +1,4 @@
-import connection from '../../../../bootstrap/db/msa/mysql';
+import connection from '../../../../bootstrap/db/main/mysql';
 
 
 // ts-node ./app_modules/src/model/ticketResult/migration/2020-02-26-2/migration.ts
@@ -8,6 +8,7 @@ connection.beginTransaction(function(err) {
     if (err) { throw err; }
     connection.query(`
                     USE main
+                    
                 `, function (error, results, fields) {
         if (error) {
             return connection.rollback(function() {
@@ -32,7 +33,7 @@ connection.beginTransaction(function(err) {
                         
                             commission_members VARCHAR(555),
                             status VARCHAR(20)
-                        )  ENGINE=INNODB;
+                        ) ENGINE=INNODB;
                     `, function (error, results, fields) {
             if (error) {
                 return connection.rollback(function() {
