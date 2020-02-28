@@ -37,11 +37,12 @@ export class PageServiceMsaTicketResultItemComponent {
       await this.loadData();
     }
 
+    console.log(this.storageData.ticketResult);
       console.log('putData, go');
 
     this.route.paramMap.subscribe(params => {
       this.dataIsFetched = true;
-      this.data = this.storageData.ticketResult[+params.get('id') -1];
+      this.data = this.storageData.ticketResult[+params.get('id')];
     });
   }
 

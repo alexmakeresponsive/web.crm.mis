@@ -13,3 +13,15 @@ export const getData = () => {
         });
     })
 };
+
+export const removeItem = (id:string) => {
+    return new Promise((resolve, reject) => {
+        connection.query(`DELETE FROM ${table} WHERE id = ${id}`, (err, rows, fields) => {
+            if (err) {
+                return reject(err);
+            };
+
+            return resolve(rows);
+        });
+    })
+};

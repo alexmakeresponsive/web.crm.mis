@@ -7,34 +7,41 @@
     </div>
     <div class="col-9">
       <h3>Сведения о результатах проведённой МСЭ</h3>
-
-      <table class="table table-striped">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col"></th>
-            <th scope="col" *ngFor="let th of tableHeader">
-              {{th.text}}
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr scope="col" *ngFor="let tr of tableBody">
-            <th scope="row">
-              <a [routerLink]="['/service/msa/result/item', tr.id]">Просмотр</a>
-              <br>
-              <a class="link" (click)="removeItem(tr.id)">Удалить</a>
-            </th>
-            <td>{{tr.date}}</td>
-            <td>{{tr.name_last + ' ' + tr.name_first + ' ' + tr.patronymic}}</td>
-            <td>{{tr.gender}}</td>
-            <td>{{tr.date_born}}</td>
-            <td>{{tr.diagnosis}}</td>
-            <td>{{tr.msa_level}}</td>
-            <td>{{tr.commission_members}}</td>
-            <td>{{tr.status}}</td>
-          </tr>
-        </tbody>
-      </table>
+      <p></p>
+      <div *ngIf="tableBody.length > 0">
+        <div *ngIf="dataIsFetched">
+          <table class="table table-striped">
+            <thead class="thead-dark">
+            <tr>
+              <th scope="col"></th>
+              <th scope="col" *ngFor="let th of tableHeader">
+                {{th.text}}
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr scope="col" *ngFor="let tr of tableBody">
+              <th scope="row">
+                <a [routerLink]="['/service/msa/result/item', tr.id]">Просмотр</a>
+                <br>
+                <a class="link" (click)="removeItem(tr.id)">Удалить</a>
+              </th>
+              <td>{{tr.date}}</td>
+              <td>{{tr.name_last + ' ' + tr.name_first + ' ' + tr.patronymic}}</td>
+              <td>{{tr.gender}}</td>
+              <td>{{tr.date_born}}</td>
+              <td>{{tr.diagnosis}}</td>
+              <td>{{tr.msa_level}}</td>
+              <td>{{tr.commission_members}}</td>
+              <td>{{tr.status}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="alert alert-light" role="alert" *ngIf="tableBody.length === 0">
+        Результатов нет
+      </div>
     </div>
   </div>
 </div>

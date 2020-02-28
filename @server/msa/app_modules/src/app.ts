@@ -21,6 +21,7 @@ app.use(express.urlencoded({ extended: false }));
 
 
 app.post("/ticket/result",  routeTicketResult.getTable);
+app.post("/ticket/result/remove",  routeTicketResult.removeItem);
 
 
 
