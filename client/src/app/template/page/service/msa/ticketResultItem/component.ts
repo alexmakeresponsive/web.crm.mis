@@ -22,25 +22,29 @@ export class PageServiceMsaTicketResultItemComponent {
     private storageData: StorageData
   )
   {
-    if (this.storageData.ticketResult.length === 0) {
-      console.log('constructor, load data');
-      this.loadData();
-    }
+
   }
 
   ngOnInit() {
-
-    // if (this.storageData.ticketResult.length === 0) {
-    //   this.loadData();
-    //   return;
-    // }
-
     console.log('init!');
 
+    this.putData();
+  }
+
+  async putData() {
+    if (this.storageData.ticketResult.length === 0) {
+      console.log('putData, load data');
+      await this.loadData();
+    }
+
+      console.log('putData, go');
+
     this.route.paramMap.subscribe(params => {
+      this.dataIsFetched = true;
       this.data = this.storageData.ticketResult[+params.get('id') -1];
     });
   }
+
 
   async loadData() {
     // console.log('loadData...');
@@ -67,10 +71,10 @@ export class PageServiceMsaTicketResultItemComponent {
           console.log('data loaded');
           this.storageData.ticketResult = res.data;
 
-          this.route.paramMap.subscribe(params => {
-            this.dataIsFetched = true;
-            this.data = this.storageData.ticketResult[+params.get('id') -1];
-          });
+          // this.route.paramMap.subscribe(params => {
+          //   this.dataIsFetched = true;
+          //   this.data = this.storageData.ticketResult[+params.get('id') -1];
+          // });
         },
         rej => {
           console.log("rej: ", rej);
