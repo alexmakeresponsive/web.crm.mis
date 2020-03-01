@@ -36,11 +36,12 @@ import { PageServiceMsaTicketJournalComponent } from './template/page/service/ms
 import { PageServiceMsaTicketResultComponent } from './template/page/service/msa/ticketResult/component';
 import { PageServiceMsaTicketResultItemComponent } from './template/page/service/msa/ticketResultItem/component';
 
-import { SelectS1Component } from './entry/select/s.1/component';
-import {InputI1Component} from "./entry/input/i.1/component";
-import {TextareaT1Component} from "./entry/textarea/t.1/component";
+import {SelectS1Component}    from './entry/select/s.1/component';
+import {InputI1Component}     from "./entry/input/i.1/component";
+import {InputI2Component}     from "./entry/input/i.2/component";
+import {TextareaT1Component}  from "./entry/textarea/t.1/component";
 
-import { EntryWrapper } from "./entry/wrapper";
+import { EntryWrapper }   from "./entry/wrapper";
 import { EntryDirective } from "./entry/directive";
 
 
@@ -73,13 +74,14 @@ import { EntryDirective } from "./entry/directive";
 
     SelectS1Component,
     InputI1Component,
+    InputI2Component,
     TextareaT1Component,
 
     EntryWrapper,
     EntryDirective
   ],
 
-  entryComponents: [ SelectS1Component, InputI1Component, TextareaT1Component ],
+  entryComponents: [ SelectS1Component, InputI1Component, InputI2Component, TextareaT1Component ],
 
   imports: [
     BrowserModule,

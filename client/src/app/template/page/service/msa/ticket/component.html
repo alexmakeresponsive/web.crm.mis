@@ -379,7 +379,16 @@
           <p class="label-text">
             21. Сведения о трудовой деятельности
           </p>
-
+          <div class="label-text">
+            <div *ngFor="let itemFf21Child of ff21">
+              <label [for]="itemFf21Child.id">
+                {{itemFf21Child.label}}
+              </label>
+              <div *ngIf="itemFf21Child.type === 'entry'">
+                <entry-wrapper [data]="itemFf21Child.data"></entry-wrapper>
+              </div>
+            </div>
+          </div>
         </div>
 
         <h3 class="title">Клинико-функциональные данные</h3>

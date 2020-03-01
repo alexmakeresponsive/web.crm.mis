@@ -4,6 +4,7 @@ import { EntryComponentConstructor } from "../../../../../../entry/constructor";
 
 import {InputI1Component}    from "../../../../../../entry/input/i.1/component";
 import {TextareaT1Component} from "../../../../../../entry/textarea/t.1/component";
+import {InputI2Component} from "../../../../../../entry/input/i.2/component";
 
 export const f5 = [
   {
@@ -628,30 +629,72 @@ export const f21 = [
   {
     label: '21.1 основная профессия (специальность, должность)',
     id:    'f211',
+    type: 'entry',
+    data: new EntryComponentConstructor(InputI2Component, '', {
+      className: 'form-control',
+      id: 'f211',
+      col: 6
+    }),
   },
   {
     label: '21.2 квалификация (класс, разряд, категория, звание)',
     id:    'f212',
+    type: 'entry',
+    data: new EntryComponentConstructor(InputI2Component, '', {
+      className: 'form-control',
+      id: 'f212',
+      col: 6
+    }),
   },
   {
     label: '21.3 стаж работы',
     id:    'f213',
+    type: 'entry',
+    data: new EntryComponentConstructor(InputI2Component, '', {
+      className: 'form-control',
+      id: 'f213',
+      col: 2
+    }),
   },
   {
     label: '21.4 выполняемая работа на момент направления на медико-социальную экспертизу с указанием профессии (специальности, должности)',
     id:    'f214',
+    type: 'entry',
+    data: new EntryComponentConstructor(TextareaT1Component, '', {
+      className: 'form-control',
+      id: 'f214',
+      rows: 4
+    }),
   },
   {
     label: '21.5 условия и характер выполняемого труда',
     id:    'f215',
+    type: 'entry',
+    data: new EntryComponentConstructor(TextareaT1Component, '', {
+      className: 'form-control',
+      id: 'f215',
+      rows: 4
+    }),
   },
   {
     label: '21.6 место работы (наименование организации)',
     id:    'f216',
+    type: 'entry',
+    data: new EntryComponentConstructor(InputI2Component, '', {
+      className: 'form-control',
+      id: 'f216',
+      col: 12
+    }),
   },
   {
     label: '21.7 адрес места работы',
     id:    'f217',
+    type: 'entry',
+    data: new EntryComponentConstructor(TextareaT1Component, '', {
+      className: 'form-control',
+      id: 'f217',
+      rows: 2
+    }),
   },
 ];
 
