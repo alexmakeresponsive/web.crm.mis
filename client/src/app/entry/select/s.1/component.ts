@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'select-s1',
   templateUrl: './component.html'
 })
 export class SelectS1Component {

@@ -5,6 +5,7 @@ import { EntryComponentConstructor } from "../../../../../../entry/constructor";
 import {InputI1Component}    from "../../../../../../entry/input/i.1/component";
 import {TextareaT1Component} from "../../../../../../entry/textarea/t.1/component";
 import {InputI2Component} from "../../../../../../entry/input/i.2/component";
+import {TableTb1Component} from "../../../../../../entry/table/tb.1/component";
 
 export const f5 = [
   {
@@ -697,6 +698,48 @@ export const f21 = [
     }),
   },
 ];
+
+export const f25 = {
+  type: 'entry',
+  data: new EntryComponentConstructor(TableTb1Component, {
+    1: {
+      id: 1
+    },
+    2: {
+      id: 2
+    }
+  }, {
+    th: [
+      {
+        text: '№ п/п',
+        width: '10%'
+      },
+      {
+        text: 'Даты',
+        width: '30%',
+        list: [
+          {
+            text: 'Дата начала временной нетрудоспособности'
+          },
+          {
+            text: 'Дата окончания временной нетрудоспособности'
+          },
+          {
+            text: 'Число месяцев и дней временной нетрудоспособности'
+          },
+        ]
+      },
+      {
+        text: 'Диагноз',
+        width: '50%'
+      },
+      {
+        text: 'Действия',
+        width: '10%'
+      },
+    ]
+  })
+};
 
 export const f26 = [
   {

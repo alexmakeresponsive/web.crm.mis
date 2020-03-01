@@ -134,10 +134,10 @@
         <div class="form-fields-group-wrapper">
           <p class="label-text">10. Отношение к воинской обязанности (нужное отметить)</p>
           <!--radio-->
-          <div class="custom-control custom-radio form-item-xs" *ngFor="let itemFf9 of ff9">
-            <input type="radio" [id]=itemFf9.id name="radio10" class="custom-control-input" checked="">
-            <label class="custom-control-label" [for]=itemFf9.id>
-              {{itemFf9.label}}
+          <div class="custom-control custom-radio form-item-xs" *ngFor="let itemFf10 of ff10">
+            <input type="radio" [id]=itemFf10.id name="radio10" class="custom-control-input" checked="">
+            <label class="custom-control-label" [for]=itemFf10.id>
+              {{itemFf10.label}}
             </label>
           </div>
           <!--radio-->
@@ -392,6 +392,59 @@
         </div>
 
         <h3 class="title">Клинико-функциональные данные</h3>
+
+        <div class="form-fields-group-wrapper">
+          <div class="label-text">
+            <label for="f220">
+              22. Наблюдается в медицинской организации
+            </label>
+            <div class="row">
+              <div class="col-2">
+                <input type="text" class="form-control" id="f220" placeholder="">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-fields-group-wrapper">
+          <p>Анамнез</p>
+          <div class="label-text form-item">
+            <label for="f230">
+              23. Анамнез заболевания
+            </label>
+            <div class="row">
+              <div class="col-12">
+                <textarea class="form-control" rows="12" id="f230"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="label-text">
+            <label for="f240">
+              24. Анамнез жизни
+            </label>
+            <div class="row">
+              <div class="col-12">
+                <textarea class="form-control" rows="6" id="f240"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-fields-group-wrapper">
+          <p class="label-text">
+            25. Частота и длительность временной нетрудоспособности (сведения за последние 12 месяцев)
+          </p>
+          <div class="label-text">
+            <entry-wrapper [data]="ff25.data"></entry-wrapper>
+          </div>
+        </div>
+
+        <div class="form-fields-group-wrapper">
+          <p class="label-text">
+            26. Результаты эффективности проведенных реабилитационных или абилитационных мероприятий медицинской реабилитации, рекомендованных индивидуальной программой реабилитации или абилитации инвалида (ребенка- инвалида)
+          </p>
+
+        </div>
 
         <div class="form-fields-group-wrapper">
           <p class="label-text">

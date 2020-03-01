@@ -40,9 +40,11 @@ import {SelectS1Component}    from './entry/select/s.1/component';
 import {InputI1Component}     from "./entry/input/i.1/component";
 import {InputI2Component}     from "./entry/input/i.2/component";
 import {TextareaT1Component}  from "./entry/textarea/t.1/component";
+import {TableTb1Component}    from "./entry/table/tb.1/component";
 
 import { EntryWrapper }   from "./entry/wrapper";
 import { EntryDirective } from "./entry/directive";
+
 
 
 
@@ -76,12 +78,18 @@ import { EntryDirective } from "./entry/directive";
     InputI1Component,
     InputI2Component,
     TextareaT1Component,
+    TableTb1Component,
 
     EntryWrapper,
     EntryDirective
   ],
 
-  entryComponents: [ SelectS1Component, InputI1Component, InputI2Component, TextareaT1Component ],
+  entryComponents: [
+    SelectS1Component,
+    InputI1Component, InputI2Component,
+    TextareaT1Component,
+    TableTb1Component,
+  ],
 
   imports: [
     BrowserModule,
