@@ -1,5 +1,9 @@
-import { SingleDemoComponent } from "../../../../../../entry/select/s.1/component";
+import { SelectS1Component } from "../../../../../../entry/select/s.1/component";
+
 import { EntryComponentConstructor } from "../../../../../../entry/constructor";
+
+import {InputI1Component}    from "../../../../../../entry/input/i.1/component";
+import {TextareaT1Component} from "../../../../../../entry/textarea/t.1/component";
 
 export const f5 = [
   {
@@ -263,12 +267,12 @@ export const f16 = [
     id:    'f161',
     type: 'entry',
     col: 6,
-    component: 'select:s.1',
-    data: [
+    entry: true,
+    data: new EntryComponentConstructor(SelectS1Component, [
       'Паспорт',
       'Водительское удостоверение',
       'Свидетельство о рождении',
-    ]
+    ], {}),
   },
   {
     id:    'f162',
@@ -304,10 +308,10 @@ export const f17 = [
         id:    'f1711',
         col: 6,
         entry: true,
-        data: new EntryComponentConstructor(SingleDemoComponent, [
+        data: new EntryComponentConstructor(SelectS1Component, [
           'Паспорт',
           'Доверенность',
-        ])
+        ], {}),
       },
       {
         id:    'f1712',
@@ -342,7 +346,12 @@ export const f17 = [
       {
         label: '17.2.1 наименование',
         id:    'f1721',
-        col: 6
+        col: 6,
+        entry: true,
+        data: new EntryComponentConstructor(SelectS1Component, [
+          'Свидетельство о рождении',
+          'Доверенность',
+        ], {})
       },
       {
         id:    'f1722',
@@ -427,6 +436,7 @@ export const f19 = [
   {
     label: '19.1 наличие инвалидности на момент направления на медико-социальную экспертизу (нужное отметить)',
     id:    'f191',
+    name: 'radio19.1',
     childs: [
       {
         label: '19.1 первая группа',
@@ -448,11 +458,13 @@ export const f19 = [
   },
   {
     label: '19.2 дата, до которой установлена инвалидность (день, месяц, год)',
-    id:    'f192'
+    id:    'f192',
+    col: 6
   },
   {
     label: '19.3 период, в течение которого гражданин находился на инвалидности на момент направления на медико-социальную экспертизу (нужное отметить)',
     id:    'f193',
+    name: 'radio19.3',
     childs: [
       {
         label: '19.3.1 один год',
@@ -475,6 +487,7 @@ export const f19 = [
   {
     label: '19.4 формулировка причины инвалидности, имеющейся на момент направления на медико-социальную экспертизу (нужное отметить)',
     id:    'f194',
+    name: 'radio19.4',
     childs: [
       {
         label: '19.4.1 общее заболевание',
@@ -552,22 +565,22 @@ export const f19 = [
   {
     label: '19.5 степень утраты профессиональной трудоспособности в процентах на момент направления гражданина на медико-социальную экспертизу',
     id:    'f195',
-    tag: 'input'
+    col: 2
   },
   {
     label: '19.6 срок на который установлена степень утраты профессиональной трудоспособности в процентах',
     id:    'f196',
-    tag: 'input'
+    col: 2
   },
   {
     label: '19.7 дата, до которой установлена степень утраты профессиональной трудоспособности в процентах (день, месяц, год',
     id:    'f197',
-    tag: 'input-datepicker'
+    col: 6
   },
   {
     label: '19.8 степени утраты профессиональной трудоспособности (в процентах), установленные по повторным несчастным случаям на производстве и профессиональным заболеваниям, и даты, до которых они установлены',
     id:    'f198',
-    tag: 'input'
+    col: 2
   }
 ];
 
@@ -575,16 +588,39 @@ export const f20 = [
   {
     label: '20.1 наименование и адрес образовательной организации, в которой гражданин получает образование',
     id:    'f201',
+    type: 'entry',
+    data: new EntryComponentConstructor(InputI1Component, '', {
+      className: 'form-control',
+      id: 'f201',
+    }),
   },
   {
-    label: '20.2 курс, класс, возрастная группа детского дошкольного учреждения (нужное подчеркнуть и указать):',
+    label: '20.2 нужное указать',
     id:    'f202',
-    tag: 'input'
+    childs: [
+      {
+        label: '20.2.1 курс',
+        id:    'f2021',
+      },
+      {
+        label: '20.2.2 класс',
+        id:    'f2021',
+      },
+      {
+        label: '20.2.3 возрастная группа детского дошкольного учреждения',
+        id:    'f2021',
+      },
+    ]
   },
   {
     label: '20.3 профессия (специальность), для получения которой проводится обучение',
     id:    'f203',
-    tag: 'input'
+    type: 'entry',
+    data: new EntryComponentConstructor(TextareaT1Component, '', {
+      className: 'form-control',
+      id: 'f203',
+      rows: 4
+    }),
   },
 ];
 

@@ -23,9 +23,8 @@ export class EntryWrapper implements OnInit {
           viewContainerRef.clear();
     const componentRef = viewContainerRef.createComponent(componentFactory);
 
-    console.log(this.data.data);
-
-    (<any>componentRef.instance).items = this.data.data;
+    (<any>componentRef.instance).data       = this.data.data;
+    (<any>componentRef.instance).parameters = this.data.parameters;
   }
 }
 

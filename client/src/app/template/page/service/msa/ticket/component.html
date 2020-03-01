@@ -238,28 +238,28 @@
           <div class="label-text">
 
             <div *ngFor="let itemFf16 of ff16" class="form-item-sm">
-              <div *ngIf="!itemFf16.component">
-              <label [for]=itemFf16.id>
-                {{itemFf16.label}}
-              </label>
-              <div class="row form-item-sm" *ngIf="!itemFf16.childs">
-                <div class="col-6">
-                  <input type="text" class="form-control" [id]=itemFf16.id placeholder="">
+              <div *ngIf="itemFf16.type !== 'entry'">
+                <label [for]=itemFf16.id>
+                  {{itemFf16.label}}
+                </label>
+                <div class="row form-item-sm" *ngIf="!itemFf16.childs">
+                  <div class="col-6">
+                    <input type="text" class="form-control" [id]=itemFf16.id placeholder="">
+                  </div>
                 </div>
-              </div>
-              <div class="">
-                <div class="row" *ngIf="itemFf16.childs">
-                  <div class="col-3" *ngFor="let itemFf16Child of itemFf16.childs">
-                    <div>
-                      <label [for]=itemFf16Child.id>{{itemFf16Child.label}}</label>
-                      <input type="text" class="form-control" [id]=itemFf16Child.id placeholder="">
+                <div class="">
+                  <div class="row" *ngIf="itemFf16.childs">
+                    <div class="col-3" *ngFor="let itemFf16Child of itemFf16.childs">
+                      <div>
+                        <label [for]=itemFf16Child.id>{{itemFf16Child.label}}</label>
+                        <input type="text" class="form-control" [id]=itemFf16Child.id placeholder="">
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-              </div>
-              <div *ngIf="itemFf16.component === 'select:s.1'">
-                <select-s1 [items]="itemFf16.data"></select-s1>
+              <div *ngIf="itemFf16.type === 'entry'">
+                <entry-wrapper [data]="itemFf16.data"></entry-wrapper>
               </div>
             </div>
           </div>
@@ -281,7 +281,6 @@
               </div>
                 <div class="row" *ngIf="itemFf17.childs">
                   <div class="field-wrapper-end col-{{itemFf17Child.col? itemFf17Child.col : 3}}" *ngFor="let itemFf17Child of itemFf17.childs">
-
                     <div *ngIf="!itemFf17Child.entry">
                     <label [for]=itemFf17Child.id>{{itemFf17Child.label}}</label>
                     <div *ngIf="!itemFf17Child.childs">
@@ -302,7 +301,6 @@
                       <label [for]=itemFf17Child.id>{{itemFf17Child.label}}</label>
                       <entry-wrapper [data]="itemFf17Child.data"></entry-wrapper>
                     </div>
-
                   </div>
                 </div>
             </div>
@@ -315,8 +313,15 @@
           </p>
 
           <div class="row">
-            <div class="col-6">
-<!--              <form-select-passport></form-select-passport>-->
+            <div class="col-12">
+              <!--radio-->
+              <div class="custom-control custom-radio form-item-xs" *ngFor="let itemFf18 of ff18">
+                <input type="radio" [id]=itemFf18.id name="radio18" class="custom-control-input" checked="">
+                <label class="custom-control-label" [for]=itemFf18.id>
+                  {{itemFf18.label}}
+                </label>
+              </div>
+              <!--radio-->
             </div>
           </div>
         </div>
@@ -325,14 +330,49 @@
           <p class="label-text">
             19. Сведения о результатах предыдущей медико-социальной экспертизы
           </p>
-
+          <div *ngFor="let itemFf19 of ff19" class="form-item-sm">
+            <label [for]=itemFf19.id class="label-text">
+              {{itemFf19.label}}
+            </label>
+            <div class="row form-item-sm" *ngIf="itemFf19.childs">
+              <div class="col-12">
+                <!--radio-->
+                <div class="custom-control custom-radio form-item-xs" *ngFor="let itemFf19Child of itemFf19.childs">
+                  <input type="radio" [id]=itemFf19Child.id [name]=itemFf19.name class="custom-control-input" checked="">
+                  <label class="custom-control-label form-item-sm" [for]=itemFf19Child.id>
+                    {{itemFf19Child.label}}
+                  </label>
+                  <div class="form-item-sm" *ngIf="itemFf19Child.tag">
+                    <textarea class="form-control" rows="3"></textarea>
+                  </div>
+                </div>
+                <!--radio-->
+              </div>
+            </div>
+            <div class="row form-item-sm" *ngIf="!itemFf19.childs">
+              <div class="col-{{itemFf19.col? itemFf19.col : 12}}">
+                <div class="label-text">
+                  <input type="text" class="form-control" [id]=itemFf19.id placeholder="">
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="form-fields-group-wrapper">
           <p class="label-text">
             20. Сведения о получении образования
           </p>
-
+          <div class="label-text">
+            <div *ngFor="let itemFf20Child of ff20">
+              <label [for]="itemFf20Child.id">
+                {{itemFf20Child.label}}
+              </label>
+              <div *ngIf="itemFf20Child.type === 'entry'">
+                <entry-wrapper [data]="itemFf20Child.data"></entry-wrapper>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="form-fields-group-wrapper">

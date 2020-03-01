@@ -4,8 +4,8 @@ import { Component, Input } from '@angular/core';
   selector: 'select-s1',
   templateUrl: './component.html'
 })
-export class SingleDemoComponent {
-  @Input() items: string[];
+export class SelectS1Component {
+  @Input() data: string[];
 
   private value:any = {};
   private _disabledV:string = '0';

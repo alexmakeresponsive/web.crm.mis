@@ -36,10 +36,14 @@ import { PageServiceMsaTicketJournalComponent } from './template/page/service/ms
 import { PageServiceMsaTicketResultComponent } from './template/page/service/msa/ticketResult/component';
 import { PageServiceMsaTicketResultItemComponent } from './template/page/service/msa/ticketResultItem/component';
 
-import { SingleDemoComponent } from './entry/select/s.1/component';
+import { SelectS1Component } from './entry/select/s.1/component';
+import {InputI1Component} from "./entry/input/i.1/component";
+import {TextareaT1Component} from "./entry/textarea/t.1/component";
 
 import { EntryWrapper } from "./entry/wrapper";
 import { EntryDirective } from "./entry/directive";
+
+
 
 
 @NgModule({
@@ -67,13 +71,15 @@ import { EntryDirective } from "./entry/directive";
     PageServiceMsaTicketResultComponent,
     PageServiceMsaTicketResultItemComponent,
 
-    SingleDemoComponent,
+    SelectS1Component,
+    InputI1Component,
+    TextareaT1Component,
 
     EntryWrapper,
     EntryDirective
   ],
 
-  entryComponents: [ SingleDemoComponent ],
+  entryComponents: [ SelectS1Component, InputI1Component, TextareaT1Component ],
 
   imports: [
     BrowserModule,
