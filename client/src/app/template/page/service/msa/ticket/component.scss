@@ -1,3 +1,7 @@
+.form-wrapper {
+  padding-bottom: 30px;
+}
+
 .form-color-theme .title {
   color: rgb(51,151,135);
 }
@@ -9,4 +13,10 @@
 
 .label-text {
   margin-left: 22px;
+}
+
+.field-wrapper-end {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }

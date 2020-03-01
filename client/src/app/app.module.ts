@@ -9,6 +9,8 @@ import { Routes, RouterModule, Router } from '@angular/router';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
+import {SelectModule} from 'ng2-select';
+
 
 import { CookieInterceptor } from './cookie.interceptor';
 import { AuthGuard } from "./auth.guard";
@@ -34,7 +36,10 @@ import { PageServiceMsaTicketJournalComponent } from './template/page/service/ms
 import { PageServiceMsaTicketResultComponent } from './template/page/service/msa/ticketResult/component';
 import { PageServiceMsaTicketResultItemComponent } from './template/page/service/msa/ticketResultItem/component';
 
+import { SingleDemoComponent } from './entry/select/s.1/component';
 
+import { EntryWrapper } from "./entry/wrapper";
+import { EntryDirective } from "./entry/directive";
 
 
 @NgModule({
@@ -61,7 +66,15 @@ import { PageServiceMsaTicketResultItemComponent } from './template/page/service
     PageServiceMsaTicketJournalComponent,
     PageServiceMsaTicketResultComponent,
     PageServiceMsaTicketResultItemComponent,
+
+    SingleDemoComponent,
+
+    EntryWrapper,
+    EntryDirective
   ],
+
+  entryComponents: [ SingleDemoComponent ],
+
   imports: [
     BrowserModule,
     FormsModule,
@@ -72,6 +85,7 @@ import { PageServiceMsaTicketResultItemComponent } from './template/page/service
     AppRoutingModule,
 
     NgbModule,
+    SelectModule,
 
     RouterModule.forRoot([
       { path: '', component: PageMainHomeComponent, canActivate: [AuthGuard]  },

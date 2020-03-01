@@ -45,7 +45,7 @@ export class PageServiceMsaTicketResultComponent {
 
 
     await this.http.post<MsaResponse>(
-      'http://0.0.0.0:8203/ticket/result',
+      'http://0.0.0.0:8204/ticket/result',
       {},
       {
         headers: headers
@@ -72,7 +72,7 @@ export class PageServiceMsaTicketResultComponent {
 
 
     this.http.post<MsaResponseRemove>(
-      'http://0.0.0.0:8203/ticket/result/remove',
+      'http://0.0.0.0:8204/ticket/result/remove',
       {
         id_item: id
       },

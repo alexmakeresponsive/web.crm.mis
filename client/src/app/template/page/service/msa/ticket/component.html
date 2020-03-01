@@ -6,56 +6,370 @@
       <part-nav-msa></part-nav-msa>
     </div>
     <div class="col-9">
+      <div class="form-wrapper">
       <form class="form-color-theme">
+
+        <div class="form-fields-group-wrapper">
+          <div class="label-text">
+            <div class="row form-item">
+              <div class="col-10">
+                <label for="f1">
+                  1. Номер и дата протокола врачебной комиссии медицинской организации, содержащего решение о направлении
+                  гражданина на медико-социальную экспертизу
+                </label>
+                <input type="text" class="form-control" id="f1" placeholder="">
+              </div>
+              <div class="col-2 d-flex align-items-end">
+                <button class="btn">Добавить</button>
+              </div>
+            </div>
+          </div>
+          <div class="custom-control custom-checkbox form-item-xs">
+            <input type="checkbox" class="custom-control-input" id="f2">
+            <label class="custom-control-label" for="f2">
+              2. Гражданин по состоянию здоровья не может явиться в бюро (главное бюро, Федеральное бюро)
+              медико-социальной экспертизы: медико-социальную экспертизу необходимо проводить
+            </label>
+          </div>
+          <div class="custom-control custom-checkbox form-item">
+            <input type="checkbox" class="custom-control-input" id="f3">
+            <label class="custom-control-label" for="f3">
+              3. Гражданин нуждается в оказании паллиативной медицинской помощи (при нуждаемости в оказании
+              паллиативной медицинской помощи)
+            </label>
+          </div>
+          <div class="label-text">
+            <div class="row">
+              <div class="col-6">
+                <label for="f41">
+                  4. Дата выдачи направления на МСЭ
+                </label>
+                <input type="text" class="form-control" id="f41" placeholder="">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-fields-group-wrapper">
+          <fieldset>
+            <label for="f5" class="label-text form-item">
+              5. Цель направления гражданина на медико-социальную экспертизу (нужное отметить):
+            </label>
+            <div class="form-group" id="f5">
+              <!--radio-->
+              <div class="custom-control custom-radio form-item-xs" *ngFor="let itemFf5 of ff5">
+                <input type="radio" [id]=itemFf5.id name="radio5" class="custom-control-input" checked="">
+                <label class="custom-control-label" [for]=itemFf5.id>
+                  {{itemFf5.label}}
+                </label>
+              </div>
+              <!--radio-->
+              <div class="custom-control custom-radio form-item-xs">
+                <input type="radio" id="f514" name="radio5" class="custom-control-input" checked="">
+                <label class="custom-control-label form-item-xs" for="f514">
+                  5.14 иные цели, установленные законодательством Российской Федерации (указать):
+                </label>
+                <div>
+                  <textarea class="form-control" rows="3"></textarea>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
         <h3 class="title">Общие данные</h3>
 
-        <div class="row">
-          <div class="col-10">
-            <label for="f1" class="label-text">
-              1. Номер и дата протокола врачебной комиссии медицинской организации, содержащего решение о направлении
-              гражданина на медико-социальную экспертизу*
+        <div class="form-fields-group-wrapper">
+          <p class="label-text">6. Имя</p>
+          <div class="label-text" *ngFor="let itemFf6 of ff6">
+            <label [for]=itemFf6.id>
+              {{itemFf6.label}}
             </label>
-            <input type="text" class="form-control" id="f1" placeholder="">
-          </div>
-          <div class="col-2 d-flex align-items-end">
-            <button class="btn">Добавить</button>
-          </div>
-        </div>
-        <p><!--space--></p>
-        <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" id="f2">
-          <label class="custom-control-label" for="f2">
-            2. Гражданин по состоянию здоровья не может явиться в бюро (главное бюро, Федеральное бюро)
-            медико-социальной экспертизы: медико-социальную экспертизу необходимо проводить
-          </label>
-        </div>
-        <p><!--space--></p>
-        <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" id="f3">
-          <label class="custom-control-label" for="f3">
-            3. Гражданин нуждается в оказании паллиативной медицинской помощи (при нуждаемости в оказании
-            паллиативной медицинской помощи)
-          </label>
-        </div>
-        <p><!--space--></p>
-        <div class="row">
-          <div class="col-6">
-            <label for="f41" class="label-text">
-              4. Дата выдачи направления на МСЭ
-            </label>
-            <input type="text" class="form-control" id="f41" placeholder="">
-          </div>
-          <div class="col-6">
-            <label for="f42" class="">
-              Номер направлени на МСЭ
-            </label>
-            <input type="text" class="form-control" id="f42" placeholder="">
+            <div class="row form-item-sm">
+              <div class="col-6">
+                <input type="text" class="form-control" [id]=itemFf6.id placeholder="">
+              </div>
+            </div>
           </div>
         </div>
-        <p><!--space--></p>
 
-        <button type="submit" class="btn">Сохранить</button>
+        <div class="form-fields-group-wrapper">
+          <p class="label-text">7. Возраст</p>
+          <div class="label-text" *ngFor="let itemFf7 of ff7">
+            <label [for]=itemFf7.id>
+              {{itemFf7.label}}
+            </label>
+            <div class="row form-item-sm">
+              <div class="col-6">
+                <input type="text" class="form-control" [id]=itemFf7.id placeholder="">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-fields-group-wrapper">
+          <p class="label-text">8. Пол (нужное отметить)</p>
+          <!--radio-->
+          <div class="custom-control custom-radio form-item-xs" *ngFor="let itemFf8 of ff8">
+            <input type="radio" [id]=itemFf8.id name="radio8" class="custom-control-input" checked="">
+            <label class="custom-control-label" [for]=itemFf8.id>
+              {{itemFf8.label}}
+            </label>
+          </div>
+          <!--radio-->
+        </div>
+
+        <div class="form-fields-group-wrapper">
+          <p class="label-text">9. Гражданство (нужное отметить)</p>
+          <!--radio-->
+          <div class="custom-control custom-radio form-item-xs" *ngFor="let itemFf9 of ff9">
+            <input type="radio" [id]=itemFf9.id name="radio9" class="custom-control-input" checked="">
+            <label class="custom-control-label" [for]=itemFf9.id>
+              {{itemFf9.label}}
+            </label>
+          </div>
+          <!--radio-->
+        </div>
+
+        <div class="form-fields-group-wrapper">
+          <p class="label-text">10. Отношение к воинской обязанности (нужное отметить)</p>
+          <!--radio-->
+          <div class="custom-control custom-radio form-item-xs" *ngFor="let itemFf9 of ff9">
+            <input type="radio" [id]=itemFf9.id name="radio10" class="custom-control-input" checked="">
+            <label class="custom-control-label" [for]=itemFf9.id>
+              {{itemFf9.label}}
+            </label>
+          </div>
+          <!--radio-->
+        </div>
+
+        <div class="form-fields-group-wrapper">
+          <p class="label-text">
+            11. Адрес места жительства (при отсутствии места жительства указывается адрес
+            пребывания, фактического проживания на территории Российской Федерации, место нахождения пенсионного дела инвалида, выехавшего на постоянное жительство за пределы Российской Федерации):
+          </p>
+          <div class="form-item-sm" *ngFor="let itemFf11 of ff11">
+            <div class="label-text">
+              <label [for]=itemFf11.id class="">
+                {{itemFf11.label}}
+              </label>
+              <div class="row" *ngIf="!itemFf11.childs">
+                <div class="col-{{itemFf11.col? itemFf11.col : 6}}">
+                  <div>
+                    <input type="text" class="form-control" [id]=itemFf11.id placeholder="">
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="itemFf11.childs">
+                <!--radio-->
+                <div class="custom-control custom-radio form-item-xs" *ngFor="let itemFf11Child of itemFf11.childs">
+                  <input type="radio" [id]=itemFf11Child.id name="radio11" class="custom-control-input" checked="">
+                  <label class="custom-control-label" [for]=itemFf11Child.id>
+                    {{itemFf11Child.label}}
+                  </label>
+                </div>
+                <!--radio-->
+              </div>
+            </div>
+          </div>
+          <div class="custom-control custom-checkbox form-item-xs">
+            <input type="checkbox" class="custom-control-input" id="f12">
+            <label class="custom-control-label" for="f12">
+              Лицо без определенного места жительства
+            </label>
+          </div>
+        </div>
+
+        <div class="form-fields-group-wrapper">
+          <p class="label-text">
+            13. Гражданин находится (нужное отметить и указать)
+          </p>
+          <!--radio-->
+          <div class="custom-control custom-radio form-item-xs" *ngFor="let itemFf13 of ff13">
+            <input type="radio" [id]=itemFf13.id name="radio13" class="custom-control-input" checked="">
+            <label class="custom-control-label" [for]=itemFf13.id>
+              {{itemFf13.label}}
+            </label>
+
+            <div *ngFor="let itemFf13Child of itemFf13.childs" class="form-item">
+              <label [for]=itemFf13Child.id>{{itemFf13Child.label}}</label>
+
+              <textarea *ngIf="itemFf13Child.tag === 'textarea'" class="form-control" rows="3" [id]=itemFf13Child.id></textarea>
+              <div class="row" *ngIf="itemFf13Child.tag === 'input'">
+                <div class="col-6">
+                  <input type="text" class="form-control" [id]=itemFf13Child.id placeholder="">
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--radio-->
+        </div>
+
+        <div class="form-fields-group-wrapper">
+          <p class="label-text">
+            14. Контактная информация
+          </p>
+          <div class="label-text" *ngFor="let itemFf14 of ff14">
+            <label [for]=itemFf14.id>
+              {{itemFf14.label}}
+            </label>
+            <div class="row form-item-sm">
+              <div class="col-6">
+                <input type="text" class="form-control" [id]=itemFf14.id placeholder="">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-fields-group-wrapper">
+          <div class="label-text">
+            <label for="f15">
+              15. Страховой номер индивидуального лицевого счета (СНИЛС)
+            </label>
+            <div class="row form-item-sm">
+              <div class="col-6">
+                <input type="text" class="form-control" id="f15" placeholder="">
+              </div>
+            </div>
+          </div>
+          <p class="label-text">
+            16. Документ, удостоверяющий личность
+          </p>
+          <div class="label-text">
+
+            <div *ngFor="let itemFf16 of ff16" class="form-item-sm">
+              <div *ngIf="!itemFf16.component">
+              <label [for]=itemFf16.id>
+                {{itemFf16.label}}
+              </label>
+              <div class="row form-item-sm" *ngIf="!itemFf16.childs">
+                <div class="col-6">
+                  <input type="text" class="form-control" [id]=itemFf16.id placeholder="">
+                </div>
+              </div>
+              <div class="">
+                <div class="row" *ngIf="itemFf16.childs">
+                  <div class="col-3" *ngFor="let itemFf16Child of itemFf16.childs">
+                    <div>
+                      <label [for]=itemFf16Child.id>{{itemFf16Child.label}}</label>
+                      <input type="text" class="form-control" [id]=itemFf16Child.id placeholder="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+              <div *ngIf="itemFf16.component === 'select:s.1'">
+                <select-s1 [items]="itemFf16.data"></select-s1>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-fields-group-wrapper">
+          <p class="label-text">
+            17. Сведения о законном (уполномоченном) представителе гражданина, направляемого на медико-социальную экспертизу
+          </p>
+          <div class="label-text">
+            <div *ngFor="let itemFf17 of ff17" class="form-item-sm">
+              <label [for]=itemFf17.id>
+                {{itemFf17.label}}
+              </label>
+              <div class="row form-item-sm" *ngIf="!itemFf17.childs">
+                <div class="col-{{itemFf17.col? itemFf17.col : 6}}">
+                  <input type="text" class="form-control" [id]=itemFf17.id placeholder="">
+                </div>
+              </div>
+                <div class="row" *ngIf="itemFf17.childs">
+                  <div class="field-wrapper-end col-{{itemFf17Child.col? itemFf17Child.col : 3}}" *ngFor="let itemFf17Child of itemFf17.childs">
+
+                    <div *ngIf="!itemFf17Child.entry">
+                    <label [for]=itemFf17Child.id>{{itemFf17Child.label}}</label>
+                    <div *ngIf="!itemFf17Child.childs">
+                      <input type="text" class="form-control form-item-sm" [id]=itemFf17Child.id placeholder="">
+                    </div>
+                    <div *ngIf="itemFf17Child.childs">
+                      <div class="row">
+                        <div class="col-{{itemFf17ChildChild.col? itemFf17ChildChild.col : 6}}" *ngFor="let itemFf17ChildChild of itemFf17Child.childs">
+                          <div>
+                            <label [for]=itemFf17ChildChild.id>{{itemFf17ChildChild.label}}</label>
+                            <input type="text" class="form-control form-item-sm" [id]=itemFf17ChildChild.id placeholder="">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                    <div *ngIf="itemFf17Child.entry">
+                      <label [for]=itemFf17Child.id>{{itemFf17Child.label}}</label>
+                      <entry-wrapper [data]="itemFf17Child.data"></entry-wrapper>
+                    </div>
+
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-fields-group-wrapper">
+          <p class="label-text">
+            18. Гражданин направляется на медико-социальную экспертизу (нужное отметить)
+          </p>
+
+          <div class="row">
+            <div class="col-6">
+<!--              <form-select-passport></form-select-passport>-->
+            </div>
+          </div>
+        </div>
+
+        <div class="form-fields-group-wrapper">
+          <p class="label-text">
+            19. Сведения о результатах предыдущей медико-социальной экспертизы
+          </p>
+
+        </div>
+
+        <div class="form-fields-group-wrapper">
+          <p class="label-text">
+            20. Сведения о получении образования
+          </p>
+
+        </div>
+
+        <div class="form-fields-group-wrapper">
+          <p class="label-text">
+            21. Сведения о трудовой деятельности
+          </p>
+
+        </div>
+
+        <h3 class="title">Клинико-функциональные данные</h3>
+
+        <div class="form-fields-group-wrapper">
+          <p class="label-text">
+            27. Антропометрические данные и физиологические параметры
+          </p>
+
+        </div>
+
+        <div class="form-fields-group-wrapper">
+          <p class="label-text">
+            30. Диагноз при направлении на медико-социальную экспертизу
+          </p>
+
+        </div>
+
+        <div class="form-fields-group-wrapper">
+          <p class="label-text">
+            30. Диагноз при направлении на медико-социальную экспертизу
+          </p>
+
+        </div>
+
+        <div class="d-flex justify-content-end">
+          <button type="submit" class="btn">Сохранить</button>
+        </div>
       </form>
+      </div>
     </div>
   </div>
 </div>

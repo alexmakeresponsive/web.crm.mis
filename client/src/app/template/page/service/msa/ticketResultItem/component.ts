@@ -59,7 +59,7 @@ export class PageServiceMsaTicketResultItemComponent {
 
 
     await this.http.post<MsaResponse>(
-      'http://0.0.0.0:8203/ticket/result',
+      'http://0.0.0.0:8204/ticket/result',
       {},
       {
         headers: headers

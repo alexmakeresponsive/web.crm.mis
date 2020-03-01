@@ -46,4 +46,6 @@ export class PartNavMainComponent {
   logout() {
     this.authService.logout();
   }
+
+  userName = JSON.parse(window.localStorage.user).name;
 }
