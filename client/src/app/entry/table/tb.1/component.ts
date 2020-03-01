@@ -3,7 +3,7 @@ import { Component, Input, OnInit, OnChanges } from '@angular/core';
 @Component({
   templateUrl: './component.html'
 })
-export class TableTb1Component implements OnInit, OnChanges {
+export class TableTb1Component implements OnInit {
   @Input() parameters;
   @Input() data;
            dataClone;

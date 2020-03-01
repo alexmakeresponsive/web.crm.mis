@@ -26,4 +26,6 @@ export class PageServiceMsaTicketComponent {
   ff26 = formFields.f26;
   ff27 = formFields.f27;
   ff30 = formFields.f30;
+  ff3437 = formFields.f3437;
+  ff3133 = formFields.f3133;
 }

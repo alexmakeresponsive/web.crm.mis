@@ -702,12 +702,7 @@ export const f21 = [
 export const f25 = {
   type: 'entry',
   data: new EntryComponentConstructor(TableTb1Component, {
-    1: {
-      id: 1
-    },
-    2: {
-      id: 2
-    }
+
   }, {
     th: [
       {
@@ -743,6 +738,8 @@ export const f25 = {
 
 export const f26 = [
   {
+    label: '26.1 востановление нарушенных функций',
+    id:    'f261',
     childs: [
       {
         label: '26.1.1 полное',
@@ -757,10 +754,10 @@ export const f26 = [
         id:    'f2613',
       },
     ],
-    label: '26.1 востановление нарушенных функций',
-    id:    'f261'
   },
   {
+    label: '26.2 достижение компенсации утраченных либо отсутствующих функций',
+    id:    'f262',
     childs: [
       {
         label: '26.2.1 полное',
@@ -775,8 +772,6 @@ export const f26 = [
         id:    'f2623',
       },
     ],
-    label: '26.2 достижение компенсации утраченных либо отсутствующих функций',
-    id:    'f262'
   },
 ];
 
@@ -784,75 +779,228 @@ export const f27 = [
   {
     label: '27.1 рост',
     id:    'f271',
+    col: 3
   },
   {
     label: '27.2 вес',
     id:    'f272',
+    col: 3
   },
   {
     label: '27.3 индекс массы тела',
     id:    'f273',
+    col: 3
   },
   {
     label: '27.4 телосложение',
     id:    'f274',
+    col: 3
   },
   {
     label: '27.5 суточный объем физиологических отправлений (мл)',
     id:    'f275',
+    col: 3
   },
   {
     id:    'f276',
     label: '27.6 объем талии/бедер',
+    col: 6,
     childs: [
       {
         label: 'объем талии',
         id:    'f2761',
+        col: 6
       },
       {
         label: 'объем бедер',
         id:    'f2762',
+        col: 6
       },
     ]
   },
   {
     label: '27.7 масса тела при рождении',
     id:    'f277',
+    col: 3
   },
   {
     label: '27.8 физическое развитие',
     id:    'f278',
+    col: 12
   },
 ];
+
 export const f30 = [
   {
     label: '30.1 основное заболевание',
     id:    'f301',
-    rows: 4
+    type: 'entry',
+    data: new EntryComponentConstructor(TextareaT1Component, '', {
+      className: 'form-control',
+      id: 'f301',
+      rows: 12
+    }),
   },
   {
     label: '30.2 код основного заболевания по МКБ',
     id:    'f302',
-    tag:   'input'
+    type: 'entry',
+    data: new EntryComponentConstructor(InputI2Component, '', {
+      className: 'form-control',
+      id: 'f302',
+      col: 3
+    }),
   },
   {
     label: '30.3 осложнения основного заболевания',
     id:    'f303',
-    rows: 4
+    type: 'entry',
+    data: new EntryComponentConstructor(TextareaT1Component, '', {
+      className: 'form-control',
+      id: 'f303',
+      rows: 4
+    }),
   },
   {
     label: '30.4 сопутствующие заболевания',
     id:    'f304',
-    rows: 4
+    type: 'entry',
+    data: new EntryComponentConstructor(TextareaT1Component, '', {
+      className: 'form-control',
+      id: 'f304',
+      rows: 4
+    }),
   },
   {
     label: '30.5 коды сопутствующих заболеваний по МКБ',
     id:    'f305',
-    rows: 4
+    type: 'entry',
+    data: new EntryComponentConstructor(InputI2Component, '', {
+      className: 'form-control',
+      id: 'f305',
+      col: 12
+    }),
   },
   {
     label: '30.6 осложнения сопутствующих заболеваний',
     id:    'f306',
-    rows: 4
+    type: 'entry',
+    data: new EntryComponentConstructor(TextareaT1Component, '', {
+      className: 'form-control',
+      id: 'f306',
+      rows: 12
+    }),
+  },
+];
+
+export const f3133 = [
+  {
+    label: '31 Клинический прогноз',
+    id:    'f31',
+    childs: [
+      {
+        label: '31.1 благоприятный',
+        id:    'f311'
+      },
+      {
+        label: '31.2 относительно благоприятный',
+        id:    'f312'
+      },
+      {
+        label: '31.3 сомнительный (неопределенный)',
+        id:    'f313'
+      },
+      {
+        label: '31.4 неблагоприятный (нужное подчеркнуть)',
+        id:    'f314'
+      },
+    ]
+  },
+  {
+    label: '32 Реабилитационный потенциал',
+    id:    'f32',
+    childs: [
+      {
+        label: '32.1 высокий',
+        id:    'f321'
+      },
+      {
+        label: '32.2 удовлетворительный',
+        id:    'f322'
+      },
+      {
+        label: '32.3 низкий',
+        id:    'f323'
+      },
+      {
+        label: '32.4 отсутствует (нужное подчеркнуть)',
+        id:    'f324'
+      },
+    ]
+  },
+  {
+    label: '33 Реабилитационный прогноз',
+    id:    'f33',
+    childs: [
+      {
+        label: '33.1 благоприятный',
+        id:    'f331'
+      },
+      {
+        label: '33.2 относительно благоприятный',
+        id:    'f332'
+      },
+      {
+        label: '33.3 сомнительный (неопределенный)',
+        id:    'f333'
+      },
+      {
+        label: '33.4 неблагоприятный (нужное подчеркнуть)',
+        id:    'f334'
+      },
+    ]
+  },
+];
+
+export const f3437 = [
+  {
+    label: '34 Рекомендуемые мероприятия по медицинской реабилитации или абилитации',
+    id:    'f34',
+    type: 'entry',
+    data: new EntryComponentConstructor(TextareaT1Component, '', {
+      className: 'form-control',
+      id: 'f34',
+      rows: 12
+    }),
+  },
+  {
+    label: '35 Рекомендуемые мероприятия по реконструктивной хирургии',
+    id:    'f35',
+    type: 'entry',
+    data: new EntryComponentConstructor(TextareaT1Component, '', {
+      className: 'form-control',
+      id: 'f35',
+      rows: 6
+    }),
+  },
+  {
+    label: '36 Рекомендуемые мероприятия по протезированию и ортезированию',
+    id:    'f36',
+    type: 'entry',
+    data: new EntryComponentConstructor(TextareaT1Component, '', {
+      className: 'form-control',
+      id: 'f36',
+      rows: 4
+    }),
+  },
+  {
+    label: '37 Санаторно-курортное лечение',
+    id:    'f37',
+    type: 'entry',
+    data: new EntryComponentConstructor(TextareaT1Component, '', {
+      className: 'form-control',
+      id: 'f37',
+      rows: 2
+    }),
   },
 ];

@@ -175,7 +175,7 @@
           <div class="custom-control custom-checkbox form-item-xs">
             <input type="checkbox" class="custom-control-input" id="f12">
             <label class="custom-control-label" for="f12">
-              Лицо без определенного места жительства
+              12. Лицо без определенного места жительства
             </label>
           </div>
         </div>
@@ -236,7 +236,6 @@
             16. Документ, удостоверяющий личность
           </p>
           <div class="label-text">
-
             <div *ngFor="let itemFf16 of ff16" class="form-item-sm">
               <div *ngIf="itemFf16.type !== 'entry'">
                 <label [for]=itemFf16.id>
@@ -437,34 +436,144 @@
           <div class="label-text">
             <entry-wrapper [data]="ff25.data"></entry-wrapper>
           </div>
+          <div class="custom-control custom-checkbox form-item-xs">
+            <input type="checkbox" class="custom-control-input" id="f251">
+            <label class="custom-control-label" for="f251">
+              25.1 Наличие листка нетрудоспособности в форме электронного документа (ЭЛН)
+            </label>
+          </div>
+          <div class="label-text">
+            <label for="f252">
+              25.2 № ЭЛН:
+            </label>
+            <div class="row">
+              <div class="col-4">
+                <input type="text" class="form-control" id="f252" placeholder="">
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="form-fields-group-wrapper">
           <p class="label-text">
             26. Результаты эффективности проведенных реабилитационных или абилитационных мероприятий медицинской реабилитации, рекомендованных индивидуальной программой реабилитации или абилитации инвалида (ребенка- инвалида)
           </p>
-
+          <div class="label-text form-item-sm">
+            <div class="row">
+              <div class="col-4">
+                <label for="f26a1">
+                  № программы:
+                </label>
+                <input type="text" class="form-control" id="f26a1" placeholder="">
+              </div>
+              <div class="col-4">
+                <label for="f26a2">
+                  № протокола:
+                </label>
+                <input type="text" class="form-control" id="f26a2" placeholder="">
+              </div>
+            </div>
+          </div>
+          <!--radio-->
+          <div class="custom-control custom-radio form-item-xs" *ngFor="let itemFf26 of ff26">
+            <input type="radio" [id]=itemFf26.id name="radio26" class="custom-control-input" checked="">
+            <label class="custom-control-label form-item-xs" [for]=itemFf26.id>
+              {{itemFf26.label}}
+            </label>
+            <div *ngIf="itemFf26.childs" class="form-item-sm">
+              <!--radio-->
+              <div class="custom-control custom-radio form-item-xs" *ngFor="let itemFf26Child of itemFf26.childs">
+                <input type="radio" [id]=itemFf26Child.id [name]="itemFf26.id" class="custom-control-input" checked="">
+                <label class="custom-control-label" [for]=itemFf26Child.id>
+                  {{itemFf26Child.label}}
+                </label>
+              </div>
+              <!--radio-->
+            </div>
+          </div>
+          <!--radio-->
         </div>
 
         <div class="form-fields-group-wrapper">
           <p class="label-text">
             27. Антропометрические данные и физиологические параметры
           </p>
-
+          <div class="label-text form-item">
+            <div class="row">
+              <div class="field-wrapper-space-between col-{{itemFf27.col? itemFf27.col : 3}}" *ngFor="let itemFf27 of ff27">
+                <label [for]=itemFf27.id>{{itemFf27.label}}</label>
+                <div *ngIf="!itemFf27.childs">
+                  <input type="text" class="form-control form-item-sm" [id]=itemFf27.id placeholder="">
+                </div>
+                <div *ngIf="itemFf27.childs">
+                  <div class="row">
+                    <div class="col-{{itemFf27Child.col? itemFf27Child.col : 6}}" *ngFor="let itemFf27Child of itemFf27.childs">
+                      <div>
+                        <label [for]=itemFf27Child.id>{{itemFf27Child.label}}</label>
+                        <input type="text" class="form-control form-item-sm" [id]=itemFf27Child.id placeholder="">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="label-text form-item">
+            <div class="row">
+              <div class="col-12 form-item-sm">
+                <label for="f28">
+                  28.Состояние здоровья гражданина при направлении на медико-социальную экспертизу
+                </label>
+                <textarea class="form-control" rows="12" id="f28"></textarea>
+              </div>
+              <div class="col-12">
+                <label for="f29">
+                  29. Сведения о медицинских обследованиях, необходимых для получения клинико- функциональных данных в зависимости от заболевания при проведении медико- социальной экспертизы:
+                </label>
+                <textarea class="form-control" rows="12" id="f29"></textarea>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="form-fields-group-wrapper">
           <p class="label-text">
             30. Диагноз при направлении на медико-социальную экспертизу
           </p>
-
+          <div class="label-text">
+            <div *ngFor="let itemFf30Child of ff30" class="form-item">
+              <label [for]="itemFf30Child.id">
+                {{itemFf30Child.label}}
+              </label>
+              <div *ngIf="itemFf30Child.type === 'entry'">
+                <entry-wrapper [data]="itemFf30Child.data"></entry-wrapper>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="form-fields-group-wrapper">
-          <p class="label-text">
-            30. Диагноз при направлении на медико-социальную экспертизу
-          </p>
-
+          <div *ngFor="let itemFf3133 of ff3133" class="form-item">
+            <label [for]="itemFf3133.id" class="label-text">{{itemFf3133.label}}</label>
+            <!--radio-->
+            <div class="custom-control custom-radio form-item-xs" *ngFor="let itemFf3133Child of itemFf3133.childs">
+              <input type="radio" [id]=itemFf3133Child.id [name]="itemFf3133.id" class="custom-control-input" checked="">
+              <label class="custom-control-label" [for]=itemFf3133Child.id>
+                {{itemFf3133Child.label}}
+              </label>
+            </div>
+            <!--radio-->
+          </div>
+          <div class="label-text">
+            <div *ngFor="let itemFf3437Child of ff3437" class="form-item">
+              <label [for]="itemFf3437Child.id">
+                {{itemFf3437Child.label}}
+              </label>
+              <div *ngIf="itemFf3437Child.type === 'entry'">
+                <entry-wrapper [data]="itemFf3437Child.data"></entry-wrapper>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="d-flex justify-content-end">
