@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import * as formFields from './form/fields';
 import MsaResponse from "../../../../../model/msa/Response";
 import {AuthService} from "../../../../../auth.service";
+import set = Reflect.set;
 
 @Component({
   selector: 'page-service-msa-ticket',
@@ -35,6 +36,7 @@ export class PageServiceMsaTicketComponent implements OnInit {
   ff3133 = formFields.f3133;
 
   form:FormGroup;
+  formMessageType:string = 'lignt';
 
   @ViewChild('containerBtn', {static: false}) containerBtn: ElementRef;
   @ViewChild('formMessage', {static: false}) formMessage: ElementRef;
@@ -118,6 +120,7 @@ export class PageServiceMsaTicketComponent implements OnInit {
       return;
     }
 
+    this.formMessageType = 'info';
     this.formMessage.nativeElement.innerHTML ='Форма отправляется';
     this.renderer.setStyle(this.formMessage.nativeElement, 'display', 'block');
     this.renderer.setStyle(this.formWrapper.nativeElement, 'opacity', '0.5');
@@ -131,9 +134,6 @@ export class PageServiceMsaTicketComponent implements OnInit {
     }
     this.renderer.setStyle(this.formMessage.nativeElement, 'top', (top + 'px'));
 
-    const formData = this.form.value;
-
-    return;
 
     // do http
     const keychain = this.authService.getKeyChain();
@@ -145,14 +145,27 @@ export class PageServiceMsaTicketComponent implements OnInit {
 
     await this.http.post<MsaResponse>(
       'http://0.0.0.0:8204/ticket',
-      {},
+      {
+        data: this.form.value
+      },
       {
         headers: headers
       }
     ).toPromise()
       .then(
         res => {
-          console.log('form saved');
+          console.log(res);
+
+          setTimeout(() => {
+            this.formMessageType = 'success';
+            this.formMessage.nativeElement.innerHTML ='Форма сохранена';
+          }, 1000);
+
+          setTimeout(() => {
+            this.renderer.setStyle(this.formWrapper.nativeElement, 'opacity', '1');
+            this.renderer.setStyle(this.formMessage.nativeElement, 'display', 'none');
+          }, 3000);
+
           this.doClear();
         },
         rej => {

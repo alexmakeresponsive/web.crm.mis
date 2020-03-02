@@ -13,9 +13,9 @@ export type ticketJournal  = {
     msa_level:string;
 
     commission_members:string;
-    status:string;
+    status:string;      // ?
 
-    msa_date:string;
+    msa_date:string;    // ?
 
-    result:string;
+    result:string;      // ?
 };

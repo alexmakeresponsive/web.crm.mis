@@ -109,8 +109,8 @@ export const check = async (request:Request, res:Response, next:NextFunction) =>
 
 
 
-            status = sess.hasOwnProperty('user') ? 'authorized' : 'not-authorized';
-            id_user = sess.user.id;
+            status  = sess.hasOwnProperty('user') ? 'authorized' : 'not-authorized';
+            id_user = sess.hasOwnProperty('user')? sess.user.id : '';
 
         if (status !== 'authorized') {
             res.status(200).json({

@@ -3,6 +3,7 @@ import cors         from 'cors';
 import createError  from 'http-errors';
 import logger       from 'morgan';
 import * as routeTicketResult  from './route/ticketResult';
+import * as routeTicket  from './route/ticket';
 
 // import {AppTest} from './app.test';
 
@@ -20,6 +21,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 
+app.post("/ticket",  routeTicket.addItem);
 app.post("/ticket/result",  routeTicketResult.getTable);
 app.post("/ticket/result/remove",  routeTicketResult.removeItem);
 
