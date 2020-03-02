@@ -23,9 +23,18 @@ export const addItem = async (req:Request, res:Response, next:NextFunction) => {
     }
 
     const data = req.body.data;
-    console.log(data);
+    const r:any = await ticketResultResource.addItem(data);
 
-    const r = await ticketResultResource.addItem(data);
+    if (r.affectedRows === 0) {
+        res.status(500).json(<MsaResponse>{
+            trust: true,
+            status: 'fail',
+            message: "data not be write to db",
+            data:[]
+        });
+
+        return;
+    }
 
     res.status(200).json({
         data: <MsaResponse>{
