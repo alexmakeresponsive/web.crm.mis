@@ -60,4 +60,12 @@ export class PageServiceMsaTicketComponent implements OnInit {
       this.renderer.setStyle(this.containerBtn.nativeElement, 'bottom', '45px');
     }
   }
+
+  scrollToTop() {
+    window.scrollTo(0, 0); // values are x,y-offset
+  }
+
+  scrollToDown() {
+    window.scrollTo(0, document.body.scrollHeight); // values are x,y-offset
+  }
 }
