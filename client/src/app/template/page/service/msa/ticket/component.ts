@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2, HostListener } from '@angular/core';
 import * as formFields from './form/fields';
 import {EntryDirective} from "../../../../../entry/directive";
 
@@ -37,18 +37,19 @@ export class PageServiceMsaTicketComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    window.onscroll = () => {
-      this.scrollFunction()
-    };
+    // window.onscroll = () => {
+    //   this.scrollFunction()
+    // };
   }
 
-  scrollFunction() {
-    if (document.body.scrollTop <= 375 || document.documentElement.scrollTop <= 375) {
+  @HostListener('window:scroll', ['$event'])
+  scrollHandler(event) {
+    if (document.body.scrollTop <= 395 || document.documentElement.scrollTop <= 395) {
       this.renderer.setStyle(this.containerBtn.nativeElement, 'top', (425 + 'px'));
       this.renderer.setStyle(this.containerBtn.nativeElement, 'bottom', 'auto');
     }
 
-    if (document.body.scrollTop > 375 || document.documentElement.scrollTop > 375) {
+    if (document.body.scrollTop > 395 || document.documentElement.scrollTop > 395) {
       this.renderer.setStyle(this.containerBtn.nativeElement, 'top', (27 + 'px'));
       this.renderer.setStyle(this.containerBtn.nativeElement, 'bottom', 'auto');
     }
