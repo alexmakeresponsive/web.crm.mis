@@ -26,3 +26,15 @@
   flex-direction: column;
   justify-content: space-between;
 }
+
+.container-btn {
+  position: fixed;
+  top: 425px;
+  margin-left: -184px;
+  display: flex;
+  flex-direction: column;
+}
+
+.container-btn button:first-child {
+  margin-bottom: 15px;
+}

@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import * as formFields from './form/fields';
+import {EntryDirective} from "../../../../../entry/directive";
 
 @Component({
   selector: 'page-service-msa-ticket',
   templateUrl: './component.html',
   styleUrls: ['./component.scss']
 })
-export class PageServiceMsaTicketComponent {
+export class PageServiceMsaTicketComponent implements OnInit {
   ff5  = formFields.f5;
   ff6  = formFields.f6;
   ff7  = formFields.f7;
@@ -28,4 +29,34 @@ export class PageServiceMsaTicketComponent {
   ff30 = formFields.f30;
   ff3437 = formFields.f3437;
   ff3133 = formFields.f3133;
+
+  @ViewChild('containerBtn', {static: false}) containerBtn: ElementRef;
+
+  constructor(
+    private renderer: Renderer2
+  ) { }
+
+  ngOnInit() {
+    window.onscroll = () => {
+      this.scrollFunction()
+    };
+  }
+
+  scrollFunction() {
+    if (document.body.scrollTop <= 375 || document.documentElement.scrollTop <= 375) {
+      this.renderer.setStyle(this.containerBtn.nativeElement, 'top', (425 + 'px'));
+      this.renderer.setStyle(this.containerBtn.nativeElement, 'bottom', 'auto');
+    }
+
+    if (document.body.scrollTop > 375 || document.documentElement.scrollTop > 375) {
+      this.renderer.setStyle(this.containerBtn.nativeElement, 'top', (27 + 'px'));
+      this.renderer.setStyle(this.containerBtn.nativeElement, 'bottom', 'auto');
+    }
+
+    if ( document.body.scrollTop > (document.body.scrollHeight - 850)
+      || document.documentElement.scrollTop > (document.body.scrollHeight - 850)) {
+      this.renderer.setStyle(this.containerBtn.nativeElement, 'top', 'auto');
+      this.renderer.setStyle(this.containerBtn.nativeElement, 'bottom', '45px');
+    }
+  }
 }
