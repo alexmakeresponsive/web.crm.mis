@@ -6,8 +6,12 @@
       <part-nav-msa></part-nav-msa>
     </div>
     <div class="col-9">
-      <div class="form-wrapper">
-        <form action="" ></form>
+      <div class="wrapper-form-message">
+        <div class="alert alert-info form-message" role="alert" #formMessage id="test-1">
+          A simple secondary alert—check it out!
+        </div>
+      </div>
+      <div class="form-wrapper" #formWrapper>
       <form class="form-color-theme" [formGroup]="form" (ngSubmit)="doSubmit()">
 
         <div class="form-fields-group-wrapper">
