@@ -7,7 +7,8 @@
     </div>
     <div class="col-9">
       <div class="form-wrapper">
-      <form class="form-color-theme">
+        <form action="" ></form>
+      <form class="form-color-theme" [formGroup]="form" (ngSubmit)="doSubmit()">
 
         <div class="form-fields-group-wrapper">
           <div class="label-text">
@@ -17,7 +18,7 @@
                   1. Номер и дата протокола врачебной комиссии медицинской организации, содержащего решение о направлении
                   гражданина на медико-социальную экспертизу
                 </label>
-                <input type="text" class="form-control" id="f1" placeholder="">
+                <input type="text" class="form-control" id="f1" placeholder="" formControlName="protocol">
               </div>
               <div class="col-2 d-flex align-items-end">
                 <button class="btn">Добавить</button>
@@ -79,15 +80,15 @@
 
         <h3 class="title">Общие данные</h3>
 
-        <div class="form-fields-group-wrapper">
-          <p class="label-text">6. Имя</p>
-          <div class="label-text" *ngFor="let itemFf6 of ff6">
+        <div class="form-fields-group-wrapper" [formGroupName]="ff6.name">
+          <p class="label-text">6. ФИО</p>
+          <div class="label-text" *ngFor="let itemFf6 of ff6.list">
             <label [for]=itemFf6.id>
               {{itemFf6.label}}
             </label>
             <div class="row form-item-sm">
               <div class="col-6">
-                <input type="text" class="form-control" [id]=itemFf6.id placeholder="">
+                <input type="text" class="form-control" [id]=itemFf6.id placeholder="" [formControlName]=itemFf6.name>
               </div>
             </div>
           </div>
@@ -577,8 +578,10 @@
         </div>
 
         <div class="d-flex justify-content-between container-btn" #containerBtn>
-          <button type="button" class="btn btn-warning">Очистить всю форму</button>
-          <button type="submit" class="btn btn-success">Сохранить форму</button>
+          <button type="button" class="btn btn-warning" (click)="doClear()">Очистить всю форму</button>
+          <button type="submit" class="btn btn-success" [disabled]=form.invalid >
+            Сохранить форму
+          </button>
           <button class="btn btn-secondary" (click)="scrollToTop()">Прокрутить до начала формы</button>
           <button class="btn btn-secondary" (click)="scrollToDown()">Прокрутить до конца формы</button>
         </div>

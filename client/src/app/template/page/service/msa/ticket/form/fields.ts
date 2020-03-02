@@ -71,23 +71,26 @@ export const f5 = [
   },
 ];
 
-export const f6 = [
-  {
-    label: '6.1 Фамилия',
-    name:  'field_6_name_last',
-    id:    'f61'
-  },
-  {
-    label: '6.2 Имя',
-    name:  'field_6_name_first',
-    id:    'f62'
-  },
-  {
-    label: '6.3 Отчество',
-    name:  'field_6_name_patronymic',
-    id:    'f63'
-  }
-];
+export const f6 = {
+  name: 'field_6_name',
+  list: [
+    {
+      label: '6.1 Фамилия',
+      name:  'field_6_name_last',
+      id:    'f61'
+    },
+    {
+      label: '6.2 Имя',
+      name:  'field_6_name_first',
+      id:    'f62'
+    },
+    {
+      label: '6.3 Отчество',
+      name:  'field_6_name_patronymic',
+      id:    'f63'
+    }
+  ]
+};
 
 export const f7 = [
   {

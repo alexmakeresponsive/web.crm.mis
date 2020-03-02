@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, Renderer2, HostListener } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 import * as formFields from './form/fields';
 import {EntryDirective} from "../../../../../entry/directive";
 
@@ -30,6 +32,8 @@ export class PageServiceMsaTicketComponent implements OnInit {
   ff3437 = formFields.f3437;
   ff3133 = formFields.f3133;
 
+  form:FormGroup;
+
   @ViewChild('containerBtn', {static: false}) containerBtn: ElementRef;
 
   constructor(
@@ -37,9 +41,22 @@ export class PageServiceMsaTicketComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // window.onscroll = () => {
-    //   this.scrollFunction()
-    // };
+    this.form = new FormGroup({
+      protocol: new FormControl(''),
+      field_6_name: new FormGroup({
+        field_6_name_last: new FormControl('', [
+          Validators.pattern('[a-zA-Z ]*'),
+          Validators.required
+        ]),
+        field_6_name_first: new FormControl('', [
+          Validators.pattern('[a-zA-Z ]*'),
+          Validators.required
+        ]),
+        field_6_name_patronymic: new FormControl('', [
+          Validators.pattern('[a-zA-Z ]*'),
+        ]),
+      }),
+    });
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -67,5 +84,18 @@ export class PageServiceMsaTicketComponent implements OnInit {
 
   scrollToDown() {
     window.scrollTo(0, document.body.scrollHeight); // values are x,y-offset
+  }
+
+  //with with forms
+  doSubmit() {
+
+    if(this.form.valid) {
+      const formData = this.form.value;
+      console.log(formData);
+    }
+  }
+
+  doClear() {
+    this.form.reset();
   }
 }
