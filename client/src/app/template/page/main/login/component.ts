@@ -62,8 +62,6 @@ export class PageMainLoginComponent implements OnInit{
       this.errorCurrentText = '';
 
       this.authService.login(r);
-
-      this.router.navigateByUrl('');
     });
   }
 

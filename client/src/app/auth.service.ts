@@ -98,9 +98,25 @@ export class AuthService  {
     this.keychain.tokenRefresh    = r.tokenRefresh;
 
     this.refreshTokenListBackground();
+
+    let url = '';
+
+    if (window.localStorage.hasOwnProperty('state')) {
+      const urlLastVisited = JSON.parse(window.localStorage.state).url.lastVisited;
+      url = urlLastVisited;
+    }
+
+    this.router.navigateByUrl(url);
   }
 
   logout() {
+    if (this.router.url === '/') {
+      const state = JSON.parse(window.localStorage.state);
+            state.url.lastVisited = this.router.url;
+
+      window.localStorage.state = JSON.stringify(state);
+    }
+
     window.localStorage.removeItem('user');
 
     this.user.status.auth = 'not-authorized';
