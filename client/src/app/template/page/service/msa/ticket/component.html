@@ -86,15 +86,21 @@
 
         <div class="form-fields-group-wrapper" [formGroupName]="ff6.name">
           <p class="label-text">6. ФИО</p>
-          <div class="label-text" *ngFor="let itemFf6 of ff6.list">
-            <label [for]=itemFf6.id>
-              {{itemFf6.label}}
+          <div class="label-text" *ngFor="let itemFf6 of ff6.list | keyvalue">
+            <label [for]=itemFf6.value.id>
+              {{itemFf6.value.label}}
             </label>
-            <div class="row form-item-sm">
+            <!--<div class="row form-item-sm">
               <div class="col-6">
-                <input type="text" class="form-control" [id]=itemFf6.id placeholder="" [formControlName]=itemFf6.name>
+                <input type="text" class="form-control" [id]=itemFf6.value.id placeholder="" [formControlName]=itemFf6.value.name>
+                <span *ngFor="let itemFf6validator of itemFf6.value.validators | keyvalue">
+                  <small class="message error" *ngIf="ff6Errors[itemFf6.value.name][itemFf6validator.key]">
+                    {{itemFf6validator.value.errorText}}
+                  </small>
+                  <pre>{{itemFf6.value.name }}</pre>
+                </span>
               </div>
-            </div>
+            </div>-->
           </div>
         </div>
 
@@ -583,7 +589,7 @@
 
         <div class="d-flex justify-content-between container-btn" #containerBtn>
           <button type="button" class="btn btn-warning" (click)="doClear()">Очистить всю форму</button>
-          <button type="submit" class="btn btn-success" [disabled]=form.invalid >
+          <button type="submit" class="btn btn-success">
             Сохранить форму
           </button>
           <button class="btn btn-secondary" (click)="scrollToTop()">Прокрутить до начала формы</button>

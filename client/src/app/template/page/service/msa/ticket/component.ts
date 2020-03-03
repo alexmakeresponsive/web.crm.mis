@@ -2,10 +2,15 @@ import { Component, OnInit, ViewChild, ElementRef, Renderer2, HostListener } fro
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+import { filter } from 'rxjs/operators';
+
+
 import * as formFields from './form/fields';
+import * as formValidators from './form/validators';
+
 import MsaResponse from "../../../../../model/msa/Response";
 import {AuthService} from "../../../../../auth.service";
-import set = Reflect.set;
+
 
 @Component({
   selector: 'page-service-msa-ticket',
@@ -35,8 +40,23 @@ export class PageServiceMsaTicketComponent implements OnInit {
   ff3437 = formFields.f3437;
   ff3133 = formFields.f3133;
 
+  ff6Errors = {
+    field_6_name_last: {
+
+    },
+    field_6_name_first: {
+
+    },
+    field_6_name_patronymic: {
+
+    },
+  };
+
   form:FormGroup;
   formMessageType:string = 'lignt';
+
+  objectKeys = Object.keys;
+
 
   @ViewChild('containerBtn', {static: false}) containerBtn: ElementRef;
   @ViewChild('formMessage', {static: false}) formMessage: ElementRef;
@@ -51,6 +71,7 @@ export class PageServiceMsaTicketComponent implements OnInit {
   ngOnInit() {
     this.form = new FormGroup({
       protocol: new FormControl(''),
+      // field_6_name: this.getGroupValidators(this.ff6.list)
       field_6_name: new FormGroup({
         field_6_name_last: new FormControl('', [
           Validators.pattern('[a-zA-Z ]*'),
@@ -65,6 +86,49 @@ export class PageServiceMsaTicketComponent implements OnInit {
         ]),
       }),
     });
+
+    this.subscribeToFieldStatusChanges();
+  }
+
+
+
+  subscribeToFieldStatusChanges() {
+    this.form.get('field_6_name').get('field_6_name_last').statusChanges
+      .pipe(
+        filter((status: string) => {
+
+          this.ff6Errors.field_6_name_last = this.form.get('field_6_name').get('field_6_name_last').errors;
+
+
+          console.log(this.ff6Errors.field_6_name_last);
+
+          if (!this.ff6Errors.field_6_name_last) {
+            this.ff6Errors.field_6_name_last = {}
+          }
+
+          return false;
+        }))
+      .subscribe((op) => {
+        console.log('s?');
+      });
+  }
+
+
+  getGroupValidators(fieldsList) {
+
+    const FormGroupOptions = {};
+
+    for (let control of Object.values(fieldsList)) {
+      const validators = [];
+
+      for (let validator of Object.values(control['validators'])) {
+        validators.push(validator['body']);
+      }
+
+      FormGroupOptions[control['name']] = new FormControl('', validators);
+    }
+
+    return new FormGroup(FormGroupOptions);
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -114,9 +178,39 @@ export class PageServiceMsaTicketComponent implements OnInit {
     window.scrollTo(0, document.body.scrollHeight); // values are x,y-offset
   }
 
-  //with with forms
+  formValidate() {
+
+    const f6Labels = formValidators.f6(this.ff6Errors);
+
+
+    if (f6Labels.length !== 0) {
+      this.formMessage.nativeElement.innerHTML ='Форма не валидна. Провеобте поля: ';
+
+      for (let label of f6Labels) {
+        this.formMessage.nativeElement.innerHTML += label + ', ';
+      }
+    }
+
+
+    console.log(this.form);
+  };
+
   async doSubmit() {
+    this.formValidate();
+
     if(!this.form.valid) {
+
+      console.log('form not valid');
+      // console.log('form', this.form);
+
+
+      this.formMessageType = 'danger';
+      this.renderer.setStyle(this.formMessage.nativeElement, 'display', 'block');
+
+      setTimeout(() => {
+        this.renderer.setStyle(this.formMessage.nativeElement, 'display', 'none');
+      }, 2000);
+
       return;
     }
 
