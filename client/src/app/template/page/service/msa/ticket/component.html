@@ -53,7 +53,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div>-->
 
         <div class="form-fields-group-wrapper">
           <fieldset>
@@ -61,26 +61,27 @@
               5. Цель направления гражданина на медико-социальную экспертизу (нужное отметить):
             </label>
             <div class="form-group" id="f5">
-              &lt;!&ndash;radio&ndash;&gt;
-              <div class="custom-control custom-radio form-item-xs" *ngFor="let itemFf5 of ff5">
-                <input type="radio" [id]=itemFf5.id name="radio5" class="custom-control-input" checked="">
-                <label class="custom-control-label" [for]=itemFf5.id>
-                  {{itemFf5.label}}
+              <!--radio-->
+              <div class="custom-control custom-radio form-item-xs" *ngFor="let controlName of objectKeys(groups.f_5_group)">
+                <input type="radio" [id]=groups.f_5_group[controlName].main.id name="f_5_group" class="custom-control-input" checked="">
+                <label class="custom-control-label" [for]=groups.f_5_group[controlName].main.id>
+                  {{groups.f_5_group[controlName].main.label}}
                 </label>
-              </div>
-              &lt;!&ndash;radio&ndash;&gt;
-              <div class="custom-control custom-radio form-item-xs">
-                <input type="radio" id="f514" name="radio5" class="custom-control-input" checked="">
-                <label class="custom-control-label form-item-xs" for="f514">
-                  5.14 иные цели, установленные законодательством Российской Федерации (указать):
-                </label>
-                <div>
-                  <textarea class="form-control" rows="3"></textarea>
+                <div *ngIf="groups.f_5_group[controlName].childs">
+                  <div *ngFor="let controlChL1Name of objectKeys(groups.f_5_group[controlName].childs)">
+                    <textarea class="form-control" rows="3" [formControlName]=controlChL1Name></textarea>
+                    <span *ngFor="let validatorName of objectKeys(groups.f_5_group[controlName].childs[controlChL1Name].validators)">
+                      <small class="message error" *ngIf="groups.f_5_group[controlName].childs[controlChL1Name].errors[validatorName]">
+                        {{groups.f_5_group[controlName].childs[controlChL1Name].validators[validatorName].errorText}}
+                      </small>
+                    </span>
+                  </div>
                 </div>
               </div>
+              <!--radio-->
             </div>
           </fieldset>
-        </div>-->
+        </div>
 
         <h3 class="title">Общие данные</h3>
 
@@ -103,15 +104,21 @@
           </div>
         </div>
 
-        <!--<div class="form-fields-group-wrapper">
+        <div class="form-fields-group-wrapper">
           <p class="label-text">7. Возраст</p>
-          <div class="label-text" *ngFor="let itemFf7 of ff7">
-            <label [for]=itemFf7.id>
-              {{itemFf7.label}}
+          <div class="label-text" *ngFor="let controlName of objectKeys(groups.f_7_group)">
+            <label [for]=groups.f_7_group[controlName].id>
+              {{groups.f_7_group[controlName].label}}
             </label>
             <div class="row form-item-sm">
               <div class="col-6">
-                <input type="text" class="form-control" [id]=itemFf7.id placeholder="">
+                <input type="text" class="form-control" [id]=groups.f_7_group[controlName].id placeholder=""
+                                                        [formControlName]=controlName>
+                <span *ngFor="let validatorName of objectKeys(groups.f_7_group[controlName].validators)">
+                  <small class="message error" *ngIf="groups.f_7_group[controlName].errors[validatorName]">
+                    {{groups.f_7_group[controlName].validators[validatorName].errorText}}
+                  </small>
+                </span>
               </div>
             </div>
           </div>
@@ -119,38 +126,38 @@
 
         <div class="form-fields-group-wrapper">
           <p class="label-text">8. Пол (нужное отметить)</p>
-          &lt;!&ndash;radio&ndash;&gt;
-          <div class="custom-control custom-radio form-item-xs" *ngFor="let itemFf8 of ff8">
-            <input type="radio" [id]=itemFf8.id name="radio8" class="custom-control-input" checked="">
-            <label class="custom-control-label" [for]=itemFf8.id>
-              {{itemFf8.label}}
+          <!--radio-->
+          <div class="custom-control custom-radio form-item-xs" *ngFor="let controlName of objectKeys(groups.f_8_group)">
+            <input type="radio" [id]=groups.f_8_group[controlName].id name="f_8_group" class="custom-control-input" checked="">
+            <label class="custom-control-label" [for]=groups.f_8_group[controlName].id>
+              {{groups.f_8_group[controlName].label}}
             </label>
           </div>
-          &lt;!&ndash;radio&ndash;&gt;
+          <!--radio-->
         </div>
 
         <div class="form-fields-group-wrapper">
           <p class="label-text">9. Гражданство (нужное отметить)</p>
-          &lt;!&ndash;radio&ndash;&gt;
-          <div class="custom-control custom-radio form-item-xs" *ngFor="let itemFf9 of ff9">
-            <input type="radio" [id]=itemFf9.id name="radio9" class="custom-control-input" checked="">
-            <label class="custom-control-label" [for]=itemFf9.id>
-              {{itemFf9.label}}
+          <!--radio-->
+          <div class="custom-control custom-radio form-item-xs" *ngFor="let controlName of objectKeys(groups.f_9_group)">
+            <input type="radio" [id]=groups.f_9_group[controlName].id name="f_9_group" class="custom-control-input" checked="">
+            <label class="custom-control-label" [for]=groups.f_9_group[controlName].id>
+              {{groups.f_9_group[controlName].label}}
             </label>
           </div>
-          &lt;!&ndash;radio&ndash;&gt;
+          <!--radio-->
         </div>
 
         <div class="form-fields-group-wrapper">
           <p class="label-text">10. Отношение к воинской обязанности (нужное отметить)</p>
-          &lt;!&ndash;radio&ndash;&gt;
-          <div class="custom-control custom-radio form-item-xs" *ngFor="let itemFf10 of ff10">
-            <input type="radio" [id]=itemFf10.id name="radio10" class="custom-control-input" checked="">
-            <label class="custom-control-label" [for]=itemFf10.id>
-              {{itemFf10.label}}
+          <!--radio-->
+          <div class="custom-control custom-radio form-item-xs" *ngFor="let controlName of objectKeys(groups.f_10_group)">
+            <input type="radio" [id]=groups.f_10_group[controlName].id name="f_10_group" class="custom-control-input" checked="">
+            <label class="custom-control-label" [for]=groups.f_10_group[controlName].id>
+              {{groups.f_10_group[controlName].label}}
             </label>
           </div>
-          &lt;!&ndash;radio&ndash;&gt;
+          <!--radio-->
         </div>
 
         <div class="form-fields-group-wrapper">
@@ -158,37 +165,43 @@
             11. Адрес места жительства (при отсутствии места жительства указывается адрес
             пребывания, фактического проживания на территории Российской Федерации, место нахождения пенсионного дела инвалида, выехавшего на постоянное жительство за пределы Российской Федерации):
           </p>
-          <div class="form-item-sm" *ngFor="let itemFf11 of ff11">
+          <div class="form-item-sm" *ngFor="let controlName of objectKeys(groups.f_11_group)">
             <div class="label-text">
-              <label [for]=itemFf11.id class="">
-                {{itemFf11.label}}
+              <label [for]=groups.f_11_group[controlName].main.id class="">
+                {{groups.f_11_group[controlName].main.label}}
               </label>
-              <div class="row" *ngIf="!itemFf11.childs">
-                <div class="col-{{itemFf11.col? itemFf11.col : 6}}">
+              <div class="row" *ngIf="!groups.f_11_group[controlName].childs">
+                <div class="col-{{groups.f_11_group[controlName].main.col? groups.f_11_group[controlName].main.col : 6}}">
                   <div>
-                    <input type="text" class="form-control" [id]=itemFf11.id placeholder="">
+                    <input type="text" class="form-control" [id]=groups.f_11_group[controlName].main.id placeholder=""
+                                                            [formControlName]=controlName>
+                    <span *ngFor="let validatorName of objectKeys(groups.f_11_group[controlName].main.validators)">
+                      <small class="message error" *ngIf="groups.f_11_group[controlName].main.errors[validatorName]">
+                        {{groups.f_11_group[controlName].main.validators[validatorName].errorText}}
+                      </small>
+                    </span>
                   </div>
                 </div>
               </div>
-              <div *ngIf="itemFf11.childs">
-                &lt;!&ndash;radio&ndash;&gt;
-                <div class="custom-control custom-radio form-item-xs" *ngFor="let itemFf11Child of itemFf11.childs">
-                  <input type="radio" [id]=itemFf11Child.id name="radio11" class="custom-control-input" checked="">
-                  <label class="custom-control-label" [for]=itemFf11Child.id>
-                    {{itemFf11Child.label}}
+              <div *ngIf="groups.f_11_group[controlName].childs">
+                <!--radio-->
+                <div class="custom-control custom-radio form-item-xs" *ngFor="let controlChL1Name of objectKeys(groups.f_11_group[controlName].childs)">
+                  <input type="radio" [id]=groups.f_11_group[controlName].childs[controlChL1Name].id name="f_11_5_group" class="custom-control-input" checked="">
+                  <label class="custom-control-label" [for]=groups.f_11_group[controlName].childs[controlChL1Name].id>
+                    {{groups.f_11_group[controlName].childs[controlChL1Name].label}}
                   </label>
                 </div>
-                &lt;!&ndash;radio&ndash;&gt;
+                <!--radio-->
               </div>
             </div>
           </div>
           <div class="custom-control custom-checkbox form-item-xs">
-            <input type="checkbox" class="custom-control-input" id="f12">
+            <input type="checkbox" class="custom-control-input" id="f12" name="f_12">
             <label class="custom-control-label" for="f12">
               12. Лицо без определенного места жительства
             </label>
           </div>
-        </div>-->
+        </div>
 
         <div class="form-fields-group-wrapper">
           <p class="label-text">

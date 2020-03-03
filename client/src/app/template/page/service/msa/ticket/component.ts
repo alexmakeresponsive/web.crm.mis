@@ -47,7 +47,7 @@ export class PageServiceMsaTicketComponent implements OnInit {
   subscribeToFieldStatusChanges() {
     for (let controlName of Object.keys(this.controls)) {
 
-      if(this.controls[controlName].type == 'radio') {
+      if(this.controls[controlName].type == 'not-validate') {
         continue;
       }
 
@@ -97,7 +97,7 @@ export class PageServiceMsaTicketComponent implements OnInit {
     for (let controlName of Object.keys(this.controls)) {
       const validators = [];
 
-      if(this.controls[controlName].type == 'radio') {
+      if(this.controls[controlName].type == 'not-validate') {
         continue;
       }
 
