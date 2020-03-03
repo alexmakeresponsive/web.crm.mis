@@ -39,7 +39,7 @@ export class PageServiceMsaTicketComponent implements OnInit {
   ngOnInit() {
     this.form = this.createFormGroup();
 
-    console.log(this.form);
+    // console.log(this.form);
 
     this.subscribeToFieldStatusChanges();
   }
@@ -69,8 +69,9 @@ export class PageServiceMsaTicketComponent implements OnInit {
   getLabelWithErrors() {
     const result = [];
 
-    for (let key of Object.keys(this.controls)) {
-      if (this.controls[key]['errors'] !== null) {
+    for (let key of Object.keys(this.form.controls)) {
+
+      if (this.form.controls[key]['errors'] !== null) {
         result.push(this.controls[key].label);
       }
     }
