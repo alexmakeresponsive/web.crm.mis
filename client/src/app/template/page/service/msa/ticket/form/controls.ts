@@ -14,43 +14,43 @@ export default {
   f_5_1: {
     label: '5.1 установление группы инвалидности',
     id: 'f51',
-    type: 'not-validate',
+    validation: 'not-validate',
     name: 'f_5_group',
   },
   f_5_2: {
     label: '5.2 установление категории «ребенок-инвалид»',
     id: 'f52',
-    type: 'not-validate',
+    validation: 'not-validate',
     name: 'f_5_group',
   },
   f_5_3: {
     label: '5.3 установление причины инвалидности',
     id: 'f53',
-    type: 'not-validate',
+    validation: 'not-validate',
     name: 'f_5_group',
   },
   f_5_4: {
     label: '5.4 установление времени наступления инвалидности',
     id: 'f54',
-    type: 'not-validate',
+    validation: 'not-validate',
     name: 'f_5_group',
   },
   f_5_5: {
     label: '5.5 установление установление срока инвалидности',
     id: 'f55',
-    type: 'not-validate',
+    validation: 'not-validate',
     name: 'f_5_group',
   },
   f_5_6: {
     label: '5.6 определение степени утраты профессиональной трудоспособности в процентах',
     id: 'f56',
-    type: 'not-validate',
+    validation: 'not-validate',
     name: 'f_5_group',
   },
   f_5_7: {
     label: '5.7 определение стойкой утраты трудоспособности сотрудника органа внутренних дел Российской Федерации',
     id: 'f57',
-    type: 'not-validate',
+    validation: 'not-validate',
     name: 'f_5_group',
   },
   f_5_8: {
@@ -61,19 +61,19 @@ export default {
       'службу\n' +
       'проходящего военную службу по контракту).',
     id: 'f58',
-    type: 'not-validate',
+    validation: 'not-validate',
     name: 'f_5_group',
   },
   f_5_9: {
     label: '5.9. определение причины смерти инвалида, а также лица, пострадавшего в результате несчастного случая на производстве, профессионального заболевания, катастрофы на Чернобыльской АЭС и других радиационных и техногенных катастроф либо в результате ранения, контузии, увечья или заболевания, полученных в период прохождения военной службы, в случаях, когда законодательством Российской Федерации предусматривается предоставление семье умершего мер социальной поддержки',
     id: 'f59',
-    type: 'not-validate',
+    validation: 'not-validate',
     name: 'f_5_group',
   },
   f_5_10: {
     label: '5.10 разработка индивидуальной программы реабилитации или абилитации инвалида (ребенка-инвалида)',
     id: 'f510',
-    type: 'not-validate',
+    validation: 'not-validate',
     name: 'f_5_group',
   },
   f_5_11: {
@@ -83,25 +83,25 @@ export default {
       'несчастного\n' +
       'производстве професссионального заболевания',
     id: 'f511',
-    type: 'not-validate',
+    validation: 'not-validate',
     name: 'f_5_group',
   },
   f_5_12: {
     label: '5.12 выдача дубликата справки, подтверждающей факт установления инвалидности, степени утраты профессиональной трудоспособности в процентах',
     id: 'f512',
-    type: 'not-validate',
+    validation: 'not-validate',
     name: 'f_5_group',
   },
   f_5_13: {
     label: '5.13 выдача новой справки, подтверждающей факт установления инвалидности, в случае изменения фамилии, имени, отчества, даты рождения гражданина',
     id: 'f513',
-    type: 'not-validate',
+    validation: 'not-validate',
     name: 'f_5_group',
   },
   f_5_14: {
     label: '5.14 иные цели, установленные законодательством Российской Федерации (указать)',
     id: 'f514',
-    type: 'not-validate',
+    validation: 'not-validate',
     name: 'f_5_group',
   },
   f_5_14_text: {
@@ -187,46 +187,46 @@ export default {
   f_8_1: {
     label: '8.1 мужской',
     id: 'f81',
-    type: 'not-validate',
+    validation: 'not-validate',
     name: 'f_8_group',
   },
   f_8_2: {
     label: '8.2 женский',
     id: 'f82',
-    type: 'not-validate',
+    validation: 'not-validate',
     name: 'f_8_group',
   },
 
   f_9_1: {
     label: '9.1 гражданин Российской Федерации',
     id: 'f91',
-    type: 'not-validate',
+    validation: 'not-validate',
     name: 'f_9_group',
   },
   f_9_2: {
     label: '9.2 гражданин иностранного государства, находящийся на территории Российской Федерации',
     id: 'f92',
-    type: 'not-validate',
+    validation: 'not-validate',
     name: 'f_9_group',
   },
   f_9_3: {
     label: '9.3 лицо без гражданства, находящееся на территории Российской Федерации',
     id: 'f93',
-    type: 'not-validate',
+    validation: 'not-validate',
     name: 'f_9_group',
   },
 
   f_10_1: {
     label: '10.1 гражданин, состоящий на воинском учете',
     id: 'f101',
-    type: 'not-validate',
+    validation: 'not-validate',
     name: 'f_10_group',
   },
   f_10_2: {
     label: '10.2 гражданин, не состоящий на воинском учете, но обязанный состоять\n' +
       '  на воинском учете',
     id: 'f102',
-    type: 'not-validate',
+    validation: 'not-validate',
     name: 'f_10_group',
   },
 
@@ -278,19 +278,19 @@ export default {
     label: '11.5 населенный пункт (нужное отметить)',
     id: 'f115',
     tag: 'checkbox',
-    type: 'not-validate',
+    validation: 'not-validate',
     name: 'f_11_5_group',
   },
   f_11_5_1: {
     label: '11.5.1 городское поселение',
     id: 'f1151',
-    type: 'not-validate',
+    validation: 'not-validate',
     name: 'f_11_5_group',
   },
   f_11_5_2: {
     label: '11.5.2 сельское поселение',
     id: 'f1152',
-    type: 'not-validate',
+    validation: 'not-validate',
     name: 'f_11_5_group',
   },
   f_11_6: {
@@ -358,7 +358,7 @@ export default {
       'организации, медицинскую стационарных условиях\n' +
       'в медицинской оказывающей помощь в',
     id: 'f131',
-    type: 'not-validate',
+    validation: 'not-validate',
     name: 'f_13_group',
     validators: {},
     errors: {}
@@ -390,7 +390,7 @@ export default {
   f_13_2: {
     label: '13.2 социального оказывающей услуги в стационарной форме социального обслуживания',
     id: 'f132',
-    type: 'not-validate',
+    validation: 'not-validate',
     name: 'f_13_group',
     validators: {},
     errors: {}
@@ -422,7 +422,7 @@ export default {
   f_13_3: {
     label: '13.3 в исправительном учреждении',
     id: 'f133',
-    type: 'not-validate',
+    validation: 'not-validate',
     name: 'f_13_group',
     validators: {},
     errors: {}
@@ -451,22 +451,43 @@ export default {
     },
     errors: {}
   },
-};
 
-
-export const f14 = [
-  {
+  f_14_1: {
     label: '14.1 контактные телефоны',
     id: 'f141',
+    validators: {
+      pattern: {
+        body: Validators.pattern('[0-9 ]*'),
+        errorText: 'Телефон введён некорретно'
+      }
+    },
+    errors: {}
   },
-  {
+  f_14_2: {
     label: '14.2 адрес электронной почты',
     id: 'f142',
+    validators: {
+      email: {
+        body: Validators.email,
+        errorText: 'Aдрес электронной почты введён некорретно'
+      }
+    },
+    errors: {}
   },
-];
 
-export const f16 = [
-  {
+  f_15: {
+    label: '14.2 Страховой номер индивидуального лицевого счета (СНИЛС)',
+    id: 'f15',
+    validators: {
+      pattern: {
+        body: Validators.pattern('[0-9 ]*'),
+        errorText: 'СНИЛС введён некорретно'
+      }
+    },
+    errors: {}
+  },
+
+  f_16_1: {
     label: '16.1 наименование',
     id: 'f161',
     type: 'entry',
@@ -477,153 +498,283 @@ export const f16 = [
       'Водительское удостоверение',
       'Свидетельство о рождении',
     ], {}),
+    validation: 'not-validate',
+    name: 'f_16_1',
   },
-  {
+  f_16_2: {
     id: 'f162',
     label: '16.2 номера',
-    childs: [
-      {
-        label: 'серия',
-        id: 'f1621'
-      },
-      {
-        label: 'номер',
-        id: 'f1622'
+    validation: 'not-validate',
+    name: 'f_16_2',
+  },
+  f_16_2_1: {
+    label: 'серия',
+    id: 'f1621',
+    validators: {
+      pattern: {
+        body: Validators.pattern('[0-9 ]*'),
+        errorText: 'серия введена некорретно'
       }
-    ]
+    },
+    errors: {}
   },
-  {
+  f_16_2_2: {
+    label: 'номер',
+    id: 'f1622',
+    validators: {
+      pattern: {
+        body: Validators.pattern('[0-9 ]*'),
+        errorText: 'номер введён некорретно'
+      }
+    },
+    errors: {}
+  },
+  f_16_3: {
     label: '16.3 кем выдан',
-    id: 'f163'
+    id: 'f163',
+    validators: {
+      pattern: {
+        body: Validators.pattern('[0-9a-zA-Z ]*'),
+        errorText: 'Поле заполнено некорретно'
+      }
+    },
+    errors: {}
   },
-  {
+  f_16_4: {
     label: '16.4 дата выдачи (день, месяц, год):',
-    id: 'f164'
+    id: 'f164',
+    validators: {
+      pattern: {
+        body: Validators.pattern('[0-9 ]*'),
+        errorText: 'Дата выдачи указана некорретно'
+      }
+    },
+    errors: {}
   },
-];
 
-export const f17 = [
-  {
+  f_17_1: {
     label: '17.1 документ, удостоверяющий полномочия законного (уполномоченного) представителя',
     id: 'f171',
-    childs: [
-      {
-        label: '17.1.1 наименование',
-        id: 'f1711',
-        col: 6,
-        entry: true,
-        data: new EntryComponentConstructor(SelectS1Component, [
-          'Паспорт',
-          'Доверенность',
-        ], {}),
-      },
-      {
-        id: 'f1712',
-        label: '17.1.2 номера',
-        col: 6,
-        childs: [
-          {
-            label: 'серия',
-            id: 'f17121'
-          },
-          {
-            label: 'номер',
-            id: 'f17122'
-          }
-        ]
-      },
-      {
-        label: '17.1.3 кем выдан',
-        id: 'f1713',
-        col: 9
-      },
-      {
-        label: '17.1.4 дата выдачи (день, месяц, год)',
-        id: 'f1714'
-      },
-    ]
+    validation: 'not-validate',
+    name: 'f_17_1',
   },
-  {
+  f_17_1_1: {
+    label: '17.1.1 наименование',
+    id: 'f1711',
+    col: 6,
+    entry: true,
+    data: new EntryComponentConstructor(SelectS1Component, [
+      'Паспорт',
+      'Доверенность',
+    ], {}),
+    validation: 'not-validate',
+    name: 'f_17_1',
+  },
+  f_17_1_2: {
+    id: 'f1712',
+    label: '17.1.2 номера',
+    col: 6,
+    validation: 'not-validate',
+    name: 'f_17_1',
+  },
+  f_17_1_2_1: {
+    label: 'серия',
+    id: 'f17121',
+    validators: {
+      pattern: {
+        body: Validators.pattern('[0-9 ]*'),
+        errorText: 'Серия указана некорретно'
+      }
+    },
+    errors: {}
+  },
+  f_17_1_2_2: {
+    label: 'номер',
+    id: 'f17122',
+    validators: {
+      pattern: {
+        body: Validators.pattern('[0-9 ]*'),
+        errorText: 'Номер указана некорретно'
+      }
+    },
+    errors: {}
+  },
+  f_17_1_3: {
+    label: '17.1.3 кем выдан',
+    id: 'f1713',
+    col: 9,
+    validators: {
+      pattern: {
+        body: Validators.pattern('[0-9a-zA-Z ]*'),
+        errorText: 'Поле указано некорретно'
+      }
+    },
+    errors: {}
+  },
+  f_17_1_4: {
+    label: '17.1.4 дата выдачи (день, месяц, год)',
+    id: 'f1714',
+    validators: {
+      pattern: {
+        body: Validators.pattern('[0-9 ]*'),
+        errorText: 'Дата выдачи указана некорретно'
+      }
+    },
+    errors: {}
+  },
+  f_17_2: {
     label: '17.2 документ, удостоверяющий личность',
     id: 'f172',
-    childs: [
-      {
-        label: '17.2.1 наименование',
-        id: 'f1721',
-        col: 6,
-        entry: true,
-        data: new EntryComponentConstructor(SelectS1Component, [
-          'Свидетельство о рождении',
-          'Доверенность',
-        ], {})
-      },
-      {
-        id: 'f1722',
-        label: '17.2.2 номер',
-        col: 6,
-        childs: [
-          {
-            label: 'серия',
-            id: 'f17221'
-          },
-          {
-            label: 'номер',
-            id: 'f17222'
-          }
-        ]
-      },
-      {
-        label: '17.2.3 кем выдан',
-        id: 'f1723',
-        col: 9
-      },
-      {
-        label: '17.2.4 дата выдачи (день, месяц, год)',
-        id: 'f1724'
-      },
-    ]
+    validation: 'not-validate',
+    name: 'f_17_2',
   },
-  {
+  f_17_2_1: {
+    label: '17.2.1 наименование',
+    id: 'f1721',
+    col: 6,
+    entry: true,
+    data: new EntryComponentConstructor(SelectS1Component, [
+      'Свидетельство о рождении',
+      'Доверенность',
+    ], {}),
+    validation: 'not-validate',
+    name: 'f_17_2_1',
+  },
+  f_17_2_2: {
+    id: 'f1722',
+    label: '17.2.2 номер',
+    col: 6,
+    validation: 'not-validate',
+    name: 'f_17_2_2',
+  },
+  f_17_2_2_1: {
+    label: 'серия',
+    id: 'f17221',
+    validators: {
+      pattern: {
+        body: Validators.pattern('[0-9 ]*'),
+        errorText: 'Серия указана некорретно'
+      }
+    },
+    errors: {}
+  },
+  f_17_2_2_2: {
+    label: 'номер',
+    id: 'f17222',
+    validators: {
+      pattern: {
+        body: Validators.pattern('[0-9 ]*'),
+        errorText: 'Номер указан некорретно'
+      }
+    },
+    errors: {}
+  },
+  f_17_2_3: {
+    label: '17.2.3 кем выдан',
+    id: 'f1723',
+    col: 9,
+    validators: {
+      pattern: {
+        body: Validators.pattern('[0-9a-zA-Z ]*'),
+        errorText: 'Поле указано некорретно'
+      }
+    },
+    errors: {}
+  },
+  f_17_2_4: {
+    label: '17.2.4 дата выдачи (день, месяц, год)',
+    id: 'f1724',
+    validators: {
+      pattern: {
+        body: Validators.pattern('[0-9 ]*'),
+        errorText: 'Дата выдачи указана некорретно'
+      }
+    },
+    errors: {}
+  },
+  f_17_3: {
     label: '17.3 контактная информация',
     id: 'f173',
-    childs: [
-      {
-        label: '17.3.1 контактные телефоны',
-        id: 'f1731',
-        col: 6
-      },
-      {
-        label: '17.3.2 адрес электронной почты',
-        id: 'f1732',
-        col: 6
-      },
-    ]
+    validation: 'not-validate',
+    name: 'f_17_2_2',
   },
-  {
+  f_17_3_1: {
+    label: '17.3.1 контактные телефоны',
+    id: 'f1731',
+    col: 6,
+    validators: {
+      pattern: {
+        body: Validators.pattern('[0-9 ]*'),
+        errorText: 'Телефон указан некорретно'
+      }
+    },
+    errors: {}
+  },
+  f_17_3_2: {
+    label: '17.3.2 адрес электронной почты',
+    id: 'f1732',
+    col: 6,
+    validators: {
+      email: {
+        body: Validators.email,
+        errorText: 'Aдрес электронной почты введён некорретно'
+      }
+    },
+    errors: {}
+  },
+  f_17_4: {
     label: '17.4 страховой номер индивидуального лицевого счета (СНИЛС):',
-    id: 'f174'
+    id: 'f174',
+    validators: {
+      pattern: {
+        body: Validators.pattern('[0-9 ]*'),
+        errorText: 'СНИЛС введён некорретно'
+      }
+    },
+    errors: {}
   },
-  {
+  f_17_5: {
     label: '17.5  сведения об организации в случае возложения опеки (попечительства) на юридическое лицо',
     id: 'f175',
-    childs: [
-      {
-        label: '17.5.1 наименование',
-        id: 'f1751'
-      },
-      {
-        label: '17.5.2 адрес',
-        id: 'f1752',
-        col: 9
-      },
-      {
-        label: '17.5.3 ОГРН',
-        id: 'f1753',
-        col: 6
-      },
-    ]
-  }
-];
+    validation: 'not-validate',
+    name: 'f_17_5',
+  },
+  f_17_5_1: {
+    label: '17.5.1 наименование',
+    id: 'f1751',
+    validators: {
+      pattern: {
+        body: Validators.pattern('[A-Z ]*'),
+        errorText: 'Наименование указано некорретно'
+      }
+    },
+    errors: {}
+  },
+  f_17_5_2: {
+    label: '17.5.2 адрес',
+    id: 'f1752',
+    col: 9,
+    validators: {
+      pattern: {
+        body: Validators.pattern('[a-zA-Z0-9., ]*'),
+        errorText: 'Адрес введён некорретно'
+      }
+    },
+    errors: {}
+  },
+  f_17_5_3: {
+    label: '17.5.3 ОГРН',
+    id: 'f1753',
+    col: 6,
+    validators: {
+      pattern: {
+        body: Validators.pattern('[0-9 ]*'),
+        errorText: 'ОГРН введено некорретно'
+      }
+    },
+    errors: {}
+  },
+};
 
 export const f18 = [
   {

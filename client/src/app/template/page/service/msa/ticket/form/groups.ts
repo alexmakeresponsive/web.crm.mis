@@ -130,10 +130,104 @@ export default {
     }
   },
   f_14_group: {
-
+    f_14_1: controls.f_14_1,
+    f_14_2: controls.f_14_2,
   },
-  f_16_group: {},
-  f_17_group: {},
+
+  f_15: controls.f_15,
+
+  f_16_group: {
+    f_16_1: {
+      main: controls.f_16_1,
+    },
+    f_16_2: {
+      main: controls.f_16_2,
+      childs: {
+        f_16_2_1: controls.f_16_2_1,
+        f_16_2_2: controls.f_16_2_2
+      }
+    },
+    f_16_3: {
+      main: controls.f_16_3,
+    },
+    f_16_4: {
+      main: controls.f_16_4,
+    },
+  },
+  // -----------------------------------------------------------------------------
+  f_17_group: {
+    f_17_1: {
+      main: controls.f_17_1,
+      childs: {
+        f_17_1_1: {
+          main: controls.f_17_1_1,
+        },
+        f_17_1_2: {
+          main: controls.f_17_1_2,
+          childs: {
+            f_17_1_2_1: controls.f_17_1_2_1,
+            f_17_1_2_2: controls.f_17_1_2_2,
+          }
+        },
+        f_17_1_3: {
+          main: controls.f_17_1_3,
+        },
+        f_17_1_4: {
+          main: controls.f_17_1_4,
+        }
+      }
+    },
+    f_17_2: {
+      main: controls.f_17_2,
+      childs: {
+        f_17_2_1: {
+          main: controls.f_17_2_1,
+        },
+        f_17_2_2: {
+          main: controls.f_17_2_2,
+          childs: {
+            f_17_2_2_1: controls.f_17_2_2_1,
+            f_17_2_2_2: controls.f_17_2_2_2,
+          }
+        },
+        f_17_2_3: {
+          main: controls.f_17_2_3,
+        },
+        f_17_2_4: {
+          main: controls.f_17_2_4,
+        }
+      }
+    },
+    f_17_3: {
+      main: controls.f_17_3,
+      childs: {
+        f_17_3_1: {
+          main: controls.f_17_3_1,
+        },
+        f_17_3_2: {
+          main: controls.f_17_3_2,
+        }
+      }
+    },
+    f_17_4: {
+      main: controls.f_17_4,
+    },
+    f_17_5: {
+      main: controls.f_17_5,
+      childs: {
+        f_17_5_1: {
+          main: controls.f_17_5_1,
+        },
+        f_17_5_2: {
+          main: controls.f_17_5_2,
+        },
+        f_17_5_3: {
+          main: controls.f_17_5_3,
+        }
+      }
+    },
+  },
+  // -----------------------------------------------------------------------------
   f_18_group: {},
   f_19_group: {},
   f_20_group: {},

@@ -47,7 +47,7 @@ export class PageServiceMsaTicketComponent implements OnInit {
   subscribeToFieldStatusChanges() {
     for (let controlName of Object.keys(this.controls)) {
 
-      if(this.controls[controlName].type == 'not-validate') {
+      if(this.controls[controlName].validation == 'not-validate') {
         continue;
       }
 
@@ -55,6 +55,8 @@ export class PageServiceMsaTicketComponent implements OnInit {
         .pipe(
           filter((status: string) => {
             this.controls[controlName].errors = this.form.get(controlName).errors;
+
+            // console.log(this.controls[controlName].errors);
 
             if (!this.controls[controlName].errors) {
                  this.controls[controlName].errors = {}
@@ -97,7 +99,7 @@ export class PageServiceMsaTicketComponent implements OnInit {
     for (let controlName of Object.keys(this.controls)) {
       const validators = [];
 
-      if(this.controls[controlName].type == 'not-validate') {
+      if(this.controls[controlName].validation == 'not-validate') {
         continue;
       }
 

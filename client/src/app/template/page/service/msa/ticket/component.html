@@ -245,17 +245,23 @@
           <!--radio-->
         </div>
 
-        <!--<div class="form-fields-group-wrapper">
+        <div class="form-fields-group-wrapper">
           <p class="label-text">
             14. Контактная информация
           </p>
-          <div class="label-text" *ngFor="let itemFf14 of ff14">
-            <label [for]=itemFf14.id>
-              {{itemFf14.label}}
+          <div class="label-text" *ngFor="let controlName of objectKeys(groups.f_14_group)">
+            <label [for]=groups.f_14_group[controlName].id>
+              {{groups.f_14_group[controlName].label}}
             </label>
             <div class="row form-item-sm">
               <div class="col-6">
-                <input type="text" class="form-control" [id]=itemFf14.id placeholder="">
+                <input type="text" class="form-control" [id]=groups.f_14_group[controlName].id placeholder=""
+                                                        [formControlName]=controlName>
+                <span *ngFor="let validatorName of objectKeys(groups.f_14_group[controlName].validators)">
+                  <small class="message error" *ngIf="groups.f_14_group[controlName].errors[validatorName]">
+                    {{groups.f_14_group[controlName].validators[validatorName].errorText}}
+                  </small>
+                </span>
               </div>
             </div>
           </div>
@@ -268,37 +274,55 @@
             </label>
             <div class="row form-item-sm">
               <div class="col-6">
-                <input type="text" class="form-control" id="f15" placeholder="">
+                <input type="text" class="form-control" id="f15" placeholder="" formControlName="f_15">
+                <span *ngFor="let validatorName of objectKeys(groups.f_15.validators)">
+                  <small class="message error" *ngIf="groups.f_15.errors[validatorName]">
+                    {{groups.f_15.validators[validatorName].errorText}}
+                  </small>
+                </span>
               </div>
             </div>
           </div>
+
           <p class="label-text">
             16. Документ, удостоверяющий личность
           </p>
           <div class="label-text">
-            <div *ngFor="let itemFf16 of ff16" class="form-item-sm">
-              <div *ngIf="itemFf16.type !== 'entry'">
-                <label [for]=itemFf16.id>
-                  {{itemFf16.label}}
+            <div *ngFor="let controlName of objectKeys(groups.f_16_group)" class="form-item-sm">
+              <div *ngIf="groups.f_16_group[controlName].main.type !== 'entry'">
+                <label [for]=groups.f_16_group[controlName].main.id>
+                  {{groups.f_16_group[controlName].main.label}}
                 </label>
-                <div class="row form-item-sm" *ngIf="!itemFf16.childs">
+                <div class="row form-item-sm" *ngIf="!groups.f_16_group[controlName].childs">
                   <div class="col-6">
-                    <input type="text" class="form-control" [id]=itemFf16.id placeholder="">
+                    <input type="text" class="form-control" [id]=groups.f_16_group[controlName].main.id placeholder=""
+                                                            [formControlName]=controlName>
+                    <span *ngFor="let validatorName of objectKeys(groups.f_16_group[controlName].main.validators)">
+                      <small class="message error" *ngIf="groups.f_16_group[controlName].main.errors[validatorName]">
+                        {{groups.f_16_group[controlName].main.validators[validatorName].errorText}}
+                      </small>
+                    </span>
                   </div>
                 </div>
-                <div class="">
-                  <div class="row" *ngIf="itemFf16.childs">
-                    <div class="col-3" *ngFor="let itemFf16Child of itemFf16.childs">
-                      <div>
-                        <label [for]=itemFf16Child.id>{{itemFf16Child.label}}</label>
-                        <input type="text" class="form-control" [id]=itemFf16Child.id placeholder="">
-                      </div>
+                <div class="row" *ngIf="groups.f_16_group[controlName].childs">
+                  <div class="col-3" *ngFor="let controlChL1Name of objectKeys(groups.f_16_group[controlName].childs)">
+                    <div>
+                      <label [for]=groups.f_16_group[controlName].childs[controlChL1Name].id>
+                        {{groups.f_16_group[controlName].childs[controlChL1Name].label}}
+                      </label>
+                      <input type="text" class="form-control" [id]=groups.f_16_group[controlName].childs[controlChL1Name].id placeholder=""
+                                                              [formControlName]=controlChL1Name>
+                      <span *ngFor="let validatorName of objectKeys(groups.f_16_group[controlName].childs[controlChL1Name].validators)">
+                        <small class="message error" *ngIf="groups.f_16_group[controlName].childs[controlChL1Name].errors[validatorName]">
+                          {{groups.f_16_group[controlName].childs[controlChL1Name].validators[validatorName].errorText}}
+                        </small>
+                      </span>
                     </div>
                   </div>
                 </div>
               </div>
-              <div *ngIf="itemFf16.type === 'entry'">
-                <entry-wrapper [data]="itemFf16.data"></entry-wrapper>
+              <div *ngIf="groups.f_16_group[controlName].main.type === 'entry'">
+                <entry-wrapper [data]="groups.f_16_group[controlName].main.data"></entry-wrapper>
               </div>
             </div>
           </div>
@@ -309,44 +333,72 @@
             17. Сведения о законном (уполномоченном) представителе гражданина, направляемого на медико-социальную экспертизу
           </p>
           <div class="label-text">
-            <div *ngFor="let itemFf17 of ff17" class="form-item-sm">
-              <label [for]=itemFf17.id>
-                {{itemFf17.label}}
+            <div *ngFor="let controlName of objectKeys(groups.f_17_group)">
+              <label [for]=groups.f_17_group[controlName].main.id>
+                {{groups.f_17_group[controlName].main.label}}
               </label>
-              <div class="row form-item-sm" *ngIf="!itemFf17.childs">
-                <div class="col-{{itemFf17.col? itemFf17.col : 6}}">
-                  <input type="text" class="form-control" [id]=itemFf17.id placeholder="">
+              <div class="row form-item-sm" *ngIf="!groups.f_17_group[controlName].childs">
+                <div class="col-{{groups.f_17_group[controlName].main.col? groups.f_17_group[controlName].main.col : 6}}">
+                  <input type="text" class="form-control" [id]=groups.f_17_group[controlName].main.id placeholder=""
+                                                          [formControlName]=controlName>
+                  <span *ngFor="let validatorName of objectKeys(groups.f_17_group[controlName].main.validators)">
+                    <small class="message error" *ngIf="groups.f_17_group[controlName].main.errors[validatorName]">
+                      {{groups.f_17_group[controlName].main.validators[validatorName].errorText}}
+                    </small>
+                  </span>
                 </div>
               </div>
-                <div class="row" *ngIf="itemFf17.childs">
-                  <div class="field-wrapper-end col-{{itemFf17Child.col? itemFf17Child.col : 3}}" *ngFor="let itemFf17Child of itemFf17.childs">
-                    <div *ngIf="!itemFf17Child.entry">
-                    <label [for]=itemFf17Child.id>{{itemFf17Child.label}}</label>
-                    <div *ngIf="!itemFf17Child.childs">
-                      <input type="text" class="form-control form-item-sm" [id]=itemFf17Child.id placeholder="">
+              <div class="row" *ngIf="groups.f_17_group[controlName].childs">
+                <div class="field-wrapper-end
+                            col-{{groups.f_17_group[controlName].childs[controlChL1Name].main.col? groups.f_17_group[controlName].childs[controlChL1Name].main.col : 3}}"
+                     *ngFor="let controlChL1Name of objectKeys(groups.f_17_group[controlName].childs)">
+                  <div *ngIf="!groups.f_17_group[controlName].childs[controlChL1Name].main.entry">
+
+                    <label [for]=groups.f_17_group[controlName].childs[controlChL1Name].main.id>
+                      {{groups.f_17_group[controlName].childs[controlChL1Name].main.label}}
+                    </label>
+                    <div *ngIf="!groups.f_17_group[controlName].childs[controlChL1Name].childs">
+                      <input type="text" class="form-control form-item-sm" [id]=groups.f_17_group[controlName].childs[controlChL1Name].main.id placeholder=""
+                                                                           [formControlName]=controlChL1Name>
+                      <span *ngFor="let validatorName of objectKeys(groups.f_17_group[controlName].childs[controlChL1Name].main.validators)">
+                        <small class="message error" *ngIf="groups.f_17_group[controlName].childs[controlChL1Name].main.errors[validatorName]">
+                          {{groups.f_17_group[controlName].childs[controlChL1Name].main.validators[validatorName].errorText}}
+                        </small>
+                      </span>
                     </div>
-                    <div *ngIf="itemFf17Child.childs">
+                    <div *ngIf="groups.f_17_group[controlName].childs[controlChL1Name].childs">
                       <div class="row">
-                        <div class="col-{{itemFf17ChildChild.col? itemFf17ChildChild.col : 6}}" *ngFor="let itemFf17ChildChild of itemFf17Child.childs">
+                        <div class="col-{{groups.f_17_group[controlName].childs[controlChL1Name].childs[controlChL2Name].col? groups.f_17_group[controlName].childs[controlChL1Name].childs[controlChL2Name].col : 6}}"
+                             *ngFor="let controlChL2Name of objectKeys(groups.f_17_group[controlName].childs[controlChL1Name].childs)">
                           <div>
-                            <label [for]=itemFf17ChildChild.id>{{itemFf17ChildChild.label}}</label>
-                            <input type="text" class="form-control form-item-sm" [id]=itemFf17ChildChild.id placeholder="">
+                            <label [for]=groups.f_17_group[controlName].childs[controlChL1Name].childs[controlChL2Name].id>
+                              {{groups.f_17_group[controlName].childs[controlChL1Name].childs[controlChL2Name].label}}
+                            </label>
+                            <input type="text" class="form-control form-item-sm" [id]=groups.f_17_group[controlName].childs[controlChL1Name].childs[controlChL2Name].id placeholder=""
+                                                                                 [formControlName]=controlChL2Name>
+                            <span *ngFor="let validatorName of objectKeys(groups.f_17_group[controlName].childs[controlChL1Name].childs[controlChL2Name].validators)">
+                              <small class="message error" *ngIf="groups.f_17_group[controlName].childs[controlChL1Name].childs[controlChL2Name].errors[validatorName]">
+                                {{groups.f_17_group[controlName].childs[controlChL1Name].childs[controlChL2Name].validators[validatorName].errorText}}
+                              </small>
+                            </span>
                           </div>
                         </div>
                       </div>
                     </div>
-                    </div>
-                    <div *ngIf="itemFf17Child.entry">
-                      <label [for]=itemFf17Child.id>{{itemFf17Child.label}}</label>
-                      <entry-wrapper [data]="itemFf17Child.data"></entry-wrapper>
-                    </div>
+                  </div>
+                  <div *ngIf="groups.f_17_group[controlName].childs[controlChL1Name].main.entry">
+                    <label [for]=groups.f_17_group[controlName].childs[controlChL1Name].main.id>
+                      {{groups.f_17_group[controlName].childs[controlChL1Name].main.label}}
+                    </label>
+                    <entry-wrapper [data]="groups.f_17_group[controlName].childs[controlChL1Name].main.data"></entry-wrapper>
                   </div>
                 </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="form-fields-group-wrapper">
+        <!--<div class="form-fields-group-wrapper">
           <p class="label-text">
             18. Гражданин направляется на медико-социальную экспертизу (нужное отметить)
           </p>
