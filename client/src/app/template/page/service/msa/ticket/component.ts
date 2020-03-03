@@ -19,7 +19,7 @@ import {AuthService} from "../../../../../auth.service";
 })
 export class PageServiceMsaTicketComponent implements OnInit {
   ff5  = formFields.f5;
-  ff6  = formFields.f6;
+
   ff7  = formFields.f7;
   ff8  = formFields.f8;
   ff9  = formFields.f9;
@@ -40,20 +40,10 @@ export class PageServiceMsaTicketComponent implements OnInit {
   ff3437 = formFields.f3437;
   ff3133 = formFields.f3133;
 
-  ff6Errors = {
-    field_6_name_last: {
-
-    },
-    field_6_name_first: {
-
-    },
-    field_6_name_patronymic: {
-
-    },
-  };
+  fields       = formFields.fields;
 
   form:FormGroup;
-  formMessageType:string = 'lignt';
+  formMessageType:string = 'light';
 
   objectKeys = Object.keys;
 
@@ -71,62 +61,57 @@ export class PageServiceMsaTicketComponent implements OnInit {
   ngOnInit() {
     this.form = new FormGroup({
       protocol: new FormControl(''),
-      // field_6_name: this.getGroupValidators(this.ff6.list)
-      field_6_name: new FormGroup({
-        field_6_name_last: new FormControl('', [
-          Validators.pattern('[a-zA-Z ]*'),
-          Validators.required
-        ]),
-        field_6_name_first: new FormControl('', [
-          Validators.pattern('[a-zA-Z ]*'),
-          Validators.required
-        ]),
-        field_6_name_patronymic: new FormControl('', [
-          Validators.pattern('[a-zA-Z ]*'),
-        ]),
-      }),
+      field_6_name: this.getGroupValidators(this.fields.f6.list)
     });
 
-    this.subscribeToFieldStatusChanges();
+    this.subscribeToFieldStatusChanges('f6', 'field_6_name');
   }
 
+  subscribeToFieldStatusChanges(fieldKey, groupName) {
+    for (let controlName of Object.keys(this.fields[fieldKey].list)) {
+      this.form.get(groupName).get(controlName).statusChanges
+        .pipe(
+          filter((status: string) => {
 
+            this.fields[fieldKey].list[controlName].errors = this.form.get(groupName).get(controlName).errors;
 
-  subscribeToFieldStatusChanges() {
-    this.form.get('field_6_name').get('field_6_name_last').statusChanges
-      .pipe(
-        filter((status: string) => {
+            if (!this.fields[fieldKey].list[controlName].errors) {
+              this.fields[fieldKey].list[controlName].errors = {}
+            }
 
-          this.ff6Errors.field_6_name_last = this.form.get('field_6_name').get('field_6_name_last').errors;
-
-
-          console.log(this.ff6Errors.field_6_name_last);
-
-          if (!this.ff6Errors.field_6_name_last) {
-            this.ff6Errors.field_6_name_last = {}
-          }
-
-          return false;
-        }))
-      .subscribe((op) => {
-        console.log('s?');
-      });
+            return false;
+          }))
+        .subscribe((op) => {});
+    }
   }
 
+  formValidate() {
+    const f6Labels = formValidators.f6(this.form.get('field_6_name'));
+
+    if (f6Labels.length !== 0) {
+      this.formMessage.nativeElement.innerHTML ='Форма не валидна. Проверьте поля: ';
+
+      for (let label of f6Labels) {
+        this.formMessage.nativeElement.innerHTML += label + ', ';
+      }
+    }
+  };
 
   getGroupValidators(fieldsList) {
 
     const FormGroupOptions = {};
 
-    for (let control of Object.values(fieldsList)) {
+    for (let controlName of Object.keys(fieldsList)) {
       const validators = [];
 
-      for (let validator of Object.values(control['validators'])) {
+      for (let validator of Object.values(fieldsList[controlName]['validators'])) {
         validators.push(validator['body']);
       }
 
-      FormGroupOptions[control['name']] = new FormControl('', validators);
+      FormGroupOptions[controlName] = new FormControl('', validators);
     }
+
+    console.log(FormGroupOptions);
 
     return new FormGroup(FormGroupOptions);
   }
@@ -178,34 +163,12 @@ export class PageServiceMsaTicketComponent implements OnInit {
     window.scrollTo(0, document.body.scrollHeight); // values are x,y-offset
   }
 
-  formValidate() {
-
-    const f6Labels = formValidators.f6(this.ff6Errors);
-
-
-    if (f6Labels.length !== 0) {
-      this.formMessage.nativeElement.innerHTML ='Форма не валидна. Провеобте поля: ';
-
-      for (let label of f6Labels) {
-        this.formMessage.nativeElement.innerHTML += label + ', ';
-      }
-    }
-
-
-    console.log(this.form);
-  };
-
   async doSubmit() {
     this.formValidate();
 
     if(!this.form.valid) {
-
-      console.log('form not valid');
-      // console.log('form', this.form);
-
-
-      this.formMessageType = 'danger';
-      this.renderer.setStyle(this.formMessage.nativeElement, 'display', 'block');
+        this.formMessageType = 'danger';
+        this.renderer.setStyle(this.formMessage.nativeElement, 'display', 'block');
 
       setTimeout(() => {
         this.renderer.setStyle(this.formMessage.nativeElement, 'display', 'none');

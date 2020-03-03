@@ -47,12 +47,15 @@ export type ticket  = {
     field_12:boolean;
 
     field_13:string;
-    field_13_address_1:string;
-    field_13_ogrn_1:string;
-    field_13_address_2:string;
-    field_13_ogrn_2:string;
-    field_13_address_3:string;
-    field_13_ogrn_3:string;
+    field_13_1:string;              // radio button value
+    field_13_1_address:string;
+    field_13_1_ogrn:string;
+    field_13_2:string;
+    field_13_2_address:string;
+    field_13_2_ogrn:string;
+    field_13_3:string;
+    field_13_3_address:string;
+    field_13_3_ogrn:string;
 
     field_141:string;
     field_142:string;

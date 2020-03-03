@@ -84,23 +84,22 @@
 
         <h3 class="title">Общие данные</h3>
 
-        <div class="form-fields-group-wrapper" [formGroupName]="ff6.name">
+        <div class="form-fields-group-wrapper" [formGroupName]="fields.f6.name">
           <p class="label-text">6. ФИО</p>
-          <div class="label-text" *ngFor="let itemFf6 of ff6.list | keyvalue">
-            <label [for]=itemFf6.value.id>
-              {{itemFf6.value.label}}
+          <div class="label-text" *ngFor="let listKey of objectKeys(fields.f6.list)">
+            <label [for]=fields.f6.list[listKey].id>
+              {{fields.f6.list[listKey].label}}
             </label>
-            <!--<div class="row form-item-sm">
+            <div class="row form-item-sm">
               <div class="col-6">
-                <input type="text" class="form-control" [id]=itemFf6.value.id placeholder="" [formControlName]=itemFf6.value.name>
-                <span *ngFor="let itemFf6validator of itemFf6.value.validators | keyvalue">
-                  <small class="message error" *ngIf="ff6Errors[itemFf6.value.name][itemFf6validator.key]">
-                    {{itemFf6validator.value.errorText}}
+                <input type="text" class="form-control" [id]=fields.f6.list[listKey].id placeholder="" [formControlName]=listKey>
+                <span *ngFor="let validatorName of objectKeys(fields.f6.list[listKey].validators)">
+                  <small class="message error" *ngIf="fields.f6.list[listKey].errors[validatorName]">
+                    {{fields.f6.list[listKey].validators[validatorName].errorText}}
                   </small>
-                  <pre>{{itemFf6.value.name }}</pre>
                 </span>
               </div>
-            </div>-->
+            </div>
           </div>
         </div>
 

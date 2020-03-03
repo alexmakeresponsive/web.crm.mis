@@ -9,6 +9,110 @@ import {TableTb1Component} from "../../../../../../entry/table/tb.1/component";
 
 import { Validators } from '@angular/forms';
 
+
+export const fields = {
+  f6: {
+    name: 'field_6_name',
+    list: {
+      field_6_name_last: {
+        label: '6.1 Фамилия',
+        id:    'f61',
+        validators: {
+          pattern: {
+            body: Validators.pattern('[a-zA-Z ]*'),
+            errorText: 'Фамилия введена некорретно'
+          },
+          required: {
+            body: Validators.required,
+            errorText: 'Поле не заполнено'
+          }
+        },
+        errors: {}
+      },
+      field_6_name_first: {
+        label: '6.2 Имя',
+        id:    'f62',
+        validators: {
+          pattern: {
+            body: Validators.pattern('[a-zA-Z ]*'),
+            errorText: 'Имя введено некорретно'
+          },
+          required: {
+            body: Validators.required,
+            errorText: 'Поле не заполнено'
+          }
+        },
+        errors: {}
+      },
+      field_6_name_patronymic: {
+        label: '6.3 Отчество',
+        id:    'f63',
+        validators: {
+          pattern: {
+            body: Validators.pattern('[a-zA-Z ]*'),
+            errorText: 'Отчество введено некорретно'
+          }
+        },
+        errors: {}
+      }
+    }
+  },
+  f13: {
+    name: 'field_13',
+    field_13_1: {
+      childs: {
+        field_13_1_address: {
+          label: 'адрес медицинской организации',
+          id: 'f1311',
+          tag: 'textarea'
+        },
+        field_13_1_ogrn: {
+          label: 'ОГРН медицинской организации',
+          id: 'f1312',
+          tag: 'input'
+        },
+      },
+      label: '13.1 \n' +
+        'организации, медицинскую стационарных условиях\n' +
+        'в медицинской оказывающей помощь в',
+      id: 'f131'
+    },
+    field_13_2: {
+      childs: {
+        field_13_2_address: {
+          label: 'адрес организации социального обслуживания',
+          id: 'f1321',
+          tag: 'textarea'
+        },
+        field_13_2_ogrn: {
+          label: 'ОГРН организации социального обслуживания',
+          id: 'f1322',
+          tag: 'input'
+        },
+      },
+      label: '13.2 социального оказывающей услуги в стационарной форме социального обслуживания',
+      id: 'f132'
+    },
+    field_13_3: {
+      childs: {
+        field_13_3_address: {
+          label: 'адрес исправительного учреждения',
+          id: 'f1331',
+          tag: 'textarea'
+        },
+        field_13_3_ogrn: {
+          label: 'ОГРН адрес исправительного учреждения',
+          id: 'f1332',
+          tag: 'input'
+        },
+      },
+      label: '13.3 в исправительном учреждении',
+      id: 'f133'
+    }
+  }
+};
+
+
 export const f5 = [
   {
     label: '5.1 установление группы инвалидности',
@@ -72,53 +176,6 @@ export const f5 = [
     id:    'f513'
   },
 ];
-
-export const f6 = {
-  name: 'field_6_name',
-  list: {
-    field_6_name_last: {
-      label: '6.1 Фамилия',
-      name:  'field_6_name_last',
-      id:    'f61',
-      validators: {
-        pattern: {
-          body: Validators.pattern('[a-zA-Z ]*'),
-          errorText: 'Фамилия введена некорретно'
-        },
-        required: {
-          body: Validators.required,
-          errorText: 'Поле не заполнено'
-        }
-      }
-    },
-    field_6_name_first: {
-      label: '6.2 Имя',
-      name:  'field_6_name_first',
-      id:    'f62',
-      validators: {
-        pattern: {
-          body: Validators.pattern('[a-zA-Z ]*'),
-          errorText: 'Имя введено некорретно'
-        },
-        required: {
-          body: Validators.required,
-          errorText: 'Поле не заполнено'
-        }
-      }
-    },
-    field_6_name_patronymic: {
-      label: '6.3 Отчество',
-      name:  'field_6_name_patronymic',
-      id:    'f63',
-      validators: {
-        pattern: {
-          body: Validators.pattern('[a-zA-Z ]*'),
-          errorText: 'Отчество введено некорретно'
-        }
-      }
-    }
-  }
-};
 
 export const f7 = [
   {
