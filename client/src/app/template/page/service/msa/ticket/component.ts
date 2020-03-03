@@ -4,9 +4,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { filter } from 'rxjs/operators';
 
-
-import * as formFields from './form/fields';
-import * as formValidators from './form/validators';
+import controls from './form/controls';
+import groups   from './form/groups';
 
 import MsaResponse from "../../../../../model/msa/Response";
 import {AuthService} from "../../../../../auth.service";
@@ -18,29 +17,8 @@ import {AuthService} from "../../../../../auth.service";
   styleUrls: ['./component.scss']
 })
 export class PageServiceMsaTicketComponent implements OnInit {
-  ff5  = formFields.f5;
-
-  ff7  = formFields.f7;
-  ff8  = formFields.f8;
-  ff9  = formFields.f9;
-  ff10 = formFields.f10;
-  ff11 = formFields.f11;
-  ff13 = formFields.f13;
-  ff14 = formFields.f14;
-  ff16 = formFields.f16;
-  ff17 = formFields.f17;
-  ff18 = formFields.f18;
-  ff19 = formFields.f19;
-  ff20 = formFields.f20;
-  ff21 = formFields.f21;
-  ff25 = formFields.f25;
-  ff26 = formFields.f26;
-  ff27 = formFields.f27;
-  ff30 = formFields.f30;
-  ff3437 = formFields.f3437;
-  ff3133 = formFields.f3133;
-
-  fields       = formFields.fields;
+  controls = controls;
+  groups   = groups;
 
   form:FormGroup;
   formMessageType:string = 'light';
@@ -59,59 +37,75 @@ export class PageServiceMsaTicketComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.form = new FormGroup({
-      protocol: new FormControl(''),
-      field_6_name: this.getGroupValidators(this.fields.f6.list)
-    });
+    this.form = this.createFormGroup();
 
-    this.subscribeToFieldStatusChanges('f6', 'field_6_name');
+    console.log(this.form);
+
+    this.subscribeToFieldStatusChanges();
   }
 
-  subscribeToFieldStatusChanges(fieldKey, groupName) {
-    for (let controlName of Object.keys(this.fields[fieldKey].list)) {
-      this.form.get(groupName).get(controlName).statusChanges
+  subscribeToFieldStatusChanges() {
+    for (let controlName of Object.keys(this.controls)) {
+
+      if(this.controls[controlName].type == 'radio') {
+        continue;
+      }
+
+      this.form.get(controlName).statusChanges
         .pipe(
           filter((status: string) => {
+            this.controls[controlName].errors = this.form.get(controlName).errors;
 
-            this.fields[fieldKey].list[controlName].errors = this.form.get(groupName).get(controlName).errors;
-
-            if (!this.fields[fieldKey].list[controlName].errors) {
-              this.fields[fieldKey].list[controlName].errors = {}
+            if (!this.controls[controlName].errors) {
+                 this.controls[controlName].errors = {}
             }
 
             return false;
           }))
-        .subscribe((op) => {});
+        .subscribe(() => {});
     }
   }
 
-  formValidate() {
-    const f6Labels = formValidators.f6(this.form.get('field_6_name'));
+  getLabelWithErrors() {
+    const result = [];
 
-    if (f6Labels.length !== 0) {
+    for (let key of Object.keys(this.controls)) {
+      if (this.controls[key]['errors'] !== null) {
+        result.push(this.controls[key].label);
+      }
+    }
+
+    return result;
+  }
+
+  formValidate() {
+    const labelWithErrors = this.getLabelWithErrors();
+
+    if (labelWithErrors.length !== 0) {
       this.formMessage.nativeElement.innerHTML ='Форма не валидна. Проверьте поля: ';
 
-      for (let label of f6Labels) {
+      for (let label of labelWithErrors) {
         this.formMessage.nativeElement.innerHTML += label + ', ';
       }
     }
   };
 
-  getGroupValidators(fieldsList) {
-
+  createFormGroup() {
     const FormGroupOptions = {};
 
-    for (let controlName of Object.keys(fieldsList)) {
+    for (let controlName of Object.keys(this.controls)) {
       const validators = [];
 
-      for (let validator of Object.values(fieldsList[controlName]['validators'])) {
+      if(this.controls[controlName].type == 'radio') {
+        continue;
+      }
+
+      for (let validator of Object.values(this.controls[controlName]['validators'])) {
         validators.push(validator['body']);
       }
 
       FormGroupOptions[controlName] = new FormControl('', validators);
     }
-
-    console.log(FormGroupOptions);
 
     return new FormGroup(FormGroupOptions);
   }
@@ -172,7 +166,7 @@ export class PageServiceMsaTicketComponent implements OnInit {
 
       setTimeout(() => {
         this.renderer.setStyle(this.formMessage.nativeElement, 'display', 'none');
-      }, 2000);
+      }, 16000);
 
       return;
     }
