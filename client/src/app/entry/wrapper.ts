@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ComponentFactoryResolver } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ComponentFactoryResolver } from '@angular/core';
 
 import {EntryComponentConstructor} from "./constructor";
 import { EntryDirective } from "./directive";
@@ -14,6 +14,9 @@ import { EntryDirective } from "./directive";
 export class EntryWrapper implements OnInit {
   @Input() data: EntryComponentConstructor;
   @ViewChild(EntryDirective, {static: true}) entryHost: EntryDirective;
+
+  @Output() voted = new EventEmitter<boolean>();
+
 
   // fire from child component
   //
@@ -38,9 +41,15 @@ export class EntryWrapper implements OnInit {
 
     // fire from child component
     //
-    // componentRef.instance.emitter.subscribe((data) => {
-    //    this.emitter.emit(data)
-    // })
+    if (componentRef.instance.hasOwnProperty('emitter')) {
+      console.log('cath!!');
+      componentRef.instance.emitter.subscribe((data) => {
+        // console.log(data);
+        console.log('God Emmit!!');
+        this.voted.emit(data);
+      })
+    }
+
 
     // or
     // fire from parent component - ??
@@ -49,6 +58,10 @@ export class EntryWrapper implements OnInit {
     //   // console.log('EntryWrapper: getFormValue after time out: ', componentRef.instance.getFormValue()); - not working
     //   console.log('EntryWrapper: formData after time out: ', componentRef.instance.formData); - works!!
     // }, 7000)
+
+    // setTimeout(() => {
+    //   this.voted.emit(true); // works
+    // }, 4000)
   }
 
   // or

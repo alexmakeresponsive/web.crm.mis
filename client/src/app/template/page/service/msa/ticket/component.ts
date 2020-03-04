@@ -239,4 +239,8 @@ export class PageServiceMsaTicketComponent implements OnInit {
   catchDataFromEntryWrapper(data) {
     console.log('catchDataFromEntryWrapper', data);
   }
+
+  onVoted(a) {
+    console.log('onVoted: ', a);
+  }
 }

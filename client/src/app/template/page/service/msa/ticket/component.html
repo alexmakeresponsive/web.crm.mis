@@ -496,7 +496,7 @@
                 {{groups.f_21_group[controlName].label}}
               </label>
               <div *ngIf="groups.f_21_group[controlName].type === 'entry'">
-                <entry-wrapper [data]="groups.f_21_group[controlName].data"></entry-wrapper>
+                <entry-wrapper [data]="groups.f_21_group[controlName].data" (voted)="onVoted($event)"></entry-wrapper>
                 <!--from child to parrent-->
                 <!--<entry-wrapper [data]="groups.f_21_group[controlName].data" (emitter)="catchDataFromEntryWrapper($event)"></entry-wrapper>-->
                 <!--from parent to child-->

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
 import { filter } from 'rxjs/operators';
@@ -28,6 +28,9 @@ import {StorageData} from "../../../storage.data";
 })
 export class InputI2Component {
   @Input() parameters;
+
+  @Output() emitter = new EventEmitter<boolean>();
+
 
   formInputI2:FormGroup;
   formData:any = {};
@@ -60,7 +63,7 @@ export class InputI2Component {
 
   subscribeToFieldStatusChanges() {
 
-    this.formInputI2.get(this.parameters.formControlName).statusChanges
+    this.formInputI2.get(this.parameters.formControlName).valueChanges
       .pipe(
         filter((status: string) => {
           this.parameters.errors = this.formInputI2.get(this.parameters.formControlName).errors;
@@ -68,6 +71,10 @@ export class InputI2Component {
           // console.log(this.parameters.errors);
 
           // console.log(this.formInputI2.value);
+          console.log(status);
+          console.log(this.formInputI2);
+          console.log('try emmit..');
+          this.emitter.emit(true);
 
           this.formData = this.formInputI2.value;
 
