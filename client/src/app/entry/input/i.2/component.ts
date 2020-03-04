@@ -15,6 +15,7 @@ import {StorageData} from "../../../storage.data";
                          [className]="parameters.className"
                          [id]="parameters.id"
                          [formControlName]="parameters.formControlName"
+                         (keyup)="onKeyUp($event)"
                   >
                   <span *ngFor="let validatorName of objectKeys(parameters.validators)">
                     <small class="message error" *ngIf="parameters.errors[validatorName]">
@@ -29,7 +30,7 @@ import {StorageData} from "../../../storage.data";
 export class InputI2Component {
   @Input() parameters;
 
-  @Output() emitter = new EventEmitter<boolean>();
+  @Output() emitter:EventEmitter<any> = new EventEmitter();
 
 
   formInputI2:FormGroup;
@@ -61,33 +62,30 @@ export class InputI2Component {
     });
   }
 
-  subscribeToFieldStatusChanges() {
+  onKeyUp(e) {
+    this.emitter.emit({
+      errors: this.parameters.errors,
 
-    this.formInputI2.get(this.parameters.formControlName).valueChanges
-      .pipe(
-        filter((status: string) => {
-          this.parameters.errors = this.formInputI2.get(this.parameters.formControlName).errors;
-
-          // console.log(this.parameters.errors);
-
-          // console.log(this.formInputI2.value);
-          console.log(status);
-          console.log(this.formInputI2);
-          console.log('try emmit..');
-          this.emitter.emit(true);
-
-          this.formData = this.formInputI2.value;
-
-          if (!this.parameters.errors) {
-            this.parameters.errors = {}
-          }
-
-          return false;
-        }))
-      .subscribe(() => {});
+      status:   this.formInputI2.status,
+      formData: this.formInputI2.value
+    });
   }
 
-  getFormValue() {
-    return this.formInputI2.value;
+  subscribeToFieldStatusChanges() {
+    for (let controlName of Object.keys(this.formInputI2.controls)) {
+      this.formInputI2.get(this.parameters.formControlName).statusChanges
+        .pipe(
+          filter((status: string) => {
+            this.parameters.errors = this.formInputI2.get(this.parameters.formControlName).errors;
+
+            if (!this.parameters.errors) {
+              this.parameters.errors = {}
+            }
+
+            return false;
+          }))
+        .subscribe(() => {
+        });
+    }
   }
 }

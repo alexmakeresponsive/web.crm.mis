@@ -58,6 +58,8 @@ export class PageServiceMsaTicketComponent implements OnInit {
 
             // console.log(this.controls[controlName].errors);
 
+            console.log(this.form);
+
             if (!this.controls[controlName].errors) {
                  this.controls[controlName].errors = {}
             }
@@ -240,7 +242,7 @@ export class PageServiceMsaTicketComponent implements OnInit {
     console.log('catchDataFromEntryWrapper', data);
   }
 
-  onVoted(a) {
-    console.log('onVoted: ', a);
+  setEntryData(data) {
+    console.log('setEntryData: ', data);
   }
 }
