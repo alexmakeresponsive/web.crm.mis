@@ -3,6 +3,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 
 import { filter } from 'rxjs/operators';
 
+import {AuthService} from "../../../auth.service";
+import {StorageData} from "../../../storage.data";
 
 @Component({
   template: `
@@ -28,8 +30,15 @@ export class InputI2Component {
   @Input() parameters;
 
   formInputI2:FormGroup;
+  formData:any = {};
 
   objectKeys = Object.keys;
+
+  constructor(
+    private storageData: StorageData
+  ) {
+
+  }
 
   ngOnInit() {
     this.formInputI2 = this.createFormGroup();
@@ -58,6 +67,10 @@ export class InputI2Component {
 
           // console.log(this.parameters.errors);
 
+          // console.log(this.formInputI2.value);
+
+          this.formData = this.formInputI2.value;
+
           if (!this.parameters.errors) {
             this.parameters.errors = {}
           }
@@ -65,5 +78,9 @@ export class InputI2Component {
           return false;
         }))
       .subscribe(() => {});
+  }
+
+  getFormValue() {
+    return this.formInputI2.value;
   }
 }

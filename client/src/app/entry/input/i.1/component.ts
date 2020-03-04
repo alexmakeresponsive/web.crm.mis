@@ -3,6 +3,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 
 import { filter } from 'rxjs/operators';
 
+import {StorageData} from "../../../storage.data";
+
 @Component({
   template: `
               <div [formGroup]="formInputI1">
@@ -23,8 +25,15 @@ export class InputI1Component {
   @Input() parameters;
 
   formInputI1:FormGroup;
+  formData = {component: 'InputI1Component'};
 
   objectKeys = Object.keys;
+
+  constructor(
+    private storageData: StorageData
+  ) {
+
+  }
 
   ngOnInit() {
     this.formInputI1 = this.createFormGroup();
@@ -59,5 +68,9 @@ export class InputI1Component {
           return false;
         }))
       .subscribe(() => {});
+  }
+
+  getFormValue() {
+    return this.formInputI1.value;
   }
 }

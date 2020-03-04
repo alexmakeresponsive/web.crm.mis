@@ -6,6 +6,8 @@ import { Component, Input } from '@angular/core';
 export class SelectS1Component {
   @Input() data: string[];
 
+  formData = {component: 'SelectS1Component'};
+
   private value:any = {};
   private _disabledV:string = '0';
   private disabled:boolean = false;
@@ -33,5 +35,9 @@ export class SelectS1Component {
 
   public refreshValue(value:any):void {
     this.value = value;
+  }
+
+  getFormValue() {
+    return {data: 'some select data'}
   }
 }

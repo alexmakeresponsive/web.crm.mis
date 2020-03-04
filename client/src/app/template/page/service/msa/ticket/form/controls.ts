@@ -1218,45 +1218,120 @@ export default {
     }),
     validation: 'not-validate',
   },
+
+  f_22: {
+    label: '22. Наблюдается в медицинской организации\n',
+    id: 'f22',
+    col: 2,
+    validators: {
+      pattern: {
+        body: Validators.pattern('[0-9 ]*'),
+        errorText: 'Поле заполнено некорретно'
+      }
+    },
+    errors: {}
+  },
+  f_23: {
+    label: '23. Анамнез заболевания\n',
+    id: 'f23',
+    col: 12,
+    validators: {
+      pattern: {
+        body: Validators.pattern('[a-z ]*'),
+        errorText: 'Анамнез заболевания заполнен некорретно'
+      }
+    },
+    errors: {}
+  },
+  f_24: {
+    label: '24. Анамнез жизни\n',
+    id: 'f24',
+    col: 12,
+    validators: {
+      pattern: {
+        body: Validators.pattern('[a-z ]*'),
+        errorText: 'Анамнез жизни заполнен некорретно'
+      }
+    },
+    errors: {}
+  },
+
+  f_25: {
+    type: 'entry',
+    data: new EntryComponentConstructor(TableTb1Component, {}, {
+      th: [
+        {
+          text: '№ п/п',
+          width: '10%'
+        },
+        {
+          text: 'Даты',
+          width: '30%',
+          list: [
+            {
+              text: 'Дата начала временной нетрудоспособности',
+              validators: {
+                pattern: {
+                  body: Validators.pattern('[0-9 ]*'),
+                  errorText: 'Дата указана некорретно'
+                }
+              },
+              errors: {}
+            },
+            {
+              text: 'Дата окончания временной нетрудоспособности',
+              validators: {
+                pattern: {
+                  body: Validators.pattern('[0-9 ]*'),
+                  errorText: 'Дата указана некорретно'
+                }
+              },
+              errors: {}
+            },
+            {
+              text: 'Число месяцев и дней временной нетрудоспособности',
+              validators: {
+                pattern: {
+                  body: Validators.pattern('[0-9 ]*'),
+                  errorText: 'Поле заполенно некорретно'
+                }
+              },
+              errors: {}
+            },
+          ]
+        },
+        {
+          text: 'Диагноз',
+          width: '50%',
+          validators: {
+            pattern: {
+              body: Validators.pattern('[а-яА-Я0-9a-zA-Z,. ]*'),
+              errorText: 'Поле заполенно некорретно'
+            }
+          },
+          errors: {}
+        },
+        {
+          text: 'Действия',
+          width: '10%'
+        },
+      ]
+    }),
+    validation: 'not-validate',
+  },
+  f_25_2: {
+    label: '25.2. № ЭЛН',
+    id: 'f252',
+    validators: {
+      pattern: {
+        body: Validators.pattern('[0-9 ]*'),
+        errorText: 'Поле ЭЛН заполнено некорретно'
+      }
+    },
+    errors: {}
+  },
 };
 
-
-
-
-export const f25 = {
-  type: 'entry',
-  data: new EntryComponentConstructor(TableTb1Component, {}, {
-    th: [
-      {
-        text: '№ п/п',
-        width: '10%'
-      },
-      {
-        text: 'Даты',
-        width: '30%',
-        list: [
-          {
-            text: 'Дата начала временной нетрудоспособности'
-          },
-          {
-            text: 'Дата окончания временной нетрудоспособности'
-          },
-          {
-            text: 'Число месяцев и дней временной нетрудоспособности'
-          },
-        ]
-      },
-      {
-        text: 'Диагноз',
-        width: '50%'
-      },
-      {
-        text: 'Действия',
-        width: '10%'
-      },
-    ]
-  })
-};
 
 export const f26 = [
   {

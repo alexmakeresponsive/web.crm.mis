@@ -161,6 +161,10 @@ export class PageServiceMsaTicketComponent implements OnInit {
   }
 
   async doSubmit() {
+
+    this.form.value.amr = 'test';
+    console.log(this.form.value);
+
     this.formValidate();
 
     if(!this.form.valid) {
@@ -230,5 +234,9 @@ export class PageServiceMsaTicketComponent implements OnInit {
 
   doClear() {
     this.form.reset();
+  }
+
+  catchDataFromEntryWrapper(data) {
+    console.log('catchDataFromEntryWrapper', data);
   }
 }

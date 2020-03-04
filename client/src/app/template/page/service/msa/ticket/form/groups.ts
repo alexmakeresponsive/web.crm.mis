@@ -369,7 +369,17 @@ export default {
     f_21_6: controls.f_21_6,
     f_21_7: controls.f_21_7,
   },
-  f_25_group: {},
+  f_22_group: {
+    f_22: controls.f_22,
+  },
+  f_2324_group: {
+    f_23: controls.f_23,
+    f_24: controls.f_24,
+  },
+  f_25_group: {
+    f_25: controls.f_25,
+    f_25_2: controls.f_25_2,
+  },
   f_26_group: {},
   f_27_group: {},
   f_30_group: {},

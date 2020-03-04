@@ -9,6 +9,8 @@ export class TableTb1Component implements OnInit {
            dataClone;
            dataTemplate;
 
+  formData = {component: 'TableTb1Component'};
+
   ngOnInit() {
     this.dataClone = this.data;
     this.dataTemplate = Object.values(this.dataClone);
@@ -37,5 +39,13 @@ export class TableTb1Component implements OnInit {
 
     this.dataClone[idMaxNext] = {id: idMaxNext};
     this.dataTemplate         = Object.values(this.dataClone);
+  }
+
+  rollbackData() {
+
+  }
+
+  getFormValue() {
+    return {data: 'some table data'};
   }
 }

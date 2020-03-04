@@ -25,6 +25,7 @@ export class TextareaT1Component {
   @Input() parameters;
 
   formTextAreaT1:FormGroup;
+  formData = {component: 'TextareaT1Component'};
 
   objectKeys = Object.keys;
 
@@ -54,6 +55,8 @@ export class TextareaT1Component {
 
           // console.log(this.parameters.errors);
 
+          console.log(this.formTextAreaT1.value);
+
           if (!this.parameters.errors) {
             this.parameters.errors = {}
           }
@@ -61,5 +64,9 @@ export class TextareaT1Component {
           return false;
         }))
       .subscribe(() => {});
+  }
+
+  getFormValue() {
+    return this.formTextAreaT1.value;
   }
 }
