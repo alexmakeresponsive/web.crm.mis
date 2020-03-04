@@ -5,7 +5,7 @@ import { filter } from 'rxjs/operators';
 
 @Component({
   template: `
-              <div [formGroup]="formI1">
+              <div [formGroup]="formInputI1">
                 <input type="text"
                        [className]="parameters.className"
                        [id]="parameters.id"
@@ -22,12 +22,12 @@ import { filter } from 'rxjs/operators';
 export class InputI1Component {
   @Input() parameters;
 
-  formI1:FormGroup;
+  formInputI1:FormGroup;
 
   objectKeys = Object.keys;
 
   ngOnInit() {
-    this.formI1 = this.createFormGroup();
+    this.formInputI1 = this.createFormGroup();
 
     this.subscribeToFieldStatusChanges();
   }
@@ -45,10 +45,10 @@ export class InputI1Component {
   }
 
   subscribeToFieldStatusChanges() {
-    this.formI1.get(this.parameters.formControlName).statusChanges
+    this.formInputI1.get(this.parameters.formControlName).statusChanges
       .pipe(
         filter((status: string) => {
-          this.parameters.errors = this.formI1.get(this.parameters.formControlName).errors;
+          this.parameters.errors = this.formInputI1.get(this.parameters.formControlName).errors;
 
           // console.log(this.parameters.errors);
 

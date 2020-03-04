@@ -1073,15 +1073,16 @@ export default {
       className: 'form-control',
       formControlName: 'f_20_3',
       id: 'f203',
-      rows: 4
+      rows: 4,
+      validators: {
+        pattern: {
+          body: Validators.pattern('[a-zA-Z ]*'),
+          errorText: 'Профессия указана некорретно'
+        }
+      },
+      errors: {}
     }),
-    validators: {
-      pattern: {
-        body: Validators.pattern('[a-zA-Z ]*'),
-        errorText: 'Поле заполнено некорретно'
-      }
-    },
-    errors: {}
+    validation: 'not-validate',
   },
 };
 
