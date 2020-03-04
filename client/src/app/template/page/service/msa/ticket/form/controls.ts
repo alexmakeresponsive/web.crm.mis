@@ -1038,29 +1038,29 @@ export default {
     validators: {
       pattern: {
         body: Validators.pattern('[0-9 ]*'),
-        errorText: 'Поле заполнено некорретно'
+        errorText: 'Курс указан некорретно'
       }
     },
     errors: {}
   },
   f_20_2_2: {
     label: '20.2.2 класс',
-    id: 'f2021',
+    id: 'f2022',
     validators: {
       pattern: {
         body: Validators.pattern('[0-9 ]*'),
-        errorText: 'Поле заполнено некорретно'
+        errorText: 'Класс указан некорретно'
       }
     },
     errors: {}
   },
   f_20_2_3: {
     label: '20.2.3 возрастная группа детского дошкольного учреждения',
-    id: 'f2021',
+    id: 'f2023',
     validators: {
       pattern: {
         body: Validators.pattern('[0-9 ]*'),
-        errorText: 'Поле заполнено некорретно'
+        errorText: 'Возрастная группа указана некорретно'
       }
     },
     errors: {}
@@ -1084,81 +1084,144 @@ export default {
     }),
     validation: 'not-validate',
   },
-};
 
-
-export const f21 = [
-  {
+  f_21_1: {
     label: '21.1 основная профессия (специальность, должность)',
     id: 'f211',
     type: 'entry',
     data: new EntryComponentConstructor(InputI2Component, '', {
       className: 'form-control',
+      formControlName: 'f_21_1',
       id: 'f211',
-      col: 6
+      col: 6,
+      validators: {
+        pattern: {
+          body: Validators.pattern('[a-zA-Z ]*'),
+          errorText: 'Профессия указана некорретно'
+        }
+      },
+      errors: {}
     }),
+    validation: 'not-validate',
   },
-  {
+  f_21_2: {
     label: '21.2 квалификация (класс, разряд, категория, звание)',
     id: 'f212',
     type: 'entry',
     data: new EntryComponentConstructor(InputI2Component, '', {
       className: 'form-control',
+      formControlName: 'f_21_2',
       id: 'f212',
-      col: 6
+      col: 6,
+      validators: {
+        pattern: {
+          body: Validators.pattern('[a-zA-Z0-9 ]*'),
+          errorText: 'Квалификация указана некорретно'
+        }
+      },
+      errors: {}
     }),
+    validation: 'not-validate',
   },
-  {
+  f_21_3: {
     label: '21.3 стаж работы',
     id: 'f213',
     type: 'entry',
     data: new EntryComponentConstructor(InputI2Component, '', {
       className: 'form-control',
+      formControlName: 'f_21_3',
       id: 'f213',
-      col: 2
+      col: 2,
+      validators: {
+        pattern: {
+          body: Validators.pattern('[0-9 ]*'),
+          errorText: 'Стаж указан некорретно'
+        }
+      },
+      errors: {}
     }),
+    validation: 'not-validate',
   },
-  {
+  f_21_4: {
     label: '21.4 выполняемая работа на момент направления на медико-социальную экспертизу с указанием профессии (специальности, должности)',
     id: 'f214',
     type: 'entry',
     data: new EntryComponentConstructor(TextareaT1Component, '', {
       className: 'form-control',
+      formControlName: 'f_21_4',
       id: 'f214',
-      rows: 4
+      rows: 4,
+      validators: {
+        pattern: {
+          body: Validators.pattern('[a-zA-Z ]*'),
+          errorText: 'Поле заполнено некорретно'
+        }
+      },
+      errors: {}
     }),
+    validation: 'not-validate',
   },
-  {
+  f_21_5: {
     label: '21.5 условия и характер выполняемого труда',
     id: 'f215',
     type: 'entry',
     data: new EntryComponentConstructor(TextareaT1Component, '', {
       className: 'form-control',
+      formControlName: 'f_21_5',
       id: 'f215',
-      rows: 4
+      rows: 4,
+      validators: {
+        pattern: {
+          body: Validators.pattern('[a-zA-Z ]*'),
+          errorText: 'Поле заполнено некорретно'
+        }
+      },
+      errors: {}
     }),
+    validation: 'not-validate',
   },
-  {
+  f_21_6: {
     label: '21.6 место работы (наименование организации)',
     id: 'f216',
     type: 'entry',
     data: new EntryComponentConstructor(InputI2Component, '', {
       className: 'form-control',
+      formControlName: 'f_21_6',
       id: 'f216',
-      col: 12
+      col: 12,
+      validators: {
+        pattern: {
+          body: Validators.pattern('[a-zA-Z ]*'),
+          errorText: 'Место работы указано некорретно'
+        }
+      },
+      errors: {}
     }),
+    validation: 'not-validate',
   },
-  {
+  f_21_7: {
     label: '21.7 адрес места работы',
     id: 'f217',
     type: 'entry',
     data: new EntryComponentConstructor(TextareaT1Component, '', {
       className: 'form-control',
+      formControlName: 'f_21_7',
       id: 'f217',
-      rows: 2
+      rows: 2,
+      validators: {
+        pattern: {
+          body: Validators.pattern('[a-zA-Z ]*'),
+          errorText: 'Адрес места работы указан некорретно'
+        }
+      },
+      errors: {}
     }),
+    validation: 'not-validate',
   },
-];
+};
+
+
+
 
 export const f25 = {
   type: 'entry',

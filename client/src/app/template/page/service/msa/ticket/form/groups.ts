@@ -360,7 +360,15 @@ export default {
       main: controls.f_20_3
     },
   },
-  f_21_group: {},
+  f_21_group: {
+    f_21_1: controls.f_21_1,
+    f_21_2: controls.f_21_2,
+    f_21_3: controls.f_21_3,
+    f_21_4: controls.f_21_4,
+    f_21_5: controls.f_21_5,
+    f_21_6: controls.f_21_6,
+    f_21_7: controls.f_21_7,
+  },
   f_25_group: {},
   f_26_group: {},
   f_27_group: {},

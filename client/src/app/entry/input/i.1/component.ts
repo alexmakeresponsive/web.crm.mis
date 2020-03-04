@@ -36,7 +36,7 @@ export class InputI1Component {
     const validators = [];
 
     for (let validator of Object.values(this.parameters.validators)) {
-      validators.push(validator.body);
+      validators.push(validator['body']);
     }
 
     return new FormGroup({

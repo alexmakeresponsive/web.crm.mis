@@ -457,28 +457,46 @@
             20. Сведения о получении образования
           </p>
           <div class="label-text">
-            <div *ngFor="let controlName of objectKeys(groups.f_20_group)">
+            <div class="form-item" *ngFor="let controlName of objectKeys(groups.f_20_group)">
               <label [for]="groups.f_20_group[controlName].main.id">
                 {{groups.f_20_group[controlName].main.label}}
               </label>
               <div *ngIf="groups.f_20_group[controlName].main.type === 'entry'">
                 <entry-wrapper [data]="groups.f_20_group[controlName].main.data"></entry-wrapper>
               </div>
+              <div *ngIf="groups.f_20_group[controlName].childs">
+                <div class="form-item-sm" *ngFor="let controlChL1Name of objectKeys(groups.f_20_group[controlName].childs)">
+                  <label class=" form-item-xs" [for]=groups.f_20_group[controlName].childs[controlChL1Name].id>
+                    {{groups.f_20_group[controlName].childs[controlChL1Name].label}}
+                  </label>
+                  <div class="row">
+                    <div class="col-2">
+                      <input type="text" class="form-control" [id]=groups.f_20_group[controlName].childs[controlChL1Name].id placeholder=""
+                             [formControlName]=controlChL1Name>
+                    </div>
+                  </div>
+                  <span *ngFor="let validatorName of objectKeys(groups.f_20_group[controlName].childs[controlChL1Name].validators)">
+                    <small class="message error" *ngIf="groups.f_20_group[controlName].childs[controlChL1Name].errors[validatorName]">
+                      {{groups.f_20_group[controlName].childs[controlChL1Name].validators[validatorName].errorText}}
+                    </small>
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <!--<div class="form-fields-group-wrapper">
+        <div class="form-fields-group-wrapper">
           <p class="label-text">
             21. Сведения о трудовой деятельности
           </p>
           <div class="label-text">
-            <div *ngFor="let itemFf21Child of ff21">
-              <label [for]="itemFf21Child.id">
-                {{itemFf21Child.label}}
+            <div *ngFor="let controlName of objectKeys(groups.f_21_group)">
+              <label [for]="groups.f_21_group[controlName].id">
+                {{groups.f_21_group[controlName].label}}
               </label>
-              <div *ngIf="itemFf21Child.type === 'entry'">
-                <entry-wrapper [data]="itemFf21Child.data"></entry-wrapper>
+              <div *ngIf="groups.f_21_group[controlName].type === 'entry'">
+                <entry-wrapper [data]="groups.f_21_group[controlName].data"></entry-wrapper>
               </div>
             </div>
           </div>
@@ -486,7 +504,7 @@
 
         <h3 class="title">Клинико-функциональные данные</h3>
 
-        <div class="form-fields-group-wrapper">
+        <!--<div class="form-fields-group-wrapper">
           <div class="label-text">
             <label for="f220">
               22. Наблюдается в медицинской организации
