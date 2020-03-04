@@ -154,7 +154,6 @@ export default {
       main: controls.f_16_4,
     },
   },
-  // -----------------------------------------------------------------------------
   f_17_group: {
     f_17_1: {
       main: controls.f_17_1,
@@ -227,10 +226,140 @@ export default {
       }
     },
   },
-  // -----------------------------------------------------------------------------
-  f_18_group: {},
-  f_19_group: {},
-  f_20_group: {},
+  f_18_group: {
+    f_18_1: controls.f_18_1,
+    f_18_2: controls.f_18_2,
+  },
+  f_19_group: {
+    f_19_1: {
+      main: controls.f_19_1,
+      childs: {
+        f_19_1_1: {
+          main: controls.f_19_1_1
+        },
+        f_19_1_2: {
+          main: controls.f_19_1_2
+        },
+        f_19_1_3: {
+          main: controls.f_19_1_3
+        },
+        f_19_1_4: {
+          main: controls.f_19_1_4
+        },
+      }
+    },
+    f_19_2: {
+      main: controls.f_19_2,
+    },
+    f_19_3: {
+      main: controls.f_19_3,
+      childs: {
+        f_19_3_1: {
+          main: controls.f_19_3_1
+        },
+        f_19_3_2: {
+          main: controls.f_19_3_2
+        },
+        f_19_3_3: {
+          main: controls.f_19_3_3
+        },
+        f_19_3_4: {
+          main: controls.f_19_3_4
+        },
+      }
+    },
+    f_19_4: {
+      main: controls.f_19_4,
+      childs: {
+        f_19_4_1: {
+          main: controls.f_19_4_1,
+        },
+        f_19_4_2: {
+          main: controls.f_19_4_2
+        },
+        f_19_4_3: {
+          main: controls.f_19_4_3
+        },
+        f_19_4_4: {
+          main: controls.f_19_4_4
+        },
+        f_19_4_5: {
+          main: controls.f_19_4_5
+        },
+        f_19_4_6: {
+          main: controls.f_19_4_6
+        },
+        f_19_4_7: {
+          main: controls.f_19_4_7
+        },
+        f_19_4_8: {
+          main: controls.f_19_4_8
+        },
+        f_19_4_9: {
+          main: controls.f_19_4_9
+        },
+        f_19_4_10: {
+          main: controls.f_19_4_10
+        },
+        f_19_4_11: {
+          main: controls.f_19_4_11
+        },
+        f_19_4_12: {
+          main: controls.f_19_4_12
+        },
+        f_19_4_13: {
+          main: controls.f_19_4_13
+        },
+        f_19_4_14: {
+          main: controls.f_19_4_14
+        },
+        f_19_4_15: {
+          main: controls.f_19_4_15
+        },
+        f_19_4_16: {
+          main: controls.f_19_4_16,
+          childs: {
+            f_19_4_16_text: controls.f_19_4_16_text,
+          }
+        },
+        f_19_4_17: {
+          main: controls.f_19_4_17,
+          childs: {
+            f_19_4_17_text: controls.f_19_4_17_text,
+          }
+        }
+      }
+    },
+    f_19_5: {
+      main: controls.f_19_5
+    },
+    f_19_6: {
+      main: controls.f_19_6
+    },
+    f_19_7: {
+      main: controls.f_19_7
+    },
+    f_19_8: {
+      main: controls.f_19_8
+    },
+
+  },
+  f_20_group: {
+    f_20_1: {
+      main: controls.f_20_1
+    },
+    f_20_2: {
+      main: controls.f_20_2,
+      childs: {
+        f_20_2_1: controls.f_20_2_1,
+        f_20_2_2: controls.f_20_2_2,
+        f_20_2_3: controls.f_20_2_3,
+      }
+    },
+    f_20_3: {
+      main: controls.f_20_3
+    },
+  },
   f_21_group: {},
   f_25_group: {},
   f_26_group: {},

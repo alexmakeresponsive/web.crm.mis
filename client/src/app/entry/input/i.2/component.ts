@@ -8,6 +8,7 @@ import { Component, Input } from '@angular/core';
                 <input type="text"
                        [className]="parameters.className"
                        [id]="parameters.id"
+                       [formControlName]="parameters.formControlName"
                 >
               </div>
             </div>
