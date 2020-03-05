@@ -117,6 +117,7 @@ export default {
   f_6_name_last: {
     label: '6.1 Фамилия',
     id: 'f61',
+    required: true,
     validators: {
       pattern: {
         body: Validators.pattern('[a-zA-Z ]*'),
@@ -132,6 +133,7 @@ export default {
   f_6_name_first: {
     label: '6.2 Имя',
     id: 'f62',
+    required: true,
     validators: {
       pattern: {
         body: Validators.pattern('[a-zA-Z ]*'),
@@ -171,6 +173,7 @@ export default {
   f_7_2: {
     label: '7.2 Возраст (число полных лет, для ребенка в возрасте до 1 года - число полных месяцев)',
     id: 'f72',
+    required: true,
     validators: {
       pattern: {
         body: Validators.pattern('[0-9 ]*'),
@@ -1088,6 +1091,7 @@ export default {
   f_21_1: {
     label: '21.1 основная профессия (специальность, должность)',
     id: 'f211',
+    required: true,
     type: 'entry',
     data: new EntryComponentConstructor(InputI2Component, '', {
       className: 'form-control',
@@ -1098,6 +1102,10 @@ export default {
         pattern: {
           body: Validators.pattern('[a-zA-Z ]*'),
           errorText: 'Профессия указана некорретно'
+        },
+        required: {
+          body: Validators.required,
+          errorText: 'Поле не заполнено'
         }
       },
       errors: {}
@@ -1107,6 +1115,7 @@ export default {
   f_21_2: {
     label: '21.2 квалификация (класс, разряд, категория, звание)',
     id: 'f212',
+    required: true,
     type: 'entry',
     data: new EntryComponentConstructor(InputI2Component, '', {
       className: 'form-control',
@@ -1117,6 +1126,10 @@ export default {
         pattern: {
           body: Validators.pattern('[a-zA-Z0-9 ]*'),
           errorText: 'Квалификация указана некорретно'
+        },
+        required: {
+          body: Validators.required,
+          errorText: 'Поле не заполнено'
         }
       },
       errors: {}
@@ -1259,6 +1272,7 @@ export default {
   f_25: {
     type: 'entry',
     data: new EntryComponentConstructor(TableTb1Component, {}, {
+      formControlName: 'f_25',
       th: [
         {
           text: '№ п/п',

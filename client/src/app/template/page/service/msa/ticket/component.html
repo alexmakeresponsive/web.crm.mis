@@ -496,7 +496,10 @@
                 {{groups.f_21_group[controlName].label}}
               </label>
               <div *ngIf="groups.f_21_group[controlName].type === 'entry'">
-                <entry-wrapper [data]="groups.f_21_group[controlName].data" (emitter)="setEntryData($event)"></entry-wrapper>
+                <entry-wrapper [data]="groups.f_21_group[controlName].data"
+                               (emitterData)="setDataFromEntryComponent($event)"
+                               (emitterInstance)="getInstanceEntryComponent($event)"
+                ></entry-wrapper>
               </div>
             </div>
           </div>

@@ -3,6 +3,8 @@ import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ComponentFac
 import {EntryComponentConstructor} from "./constructor";
 import { EntryDirective } from "./directive";
 
+
+
 @Component({
   selector: 'entry-wrapper',
   template: `
@@ -15,7 +17,8 @@ export class EntryWrapper implements OnInit {
   @Input() data: EntryComponentConstructor;
   @ViewChild(EntryDirective, {static: true}) entryHost: EntryDirective;
 
-  @Output() emitter:EventEmitter<any> = new EventEmitter();
+  @Output() emitterData:EventEmitter<any>     = new EventEmitter();
+  @Output() emitterInstance:EventEmitter<any> = new EventEmitter();
 
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
@@ -31,9 +34,13 @@ export class EntryWrapper implements OnInit {
 
     if (componentRef.instance.hasOwnProperty('emitter')) {
       componentRef.instance.emitter.subscribe((data) => {
-        this.emitter.emit(data);
+        this.emitterData.emit(data);
       })
     }
+
+    // console.log(componentRef.instance);
+
+    this.emitterInstance.emit(componentRef.instance);
   }
 }
 

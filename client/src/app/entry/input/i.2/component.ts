@@ -1,10 +1,11 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
 import { filter } from 'rxjs/operators';
 
 import {AuthService} from "../../../auth.service";
 import {StorageData} from "../../../storage.data";
+import {Base} from "../../base";
 
 @Component({
   template: `
@@ -27,27 +28,29 @@ import {StorageData} from "../../../storage.data";
             </div>
             `
 })
-export class InputI2Component {
+export class InputI2Component extends Base implements OnChanges {
   @Input() parameters;
-
   @Output() emitter:EventEmitter<any> = new EventEmitter();
-
+  @Input() changes;
 
   formInputI2:FormGroup;
-  formData:any = {};
 
   objectKeys = Object.keys;
 
   constructor(
     private storageData: StorageData
   ) {
-
+    super();
   }
 
   ngOnInit() {
     this.formInputI2 = this.createFormGroup();
 
     this.subscribeToFieldStatusChanges();
+  }
+
+  ngOnChanges() {
+    console.log('changes!!')
   }
 
   createFormGroup() {
@@ -64,28 +67,24 @@ export class InputI2Component {
 
   onKeyUp(e) {
     this.emitter.emit({
-      errors: this.parameters.errors,
-
-      status:   this.formInputI2.status,
-      formData: this.formInputI2.value
+      controls: this.formInputI2.controls,
+      status: this.formInputI2.status
     });
   }
 
   subscribeToFieldStatusChanges() {
-    for (let controlName of Object.keys(this.formInputI2.controls)) {
-      this.formInputI2.get(this.parameters.formControlName).statusChanges
-        .pipe(
-          filter((status: string) => {
-            this.parameters.errors = this.formInputI2.get(this.parameters.formControlName).errors;
+    this.formInputI2.get(this.parameters.formControlName).statusChanges
+      .pipe(
+        filter((status: string) => {
+          this.parameters.errors = this.formInputI2.get(this.parameters.formControlName).errors;
 
-            if (!this.parameters.errors) {
-              this.parameters.errors = {}
-            }
+          if (!this.parameters.errors) {
+            this.parameters.errors = {}
+          }
 
-            return false;
-          }))
-        .subscribe(() => {
-        });
-    }
+          return false;
+        }))
+      .subscribe(() => {
+      });
   }
 }

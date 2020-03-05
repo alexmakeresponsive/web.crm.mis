@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Renderer2, HostListener } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, Renderer2, HostListener } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -10,18 +10,31 @@ import groups   from './form/groups';
 import MsaResponse from "../../../../../model/msa/Response";
 import {AuthService} from "../../../../../auth.service";
 
+import {EntryWrapper} from "../../../../../entry/wrapper";
+
+
 
 @Component({
   selector: 'page-service-msa-ticket',
   templateUrl: './component.html',
   styleUrls: ['./component.scss']
 })
-export class PageServiceMsaTicketComponent implements OnInit {
-  controls = controls;
-  groups   = groups;
+export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
+  private controls = controls;
+  private groups   = groups;
 
-  form:FormGroup;
-  formMessageType:string = 'light';
+  private form:FormGroup;
+  private formData:any  = {};
+
+  private formControls:any = {};
+  private formControlsRequired:any = {};
+
+  private entryComponentInstanceCollection = [];
+
+  private formValidateStatus:boolean          = false;
+  private formValidateRequiredStatus:boolean  = false;
+
+  private formMessageType:string       = 'light';
 
   objectKeys = Object.keys;
 
@@ -29,6 +42,11 @@ export class PageServiceMsaTicketComponent implements OnInit {
   @ViewChild('containerBtn', {static: false}) containerBtn: ElementRef;
   @ViewChild('formMessage', {static: false}) formMessage: ElementRef;
   @ViewChild('formWrapper', {static: false}) formWrapper: ElementRef;
+
+  @ViewChild(EntryWrapper, {static: false})
+  private entryWrapper: EntryWrapper;
+
+
 
   constructor(
     private renderer: Renderer2,
@@ -39,9 +57,21 @@ export class PageServiceMsaTicketComponent implements OnInit {
   ngOnInit() {
     this.form = this.createFormGroup();
 
-    // console.log(this.form);
-
     this.subscribeToFieldStatusChanges();
+  }
+
+  ngAfterViewInit() {
+    this.formControls = this.form.controls;
+
+    // for (let key of Object.keys(this.controls)) {
+    //   if (!this.formControls.hasOwnProperty(key)) {
+    //     this.formControls[key] = "";
+    //   }
+    // }
+
+    // console.log(this.formControls);
+
+    this.getRequiredFields();
   }
 
   subscribeToFieldStatusChanges() {
@@ -58,7 +88,7 @@ export class PageServiceMsaTicketComponent implements OnInit {
 
             // console.log(this.controls[controlName].errors);
 
-            console.log(this.form);
+            // console.log(this.form);
 
             if (!this.controls[controlName].errors) {
                  this.controls[controlName].errors = {}
@@ -70,14 +100,105 @@ export class PageServiceMsaTicketComponent implements OnInit {
     }
   }
 
+  getRequiredFields() {
+    let result = {};
+
+    for (let key of Object.keys(this.controls)) {
+      if (this.controls[key].required) {
+        result[key] = {
+          touched: false,
+          type: this.controls[key].type
+        };
+      }
+    }
+
+    this.formControlsRequired = result;
+  }
+
   getLabelWithErrors() {
-    const result = [];
+    let result = [];
 
-    for (let key of Object.keys(this.form.controls)) {
+    for (let key of Object.keys(this.formControls)) {
 
-      if (this.form.controls[key]['errors'] !== null) {
+      if (this.formControls[key]['errors'] !== null) {
         result.push(this.controls[key].label);
       }
+    }
+
+    return result;
+  }
+
+  getLabelForRequiredFieldsClean() {
+    let result = {};
+
+    // console.log(this.formControlsRequired);
+
+    for (let key of Object.keys(this.formControlsRequired)) {
+
+      // console.log(key);
+      // console.log(this.formControls[key]);
+
+      if (!this.formControlsRequired[key].touched) {
+            // touched: false
+            // if it entry filed then
+        if(this.formControlsRequired[key].type === 'entry') {
+            result[key] = this.controls[key].label;
+        } else {
+          if (this.formControls[key].errors !== null) {
+            if (this.formControls[key].errors.hasOwnProperty('required')) {
+              result[key] = this.controls[key].label;
+            }
+          }
+        }
+            // if it not entry filed - check if this.formControls[key].errors.hasOwnProperty('required') then
+            // result[key] = this.controls[key].label; else continue
+      } else {
+        if (this.formControls[key].errors !== null) {
+          if (this.formControls[key].errors.hasOwnProperty('required')) {
+            // touched: true
+            result[key] = this.controls[key].label;
+          }
+        }
+      }
+    }
+
+    // console.log(result);
+
+    return result
+  }
+
+  getLabelForRequiredFieldsDirty() {
+    let result = {};
+
+
+
+    return result;
+  }
+
+  getLabelForRequiredFields() {
+    let result = {};
+    let entryNotMatched = true;
+
+    // console.log(this.formControlsRequired);
+    // console.log(this.formControls);
+
+    for (let key of Object.keys(this.formControlsRequired)) {
+
+      if (this.formControlsRequired[key].type !== 'entry') {
+        continue;
+      }
+
+      if(this.formControls.hasOwnProperty(key)) {
+        // console.log('entry matched!!');
+        this.formControlsRequired[key].touched = true;
+        // entryNotMatched = false;
+      }
+    }
+
+    if (1) {
+      result = this.getLabelForRequiredFieldsClean();
+    } else {
+      // result = this.getLabelForRequiredFieldsDirty();
     }
 
     return result;
@@ -92,8 +213,71 @@ export class PageServiceMsaTicketComponent implements OnInit {
       for (let label of labelWithErrors) {
         this.formMessage.nativeElement.innerHTML += label + ', ';
       }
+
+      this.formValidateStatus = false;
+    } else {
+      this.formValidateStatus = true;
     }
   };
+
+  formValidateRequired() {
+    const labelWithErrors = this.getLabelForRequiredFields();
+
+    if (Object.values(labelWithErrors).length !== 0) {
+
+      // console.log('form have required field input');
+      this.formMessage.nativeElement.innerHTML ='Поля обязателные к заполнению: ';
+
+      for (let label of Object.values(labelWithErrors)) {
+        this.formMessage.nativeElement.innerHTML += label + ', ';
+      }
+
+      // console.log(labelWithErrors);
+      //show hint under fields
+      for(let key of Object.keys(labelWithErrors)) {
+        this.controls[key].errors = {required: true};
+      }
+      //show hint under entry fields
+      for (let component of this.entryComponentInstanceCollection) {
+
+        if (!this.formControlsRequired.hasOwnProperty(component.parameters.formControlName)) {
+          continue;
+        }
+        if (!this.formControlsRequired[component.parameters.formControlName].touched) {
+          component.parameters.errors = {required:true}
+        }
+      }
+
+      this.formValidateStatus = false;
+    } else {
+      this.formValidateStatus = true;
+    }
+  }
+
+  getFormData() {
+    let result = {};
+
+    for(let key of Object.keys(this.formControls)) {
+      result[key] = this.formControls[key].value;
+    }
+
+
+    console.log(this.formControls);
+
+    for (let key of Object.keys(this.controls)) {
+      if (result.hasOwnProperty(key)) {
+         continue;
+      }
+      console.log(key);
+      // if (result[key].length === 0) {
+      //   result[key] = "";
+      // }
+    }
+
+    this.formData = result;
+
+    console.log(this.formData);
+  }
 
   createFormGroup() {
     const FormGroupOptions = {};
@@ -162,23 +346,48 @@ export class PageServiceMsaTicketComponent implements OnInit {
     window.scrollTo(0, document.body.scrollHeight); // values are x,y-offset
   }
 
+  showMessage(options) {
+    this.formMessageType = options.color;
+    this.renderer.setStyle(this.formMessage.nativeElement, 'display', 'block');
+
+    setTimeout(() => {
+      this.renderer.setStyle(this.formMessage.nativeElement, 'display', 'none');
+    }, options.timeout);
+  }
+
+  hideMessage() {
+    this.renderer.setStyle(this.formMessage.nativeElement, 'display', 'none');
+  }
+
   async doSubmit() {
 
-    this.form.value.amr = 'test';
-    console.log(this.form.value);
+    this.formValidateRequired();
 
-    this.formValidate();
-
-    if(!this.form.valid) {
-        this.formMessageType = 'danger';
-        this.renderer.setStyle(this.formMessage.nativeElement, 'display', 'block');
-
-      setTimeout(() => {
-        this.renderer.setStyle(this.formMessage.nativeElement, 'display', 'none');
-      }, 16000);
+    if(!this.formValidateStatus) {
+      this.showMessage({
+        color: 'danger',
+        timeout: 16000
+      });
 
       return;
     }
+
+    this.formValidate();
+
+    if(!this.formValidateStatus) {
+      this.showMessage({
+        color: 'danger',
+        timeout: 16000
+      });
+
+      return;
+    }
+
+    this.hideMessage();
+    this.getFormData();
+
+    console.log('Form valid!!');
+    return;
 
     this.formMessageType = 'info';
     this.formMessage.nativeElement.innerHTML ='Форма отправляется';
@@ -206,7 +415,7 @@ export class PageServiceMsaTicketComponent implements OnInit {
     await this.http.post<MsaResponse>(
       'http://0.0.0.0:8204/ticket',
       {
-        data: this.form.value
+        data: this.formData
       },
       {
         headers: headers
@@ -238,11 +447,15 @@ export class PageServiceMsaTicketComponent implements OnInit {
     this.form.reset();
   }
 
-  catchDataFromEntryWrapper(data) {
-    console.log('catchDataFromEntryWrapper', data);
+  setDataFromEntryComponent(res) {
+    this.formControls = {
+      ...this.formControls,
+      ...res.controls
+    };
   }
 
-  setEntryData(data) {
-    console.log('setEntryData: ', data);
+  getInstanceEntryComponent(instance) {
+    // console.log(instance);
+    this.entryComponentInstanceCollection.push(instance);
   }
 }
