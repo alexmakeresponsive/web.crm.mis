@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
 import { filter } from 'rxjs/operators';
@@ -6,11 +6,12 @@ import { filter } from 'rxjs/operators';
 
 @Component({
   template: `
-              <div [formGroup]="formTextAreaT1">
+              <div [formGroup]="form">
                 <textarea [id]="parameters.id"
                           [rows]="parameters.rows"
                           [className]="parameters.className"
                           [formControlName]="parameters.formControlName"
+                          (keyup)="onKeyUp($event)"
                 >
                 </textarea>
                 <span *ngFor="let validatorName of objectKeys(parameters.validators)">
@@ -23,14 +24,14 @@ import { filter } from 'rxjs/operators';
 })
 export class TextareaT1Component {
   @Input() parameters;
+  @Output() emitter:EventEmitter<any> = new EventEmitter();
 
-  formTextAreaT1:FormGroup;
-  formData = {component: 'TextareaT1Component'};
+  form:FormGroup;
 
   objectKeys = Object.keys;
 
   ngOnInit() {
-    this.formTextAreaT1 = this.createFormGroup();
+    this.form = this.createFormGroup();
 
     this.subscribeToFieldStatusChanges();
   }
@@ -47,15 +48,22 @@ export class TextareaT1Component {
     });
   }
 
+  onKeyUp(e) {
+    this.emitter.emit({
+      controls: this.form.controls,
+      status: this.form.status
+    });
+  }
+
   subscribeToFieldStatusChanges() {
-    this.formTextAreaT1.get(this.parameters.formControlName).statusChanges
+    this.form.get(this.parameters.formControlName).statusChanges
       .pipe(
         filter((status: string) => {
-          this.parameters.errors = this.formTextAreaT1.get(this.parameters.formControlName).errors;
+          this.parameters.errors = this.form.get(this.parameters.formControlName).errors;
 
           // console.log(this.parameters.errors);
 
-          console.log(this.formTextAreaT1.value);
+          console.log(this.form.value);
 
           if (!this.parameters.errors) {
             this.parameters.errors = {}
@@ -64,9 +72,5 @@ export class TextareaT1Component {
           return false;
         }))
       .subscribe(() => {});
-  }
-
-  getFormValue() {
-    return this.formTextAreaT1.value;
   }
 }

@@ -38,8 +38,6 @@ export class EntryWrapper implements OnInit {
       })
     }
 
-    // console.log(componentRef.instance);
-
     this.emitterInstance.emit(componentRef.instance);
   }
 }

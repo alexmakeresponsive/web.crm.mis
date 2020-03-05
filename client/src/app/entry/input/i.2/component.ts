@@ -1,15 +1,11 @@
-import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
 import { filter } from 'rxjs/operators';
 
-import {AuthService} from "../../../auth.service";
-import {StorageData} from "../../../storage.data";
-import {Base} from "../../base";
-
 @Component({
   template: `
-            <div [formGroup]="formInputI2">
+            <div [formGroup]="form">
               <div class="row">
                 <div class="col-{{parameters.col}}">
                   <input type="text"
@@ -28,29 +24,18 @@ import {Base} from "../../base";
             </div>
             `
 })
-export class InputI2Component extends Base implements OnChanges {
+export class InputI2Component implements OnInit {
   @Input() parameters;
   @Output() emitter:EventEmitter<any> = new EventEmitter();
-  @Input() changes;
 
-  formInputI2:FormGroup;
+  form:FormGroup;
 
   objectKeys = Object.keys;
 
-  constructor(
-    private storageData: StorageData
-  ) {
-    super();
-  }
-
   ngOnInit() {
-    this.formInputI2 = this.createFormGroup();
+    this.form = this.createFormGroup();
 
     this.subscribeToFieldStatusChanges();
-  }
-
-  ngOnChanges() {
-    console.log('changes!!')
   }
 
   createFormGroup() {
@@ -67,16 +52,16 @@ export class InputI2Component extends Base implements OnChanges {
 
   onKeyUp(e) {
     this.emitter.emit({
-      controls: this.formInputI2.controls,
-      status: this.formInputI2.status
+      controls: this.form.controls,
+      status: this.form.status
     });
   }
 
   subscribeToFieldStatusChanges() {
-    this.formInputI2.get(this.parameters.formControlName).statusChanges
+    this.form.get(this.parameters.formControlName).statusChanges
       .pipe(
         filter((status: string) => {
-          this.parameters.errors = this.formInputI2.get(this.parameters.formControlName).errors;
+          this.parameters.errors = this.form.get(this.parameters.formControlName).errors;
 
           if (!this.parameters.errors) {
             this.parameters.errors = {}

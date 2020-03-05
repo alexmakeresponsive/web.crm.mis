@@ -63,15 +63,15 @@ export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.formControls = this.form.controls;
 
-    // for (let key of Object.keys(this.controls)) {
-    //   if (!this.formControls.hasOwnProperty(key)) {
-    //     this.formControls[key] = "";
-    //   }
-    // }
+    // this.getRequiredFields();
 
-    // console.log(this.formControls);
+    for (let component of this.entryComponentInstanceCollection) {
+      // this.formControls[component.parameters.formControlName] = component.form.controls
+      for (let key of Object.keys(component.form.controls)) {
+        this.formControls[key] = component.form.controls[key];
+      }
+    }
 
-    this.getRequiredFields();
   }
 
   subscribeToFieldStatusChanges() {
@@ -86,10 +86,6 @@ export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
           filter((status: string) => {
             this.controls[controlName].errors = this.form.get(controlName).errors;
 
-            // console.log(this.controls[controlName].errors);
-
-            // console.log(this.form);
-
             if (!this.controls[controlName].errors) {
                  this.controls[controlName].errors = {}
             }
@@ -98,21 +94,6 @@ export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
           }))
         .subscribe(() => {});
     }
-  }
-
-  getRequiredFields() {
-    let result = {};
-
-    for (let key of Object.keys(this.controls)) {
-      if (this.controls[key].required) {
-        result[key] = {
-          touched: false,
-          type: this.controls[key].type
-        };
-      }
-    }
-
-    this.formControlsRequired = result;
   }
 
   getLabelWithErrors() {
@@ -128,77 +109,16 @@ export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
     return result;
   }
 
-  getLabelForRequiredFieldsClean() {
-    let result = {};
-
-    // console.log(this.formControlsRequired);
-
-    for (let key of Object.keys(this.formControlsRequired)) {
-
-      // console.log(key);
-      // console.log(this.formControls[key]);
-
-      if (!this.formControlsRequired[key].touched) {
-            // touched: false
-            // if it entry filed then
-        if(this.formControlsRequired[key].type === 'entry') {
-            result[key] = this.controls[key].label;
-        } else {
-          if (this.formControls[key].errors !== null) {
-            if (this.formControls[key].errors.hasOwnProperty('required')) {
-              result[key] = this.controls[key].label;
-            }
-          }
-        }
-            // if it not entry filed - check if this.formControls[key].errors.hasOwnProperty('required') then
-            // result[key] = this.controls[key].label; else continue
-      } else {
-        if (this.formControls[key].errors !== null) {
-          if (this.formControls[key].errors.hasOwnProperty('required')) {
-            // touched: true
-            result[key] = this.controls[key].label;
-          }
-        }
-      }
-    }
-
-    // console.log(result);
-
-    return result
-  }
-
-  getLabelForRequiredFieldsDirty() {
-    let result = {};
-
-
-
-    return result;
-  }
-
   getLabelForRequiredFields() {
     let result = {};
-    let entryNotMatched = true;
 
-    // console.log(this.formControlsRequired);
-    // console.log(this.formControls);
-
-    for (let key of Object.keys(this.formControlsRequired)) {
-
-      if (this.formControlsRequired[key].type !== 'entry') {
+    for (let key of Object.keys(this.formControls)) {
+      if (this.formControls[key].errors === null) {
         continue;
       }
-
-      if(this.formControls.hasOwnProperty(key)) {
-        // console.log('entry matched!!');
-        this.formControlsRequired[key].touched = true;
-        // entryNotMatched = false;
+      if (this.formControls[key].errors.required) {
+        result[key] = this.controls[key].label;
       }
-    }
-
-    if (1) {
-      result = this.getLabelForRequiredFieldsClean();
-    } else {
-      // result = this.getLabelForRequiredFieldsDirty();
     }
 
     return result;
@@ -224,15 +144,12 @@ export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
     const labelWithErrors = this.getLabelForRequiredFields();
 
     if (Object.values(labelWithErrors).length !== 0) {
-
-      // console.log('form have required field input');
       this.formMessage.nativeElement.innerHTML ='Поля обязателные к заполнению: ';
 
       for (let label of Object.values(labelWithErrors)) {
         this.formMessage.nativeElement.innerHTML += label + ', ';
       }
 
-      // console.log(labelWithErrors);
       //show hint under fields
       for(let key of Object.keys(labelWithErrors)) {
         this.controls[key].errors = {required: true};
@@ -240,11 +157,12 @@ export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
       //show hint under entry fields
       for (let component of this.entryComponentInstanceCollection) {
 
-        if (!this.formControlsRequired.hasOwnProperty(component.parameters.formControlName)) {
+        if (this.formControls[component.parameters.formControlName].errors === null) {
           continue;
         }
-        if (!this.formControlsRequired[component.parameters.formControlName].touched) {
-          component.parameters.errors = {required:true}
+
+        if (component.parameters.validators.hasOwnProperty('required')) {
+          component.parameters.errors = {required:true};
         }
       }
 
@@ -259,19 +177,6 @@ export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
 
     for(let key of Object.keys(this.formControls)) {
       result[key] = this.formControls[key].value;
-    }
-
-
-    console.log(this.formControls);
-
-    for (let key of Object.keys(this.controls)) {
-      if (result.hasOwnProperty(key)) {
-         continue;
-      }
-      console.log(key);
-      // if (result[key].length === 0) {
-      //   result[key] = "";
-      // }
     }
 
     this.formData = result;

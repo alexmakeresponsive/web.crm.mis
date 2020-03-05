@@ -1091,7 +1091,6 @@ export default {
   f_21_1: {
     label: '21.1 основная профессия (специальность, должность)',
     id: 'f211',
-    required: true,
     type: 'entry',
     data: new EntryComponentConstructor(InputI2Component, '', {
       className: 'form-control',
@@ -1115,7 +1114,6 @@ export default {
   f_21_2: {
     label: '21.2 квалификация (класс, разряд, категория, звание)',
     id: 'f212',
-    required: true,
     type: 'entry',
     data: new EntryComponentConstructor(InputI2Component, '', {
       className: 'form-control',
