@@ -12,13 +12,29 @@
                  (keyup)="onKeyUp($event)"
                  [formControlName]="dataItemCol2ItemName"
           >
+          <span *ngFor="let validatorName of objectKeys(parameters.body.col_2[dataItemCol2ItemName].validators)">
+            <span *ngIf="parameters.body.col_2[dataItemCol2ItemName].errors[payload.id]">
+              <small class="message error" *ngIf="parameters.body.col_2[dataItemCol2ItemName].errors[payload.id][validatorName]">
+                {{parameters.body.col_2[dataItemCol2ItemName].validators[validatorName].errorText}}
+              </small>
+            </span>
+          </span>
         </div>
       </td>
       <td width="50%">
-        <textarea class="form-control" rows="20"
-                  (keyup)="onKeyUp($event)"
-                  formControlName="f_25_t_r_4"
-        ></textarea>
+        <div *ngFor="let dataItemCol3ItemName of objectKeys(parameters.body.col_3)" class="form-item-sm">
+          <textarea class="form-control" rows="20"
+                    (keyup)="onKeyUp($event)"
+                    [formControlName]=dataItemCol3ItemName
+          ></textarea>
+          <span *ngFor="let validatorName of objectKeys(parameters.body.col_3[dataItemCol3ItemName].validators)">
+            <span *ngIf="parameters.body.col_3[dataItemCol3ItemName].errors[payload.id]">
+              <small class="message error" *ngIf="parameters.body.col_3[dataItemCol3ItemName].errors[payload.id][validatorName]">
+                {{parameters.body.col_3[dataItemCol3ItemName].validators[validatorName].errorText}}
+              </small>
+            </span>
+          </span>
+        </div>
       </td>
       <td width="10%">
         <button type="button" class="btn btn-primary btn-block" (click)="removeTd(payload.id)">Удалить</button>

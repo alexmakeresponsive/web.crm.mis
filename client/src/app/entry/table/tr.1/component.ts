@@ -71,10 +71,10 @@ export class TableRowTbR1EntryComponent implements OnInit, AfterViewInit {
           this.form.get(controlName).statusChanges
             .pipe(
               filter((status: string) => {
-                col[controlName].errors = this.form.get(controlName).errors;
+                col[controlName].errors[this.payload.id] = this.form.get(controlName).errors;
 
-                if (!col[controlName].errors) {
-                  col[controlName].errors = {}
+                if (!col[controlName].errors[this.payload.id]) {
+                     col[controlName].errors[this.payload.id] = {}
                 }
 
                 return false;
