@@ -52,10 +52,12 @@ export class TableRowTbR1EntryComponent implements OnInit, AfterViewInit {
   }
 
   onKeyUp(e) {
-    console.log('emmit i say!!');
     this.emitterData.emit({
       controls: this.form.controls,
-      status: this.form.status
+      status:   this.form.status,
+      multiple:        this.parameters.multiple,
+      formControlName: this.parameters.formControlName,
+      id:              this.payload.id
     });
   }
 

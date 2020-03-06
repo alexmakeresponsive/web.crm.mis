@@ -67,7 +67,7 @@ export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.buildFormControls();
 
-    console.log('formInitStatus: ready');
+    // console.log('formInitStatus: ready');
     this.formInitStatus = 'ready';
   }
 
@@ -102,8 +102,8 @@ export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
       }
     }
 
-    console.log(this.entryComponentInstanceCollection);
-    console.log(this.formControls);
+    // console.log(this.entryComponentInstanceCollection);
+    // console.log(this.formControls);
   }
 
   subscribeToFieldStatusChanges() {
@@ -386,7 +386,11 @@ export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
 
   // fire when input in entry component change value
   setDataFromEntryComponent(res) {
-    // console.log(res);
+    if (res.multiple) {
+      this.formControls[res.formControlName].list[res.id - 1] = res.controls;
+      return;
+    }
+
     this.formControls = {
       ...this.formControls,
       ...res.controls
@@ -397,7 +401,7 @@ export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
   // and when add new entry component
   getInstanceEntryComponent(instance) {
     // console.log(instance);
-    console.log('getInstanceEntryComponent..');
+    // console.log('getInstanceEntryComponent..');
 
     let key = instance.parameters.formControlName;
 
@@ -411,7 +415,7 @@ export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
 
 
     if (this.formInitStatus === 'ready') {
-      console.log('getInstanceEntryComponent: buildFormControls...');
+      // console.log('getInstanceEntryComponent: buildFormControls...');
       this.buildFormControls();
     }
   }
