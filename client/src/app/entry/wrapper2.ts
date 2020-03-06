@@ -44,7 +44,14 @@ export class EntryWrapper2 implements OnInit {
       })
     }
 
-    this.emitterInstance.emit(componentRef.instance);
+    if (componentRef.instance.hasOwnProperty('emitterAfterInit')) {
+      componentRef.instance.emitterAfterInit.subscribe((data) => {
+        this.emitterInstance.emit(componentRef.instance);
+      })
+    }
+
+    // set instance to PageServiceMsaTicketComponent.entryComponentInstanceCollection
+    // this.emitterInstance.emit(componentRef.instance);
   }
 }
 

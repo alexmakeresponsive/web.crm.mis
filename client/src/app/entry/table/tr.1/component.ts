@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, AfterViewInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
 import { filter } from 'rxjs/operators';
@@ -7,13 +7,14 @@ import { filter } from 'rxjs/operators';
 @Component({
   templateUrl: './component.html'
 })
-export class TableRowTbR1EntryComponent implements OnInit {
+export class TableRowTbR1EntryComponent implements OnInit, AfterViewInit {
   @Input() parameters;
   @Input() data;
   @Input() payload;
 
-  @Output() emitterData:EventEmitter<any> = new EventEmitter();
-  @Output() emitterAction:EventEmitter<any> = new EventEmitter();
+  @Output() emitterData:EventEmitter<any>      = new EventEmitter();
+  @Output() emitterAction:EventEmitter<any>    = new EventEmitter();
+  @Output() emitterAfterInit:EventEmitter<any> = new EventEmitter();
 
   form:FormGroup;
 
@@ -21,8 +22,13 @@ export class TableRowTbR1EntryComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.createFormGroup();
+    console.log('TableRowTbR1EntryComponent: createFormGroup ready');
 
     this.subscribeToFieldStatusChanges();
+  }
+
+  ngAfterViewInit() {
+    this.emitterAfterInit.emit({});
   }
 
   createFormGroup() {

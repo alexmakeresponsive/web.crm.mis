@@ -30,18 +30,17 @@ export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
   private form:FormGroup;
   private formData:any  = {};
 
-  private formControlsInit:any = {};
   private formControls:any = {};
-  private formControlsRequired:any = {};
 
   private entryComponentInstanceCollection = {};
 
   private formValidateStatus:boolean          = false;
-  private formValidateRequiredStatus:boolean  = false;
 
   private formMessageType:string       = 'light';
 
   objectKeys = Object.keys;
+
+  private formInitStatus:string = 'not-ready';
 
 
   @ViewChild('containerBtn', {static: false}) containerBtn: ElementRef;
@@ -68,16 +67,23 @@ export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     // console.log('ngAfterViewInit');
     this.buildFormControls();
+
+    console.log('formInitStatus: ready');
+    this.formInitStatus = 'ready';
   }
 
   buildFormControls() {
     this.formControls = Object.assign({}, this.form.controls);
+
+    console.log('buildFormControls..');
+    console.log(this.entryComponentInstanceCollection);
 
     for (let key of Object.keys(this.entryComponentInstanceCollection)) {
 
       const component = this.entryComponentInstanceCollection[key];
 
       if (component.parameters.multiple) {
+
         if(this.formControls[component.parameters.formControlName] === undefined) {   // for next iteration
           this.formControls[component.parameters.formControlName] = {
             multiple: true,
@@ -87,10 +93,14 @@ export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
 
         let item = {};
 
+        console.log(component.form);
+
         for (let key of Object.keys(component.form.controls)) {
           item[key] = component.form.controls[key];
         }
         this.formControls[component.parameters.formControlName].list.push(item);
+
+
 
         continue;
       }
@@ -391,8 +401,10 @@ export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
   }
 
   // fire beetwen ngOnInit and ngAfterViewInit
+  // and when add new entry component
   getInstanceEntryComponent(instance) {
     // console.log(instance);
+    console.log('getInstanceEntryComponent..');
 
     let key = instance.parameters.formControlName;
 
@@ -403,16 +415,29 @@ export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
     // console.log(key);
 
     this.entryComponentInstanceCollection[key] = instance;
+
+
+    if (this.formInitStatus === 'ready') {
+      console.log('getInstanceEntryComponent: buildFormControls...');
+      this.buildFormControls();
+    }
   }
 
   actionController(res) {
     switch (res.action) {
       case 'removeEntryComponentInstance': {
         this.removeEntryComponentInstance(res);
+        this.buildFormControls();
       }
+      break;
+      case 'addEntryComponentInstance': {
+        this.addEntryComponentInstance(res);
+        // getInstanceEntryComponent will be runned async
+      }
+      break;
     }
 
-    this.buildFormControls();
+        // rebuild controls after remove/add item
   }
 
   removeEntryComponentInstance(res) {
@@ -421,7 +446,8 @@ export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
     delete this.entryComponentInstanceCollection[key];
   }
 
-  addEntryComponentInstance() {
-
+  addEntryComponentInstance(res) {
+    const key = res.formControlName + '_' + res.payload.id;
+    // console.log(key);
   }
 }

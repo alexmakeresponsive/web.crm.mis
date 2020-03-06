@@ -32,9 +32,9 @@ export class TableTb1Component implements OnInit {
 
     this.emitterAction.emit({
       action: 'removeEntryComponentInstance',
-      formControlName: 'f_25_t_r',
+      formControlName: this.dataRow.parameters.formControlName,
       payload: {
-        id: res.id,
+        id: id,
       }
     });
   }
@@ -59,6 +59,14 @@ export class TableTb1Component implements OnInit {
 
     this.dataClone[idMaxNext] = {id: idMaxNext};
     this.dataTemplate         = Object.values(this.dataClone);
+
+    this.emitterAction.emit({
+      action: 'addEntryComponentInstance',
+      formControlName: this.dataRow.parameters.formControlName,
+      payload: {
+        id: idMaxNext,
+      }
+    });
   }
 
   rollbackData() {
