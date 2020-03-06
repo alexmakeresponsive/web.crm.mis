@@ -83,7 +83,7 @@ export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
         if(this.formControls[component.parameters.formControlName] === undefined) {   // for next iteration
           this.formControls[component.parameters.formControlName] = {
             multiple: true,
-            list: []
+            list: []  // use object instead array
           };
         }
 
@@ -132,7 +132,10 @@ export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
     let result = [];
 
     for (let key of Object.keys(this.formControls)) {
-
+      if(this.formControls[key].hasOwnProperty('multiple')) {
+        console.log('getLabelWithErrors: multiple detected');
+        continue;
+      }
       if (this.formControls[key]['errors'] !== null) {
         result.push(this.controls[key].label);
       }
@@ -145,6 +148,45 @@ export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
     let result = {};
 
     for (let key of Object.keys(this.formControls)) {
+
+      // if multiple
+      // add property multipleType to entry component parameters
+      // and getLabelForRequiredFields for multiple and multipleType
+      // also add listLevel - if entry component have nested level > 1 - for hard forms
+      // instead
+      // controlName: { multiple: true, list: [0: FormControl, 1: { multiple: true, list: [...]}] }
+      // try use
+      // controlName: { multiple: true, list: {
+      //                                        controlName_levelValue } }
+      //
+      if(this.formControls[key].hasOwnProperty('multiple')) {
+        // console.log('getLabelForRequiredFields: multiple detected');
+        for (let id of Object.keys(this.formControls[key].list)) {
+          for (let controlName of Object.keys(this.formControls[key].list[id])) {
+            if (this.formControls[key].list[id][controlName].errors === null) {
+              continue;
+            }
+
+            let resultId = +id + 1;
+            let formControlId = key + '_' + resultId;
+
+            let resultKey     = controlName + '_' + resultId;
+            let labelKey      = key + '_' + controlName + '_' + resultId;
+
+            if (this.formControls[key].list[id][controlName].errors.required) {
+              for (let colName of Object.keys(this.entryComponentInstanceCollection[formControlId].parameters.body)) {
+                if (!this.entryComponentInstanceCollection[formControlId].parameters.body[colName].hasOwnProperty(controlName)) {
+                  continue;
+                }
+                result[resultKey] = this.entryComponentInstanceCollection[formControlId].parameters.body[colName][controlName].label
+              }
+            }
+          }
+        }
+        continue;
+      }
+      // if multiple
+
       if (this.formControls[key].errors === null) {
         continue;
       }
@@ -184,12 +226,40 @@ export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
 
       //show hint under fields
       for(let key of Object.keys(labelWithErrors)) {
-        this.controls[key].errors = {required: true};
+        if (this.controls[key] !== undefined) {
+          this.controls[key].errors = {required: true};
+        }
       }
       //show hint under entry fields
       for (let key of Object.keys(this.entryComponentInstanceCollection)) {
 
         const component = this.entryComponentInstanceCollection[key];
+
+        // if multiple
+        if(this.formControls[component.parameters.formControlName].hasOwnProperty('multiple')) {
+
+          let payloadId = component.payload.id;
+          let listCollection =  this.formControls[component.parameters.formControlName].list[+payloadId - 1];
+
+          let formControlId = component.parameters.formControlName + '_' + payloadId;
+
+          for (let controlName of Object.keys(listCollection)) {
+            if (listCollection[controlName].errors === null) {
+              continue;
+            }
+
+            if (listCollection[controlName].errors.hasOwnProperty('required')) {
+              for (let colName of Object.keys(this.entryComponentInstanceCollection[formControlId].parameters.body)) {
+                if (!this.entryComponentInstanceCollection[formControlId].parameters.body[colName].hasOwnProperty(controlName)) {
+                  continue;
+                }
+                  this.entryComponentInstanceCollection[formControlId].parameters.body[colName][controlName].errors[payloadId] = {required:true};
+              }
+            }
+          }
+          continue;
+        }
+        // if multiple
 
         if (this.formControls[component.parameters.formControlName].errors === null) {
           continue;
@@ -210,6 +280,10 @@ export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
     let result = {};
 
     for(let key of Object.keys(this.formControls)) {
+      if(this.formControls[key].hasOwnProperty('multiple')) {
+        console.log('getFormData: multiple detected');
+        continue;
+      }
       result[key] = this.formControls[key].value;
     }
 

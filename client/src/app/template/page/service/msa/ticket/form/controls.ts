@@ -1296,6 +1296,7 @@ export default {
     type: 'entry',
     data: new EntryComponentConstructor(TableRowTbR1EntryComponent, {}, {
       multiple: true,
+      multipleType: 'tr.1',
       formControlName: 'f_25_t_r',
       body: {
         col_2: {
@@ -1332,11 +1333,15 @@ export default {
         },
         col_3: {
           f_25_t_r_4: {
-            label: '',
+            label: 'Диагноз',
             validators: {
               pattern: {
                 body: Validators.pattern('[а-яА-Я0-9a-zA-Z,. ]*'),
                 errorText: 'Поле заполенно некорретно'
+              },
+              required: {
+                body: Validators.required,
+                errorText: 'Поле не заполнено'
               }
             },
             errors: {}
