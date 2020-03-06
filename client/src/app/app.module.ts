@@ -36,17 +36,17 @@ import { PageServiceMsaTicketJournalComponent } from './template/page/service/ms
 import { PageServiceMsaTicketResultComponent } from './template/page/service/msa/ticketResult/component';
 import { PageServiceMsaTicketResultItemComponent } from './template/page/service/msa/ticketResultItem/component';
 
+import {TableTb1Component} from "./component/table/tb.1/component";
+
+import { EntryWrapper }   from "./entry/wrapper";
+import { EntryWrapper2 }   from "./entry/wrapper2";
+import { EntryDirective } from "./entry/directive";
+
 import {SelectS1Component}    from './entry/select/s.1/component';
 import {InputI1Component}     from "./entry/input/i.1/component";
 import {InputI2Component}     from "./entry/input/i.2/component";
 import {TextareaT1Component}  from "./entry/textarea/t.1/component";
-import {TableTb1Component}    from "./entry/table/tb.1/component";
-
-import { EntryWrapper }   from "./entry/wrapper";
-import { EntryDirective } from "./entry/directive";
-
-
-
+import {TableRowTbR1EntryComponent} from "./entry/table/tr.1/component";
 
 
 @NgModule({
@@ -74,13 +74,15 @@ import { EntryDirective } from "./entry/directive";
     PageServiceMsaTicketResultComponent,
     PageServiceMsaTicketResultItemComponent,
 
-    SelectS1Component,
-    InputI1Component,
-    InputI2Component,
-    TextareaT1Component,
     TableTb1Component,
 
+    SelectS1Component,
+    InputI1Component, InputI2Component,
+    TextareaT1Component,
+    TableRowTbR1EntryComponent,
+
     EntryWrapper,
+    EntryWrapper2,
     EntryDirective
   ],
 
@@ -88,7 +90,7 @@ import { EntryDirective } from "./entry/directive";
     SelectS1Component,
     InputI1Component, InputI2Component,
     TextareaT1Component,
-    TableTb1Component,
+    TableRowTbR1EntryComponent,
   ],
 
   imports: [

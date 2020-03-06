@@ -5,7 +5,7 @@ import {EntryComponentConstructor} from "../../../../../../entry/constructor";
 import {InputI1Component} from "../../../../../../entry/input/i.1/component";
 import {TextareaT1Component} from "../../../../../../entry/textarea/t.1/component";
 import {InputI2Component} from "../../../../../../entry/input/i.2/component";
-import {TableTb1Component} from "../../../../../../entry/table/tb.1/component";
+import {TableRowTbR1EntryComponent} from "../../../../../../entry/table/tr.1/component";
 
 import {Validators} from '@angular/forms';
 
@@ -1267,68 +1267,85 @@ export default {
     errors: {}
   },
 
-  f_25: {
-    type: 'entry',
-    data: new EntryComponentConstructor(TableTb1Component, {}, {
-      formControlName: 'f_25',
-      th: [
-        {
+  f_25_t_h: {
+    validation: 'not-validate',
+    data: {
+      head: {
+        col_1: {
           text: '№ п/п',
           width: '10%'
         },
-        {
+        col_2: {
           text: 'Даты',
           width: '30%',
-          list: [
-            {
-              text: 'Дата начала временной нетрудоспособности',
-              validators: {
-                pattern: {
-                  body: Validators.pattern('[0-9 ]*'),
-                  errorText: 'Дата указана некорретно'
-                }
-              },
-              errors: {}
-            },
-            {
-              text: 'Дата окончания временной нетрудоспособности',
-              validators: {
-                pattern: {
-                  body: Validators.pattern('[0-9 ]*'),
-                  errorText: 'Дата указана некорретно'
-                }
-              },
-              errors: {}
-            },
-            {
-              text: 'Число месяцев и дней временной нетрудоспособности',
-              validators: {
-                pattern: {
-                  body: Validators.pattern('[0-9 ]*'),
-                  errorText: 'Поле заполенно некорретно'
-                }
-              },
-              errors: {}
-            },
-          ]
         },
-        {
+        col_3: {
           text: 'Диагноз',
           width: '50%',
-          validators: {
-            pattern: {
-              body: Validators.pattern('[а-яА-Я0-9a-zA-Z,. ]*'),
-              errorText: 'Поле заполенно некорретно'
-            }
-          },
-          errors: {}
         },
-        {
+        col_4: {
           text: 'Действия',
           width: '10%'
         },
-      ]
+      },
+    }
+  },
+
+  f_25_t_r: {
+    validation: 'not-validate',
+    type: 'entry',
+    data: new EntryComponentConstructor(TableRowTbR1EntryComponent, {}, {
+      multiple: true,
+      formControlName: 'f_25_t_r',
+      body: {
+        col_2: {
+          f_25_t_r_1: {
+            label: 'Дата начала временной нетрудоспособности',
+            validators: {
+              pattern: {
+                body: Validators.pattern('[0-9 ]*'),
+                errorText: 'Дата указана некорретно'
+              }
+            },
+            errors: {}
+          },
+          f_25_t_r_2: {
+            label: 'Дата окончания временной нетрудоспособности',
+            validators: {
+              pattern: {
+                body: Validators.pattern('[0-9 ]*'),
+                errorText: 'Дата указана некорретно'
+              }
+            },
+            errors: {}
+          },
+          f_25_t_r_3: {
+            label: 'Число месяцев и дней временной нетрудоспособности',
+            validators: {
+              pattern: {
+                body: Validators.pattern('[0-9 ]*'),
+                errorText: 'Поле заполенно некорретно'
+              }
+            },
+            errors: {}
+          },
+        },
+        col_3: {
+          f_25_t_r_4: {
+            label: '',
+            validators: {
+              pattern: {
+                body: Validators.pattern('[а-яА-Я0-9a-zA-Z,. ]*'),
+                errorText: 'Поле заполенно некорретно'
+              }
+            },
+            errors: {}
+          }
+        }
+      }
     }),
+  },
+  f_25_1: {
     validation: 'not-validate',
   },
   f_25_2: {

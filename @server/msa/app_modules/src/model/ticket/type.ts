@@ -116,6 +116,9 @@ export type ticket  = {
     field_23:string;
     field_24:string;
     field_25:string;
+    // ..
+    // table fields
+    // ..
     field_251:boolean;
     field_252:string;
 

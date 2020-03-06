@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, Renderer2, HostListener } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, Renderer2, HostListener, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -20,16 +20,21 @@ import {EntryWrapper} from "../../../../../entry/wrapper";
   styleUrls: ['./component.scss']
 })
 export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
+  @Input() payloadFromServer = {
+    t_25: JSON.parse('{"1":{"id":1},"2":{"id":2}}') // create new table in db for t_25
+  };
+
   private controls = controls;
   private groups   = groups;
 
   private form:FormGroup;
   private formData:any  = {};
 
+  private formControlsInit:any = {};
   private formControls:any = {};
   private formControlsRequired:any = {};
 
-  private entryComponentInstanceCollection = [];
+  private entryComponentInstanceCollection = {};
 
   private formValidateStatus:boolean          = false;
   private formValidateRequiredStatus:boolean  = false;
@@ -55,23 +60,47 @@ export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit() {
+    // console.log('ngOnInit');
     this.form = this.createFormGroup();
-
-    this.subscribeToFieldStatusChanges();
+                this.subscribeToFieldStatusChanges();
   }
 
   ngAfterViewInit() {
-    this.formControls = this.form.controls;
+    // console.log('ngAfterViewInit');
+    this.buildFormControls();
+  }
 
-    // this.getRequiredFields();
+  buildFormControls() {
+    this.formControls = Object.assign({}, this.form.controls);
 
-    for (let component of this.entryComponentInstanceCollection) {
-      // this.formControls[component.parameters.formControlName] = component.form.controls
+    for (let key of Object.keys(this.entryComponentInstanceCollection)) {
+
+      const component = this.entryComponentInstanceCollection[key];
+
+      if (component.parameters.multiple) {
+        if(this.formControls[component.parameters.formControlName] === undefined) {   // for next iteration
+          this.formControls[component.parameters.formControlName] = {
+            multiple: true,
+            list: []
+          };
+        }
+
+        let item = {};
+
+        for (let key of Object.keys(component.form.controls)) {
+          item[key] = component.form.controls[key];
+        }
+        this.formControls[component.parameters.formControlName].list.push(item);
+
+        continue;
+      }
+
       for (let key of Object.keys(component.form.controls)) {
         this.formControls[key] = component.form.controls[key];
       }
     }
 
+    console.log(this.formControls);
   }
 
   subscribeToFieldStatusChanges() {
@@ -155,7 +184,9 @@ export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
         this.controls[key].errors = {required: true};
       }
       //show hint under entry fields
-      for (let component of this.entryComponentInstanceCollection) {
+      for (let key of Object.keys(this.entryComponentInstanceCollection)) {
+
+        const component = this.entryComponentInstanceCollection[key];
 
         if (this.formControls[component.parameters.formControlName].errors === null) {
           continue;
@@ -180,8 +211,6 @@ export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
     }
 
     this.formData = result;
-
-    console.log(this.formData);
   }
 
   createFormGroup() {
@@ -352,15 +381,47 @@ export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
     this.form.reset();
   }
 
+  // fire when input in entry component change value
   setDataFromEntryComponent(res) {
+    // console.log(res);
     this.formControls = {
       ...this.formControls,
       ...res.controls
     };
   }
 
+  // fire beetwen ngOnInit and ngAfterViewInit
   getInstanceEntryComponent(instance) {
     // console.log(instance);
-    this.entryComponentInstanceCollection.push(instance);
+
+    let key = instance.parameters.formControlName;
+
+    if (instance.parameters.multiple) {
+        key = instance.parameters.formControlName + '_' + instance.payload.id;
+    }
+
+    // console.log(key);
+
+    this.entryComponentInstanceCollection[key] = instance;
+  }
+
+  actionController(res) {
+    switch (res.action) {
+      case 'removeEntryComponentInstance': {
+        this.removeEntryComponentInstance(res);
+      }
+    }
+
+    this.buildFormControls();
+  }
+
+  removeEntryComponentInstance(res) {
+    const key = res.formControlName + '_' + res.payload.id;
+
+    delete this.entryComponentInstanceCollection[key];
+  }
+
+  addEntryComponentInstance() {
+
   }
 }

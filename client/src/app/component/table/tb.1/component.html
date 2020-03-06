@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <div class="row form-item">
+    <div class="col-12 d-flex justify-content-between">
+      <button type="button" class="btn btn-primary" (click)="addTd()">Добавить</button>
+      <button type="button" class="btn btn-primary" (click)="removeTdAll()">Удалить все</button>
+    </div>
+  </div>
+</div>
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th *ngFor="let headConName of objectKeys(dataHead)" scope="col" [width]="dataHead[headConName].width">
+        {{dataHead[headConName].text}}
+      </th>
+    </tr>
+  </thead>
+</table>
+
+
+<pre>
+<!--  {{dataRow.data | json}}-->
+</pre>
+
+
+<div *ngFor="let item of dataTemplate">
+      <entry-wrapper-2
+        [data]="dataRow"
+        [payload]="item"
+        (emitterData)="setDataFromEntryComponent($event)"
+        (emitterInstance)="getInstanceEntryComponent($event)"
+        (emitterAction)="actionController($event)"
+      ></entry-wrapper-2>
+</div>
