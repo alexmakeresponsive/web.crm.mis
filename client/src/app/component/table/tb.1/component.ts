@@ -40,7 +40,12 @@ export class TableTb1Component implements OnInit {
   }
 
   removeTdAll() {
-    console.log('removeTdAll');
+    this.emitterAction.emit({
+      action: 'removeAllEntryComponentInstance',
+      formControlName: this.dataRow.parameters.formControlName,
+      payload: this.dataTemplate
+    });
+
     this.dataClone    = {};
     this.dataTemplate = Object.values(this.dataClone);
   }

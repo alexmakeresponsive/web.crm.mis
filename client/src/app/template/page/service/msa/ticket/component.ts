@@ -65,7 +65,6 @@ export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // console.log('ngAfterViewInit');
     this.buildFormControls();
 
     console.log('formInitStatus: ready');
@@ -74,9 +73,6 @@ export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
 
   buildFormControls() {
     this.formControls = Object.assign({}, this.form.controls);
-
-    console.log('buildFormControls..');
-    console.log(this.entryComponentInstanceCollection);
 
     for (let key of Object.keys(this.entryComponentInstanceCollection)) {
 
@@ -93,14 +89,10 @@ export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
 
         let item = {};
 
-        console.log(component.form);
-
         for (let key of Object.keys(component.form.controls)) {
           item[key] = component.form.controls[key];
         }
         this.formControls[component.parameters.formControlName].list.push(item);
-
-
 
         continue;
       }
@@ -110,6 +102,7 @@ export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
       }
     }
 
+    console.log(this.entryComponentInstanceCollection);
     console.log(this.formControls);
   }
 
@@ -430,6 +423,11 @@ export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
         this.buildFormControls();
       }
       break;
+      case 'removeAllEntryComponentInstance': {
+        this.removeAllEntryComponentInstance(res);
+        this.buildFormControls();
+      }
+        break;
       case 'addEntryComponentInstance': {
         this.addEntryComponentInstance(res);
         // getInstanceEntryComponent will be runned async
@@ -444,6 +442,16 @@ export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
     const key = res.formControlName + '_' + res.payload.id;
 
     delete this.entryComponentInstanceCollection[key];
+  }
+
+  removeAllEntryComponentInstance(res) {
+    for (let item of res.payload) {
+      const key = res.formControlName + '_' + item.id;
+
+      delete this.entryComponentInstanceCollection[key];
+    }
+
+    console.log('removeAllEntryComponentInstance');
   }
 
   addEntryComponentInstance(res) {

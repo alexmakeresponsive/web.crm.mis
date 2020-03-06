@@ -22,7 +22,6 @@ export class TableRowTbR1EntryComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.form = this.createFormGroup();
-    console.log('TableRowTbR1EntryComponent: createFormGroup ready');
 
     this.subscribeToFieldStatusChanges();
   }
