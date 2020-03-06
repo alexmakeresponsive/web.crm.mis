@@ -224,12 +224,22 @@ export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
   formValidate() {
     const labelWithErrors = this.getLabelWithErrors();
 
+    let message = '';
+
     if (labelWithErrors.length !== 0) {
-      this.formMessage.nativeElement.innerHTML ='Форма не валидна. Проверьте поля: ';
+      message ='Форма не валидна. Проверьте поля: ';
 
       for (let label of labelWithErrors) {
-        this.formMessage.nativeElement.innerHTML += label + ', ';
+        message += label + ', ';
       }
+
+      const pos = message.lastIndexOf(',');
+
+            message = message.substring(0, pos);
+            message = message.trim();
+            message += '.';
+
+      this.formMessage.nativeElement.innerHTML = message;
 
       this.formValidateStatus = false;
     } else {
@@ -240,12 +250,20 @@ export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
   formValidateRequired() {
     const labelWithErrors = this.getLabelForRequiredFields();
 
+    let message = '';
+
     if (Object.values(labelWithErrors).length !== 0) {
-      this.formMessage.nativeElement.innerHTML ='Поля обязателные к заполнению: ';
+      message ='Поля обязателные к заполнению: ';
 
       for (let label of Object.values(labelWithErrors)) {
-        this.formMessage.nativeElement.innerHTML += label + ', ';
+        message += label + ', ';
       }
+
+      const pos = message.lastIndexOf(',');
+
+            message = message.substring(0, pos);
+            message = message.trim();
+            message += '.';
 
       //show hint under fields
       for(let key of Object.keys(labelWithErrors)) {
@@ -292,6 +310,8 @@ export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
           component.parameters.errors = {required:true};
         }
       }
+
+      this.formMessage.nativeElement.innerHTML = message;
 
       this.formValidateStatus = false;
     } else {
