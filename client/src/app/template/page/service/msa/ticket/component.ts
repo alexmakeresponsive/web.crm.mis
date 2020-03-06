@@ -132,10 +132,34 @@ export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
     let result = [];
 
     for (let key of Object.keys(this.formControls)) {
+      // if multiple
       if(this.formControls[key].hasOwnProperty('multiple')) {
-        console.log('getLabelWithErrors: multiple detected');
+        for (let id of Object.keys(this.formControls[key].list)) {
+          for (let controlName of Object.keys(this.formControls[key].list[id])) {
+            if (this.formControls[key].list[id][controlName].errors === null) {
+              continue;
+            }
+
+            let resultId = +id + 1;
+            let formControlId = key + '_' + resultId;
+
+            let resultKey     = controlName + '_' + resultId;
+
+            if (this.formControls[key].list[id][controlName].errors !== null) {
+              for (let colName of Object.keys(this.entryComponentInstanceCollection[formControlId].parameters.body)) {
+                if (!this.entryComponentInstanceCollection[formControlId].parameters.body[colName].hasOwnProperty(controlName)) {
+                  continue;
+                }
+
+                result.push(this.entryComponentInstanceCollection[formControlId].parameters.body[colName][controlName].label);
+              }
+            }
+          }
+        }
         continue;
       }
+      // if multiple
+
       if (this.formControls[key]['errors'] !== null) {
         result.push(this.controls[key].label);
       }
@@ -171,7 +195,6 @@ export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
             let formControlId = key + '_' + resultId;
 
             let resultKey     = controlName + '_' + resultId;
-            let labelKey      = key + '_' + controlName + '_' + resultId;
 
             if (this.formControls[key].list[id][controlName].errors.required) {
               for (let colName of Object.keys(this.entryComponentInstanceCollection[formControlId].parameters.body)) {
