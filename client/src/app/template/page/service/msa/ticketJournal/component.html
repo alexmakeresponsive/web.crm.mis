@@ -20,9 +20,9 @@
             </tr>
             </thead>
             <tbody>
-            <!--<tr scope="col" *ngFor="let tr of tableBody">
+            <tr scope="col" *ngFor="let tr of tableBody">
               <th scope="row">
-                <a [routerLink]="['/service/msa/result/item', tr.id]">Просмотр</a>
+                <a [routerLink]="['/service/msa/journal/item', tr.id]">Просмотр</a>
                 <br>
                 <a class="link" (click)="removeItem(tr.id)">Удалить</a>
               </th>
@@ -34,7 +34,7 @@
               <td>{{tr.msa_level}}</td>
               <td>{{tr.commission_members}}</td>
               <td>{{tr.status}}</td>
-            </tr>-->
+            </tr>
             </tbody>
           </table>
         </div>

@@ -5,7 +5,7 @@ import { AuthService } from "../../../../../auth.service";
 import { StorageData } from "../../../../../storage.data";
 import MsaResponse from "../../../../../model/msa/Response";
 
-import tableHeaderData from './part/tableHeader';
+import tableHeaderData from './config/header';
 import MsaResponseRemove from "../../../../../model/msa/ResponseRemove";
 
 @Component({

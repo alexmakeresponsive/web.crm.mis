@@ -486,6 +486,8 @@ export class Form088yComponent implements OnInit, AfterViewInit {
         res => {
           console.log(res);
 
+          this.form.reset();
+
           setTimeout(() => {
             this.formMessageType = 'success';
             this.formMessage.nativeElement.innerHTML ='Форма сохранена';
@@ -495,8 +497,6 @@ export class Form088yComponent implements OnInit, AfterViewInit {
             this.renderer.setStyle(this.formWrapper.nativeElement, 'opacity', '1');
             this.renderer.setStyle(this.formMessage.nativeElement, 'display', 'none');
           }, 3000);
-
-          this.doClear();
         },
         rej => {
           console.log("rej: ", rej);
@@ -505,7 +505,13 @@ export class Form088yComponent implements OnInit, AfterViewInit {
   }
 
   doClear() {
+    this.formMessage.nativeElement.innerHTML ='Форма очищена';
     this.form.reset();
+
+    this.showMessage({
+      color: 'success',
+      timeout: 2000
+    });
   }
 
   // fire when input in entry component change value
