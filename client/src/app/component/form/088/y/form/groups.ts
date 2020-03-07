@@ -382,9 +382,94 @@ export default {
     f_25_1: controls.f_25_1,
     f_25_2: controls.f_25_2,
   },
-  f_26_group: {},
-  f_27_group: {},
-  f_30_group: {},
-  f_3133_group: {},
-  f_3437_group: {}
+  f_26_group: {
+    f_26_1: {
+      main: controls.f_26_1,
+      childs: {
+        f_26_1_1: controls.f_26_1_1,
+        f_26_1_2: controls.f_26_1_2,
+        f_26_1_3: controls.f_26_1_3,
+
+      }
+    },
+    f_26_2: {
+      main: controls.f_26_2,
+      childs: {
+        f_26_2_1: controls.f_26_2_1,
+        f_26_2_2: controls.f_26_2_2,
+        f_26_2_3: controls.f_26_2_3,
+
+      }
+    },
+  },
+  f_27_group: {
+    f_27_1: {
+      main: controls.f_27_1,
+    },
+    f_27_2: {
+      main: controls.f_27_2,
+    },
+    f_27_3: {
+      main: controls.f_27_3,
+    },
+    f_27_4: {
+      main: controls.f_27_4,
+    },
+    f_27_5: {
+      main: controls.f_27_5,
+    },
+    f_27_6: {
+      main: controls.f_27_6,
+      childs: {
+        f_27_6_1: controls.f_27_6_1,
+        f_27_6_2: controls.f_27_6_2,
+      }
+    },
+    f_27_7: {
+      main: controls.f_27_7,
+    },
+    f_27_8: {
+      main: controls.f_27_8,
+    },
+  },
+  f_30_group: {
+    f_30_1: controls.f_30_1,
+    f_30_2: controls.f_30_2,
+    f_30_3: controls.f_30_3,
+    f_30_4: controls.f_30_4,
+    f_30_5: controls.f_30_5,
+    f_30_6: controls.f_30_6,
+  },
+  f_3133_group: {
+    f_31: {
+      main: controls.f_31,
+      childs: {
+        f_31_1: controls.f_31_1,
+        f_31_2: controls.f_31_2,
+        f_31_3: controls.f_31_3,
+      }
+    },
+    f_32: {
+      main: controls.f_32,
+      childs: {
+        f_32_1: controls.f_32_1,
+        f_32_2: controls.f_32_2,
+        f_32_3: controls.f_32_3,
+      }
+    },
+    f_33: {
+      main: controls.f_33,
+      childs: {
+        f_33_1: controls.f_33_1,
+        f_33_2: controls.f_33_2,
+        f_33_3: controls.f_33_3,
+      }
+    },
+  },
+  f_3437_group: {
+    f_34: controls.f_34,
+    f_35: controls.f_35,
+    f_36: controls.f_36,
+    f_37: controls.f_37,
+  }
 }

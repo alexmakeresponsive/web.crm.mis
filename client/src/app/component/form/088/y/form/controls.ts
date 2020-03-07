@@ -1,10 +1,10 @@
-import {SelectS1Component}          from "../../../../../entry/select/s.1/component";
+import {SelectS1Component} from "../../../../../entry/select/s.1/component";
 
-import {EntryComponentConstructor}  from "../../../../../entry/constructor";
+import {EntryComponentConstructor} from "../../../../../entry/constructor";
 
-import {InputI1Component}           from "../../../../../entry/input/i.1/component";
-import {TextareaT1Component}        from "../../../../../entry/textarea/t.1/component";
-import {InputI2Component}           from "../../../../../entry/input/i.2/component";
+import {InputI1Component} from "../../../../../entry/input/i.1/component";
+import {TextareaT1Component} from "../../../../../entry/textarea/t.1/component";
+import {InputI2Component} from "../../../../../entry/input/i.2/component";
 import {TableRowTbR1EntryComponent} from "../../../../../entry/table/tr.1/component";
 
 import {Validators} from '@angular/forms';
@@ -1364,274 +1364,433 @@ export default {
     },
     errors: {}
   },
-};
 
-
-export const f26 = [
-  {
+  f_26_1: {
     label: '26.1 востановление нарушенных функций',
     id: 'f261',
-    childs: [
-      {
-        label: '26.1.1 полное',
-        id: 'f2611',
-      },
-      {
-        label: '26.1.2 частичное',
-        id: 'f2612',
-      },
-      {
-        label: '26.1.3 положительные результаты отсутствуют',
-        id: 'f2613',
-      },
-    ],
+    validation: 'not-validate',
   },
-  {
+  f_26_1_1: {
+    label: '26.1.1 полное',
+    id: 'f2611',
+    validation: 'not-validate',
+  },
+  f_26_1_2: {
+    label: '26.1.2 частичное',
+    id: 'f2612',
+    validation: 'not-validate',
+  },
+  f_26_1_3: {
+    label: '26.1.3 положительные результаты отсутствуют',
+    id: 'f2613',
+    validation: 'not-validate',
+  },
+
+  f_26_2: {
     label: '26.2 достижение компенсации утраченных либо отсутствующих функций',
     id: 'f262',
-    childs: [
-      {
-        label: '26.2.1 полное',
-        id: 'f2621',
-      },
-      {
-        label: '26.2.2 частичное',
-        id: 'f2622',
-      },
-      {
-        label: '26.2.3 положительные результаты отсутствуют',
-        id: 'f2623',
-      },
-    ],
+    validation: 'not-validate',
   },
-];
+  f_26_2_1: {
+    label: '26.2.1 полное',
+    id: 'f2621',
+    validation: 'not-validate',
+  },
+  f_26_2_2: {
+    label: '26.2.2 частичное',
+    id: 'f2622',
+    validation: 'not-validate',
+  },
+  f_26_2_3: {
+    label: '26.2.3 положительные результаты отсутствуют',
+    id: 'f2623',
+    validation: 'not-validate',
+  },
 
-export const f27 = [
-  {
+  f_27_1: {
     label: '27.1 рост',
     id: 'f271',
-    col: 3
+    col: 3,
+    validators: {
+      pattern: {
+        body: Validators.pattern('[0-9 ]*'),
+        errorText: 'Рост указан некорретно'
+      }
+    },
+    errors: {}
   },
-  {
+  f_27_2: {
     label: '27.2 вес',
     id: 'f272',
-    col: 3
+    col: 3,
+    validators: {
+      pattern: {
+        body: Validators.pattern('[0-9 ]*'),
+        errorText: 'Вес указан некорретно'
+      }
+    },
+    errors: {}
   },
-  {
+  f_27_3: {
     label: '27.3 индекс массы тела',
     id: 'f273',
-    col: 3
+    col: 3,
+    validators: {
+      pattern: {
+        body: Validators.pattern('[0-9 ]*'),
+        errorText: 'Индекс массы тела указан некорретно'
+      }
+    },
+    errors: {}
   },
-  {
+  f_27_4: {
     label: '27.4 телосложение',
     id: 'f274',
-    col: 3
+    col: 3,
+    validators: {
+      pattern: {
+        body: Validators.pattern('[a-z ]*'),
+        errorText: 'Телосложение заполнено некорретно'
+      }
+    },
+    errors: {}
   },
-  {
+  f_27_5: {
     label: '27.5 суточный объем физиологических отправлений (мл)',
     id: 'f275',
-    col: 3
+    col: 3,
+    validators: {
+      pattern: {
+        body: Validators.pattern('[0-9 ]*'),
+        errorText: 'Поле заполнено некорретно'
+      }
+    },
+    errors: {}
   },
-  {
+  f_27_6: {
     id: 'f276',
     label: '27.6 объем талии/бедер',
     col: 6,
-    childs: [
-      {
-        label: 'объем талии',
-        id: 'f2761',
-        col: 6
-      },
-      {
-        label: 'объем бедер',
-        id: 'f2762',
-        col: 6
-      },
-    ]
+    validation: 'not-validate',
   },
-  {
+  f_27_6_1: {
+    label: 'объем талии',
+    id: 'f2761',
+    col: 6,
+    validators: {
+      pattern: {
+        body: Validators.pattern('[0-9 ]*'),
+        errorText: 'Объем указан некорретно'
+      }
+    },
+    errors: {}
+  },
+  f_27_6_2: {
+    label: 'объем бедер',
+    id: 'f2762',
+    col: 6,
+    validators: {
+      pattern: {
+        body: Validators.pattern('[0-9 ]*'),
+        errorText: 'Объем указан некорретно'
+      }
+    },
+    errors: {}
+  },
+  f_27_7: {
     label: '27.7 масса тела при рождении',
     id: 'f277',
-    col: 3
+    col: 3,
+    validators: {
+      pattern: {
+        body: Validators.pattern('[0-9 ]*'),
+        errorText: 'Масса указана некорретно'
+      }
+    },
+    errors: {}
   },
-  {
+  f_27_8: {
     label: '27.8 физическое развитие',
     id: 'f278',
-    col: 12
+    col: 12,
+    validators: {
+      pattern: {
+        body: Validators.pattern('[a-z ]*'),
+        errorText: 'Поле заполнено некорретно'
+      }
+    },
+    errors: {}
   },
-];
 
-export const f30 = [
-  {
+  f_30_1: {
     label: '30.1 основное заболевание',
     id: 'f301',
     type: 'entry',
     data: new EntryComponentConstructor(TextareaT1Component, '', {
       className: 'form-control',
       id: 'f301',
-      rows: 12
+      rows: 12,
+      formControlName: 'f_30_1',
+      validators: {
+        pattern: {
+          body: Validators.pattern('[a-zA-Z ]*'),
+          errorText: 'Основное заболевание указано некорретно'
+        },
+        required: {
+          body: Validators.required,
+          errorText: 'Поле не заполнено'
+        }
+      },
+      errors: {}
     }),
+    validation: 'not-validate',
   },
-  {
+  f_30_2: {
     label: '30.2 код основного заболевания по МКБ',
     id: 'f302',
     type: 'entry',
     data: new EntryComponentConstructor(InputI2Component, '', {
       className: 'form-control',
       id: 'f302',
-      col: 3
+      col: 3,
+      formControlName: 'f_30_2',
+      validators: {
+        pattern: {
+          body: Validators.pattern('[a-zA-Z0-9 ]*'),
+          errorText: 'Код указан некорретно'
+        }
+      },
+      errors: {}
     }),
+    validation: 'not-validate',
   },
-  {
+  f_30_3: {
     label: '30.3 осложнения основного заболевания',
     id: 'f303',
     type: 'entry',
     data: new EntryComponentConstructor(TextareaT1Component, '', {
       className: 'form-control',
       id: 'f303',
-      rows: 4
+      rows: 4,
+      formControlName: 'f_30_3',
+      validators: {
+        pattern: {
+          body: Validators.pattern('[a-zA-Z ]*'),
+          errorText: 'Осложнения заполнены некорретно'
+        }
+      },
+      errors: {}
     }),
+    validation: 'not-validate',
   },
-  {
+  f_30_4: {
     label: '30.4 сопутствующие заболевания',
     id: 'f304',
     type: 'entry',
     data: new EntryComponentConstructor(TextareaT1Component, '', {
       className: 'form-control',
       id: 'f304',
-      rows: 4
+      rows: 4,
+      formControlName: 'f_30_4',
+      validators: {
+        pattern: {
+          body: Validators.pattern('[a-zA-Z ]*'),
+          errorText: 'Сопутствующие заболевания заполнены некорретно'
+        }
+      },
+      errors: {}
     }),
+    validation: 'not-validate',
   },
-  {
+  f_30_5: {
     label: '30.5 коды сопутствующих заболеваний по МКБ',
     id: 'f305',
     type: 'entry',
     data: new EntryComponentConstructor(InputI2Component, '', {
       className: 'form-control',
       id: 'f305',
-      col: 12
+      col: 12,
+      formControlName: 'f_30_5',
+      validators: {
+        pattern: {
+          body: Validators.pattern('[a-zA-Z ]*'),
+          errorText: 'Коды заполнены некорретно'
+        }
+      },
+      errors: {}
     }),
+    validation: 'not-validate',
   },
-  {
+  f_30_6: {
     label: '30.6 осложнения сопутствующих заболеваний',
     id: 'f306',
     type: 'entry',
     data: new EntryComponentConstructor(TextareaT1Component, '', {
       className: 'form-control',
       id: 'f306',
-      rows: 12
+      rows: 12,
+      formControlName: 'f_30_6',
+      validators: {
+        pattern: {
+          body: Validators.pattern('[a-zA-Z ]*'),
+          errorText: 'Осложнения заполнены некорретно'
+        }
+      },
+      errors: {}
     }),
+    validation: 'not-validate',
   },
-];
 
-export const f3133 = [
-  {
+  f_31: {
     label: '31 Клинический прогноз',
     id: 'f31',
-    childs: [
-      {
-        label: '31.1 благоприятный',
-        id: 'f311'
-      },
-      {
-        label: '31.2 относительно благоприятный',
-        id: 'f312'
-      },
-      {
-        label: '31.3 сомнительный (неопределенный)',
-        id: 'f313'
-      },
-      {
-        label: '31.4 неблагоприятный (нужное подчеркнуть)',
-        id: 'f314'
-      },
-    ]
+    validation: 'not-validate',
   },
-  {
+  f_31_1: {
+    label: '31.1 благоприятный',
+    id: 'f311',
+    validation: 'not-validate',
+  },
+  f_31_2: {
+    label: '31.2 относительно благоприятный',
+    id: 'f312',
+    validation: 'not-validate',
+  },
+  f_31_3: {
+    label: '31.3 сомнительный (неопределенный)',
+    id: 'f313',
+    validation: 'not-validate',
+  },
+  f_31_4: {
+    label: '31.4 неблагоприятный (нужное подчеркнуть)',
+    id: 'f314',
+    validation: 'not-validate',
+  },
+  f_32: {
     label: '32 Реабилитационный потенциал',
     id: 'f32',
-    childs: [
-      {
-        label: '32.1 высокий',
-        id: 'f321'
-      },
-      {
-        label: '32.2 удовлетворительный',
-        id: 'f322'
-      },
-      {
-        label: '32.3 низкий',
-        id: 'f323'
-      },
-      {
-        label: '32.4 отсутствует (нужное подчеркнуть)',
-        id: 'f324'
-      },
-    ]
+    validation: 'not-validate',
   },
-  {
+  f_32_1: {
+    label: '32.1 высокий',
+    id: 'f321',
+    validation: 'not-validate',
+  },
+  f_32_2: {
+    label: '32.2 удовлетворительный',
+    id: 'f322',
+    validation: 'not-validate',
+  },
+  f_32_3: {
+    label: '32.3 низкий',
+    id: 'f323',
+    validation: 'not-validate',
+  },
+  f_32_4: {
+    label: '32.4 отсутствует (нужное подчеркнуть)',
+    id: 'f324',
+    validation: 'not-validate',
+  },
+  f_33: {
     label: '33 Реабилитационный прогноз',
     id: 'f33',
-    childs: [
-      {
-        label: '33.1 благоприятный',
-        id: 'f331'
-      },
-      {
-        label: '33.2 относительно благоприятный',
-        id: 'f332'
-      },
-      {
-        label: '33.3 сомнительный (неопределенный)',
-        id: 'f333'
-      },
-      {
-        label: '33.4 неблагоприятный (нужное подчеркнуть)',
-        id: 'f334'
-      },
-    ]
+    validation: 'not-validate',
   },
-];
+  f_33_1: {
+    label: '33.1 благоприятный',
+    id: 'f331',
+    validation: 'not-validate',
+  },
+  f_33_2: {
+    label: '33.2 относительно благоприятный',
+    id: 'f332',
+    validation: 'not-validate',
+  },
+  f_33_3: {
+    label: '33.3 сомнительный (неопределенный)',
+    id: 'f333',
+    validation: 'not-validate',
+  },
+  f_33_4: {
+    label: '33.4 неблагоприятный (нужное подчеркнуть)',
+    id: 'f334',
+    validation: 'not-validate',
+  },
 
-export const f3437 = [
-  {
+  f_34: {
     label: '34 Рекомендуемые мероприятия по медицинской реабилитации или абилитации',
     id: 'f34',
     type: 'entry',
     data: new EntryComponentConstructor(TextareaT1Component, '', {
       className: 'form-control',
       id: 'f34',
-      rows: 12
+      rows: 12,
+      formControlName: 'f_34',
+      validators: {
+        pattern: {
+          body: Validators.pattern('[a-zA-Z ]*'),
+          errorText: 'Мероприятия заполнены некорретно'
+        }
+      },
+      errors: {}
     }),
+    validation: 'not-validate',
   },
-  {
+  f_35: {
     label: '35 Рекомендуемые мероприятия по реконструктивной хирургии',
     id: 'f35',
     type: 'entry',
     data: new EntryComponentConstructor(TextareaT1Component, '', {
       className: 'form-control',
       id: 'f35',
-      rows: 6
+      rows: 6,
+      formControlName: 'f_35',
+      validators: {
+        pattern: {
+          body: Validators.pattern('[a-zA-Z ]*'),
+          errorText: 'Мероприятия заполнены некорретно'
+        }
+      },
+      errors: {}
     }),
+    validation: 'not-validate',
   },
-  {
+  f_36: {
     label: '36 Рекомендуемые мероприятия по протезированию и ортезированию',
     id: 'f36',
     type: 'entry',
     data: new EntryComponentConstructor(TextareaT1Component, '', {
       className: 'form-control',
       id: 'f36',
-      rows: 4
+      rows: 4,
+      formControlName: 'f_36',
+      validators: {
+        pattern: {
+          body: Validators.pattern('[a-zA-Z ]*'),
+          errorText: 'Мероприятия заполнены некорретно'
+        }
+      },
+      errors: {}
     }),
+    validation: 'not-validate',
   },
-  {
+  f_37: {
     label: '37 Санаторно-курортное лечение',
     id: 'f37',
     type: 'entry',
     data: new EntryComponentConstructor(TextareaT1Component, '', {
       className: 'form-control',
       id: 'f37',
-      rows: 2
+      rows: 2,
+      formControlName: 'f_37',
+      validators: {
+        pattern: {
+          body: Validators.pattern('[a-zA-Z ]*'),
+          errorText: 'Лечение заполнено некорретно'
+        }
+      },
+      errors: {}
     }),
+    validation: 'not-validate',
   },
-];
+};

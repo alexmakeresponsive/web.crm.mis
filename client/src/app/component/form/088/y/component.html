@@ -575,7 +575,7 @@
       </div>
     </div>
 
-    <!--<div class="form-fields-group-wrapper">
+    <div class="form-fields-group-wrapper">
       <p class="label-text">
         26. Результаты эффективности проведенных реабилитационных или абилитационных мероприятий медицинской реабилитации, рекомендованных индивидуальной программой реабилитации или абилитации инвалида (ребенка- инвалида)
       </p>
@@ -595,24 +595,24 @@
           </div>
         </div>
       </div>
-      &lt;!&ndash;radio&ndash;&gt;
-      <div class="custom-control custom-radio form-item-xs" *ngFor="let itemFf26 of ff26">
-        <input type="radio" [id]=itemFf26.id name="radio26" class="custom-control-input" checked="">
-        <label class="custom-control-label form-item-xs" [for]=itemFf26.id>
-          {{itemFf26.label}}
+      <!--radio-->
+      <div class="custom-control custom-radio form-item-xs" *ngFor="let controlName of objectKeys(groups.f_26_group)">
+        <input type="radio" [id]=groups.f_26_group[controlName].main.id name="radio26" class="custom-control-input" checked="">
+        <label class="custom-control-label form-item-xs" [for]=groups.f_26_group[controlName].main.id>
+          {{groups.f_26_group[controlName].main.label}}
         </label>
-        <div *ngIf="itemFf26.childs" class="form-item-sm">
-          &lt;!&ndash;radio&ndash;&gt;
-          <div class="custom-control custom-radio form-item-xs" *ngFor="let itemFf26Child of itemFf26.childs">
-            <input type="radio" [id]=itemFf26Child.id [name]="itemFf26.id" class="custom-control-input" checked="">
-            <label class="custom-control-label" [for]=itemFf26Child.id>
-              {{itemFf26Child.label}}
+        <div *ngIf="groups.f_26_group[controlName].childs" class="form-item-sm">
+          <!--radio-->
+          <div class="custom-control custom-radio form-item-xs" *ngFor="let controlChL1Name of objectKeys(groups.f_26_group[controlName].childs)">
+            <input type="radio" [id]=groups.f_26_group[controlName].childs[controlChL1Name].id [name]="controlName" class="custom-control-input" checked="">
+            <label class="custom-control-label" [for]=groups.f_26_group[controlName].childs[controlChL1Name].id>
+              {{groups.f_26_group[controlName].childs[controlChL1Name].label}}
             </label>
           </div>
-          &lt;!&ndash;radio&ndash;&gt;
+          <!--radio-->
         </div>
       </div>
-      &lt;!&ndash;radio&ndash;&gt;
+      <!--radio-->
     </div>
 
     <div class="form-fields-group-wrapper">
@@ -621,17 +621,19 @@
       </p>
       <div class="label-text form-item">
         <div class="row">
-          <div class="field-wrapper-space-between col-{{itemFf27.col? itemFf27.col : 3}}" *ngFor="let itemFf27 of ff27">
-            <label [for]=itemFf27.id>{{itemFf27.label}}</label>
-            <div *ngIf="!itemFf27.childs">
-              <input type="text" class="form-control form-item-sm" [id]=itemFf27.id placeholder="">
+          <div class="field-wrapper-space-between col-{{groups.f_27_group[controlName].main.col? groups.f_27_group[controlName].main.col : 3}}" *ngFor="let controlName of objectKeys(groups.f_27_group)">
+            <label [for]=groups.f_27_group[controlName].main.id>{{groups.f_27_group[controlName].main.label}}</label>
+            <div *ngIf="!groups.f_27_group[controlName].childs">
+              <input type="text" class="form-control form-item-sm" [id]=groups.f_27_group[controlName].main.id placeholder=""
+                                                                   [formControlName]="controlName">
             </div>
-            <div *ngIf="itemFf27.childs">
+            <div *ngIf="groups.f_27_group[controlName].childs">
               <div class="row">
-                <div class="col-{{itemFf27Child.col? itemFf27Child.col : 6}}" *ngFor="let itemFf27Child of itemFf27.childs">
+                <div class="col-{{groups.f_27_group[controlName].childs[controlChL1Name].col? groups.f_27_group[controlName].childs[controlChL1Name].col : 6}}" *ngFor="let controlChL1Name of objectKeys(groups.f_27_group[controlName].childs)">
                   <div>
-                    <label [for]=itemFf27Child.id>{{itemFf27Child.label}}</label>
-                    <input type="text" class="form-control form-item-sm" [id]=itemFf27Child.id placeholder="">
+                    <label [for]=groups.f_27_group[controlName].childs[controlChL1Name].id>{{groups.f_27_group[controlName].childs[controlChL1Name].label}}</label>
+                    <input type="text" class="form-control form-item-sm" [id]=groups.f_27_group[controlName].childs[controlChL1Name].id placeholder=""
+                                                                         [formControlName]="controlChL1Name">
                   </div>
                 </div>
               </div>
@@ -662,40 +664,45 @@
         30. Диагноз при направлении на медико-социальную экспертизу
       </p>
       <div class="label-text">
-        <div *ngFor="let itemFf30Child of ff30" class="form-item">
-          <label [for]="itemFf30Child.id">
-            {{itemFf30Child.label}}
+        <div *ngFor="let controlName of objectKeys(groups.f_30_group)" class="form-item">
+          <label [for]="groups.f_30_group[controlName].id">
+            {{groups.f_30_group[controlName].label}}
           </label>
-          <div *ngIf="itemFf30Child.type === 'entry'">
-            <entry-wrapper [data]="itemFf30Child.data"></entry-wrapper>
+          <div *ngIf="groups.f_30_group[controlName].type === 'entry'">
+            <entry-wrapper [data]="groups.f_30_group[controlName].data"
+                           (emitterData)="setDataFromEntryComponent($event)"
+                           (emitterInstance)="getInstanceEntryComponent($event)"
+            ></entry-wrapper>
           </div>
         </div>
       </div>
     </div>
 
     <div class="form-fields-group-wrapper">
-      <div *ngFor="let itemFf3133 of ff3133" class="form-item">
-        <label [for]="itemFf3133.id" class="label-text">{{itemFf3133.label}}</label>
-        &lt;!&ndash;radio&ndash;&gt;
-        <div class="custom-control custom-radio form-item-xs" *ngFor="let itemFf3133Child of itemFf3133.childs">
-          <input type="radio" [id]=itemFf3133Child.id [name]="itemFf3133.id" class="custom-control-input" checked="">
-          <label class="custom-control-label" [for]=itemFf3133Child.id>
-            {{itemFf3133Child.label}}
+      <div *ngFor="let controlName of objectKeys(groups.f_3133_group)" class="form-item">
+        <label [for]="groups.f_3133_group[controlName].main.id" class="label-text">
+          {{groups.f_3133_group[controlName].main.label}}
+        </label>
+        <!--radio-->
+        <div class="custom-control custom-radio form-item-xs" *ngFor="let controlChL1Name of objectKeys(groups.f_3133_group[controlName].childs)">
+          <input type="radio" [id]=groups.f_3133_group[controlName].childs[controlChL1Name].id [name]="controlName" class="custom-control-input" checked="">
+          <label class="custom-control-label" [for]=groups.f_3133_group[controlName].childs[controlChL1Name].id>
+            {{groups.f_3133_group[controlName].childs[controlChL1Name].label}}
           </label>
         </div>
-        &lt;!&ndash;radio&ndash;&gt;
+        <!--radio-->
       </div>
       <div class="label-text">
-        <div *ngFor="let itemFf3437Child of ff3437" class="form-item">
-          <label [for]="itemFf3437Child.id">
-            {{itemFf3437Child.label}}
+        <div *ngFor="let controlName of objectKeys(groups.f_3437_group)" class="form-item">
+          <label [for]="groups.f_3437_group[controlName].id">
+            {{groups.f_3437_group[controlName].label}}
           </label>
-          <div *ngIf="itemFf3437Child.type === 'entry'">
-            <entry-wrapper [data]="itemFf3437Child.data"></entry-wrapper>
+          <div *ngIf="groups.f_3437_group[controlName].type === 'entry'">
+            <entry-wrapper [data]="groups.f_3437_group[controlName].data"></entry-wrapper>
           </div>
         </div>
       </div>
-    </div>-->
+    </div>
 
     <div class="d-flex justify-content-between container-btn" #containerBtn>
       <button type="button" class="btn btn-secondary" (click)="scrollToTop()">Прокрутить до начала формы</button>
