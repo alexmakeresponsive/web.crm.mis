@@ -14,7 +14,12 @@
               {{groups.f_1234_group.f_1.label}}
             </label>
             <input type="text" class="form-control" [id]="groups.f_1234_group.f_1.id" placeholder=""
-                   [formControlName]="groups.f_1234_group.f_1.formControlName">
+                   formControlName="f_1">
+            <span *ngFor="let validatorName of objectKeys(groups.f_1234_group.f_1.validators)">
+              <small class="message error" *ngIf="groups.f_1234_group.f_1.errors[validatorName]">
+                {{groups.f_1234_group.f_1.validators[validatorName].errorText}}
+              </small>
+            </span>
           </div>
           <div class="col-2 d-flex align-items-end">
             <button type="button" class="btn btn-primary">Добавить</button>
@@ -22,13 +27,13 @@
         </div>
       </div>
       <div class="custom-control custom-checkbox form-item-xs">
-        <input type="checkbox" class="custom-control-input" [id]="groups.f_1234_group.f_2.id" name="f_2">
+        <input type="checkbox" class="custom-control-input" [id]="groups.f_1234_group.f_2.id" formControlName="f_2">
         <label class="custom-control-label" [for]="groups.f_1234_group.f_2.id">
           {{groups.f_1234_group.f_2.label}}
         </label>
       </div>
       <div class="custom-control custom-checkbox form-item">
-        <input type="checkbox" class="custom-control-input" [id]="groups.f_1234_group.f_3.id"  name="f_3">
+        <input type="checkbox" class="custom-control-input" [id]="groups.f_1234_group.f_3.id"  formControlName="f_3">
         <label class="custom-control-label" [for]="groups.f_1234_group.f_3.id">
           {{groups.f_1234_group.f_3.label}}
         </label>
@@ -40,7 +45,12 @@
               {{groups.f_1234_group.f_4.label}}
             </label>
             <input type="text" class="form-control" [id]="groups.f_1234_group.f_4.id" placeholder=""
-                   [formControlName]="groups.f_1234_group.f_4.formControlName">
+                   formControlName="f_4">
+            <span *ngFor="let validatorName of objectKeys(groups.f_1234_group.f_4.validators)">
+              <small class="message error" *ngIf="groups.f_1234_group.f_4.errors[validatorName]">
+                {{groups.f_1234_group.f_4.validators[validatorName].errorText}}
+              </small>
+            </span>
           </div>
         </div>
       </div>
@@ -54,7 +64,10 @@
         <div class="form-group" id="f5">
           <!--radio-->
           <div class="custom-control custom-radio form-item-xs" *ngFor="let controlName of objectKeys(groups.f_5_group)">
-            <input type="radio" [id]=groups.f_5_group[controlName].main.id name="f_5_group" class="custom-control-input" checked="">
+            <input type="radio" [id]=groups.f_5_group[controlName].main.id
+                   formControlName="f_5_group"
+                   [value]="groups.f_5_group[controlName].main.value"
+                   class="custom-control-input" checked="">
             <label class="custom-control-label" [for]=groups.f_5_group[controlName].main.id>
               {{groups.f_5_group[controlName].main.label}}
             </label>

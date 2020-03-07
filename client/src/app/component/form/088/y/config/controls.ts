@@ -15,7 +15,6 @@ export default {
     label: '1. Номер и дата протокола врачебной комиссии медицинской организации, содержащего решение о направлении\n' +
       'гражданина на медико-социальную экспертизу',
     id: 'f1',
-    formControlName: 'f_1',
     validators: {
       pattern: {
         body: Validators.pattern('[0-9 ]*'),
@@ -28,18 +27,21 @@ export default {
     label: '2. Гражданин по состоянию здоровья не может явиться в бюро (главное бюро, Федеральное бюро)\n' +
       'медико-социальной экспертизы: медико-социальную экспертизу необходимо проводить',
     id: 'f2',
-    validation: 'not-validate',
+    validators: {
+    },
+    errors: {}
   },
   f_3: {
     label: '3. Гражданин нуждается в оказании паллиативной медицинской помощи (при нуждаемости в оказании\n' +
       'паллиативной медицинской помощи)',
     id: 'f3',
-    validation: 'not-validate',
+    validators: {
+    },
+    errors: {},
   },
   f_4: {
     label: '4. Дата выдачи направления на МСЭ',
     id: 'f4',
-    formControlName: 'f_4',
     validators: {
       pattern: {
         body: Validators.pattern('[0-9 ]*'),
@@ -49,47 +51,59 @@ export default {
     errors: {}
   },
 
+  f_5_group: {
+    validators: {
+    },
+    errors: {},
+  },
   f_5_1: {
     label: '5.1 установление группы инвалидности',
     id: 'f51',
-    validation: 'not-validate',
+    exclude: true,
     name: 'f_5_group',
+    value: '1'
   },
   f_5_2: {
     label: '5.2 установление категории «ребенок-инвалид»',
     id: 'f52',
-    validation: 'not-validate',
+    exclude: true,
     name: 'f_5_group',
+    value: '2'
   },
   f_5_3: {
     label: '5.3 установление причины инвалидности',
     id: 'f53',
-    validation: 'not-validate',
+    exclude: true,
     name: 'f_5_group',
+    value: '3'
   },
   f_5_4: {
     label: '5.4 установление времени наступления инвалидности',
     id: 'f54',
-    validation: 'not-validate',
+    exclude: true,
     name: 'f_5_group',
+    value: '4'
   },
   f_5_5: {
     label: '5.5 установление установление срока инвалидности',
     id: 'f55',
-    validation: 'not-validate',
+    exclude: true,
     name: 'f_5_group',
+    value: '5'
   },
   f_5_6: {
     label: '5.6 определение степени утраты профессиональной трудоспособности в процентах',
     id: 'f56',
-    validation: 'not-validate',
+    exclude: true,
     name: 'f_5_group',
+    value: '6'
   },
   f_5_7: {
     label: '5.7 определение стойкой утраты трудоспособности сотрудника органа внутренних дел Российской Федерации',
     id: 'f57',
-    validation: 'not-validate',
+    exclude: true,
     name: 'f_5_group',
+    value: '7'
   },
   f_5_8: {
     label: '5.8 определение нуждаемости по состоянию здоровья в постоянном постороннем уходе (помощи, надзоре) отца, матери, жены, родного брата, родной сестры,\n' +
@@ -99,20 +113,23 @@ export default {
       'службу\n' +
       'проходящего военную службу по контракту).',
     id: 'f58',
-    validation: 'not-validate',
+    exclude: true,
     name: 'f_5_group',
+    value: '8'
   },
   f_5_9: {
     label: '5.9. определение причины смерти инвалида, а также лица, пострадавшего в результате несчастного случая на производстве, профессионального заболевания, катастрофы на Чернобыльской АЭС и других радиационных и техногенных катастроф либо в результате ранения, контузии, увечья или заболевания, полученных в период прохождения военной службы, в случаях, когда законодательством Российской Федерации предусматривается предоставление семье умершего мер социальной поддержки',
     id: 'f59',
-    validation: 'not-validate',
+    exclude: true,
     name: 'f_5_group',
+    value: '9'
   },
   f_5_10: {
     label: '5.10 разработка индивидуальной программы реабилитации или абилитации инвалида (ребенка-инвалида)',
     id: 'f510',
-    validation: 'not-validate',
+    exclude: true,
     name: 'f_5_group',
+    value: '10'
   },
   f_5_11: {
     label: '5.11 разработка программы\n' +
@@ -121,26 +138,30 @@ export default {
       'несчастного\n' +
       'производстве професссионального заболевания',
     id: 'f511',
-    validation: 'not-validate',
+    exclude: true,
     name: 'f_5_group',
+    value: '11'
   },
   f_5_12: {
     label: '5.12 выдача дубликата справки, подтверждающей факт установления инвалидности, степени утраты профессиональной трудоспособности в процентах',
     id: 'f512',
-    validation: 'not-validate',
+    exclude: true,
     name: 'f_5_group',
+    value: '12'
   },
   f_5_13: {
     label: '5.13 выдача новой справки, подтверждающей факт установления инвалидности, в случае изменения фамилии, имени, отчества, даты рождения гражданина',
     id: 'f513',
-    validation: 'not-validate',
+    exclude: true,
     name: 'f_5_group',
+    value: '13'
   },
   f_5_14: {
     label: '5.14 иные цели, установленные законодательством Российской Федерации (указать)',
     id: 'f514',
-    validation: 'not-validate',
+    exclude: true,
     name: 'f_5_group',
+    value: '14'
   },
   f_5_14_text: {
     validators: {
@@ -228,46 +249,46 @@ export default {
   f_8_1: {
     label: '8.1 мужской',
     id: 'f81',
-    validation: 'not-validate',
+    exclude: true,
     name: 'f_8_group',
   },
   f_8_2: {
     label: '8.2 женский',
     id: 'f82',
-    validation: 'not-validate',
+    exclude: true,
     name: 'f_8_group',
   },
 
   f_9_1: {
     label: '9.1 гражданин Российской Федерации',
     id: 'f91',
-    validation: 'not-validate',
+    exclude: true,
     name: 'f_9_group',
   },
   f_9_2: {
     label: '9.2 гражданин иностранного государства, находящийся на территории Российской Федерации',
     id: 'f92',
-    validation: 'not-validate',
+    exclude: true,
     name: 'f_9_group',
   },
   f_9_3: {
     label: '9.3 лицо без гражданства, находящееся на территории Российской Федерации',
     id: 'f93',
-    validation: 'not-validate',
+    exclude: true,
     name: 'f_9_group',
   },
 
   f_10_1: {
     label: '10.1 гражданин, состоящий на воинском учете',
     id: 'f101',
-    validation: 'not-validate',
+    exclude: true,
     name: 'f_10_group',
   },
   f_10_2: {
     label: '10.2 гражданин, не состоящий на воинском учете, но обязанный состоять\n' +
       '  на воинском учете',
     id: 'f102',
-    validation: 'not-validate',
+    exclude: true,
     name: 'f_10_group',
   },
 
@@ -319,19 +340,19 @@ export default {
     label: '11.5 населенный пункт (нужное отметить)',
     id: 'f115',
     tag: 'checkbox',
-    validation: 'not-validate',
+    exclude: true,
     name: 'f_11_5_group',
   },
   f_11_5_1: {
     label: '11.5.1 городское поселение',
     id: 'f1151',
-    validation: 'not-validate',
+    exclude: true,
     name: 'f_11_5_group',
   },
   f_11_5_2: {
     label: '11.5.2 сельское поселение',
     id: 'f1152',
-    validation: 'not-validate',
+    exclude: true,
     name: 'f_11_5_group',
   },
   f_11_6: {
@@ -399,7 +420,7 @@ export default {
       'организации, медицинскую стационарных условиях\n' +
       'в медицинской оказывающей помощь в',
     id: 'f131',
-    validation: 'not-validate',
+    exclude: true,
     name: 'f_13_group',
     validators: {},
     errors: {}
@@ -431,7 +452,7 @@ export default {
   f_13_2: {
     label: '13.2 социального оказывающей услуги в стационарной форме социального обслуживания',
     id: 'f132',
-    validation: 'not-validate',
+    exclude: true,
     name: 'f_13_group',
     validators: {},
     errors: {}
@@ -463,7 +484,7 @@ export default {
   f_13_3: {
     label: '13.3 в исправительном учреждении',
     id: 'f133',
-    validation: 'not-validate',
+    exclude: true,
     name: 'f_13_group',
     validators: {},
     errors: {}
@@ -539,13 +560,13 @@ export default {
       'Водительское удостоверение',
       'Свидетельство о рождении',
     ], {}),
-    validation: 'not-validate',
+    exclude: true,
     name: 'f_16_1',
   },
   f_16_2: {
     id: 'f162',
     label: '16.2 номера',
-    validation: 'not-validate',
+    exclude: true,
     name: 'f_16_2',
   },
   f_16_2_1: {
@@ -596,7 +617,7 @@ export default {
   f_17_1: {
     label: '17.1 документ, удостоверяющий полномочия законного (уполномоченного) представителя',
     id: 'f171',
-    validation: 'not-validate',
+    exclude: true,
     name: 'f_17_1',
   },
   f_17_1_1: {
@@ -608,14 +629,14 @@ export default {
       'Паспорт',
       'Доверенность',
     ], {}),
-    validation: 'not-validate',
+    exclude: true,
     name: 'f_17_1',
   },
   f_17_1_2: {
     id: 'f1712',
     label: '17.1.2 номера',
     col: 6,
-    validation: 'not-validate',
+    exclude: true,
     name: 'f_17_1',
   },
   f_17_1_2_1: {
@@ -666,7 +687,7 @@ export default {
   f_17_2: {
     label: '17.2 документ, удостоверяющий личность',
     id: 'f172',
-    validation: 'not-validate',
+    exclude: true,
     name: 'f_17_2',
   },
   f_17_2_1: {
@@ -678,14 +699,14 @@ export default {
       'Свидетельство о рождении',
       'Доверенность',
     ], {}),
-    validation: 'not-validate',
+    exclude: true,
     name: 'f_17_2_1',
   },
   f_17_2_2: {
     id: 'f1722',
     label: '17.2.2 номер',
     col: 6,
-    validation: 'not-validate',
+    exclude: true,
     name: 'f_17_2_2',
   },
   f_17_2_2_1: {
@@ -736,7 +757,7 @@ export default {
   f_17_3: {
     label: '17.3 контактная информация',
     id: 'f173',
-    validation: 'not-validate',
+    exclude: true,
     name: 'f_17_2_2',
   },
   f_17_3_1: {
@@ -777,7 +798,7 @@ export default {
   f_17_5: {
     label: '17.5  сведения об организации в случае возложения опеки (попечительства) на юридическое лицо',
     id: 'f175',
-    validation: 'not-validate',
+    exclude: true,
     name: 'f_17_5',
   },
   f_17_5_1: {
@@ -819,39 +840,39 @@ export default {
   f_18_1: {
     label: '18.1 первично',
     id: 'f181',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_18_2: {
     label: '18.2 повторно',
     id: 'f182',
-    validation: 'not-validate',
+    exclude: true,
   },
 
   f_19_1: {
     label: '19.1 наличие инвалидности на момент направления на медико-социальную экспертизу (нужное отметить)',
     id: 'f191',
     name: 'f_19_1_group',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_19_1_1: {
     label: '19.1 первая группа',
     id: 'f1911',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_19_1_2: {
     label: '19.2 вторая группа',
     id: 'f1912',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_19_1_3: {
     label: '19.3 третья группа',
     id: 'f1913',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_19_1_4: {
     label: '19.4 категория ребенок-инвалид',
     id: 'f1914',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_19_2: {
     label: '19.2 дата, до которой установлена инвалидность (день, месяц, год)',
@@ -869,114 +890,114 @@ export default {
     label: '19.3 период, в течение которого гражданин находился на инвалидности на момент направления на медико-социальную экспертизу (нужное отметить)',
     id: 'f193',
     name: 'f_19_3_group',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_19_3_1: {
     label: '19.3.1 один год',
     id: 'f1931',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_19_3_2: {
     label: '19.3.2 два года',
     id: 'f1932',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_19_3_3: {
     label: '19.3.3 три года',
     id: 'f1933',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_19_3_4: {
     label: '19.3.4 четыре и более лет',
     id: 'f1934',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_19_4: {
     label: '19.4 формулировка причины инвалидности, имеющейся на момент направления на медико-социальную экспертизу (нужное отметить)',
     id: 'f194',
     name: 'f_19_4_group',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_19_4_1: {
     label: '19.4.1 общее заболевание',
     id: 'f1941',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_19_4_2: {
     label: '19.4.2 инвалидность с детства',
     id: 'f1942',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_19_4_3: {
     label: '19.4.3 профессиональное заболевание',
     id: 'f1943',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_19_4_4: {
     label: '19.4.4 трудовое увечье',
     id: 'f1944',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_19_4_5: {
     label: '19.4.5 военная травма',
     id: 'f1945',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_19_4_6: {
     label: '19.4.6 заболевание получено в период военной службы',
     id: 'f1946',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_19_4_7: {
     label: '19.4.7 заболевание, полученное при исполнении иных обязанностей военной службы (служебных обязанностей), связано с катастрофой на Чернобыльской АЭС',
     id: 'f1947',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_19_4_8: {
     label: '19.4.8 заболевание радиационно обусловленное получено при исполнении обязанностей военной службы (служебных обязанностей) в связи с катастрофой на Чернобыльской АЭС',
     id: 'f1948',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_19_4_9: {
     label: '19.4.9 заболевание связано с катастрофой на Чернобыльской АЭС',
     id: 'f1949',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_19_4_10: {
     label: '19.4.10 заболевание связано с аварией на ПО «Маяк»',
     id: 'f19410',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_19_4_11: {
     label: '19.4.11 заболевание,\n' +
       'полученное при исполнении иных обязанностей военной службы (служебных обязанностей), связано с аварией на ПО «Маяк»',
     id: 'f19411',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_19_4_12: {
     label: '19.4.12 заболевание связано с последствиями радиационных воздействий',
     id: 'f19412',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_19_4_13: {
     label: '19.4.13 заболевание радиационно обусловленное получено при исполнении обязанностей военной службы (служебных обязанностей) в связи с непосредственным участием в действиях подразделений особого риска',
     id: 'f19413',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_19_4_14: {
     label: '19.4.14 инвалидность с детства вследствие ранения (контузии, увечья), связанного с боевыми действиями в период Великой Отечественной войны 1941-1945 годов',
     id: 'f19414',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_19_4_15: {
     label: '19.4.15 заболевание (ранение, контузия, увечье), полученное лицом, обслуживавшим действующие воинские части Вооруженных Сил СССР и Вооруженных Сил Российской Федерации, находившиеся на территориях других государств в период ведения в этих государствах боевых действий',
     id: 'f19415',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_19_4_16: {
     label: '19.4.16 иные причины, установленные законодательством Российской Федерации (указать):',
     id: 'f19416',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_19_4_16_text: {
     validators: {
@@ -990,7 +1011,7 @@ export default {
   f_19_4_17: {
     label: '19.4.17 формулировки причин инвалидности, установленные в соответствии с законодательством, действовавшим на момент установления инвалидности (указать)',
     id: 'f19417',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_19_4_17_text: {
     validators: {
@@ -1066,12 +1087,12 @@ export default {
       },
       errors: {}
     }),
-    validation: 'not-validate',
+    exclude: true,
   },
   f_20_2: {
     label: '20.2 Уровень в образовательной организации',
     id: 'f202',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_20_2_1: {
     label: '20.2.1 курс',
@@ -1123,7 +1144,7 @@ export default {
       },
       errors: {}
     }),
-    validation: 'not-validate',
+    exclude: true,
   },
 
   f_21_1: {
@@ -1147,7 +1168,7 @@ export default {
       },
       errors: {}
     }),
-    validation: 'not-validate',
+    exclude: true,
   },
   f_21_2: {
     label: '21.2 квалификация (класс, разряд, категория, звание)',
@@ -1170,7 +1191,7 @@ export default {
       },
       errors: {}
     }),
-    validation: 'not-validate',
+    exclude: true,
   },
   f_21_3: {
     label: '21.3 стаж работы',
@@ -1189,7 +1210,7 @@ export default {
       },
       errors: {}
     }),
-    validation: 'not-validate',
+    exclude: true,
   },
   f_21_4: {
     label: '21.4 выполняемая работа на момент направления на медико-социальную экспертизу с указанием профессии (специальности, должности)',
@@ -1208,7 +1229,7 @@ export default {
       },
       errors: {}
     }),
-    validation: 'not-validate',
+    exclude: true,
   },
   f_21_5: {
     label: '21.5 условия и характер выполняемого труда',
@@ -1227,7 +1248,7 @@ export default {
       },
       errors: {}
     }),
-    validation: 'not-validate',
+    exclude: true,
   },
   f_21_6: {
     label: '21.6 место работы (наименование организации)',
@@ -1246,7 +1267,7 @@ export default {
       },
       errors: {}
     }),
-    validation: 'not-validate',
+    exclude: true,
   },
   f_21_7: {
     label: '21.7 адрес места работы',
@@ -1265,7 +1286,7 @@ export default {
       },
       errors: {}
     }),
-    validation: 'not-validate',
+    exclude: true,
   },
 
   f_22: {
@@ -1306,7 +1327,7 @@ export default {
   },
 
   f_25_t_h: {
-    validation: 'not-validate',
+    exclude: true,
     data: {
       head: {
         col_1: {
@@ -1330,7 +1351,7 @@ export default {
   },
 
   f_25_t_r: {
-    validation: 'not-validate',
+    exclude: true,
     type: 'entry',
     data: new EntryComponentConstructor(TableRowTbR1EntryComponent, {}, {
       multiple: true,
@@ -1389,7 +1410,7 @@ export default {
     }),
   },
   f_25_1: {
-    validation: 'not-validate',
+    exclude: true,
   },
   f_25_2: {
     label: '25.2. № ЭЛН',
@@ -1406,43 +1427,43 @@ export default {
   f_26_1: {
     label: '26.1 востановление нарушенных функций',
     id: 'f261',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_26_1_1: {
     label: '26.1.1 полное',
     id: 'f2611',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_26_1_2: {
     label: '26.1.2 частичное',
     id: 'f2612',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_26_1_3: {
     label: '26.1.3 положительные результаты отсутствуют',
     id: 'f2613',
-    validation: 'not-validate',
+    exclude: true,
   },
 
   f_26_2: {
     label: '26.2 достижение компенсации утраченных либо отсутствующих функций',
     id: 'f262',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_26_2_1: {
     label: '26.2.1 полное',
     id: 'f2621',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_26_2_2: {
     label: '26.2.2 частичное',
     id: 'f2622',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_26_2_3: {
     label: '26.2.3 положительные результаты отсутствуют',
     id: 'f2623',
-    validation: 'not-validate',
+    exclude: true,
   },
 
   f_27_1: {
@@ -1509,7 +1530,7 @@ export default {
     id: 'f276',
     label: '27.6 объем талии/бедер',
     col: 6,
-    validation: 'not-validate',
+    exclude: true,
   },
   f_27_6_1: {
     label: 'объем талии',
@@ -1581,7 +1602,7 @@ export default {
       },
       errors: {}
     }),
-    validation: 'not-validate',
+    exclude: true,
   },
   f_30_2: {
     label: '30.2 код основного заболевания по МКБ',
@@ -1600,7 +1621,7 @@ export default {
       },
       errors: {}
     }),
-    validation: 'not-validate',
+    exclude: true,
   },
   f_30_3: {
     label: '30.3 осложнения основного заболевания',
@@ -1619,7 +1640,7 @@ export default {
       },
       errors: {}
     }),
-    validation: 'not-validate',
+    exclude: true,
   },
   f_30_4: {
     label: '30.4 сопутствующие заболевания',
@@ -1638,7 +1659,7 @@ export default {
       },
       errors: {}
     }),
-    validation: 'not-validate',
+    exclude: true,
   },
   f_30_5: {
     label: '30.5 коды сопутствующих заболеваний по МКБ',
@@ -1657,7 +1678,7 @@ export default {
       },
       errors: {}
     }),
-    validation: 'not-validate',
+    exclude: true,
   },
   f_30_6: {
     label: '30.6 осложнения сопутствующих заболеваний',
@@ -1676,83 +1697,83 @@ export default {
       },
       errors: {}
     }),
-    validation: 'not-validate',
+    exclude: true,
   },
 
   f_31: {
     label: '31 Клинический прогноз',
     id: 'f31',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_31_1: {
     label: '31.1 благоприятный',
     id: 'f311',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_31_2: {
     label: '31.2 относительно благоприятный',
     id: 'f312',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_31_3: {
     label: '31.3 сомнительный (неопределенный)',
     id: 'f313',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_31_4: {
     label: '31.4 неблагоприятный (нужное подчеркнуть)',
     id: 'f314',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_32: {
     label: '32 Реабилитационный потенциал',
     id: 'f32',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_32_1: {
     label: '32.1 высокий',
     id: 'f321',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_32_2: {
     label: '32.2 удовлетворительный',
     id: 'f322',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_32_3: {
     label: '32.3 низкий',
     id: 'f323',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_32_4: {
     label: '32.4 отсутствует (нужное подчеркнуть)',
     id: 'f324',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_33: {
     label: '33 Реабилитационный прогноз',
     id: 'f33',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_33_1: {
     label: '33.1 благоприятный',
     id: 'f331',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_33_2: {
     label: '33.2 относительно благоприятный',
     id: 'f332',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_33_3: {
     label: '33.3 сомнительный (неопределенный)',
     id: 'f333',
-    validation: 'not-validate',
+    exclude: true,
   },
   f_33_4: {
     label: '33.4 неблагоприятный (нужное подчеркнуть)',
     id: 'f334',
-    validation: 'not-validate',
+    exclude: true,
   },
 
   f_34: {
@@ -1772,7 +1793,7 @@ export default {
       },
       errors: {}
     }),
-    validation: 'not-validate',
+    exclude: true,
   },
   f_35: {
     label: '35 Рекомендуемые мероприятия по реконструктивной хирургии',
@@ -1791,7 +1812,7 @@ export default {
       },
       errors: {}
     }),
-    validation: 'not-validate',
+    exclude: true,
   },
   f_36: {
     label: '36 Рекомендуемые мероприятия по протезированию и ортезированию',
@@ -1810,7 +1831,7 @@ export default {
       },
       errors: {}
     }),
-    validation: 'not-validate',
+    exclude: true,
   },
   f_37: {
     label: '37 Санаторно-курортное лечение',
@@ -1829,6 +1850,6 @@ export default {
       },
       errors: {}
     }),
-    validation: 'not-validate',
+    exclude: true,
   },
 };

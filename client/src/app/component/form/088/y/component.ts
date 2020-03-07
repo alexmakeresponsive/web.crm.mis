@@ -73,6 +73,8 @@ export class Form088yComponent implements OnInit, AfterViewInit {
   buildFormControls() {
     this.formControls = Object.assign({}, this.form.controls);
 
+    console.log(this.form.controls);
+
     for (let key of Object.keys(this.entryComponentInstanceCollection)) {
 
       const component = this.entryComponentInstanceCollection[key];
@@ -108,7 +110,7 @@ export class Form088yComponent implements OnInit, AfterViewInit {
   subscribeToFieldStatusChanges() {
     for (let controlName of Object.keys(this.controls)) {
 
-      if(this.controls[controlName].validation == 'not-validate') {
+      if(this.controls[controlName].exclude) {
         continue;
       }
 
@@ -338,7 +340,7 @@ export class Form088yComponent implements OnInit, AfterViewInit {
     for (let controlName of Object.keys(this.controls)) {
       const validators = [];
 
-      if(this.controls[controlName].validation == 'not-validate') {
+      if(this.controls[controlName].exclude) {
         continue;
       }
 
@@ -346,7 +348,11 @@ export class Form088yComponent implements OnInit, AfterViewInit {
         validators.push(validator['body']);
       }
 
-      FormGroupOptions[controlName] = new FormControl('', validators);
+      if (validators.length === 0) {
+        FormGroupOptions[controlName] = new FormControl('');
+      } else {
+        FormGroupOptions[controlName] = new FormControl('', validators);
+      }
     }
 
     return new FormGroup(FormGroupOptions);
@@ -439,6 +445,7 @@ export class Form088yComponent implements OnInit, AfterViewInit {
     this.hideMessage();
     this.getFormData();
 
+    console.log(this.formData);
     console.log('Form valid!!');
     return;
 

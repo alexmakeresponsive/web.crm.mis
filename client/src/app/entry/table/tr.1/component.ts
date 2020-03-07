@@ -66,7 +66,7 @@ export class TableRowTbR1EntryComponent implements OnInit, AfterViewInit {
     for (let col of Object.values(this.parameters.body)) {
         for (let controlName of Object.keys(col)) {
 
-          if(col[controlName].validation == 'not-validate') {
+          if(col[controlName].exclude) {
             continue;
           }
 
