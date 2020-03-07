@@ -449,7 +449,6 @@ export class Form088yComponent implements OnInit, AfterViewInit {
 
     console.log(this.formData);
     console.log('Form valid!!');
-    return;
 
     this.formMessageType = 'info';
     this.formMessage.nativeElement.innerHTML ='Форма отправляется';

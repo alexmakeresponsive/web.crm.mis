@@ -2,9 +2,10 @@ import express, {NextFunction, Request, Response} from 'express';
 
 
 import helperAuthCheck from '../helper/auth/check';
-import * as helperDataRebuild from '../helper/data/rebuild';
 import MsaResponse from "../type/Response";
-import * as ticketResultResource from '../model/ticket/resource';
+
+import * as ticketModeltResource from '../model/ticket/resource';
+import * as ticketModelModel     from '../model/ticket/model';
 
 
 export const addItem = async (req:Request, res:Response, next:NextFunction) => {
@@ -22,8 +23,10 @@ export const addItem = async (req:Request, res:Response, next:NextFunction) => {
         return;
     }
 
-    const data = req.body.data;
-    const r:any = await ticketResultResource.addItem(data);
+    const data    = req.body.data;
+    const dataMap = ticketModelModel.createDataMap(data);
+
+    const r:any = await ticketModeltResource.addItem(dataMap);
 
     if (r.affectedRows === 0) {
         res.status(500).json(<MsaResponse>{
