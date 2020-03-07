@@ -133,7 +133,7 @@
       <!--radio-->
       <div class="custom-control custom-radio form-item-xs" *ngFor="let controlName of objectKeys(groups.f_8_group)">
         <input type="radio" [id]=groups.f_8_group[controlName].id class="custom-control-input" checked=""
-               formControlName="f_8_group"
+               formControlName="f_8"
                [value]="groups.f_8_group[controlName].value">
         <label class="custom-control-label" [for]=groups.f_8_group[controlName].id>
           {{groups.f_8_group[controlName].label}}

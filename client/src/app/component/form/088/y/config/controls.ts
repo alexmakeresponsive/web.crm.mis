@@ -29,7 +29,8 @@ export default {
     id: 'f2',
     validators: {
     },
-    errors: {}
+    errors: {},
+    value: false
   },
   f_3: {
     label: '3. Гражданин нуждается в оказании паллиативной медицинской помощи (при нуждаемости в оказании\n' +
@@ -38,6 +39,7 @@ export default {
     validators: {
     },
     errors: {},
+    value: false
   },
   f_4: {
     label: '4. Дата выдачи направления на МСЭ',
@@ -249,7 +251,7 @@ export default {
     value: 20
   },
 
-  f_8_group: {
+  f_8: {
     validators: {
     },
     errors: {}
@@ -437,7 +439,8 @@ export default {
   f_12: {
     validators: {
     },
-    errors: {}
+    errors: {},
+    value: false
   },
 
   f_13_group: {
@@ -1473,7 +1476,8 @@ export default {
   f_25_1: {
     validators: {
     },
-    errors: {}
+    errors: {},
+    value: false
   },
   f_25_2: {
     label: '25.2. № ЭЛН',

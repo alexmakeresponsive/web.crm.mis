@@ -13,10 +13,25 @@ export const createDataMap = (data:any) => {
             continue;
         }
 
-        let value = null;
+            let value = null;
 
         if (data.hasOwnProperty(key)) {
-            value = data[key].length === 0 ? null : '"' + data[key] + '"';
+
+            // for undefined, null, other...
+                value = null;
+
+            if(data[key] === true) {
+                value = '1';
+            }
+            if(data[key] === false) {
+                value = '0';
+            }
+            if(typeof data[key] === 'string') {
+                value = data[key].length !== 0 ? '"' + data[key] + '"' : null;
+            }
+            if(typeof data[key] === 'number') {
+                value = '"' + data[key] + '"';
+            }
         }
 
         result.keys   += key + ', ';
