@@ -10,4 +10,11 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 })
 export class PageServiceMsaTicketComponent implements OnInit, AfterViewInit {
 
+  ngOnInit() {
+
+  }
+
+  ngAfterViewInit() {
+
+  }
 }

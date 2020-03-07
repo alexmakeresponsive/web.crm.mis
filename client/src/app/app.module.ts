@@ -37,6 +37,7 @@ import { PageServiceMsaTicketResultComponent } from './template/page/service/msa
 import { PageServiceMsaTicketResultItemComponent } from './template/page/service/msa/ticketResultItem/component';
 
 import {TableTb1Component} from "./component/table/tb.1/component";
+import {Form088yComponent} from "./component/form/088/y/component";
 
 import { EntryWrapper }   from "./entry/wrapper";
 import { EntryWrapper2 }   from "./entry/wrapper2";
@@ -75,6 +76,7 @@ import {TableRowTbR1EntryComponent} from "./entry/table/tr.1/component";
     PageServiceMsaTicketResultItemComponent,
 
     TableTb1Component,
+    Form088yComponent,
 
     SelectS1Component,
     InputI1Component, InputI2Component,
