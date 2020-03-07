@@ -6,46 +6,45 @@
 <div class="form-wrapper" #formWrapper>
   <form class="form-color-theme" [formGroup]="form" (ngSubmit)="doSubmit()">
 
-    <!--<div class="form-fields-group-wrapper">
+    <div class="form-fields-group-wrapper">
       <div class="label-text">
         <div class="row form-item">
           <div class="col-10">
-            <label for="f1">
-              1. Номер и дата протокола врачебной комиссии медицинской организации, содержащего решение о направлении
-              гражданина на медико-социальную экспертизу
+            <label [for]="groups.f_1234_group.f_1.id">
+              {{groups.f_1234_group.f_1.label}}
             </label>
-            <input type="text" class="form-control" id="f1" placeholder="" formControlName="protocol">
+            <input type="text" class="form-control" [id]="groups.f_1234_group.f_1.id" placeholder=""
+                   [formControlName]="groups.f_1234_group.f_1.formControlName">
           </div>
           <div class="col-2 d-flex align-items-end">
-            <button class="btn">Добавить</button>
+            <button type="button" class="btn btn-primary">Добавить</button>
           </div>
         </div>
       </div>
       <div class="custom-control custom-checkbox form-item-xs">
-        <input type="checkbox" class="custom-control-input" id="f2">
-        <label class="custom-control-label" for="f2">
-          2. Гражданин по состоянию здоровья не может явиться в бюро (главное бюро, Федеральное бюро)
-          медико-социальной экспертизы: медико-социальную экспертизу необходимо проводить
+        <input type="checkbox" class="custom-control-input" [id]="groups.f_1234_group.f_2.id" name="f_2">
+        <label class="custom-control-label" [for]="groups.f_1234_group.f_2.id">
+          {{groups.f_1234_group.f_2.label}}
         </label>
       </div>
       <div class="custom-control custom-checkbox form-item">
-        <input type="checkbox" class="custom-control-input" id="f3">
-        <label class="custom-control-label" for="f3">
-          3. Гражданин нуждается в оказании паллиативной медицинской помощи (при нуждаемости в оказании
-          паллиативной медицинской помощи)
+        <input type="checkbox" class="custom-control-input" [id]="groups.f_1234_group.f_3.id"  name="f_3">
+        <label class="custom-control-label" [for]="groups.f_1234_group.f_3.id">
+          {{groups.f_1234_group.f_3.label}}
         </label>
       </div>
       <div class="label-text">
         <div class="row">
           <div class="col-6">
-            <label for="f41">
-              4. Дата выдачи направления на МСЭ
+            <label [for]="groups.f_1234_group.f_4.id">
+              {{groups.f_1234_group.f_4.label}}
             </label>
-            <input type="text" class="form-control" id="f41" placeholder="">
+            <input type="text" class="form-control" [id]="groups.f_1234_group.f_4.id" placeholder=""
+                   [formControlName]="groups.f_1234_group.f_4.formControlName">
           </div>
         </div>
       </div>
-    </div>-->
+    </div>
 
     <div class="form-fields-group-wrapper">
       <fieldset>
@@ -502,7 +501,7 @@
     <div class="form-fields-group-wrapper">
       <div class="label-text">
         <label [for]="groups.f_22_group.f_22.id">
-          {{groups.f_22_group.f_22.label}}
+          {{groups.f_22_group.f_22.label}}, <span>(указать год)</span>
         </label>
         <div class="row">
           <div class="col-2">

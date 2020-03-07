@@ -4,8 +4,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { filter } from 'rxjs/operators';
 
-import controls from './form/controls';
-import groups   from './form/groups';
+import controls from './config/controls';
+import groups   from './config/groups';
 
 import MsaResponse from "../../../../model/msa/Response";
 import {AuthService} from "../../../../auth.service";
@@ -20,7 +20,7 @@ import {EntryWrapper} from "../../../../entry/wrapper";
 })
 export class Form088yComponent implements OnInit, AfterViewInit {
   @Input() payloadFromServer = {
-    t_25: JSON.parse('{"1":{"id":1},"2":{"id":2}}') // create new table in db for t_25
+    t_25: JSON.parse('{}') // create new table in db for t_25
   };
 
   private controls = controls;

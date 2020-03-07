@@ -1,6 +1,12 @@
 import controls from "./controls";
 
 export default {
+  f_1234_group: {
+    f_1: controls.f_1,
+    f_2: controls.f_2,
+    f_3: controls.f_3,
+    f_4: controls.f_4,
+  },
   f_5_group: {
     f_5_1: {
       main: controls.f_5_1,
