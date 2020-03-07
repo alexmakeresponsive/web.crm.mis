@@ -132,7 +132,9 @@
       <p class="label-text">8. Пол (нужное отметить)</p>
       <!--radio-->
       <div class="custom-control custom-radio form-item-xs" *ngFor="let controlName of objectKeys(groups.f_8_group)">
-        <input type="radio" [id]=groups.f_8_group[controlName].id name="f_8_group" class="custom-control-input" checked="">
+        <input type="radio" [id]=groups.f_8_group[controlName].id class="custom-control-input" checked=""
+               formControlName="f_8_group"
+               [value]="groups.f_8_group[controlName].value">
         <label class="custom-control-label" [for]=groups.f_8_group[controlName].id>
           {{groups.f_8_group[controlName].label}}
         </label>
@@ -144,7 +146,9 @@
       <p class="label-text">9. Гражданство (нужное отметить)</p>
       <!--radio-->
       <div class="custom-control custom-radio form-item-xs" *ngFor="let controlName of objectKeys(groups.f_9_group)">
-        <input type="radio" [id]=groups.f_9_group[controlName].id name="f_9_group" class="custom-control-input" checked="">
+        <input type="radio" [id]=groups.f_9_group[controlName].id class="custom-control-input" checked=""
+               formControlName="f_9_group"
+               [value]="groups.f_9_group[controlName].value">
         <label class="custom-control-label" [for]=groups.f_9_group[controlName].id>
           {{groups.f_9_group[controlName].label}}
         </label>
@@ -156,7 +160,9 @@
       <p class="label-text">10. Отношение к воинской обязанности (нужное отметить)</p>
       <!--radio-->
       <div class="custom-control custom-radio form-item-xs" *ngFor="let controlName of objectKeys(groups.f_10_group)">
-        <input type="radio" [id]=groups.f_10_group[controlName].id name="f_10_group" class="custom-control-input" checked="">
+        <input type="radio" [id]=groups.f_10_group[controlName].id class="custom-control-input" checked=""
+               formControlName="f_10_group"
+               [value]="groups.f_10_group[controlName].value">
         <label class="custom-control-label" [for]=groups.f_10_group[controlName].id>
           {{groups.f_10_group[controlName].label}}
         </label>
@@ -190,7 +196,10 @@
           <div *ngIf="groups.f_11_group[controlName].childs">
             <!--radio-->
             <div class="custom-control custom-radio form-item-xs" *ngFor="let controlChL1Name of objectKeys(groups.f_11_group[controlName].childs)">
-              <input type="radio" [id]=groups.f_11_group[controlName].childs[controlChL1Name].id name="f_11_5_group" class="custom-control-input" checked="">
+              <input type="radio" [id]=groups.f_11_group[controlName].childs[controlChL1Name].id
+                     formControlName="f_11_5"
+                     [value]="groups.f_11_group[controlName].childs[controlChL1Name].value"
+                     class="custom-control-input" checked="">
               <label class="custom-control-label" [for]=groups.f_11_group[controlName].childs[controlChL1Name].id>
                 {{groups.f_11_group[controlName].childs[controlChL1Name].label}}
               </label>
@@ -200,7 +209,7 @@
         </div>
       </div>
       <div class="custom-control custom-checkbox form-item-xs">
-        <input type="checkbox" class="custom-control-input" id="f12" name="f_12">
+        <input type="checkbox" class="custom-control-input" id="f12" formControlName="f_12">
         <label class="custom-control-label" for="f12">
           12. Лицо без определенного места жительства
         </label>
@@ -213,7 +222,10 @@
       </p>
       <!--radio-->
       <div class="custom-control custom-radio form-item-xs" *ngFor="let controlName of objectKeys(groups.f_13_group)">
-        <input type="radio" [id]=groups.f_13_group[controlName].main.id name="f_13_group" class="custom-control-input" checked="">
+        <input type="radio" [id]=groups.f_13_group[controlName].main.id
+               formControlName="f_13_group"
+               [value]="groups.f_13_group[controlName].main.value"
+               class="custom-control-input" checked="">
         <label class="custom-control-label" [for]=groups.f_13_group[controlName].main.id>
           {{groups.f_13_group[controlName].main.label}}
         </label>
@@ -410,7 +422,10 @@
         <div class="col-12">
           <!--radio-->
           <div class="custom-control custom-radio form-item-xs" *ngFor="let controlName of objectKeys(groups.f_18_group)">
-            <input type="radio" [id]=groups.f_18_group[controlName].id name="f_18_group" class="custom-control-input" checked="">
+            <input type="radio" [id]=groups.f_18_group[controlName].id
+                   formControlName="f_18"
+                   [value]="groups.f_18_group[controlName].value"
+                   class="custom-control-input" checked="">
             <label class="custom-control-label" [for]=groups.f_18_group[controlName].id>
               {{groups.f_18_group[controlName].label}}
             </label>
@@ -432,7 +447,10 @@
           <div class="col-12">
             <!--radio-->
             <div class="custom-control custom-radio form-item-xs" *ngFor="let controlChL1Name of objectKeys(groups.f_19_group[controlName].childs)">
-              <input type="radio" [id]=groups.f_19_group[controlName].childs[controlChL1Name].main.id class="custom-control-input" checked="" [name]=groups.f_19_group[controlName].main.name>
+              <input type="radio" [id]=groups.f_19_group[controlName].childs[controlChL1Name].main.id class="custom-control-input" checked=""
+                     [formControlName]=groups.f_19_group[controlName].main.name
+                     [value]="groups.f_19_group[controlName].childs[controlChL1Name].main.value"
+              >
               <label class="custom-control-label form-item-sm" [for]=groups.f_19_group[controlName].childs[controlChL1Name].main.id>
                 {{groups.f_19_group[controlName].childs[controlChL1Name].main.label}}
               </label>
@@ -564,7 +582,7 @@
                      (emitterAction)="actionController($event)"></table-tb-1>
       </div>
       <div class="custom-control custom-checkbox form-item-xs">
-        <input type="checkbox" class="custom-control-input" id="f251">
+        <input type="checkbox" class="custom-control-input" id="f251" formControlName="f_25_1">
         <label class="custom-control-label" for="f251">
           25.1 Наличие листка нетрудоспособности в форме электронного документа (ЭЛН)
         </label>
@@ -609,14 +627,20 @@
       </div>
       <!--radio-->
       <div class="custom-control custom-radio form-item-xs" *ngFor="let controlName of objectKeys(groups.f_26_group)">
-        <input type="radio" [id]=groups.f_26_group[controlName].main.id name="radio26" class="custom-control-input" checked="">
+        <input type="radio" [id]=groups.f_26_group[controlName].main.id
+               formControlName="f_26"
+               [value]="groups.f_26_group[controlName].main.value"
+               class="custom-control-input" checked="">
         <label class="custom-control-label form-item-xs" [for]=groups.f_26_group[controlName].main.id>
           {{groups.f_26_group[controlName].main.label}}
         </label>
         <div *ngIf="groups.f_26_group[controlName].childs" class="form-item-sm">
           <!--radio-->
           <div class="custom-control custom-radio form-item-xs" *ngFor="let controlChL1Name of objectKeys(groups.f_26_group[controlName].childs)">
-            <input type="radio" [id]=groups.f_26_group[controlName].childs[controlChL1Name].id [name]="controlName" class="custom-control-input" checked="">
+            <input type="radio" [id]=groups.f_26_group[controlName].childs[controlChL1Name].id
+                   formControlName="{{controlName + '_i'}}"
+                   [value]="groups.f_26_group[controlName].childs[controlChL1Name].value"
+                   class="custom-control-input" checked="">
             <label class="custom-control-label" [for]=groups.f_26_group[controlName].childs[controlChL1Name].id>
               {{groups.f_26_group[controlName].childs[controlChL1Name].label}}
             </label>
@@ -697,7 +721,10 @@
         </label>
         <!--radio-->
         <div class="custom-control custom-radio form-item-xs" *ngFor="let controlChL1Name of objectKeys(groups.f_3133_group[controlName].childs)">
-          <input type="radio" [id]=groups.f_3133_group[controlName].childs[controlChL1Name].id [name]="controlName" class="custom-control-input" checked="">
+          <input type="radio" [id]=groups.f_3133_group[controlName].childs[controlChL1Name].id
+                 [formControlName]="controlName"
+                 [value]="groups.f_3133_group[controlName].childs[controlChL1Name].value"
+                 class="custom-control-input" checked="">
           <label class="custom-control-label" [for]=groups.f_3133_group[controlName].childs[controlChL1Name].id>
             {{groups.f_3133_group[controlName].childs[controlChL1Name].label}}
           </label>

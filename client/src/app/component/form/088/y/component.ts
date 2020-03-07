@@ -73,7 +73,7 @@ export class Form088yComponent implements OnInit, AfterViewInit {
   buildFormControls() {
     this.formControls = Object.assign({}, this.form.controls);
 
-    console.log(this.form.controls);
+    // console.log(this.form.controls);
 
     for (let key of Object.keys(this.entryComponentInstanceCollection)) {
 
@@ -348,10 +348,12 @@ export class Form088yComponent implements OnInit, AfterViewInit {
         validators.push(validator['body']);
       }
 
+      let value = this.controls[controlName].hasOwnProperty('value') ? this.controls[controlName].value : '';
+
       if (validators.length === 0) {
-        FormGroupOptions[controlName] = new FormControl('');
+        FormGroupOptions[controlName] = new FormControl(value);
       } else {
-        FormGroupOptions[controlName] = new FormControl('', validators);
+        FormGroupOptions[controlName] = new FormControl(value, validators);
       }
     }
 

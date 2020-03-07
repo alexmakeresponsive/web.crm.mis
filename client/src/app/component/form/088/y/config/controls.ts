@@ -187,7 +187,8 @@ export default {
         errorText: 'Поле не заполнено'
       }
     },
-    errors: {}
+    errors: {},
+    value: 'Gorchakov'
   },
   f_6_name_first: {
     label: '6.2 Имя',
@@ -203,7 +204,8 @@ export default {
         errorText: 'Поле не заполнено'
       }
     },
-    errors: {}
+    errors: {},
+    value: 'Alexandr'
   },
   f_6_name_patronymic: {
     label: '6.3 Отчество',
@@ -243,53 +245,69 @@ export default {
         errorText: 'Поле не заполнено'
       }
     },
-    errors: {}
+    errors: {},
+    value: 20
   },
 
+  f_8_group: {
+    validators: {
+    },
+    errors: {}
+  },
   f_8_1: {
     label: '8.1 мужской',
     id: 'f81',
     exclude: true,
-    name: 'f_8_group',
+    value: '1'
   },
   f_8_2: {
     label: '8.2 женский',
     id: 'f82',
     exclude: true,
-    name: 'f_8_group',
+    value: '2'
   },
 
+  f_9_group: {
+    validators: {
+    },
+    errors: {}
+  },
   f_9_1: {
     label: '9.1 гражданин Российской Федерации',
     id: 'f91',
     exclude: true,
-    name: 'f_9_group',
+    value: '1'
   },
   f_9_2: {
     label: '9.2 гражданин иностранного государства, находящийся на территории Российской Федерации',
     id: 'f92',
     exclude: true,
-    name: 'f_9_group',
+    value: '2'
   },
   f_9_3: {
     label: '9.3 лицо без гражданства, находящееся на территории Российской Федерации',
     id: 'f93',
     exclude: true,
-    name: 'f_9_group',
+    value: '3'
   },
 
+  f_10_group: {
+    validators: {
+    },
+    errors: {}
+  },
   f_10_1: {
     label: '10.1 гражданин, состоящий на воинском учете',
     id: 'f101',
     exclude: true,
-    name: 'f_10_group',
+    value: '1'
   },
   f_10_2: {
     label: '10.2 гражданин, не состоящий на воинском учете, но обязанный состоять\n' +
       '  на воинском учете',
     id: 'f102',
     exclude: true,
-    name: 'f_10_group',
+    value: '2'
   },
 
   f_11_1: {
@@ -340,20 +358,21 @@ export default {
     label: '11.5 населенный пункт (нужное отметить)',
     id: 'f115',
     tag: 'checkbox',
-    exclude: true,
-    name: 'f_11_5_group',
+    validators: {
+    },
+    errors: {}
   },
   f_11_5_1: {
     label: '11.5.1 городское поселение',
     id: 'f1151',
     exclude: true,
-    name: 'f_11_5_group',
+    value: '1'
   },
   f_11_5_2: {
     label: '11.5.2 сельское поселение',
     id: 'f1152',
     exclude: true,
-    name: 'f_11_5_group',
+    value: '2'
   },
   f_11_6: {
     label: '11.6 наименование населенного пункта',
@@ -415,15 +434,24 @@ export default {
     errors: {}
   },
 
+  f_12: {
+    validators: {
+    },
+    errors: {}
+  },
+
+  f_13_group: {
+    validators: {
+    },
+    errors: {}
+  },
   f_13_1: {
     label: '13.1 \n' +
       'организации, медицинскую стационарных условиях\n' +
       'в медицинской оказывающей помощь в',
     id: 'f131',
     exclude: true,
-    name: 'f_13_group',
-    validators: {},
-    errors: {}
+    value: 1
   },
   f_13_1_address: {
     label: 'адрес медицинской организации',
@@ -453,9 +481,7 @@ export default {
     label: '13.2 социального оказывающей услуги в стационарной форме социального обслуживания',
     id: 'f132',
     exclude: true,
-    name: 'f_13_group',
-    validators: {},
-    errors: {}
+    value: 2
   },
   f_13_2_address: {
     label: 'адрес организации социального обслуживания',
@@ -485,9 +511,7 @@ export default {
     label: '13.3 в исправительном учреждении',
     id: 'f133',
     exclude: true,
-    name: 'f_13_group',
-    validators: {},
-    errors: {}
+    value: 3
   },
   f_13_3_address: {
     label: 'адрес исправительного учреждения',
@@ -837,42 +861,55 @@ export default {
     errors: {}
   },
 
+  f_18: {
+    validators: {
+    },
+    errors: {}
+  },
   f_18_1: {
     label: '18.1 первично',
     id: 'f181',
     exclude: true,
+    value: 1
   },
   f_18_2: {
     label: '18.2 повторно',
     id: 'f182',
     exclude: true,
+    value: 2
   },
 
   f_19_1: {
     label: '19.1 наличие инвалидности на момент направления на медико-социальную экспертизу (нужное отметить)',
     id: 'f191',
-    name: 'f_19_1_group',
-    exclude: true,
+    name: 'f_19_1',
+    validators: {
+    },
+    errors: {}
   },
   f_19_1_1: {
     label: '19.1 первая группа',
     id: 'f1911',
     exclude: true,
+    value: 1
   },
   f_19_1_2: {
     label: '19.2 вторая группа',
     id: 'f1912',
     exclude: true,
+    value: 2
   },
   f_19_1_3: {
     label: '19.3 третья группа',
     id: 'f1913',
     exclude: true,
+    value: 3
   },
   f_19_1_4: {
     label: '19.4 категория ребенок-инвалид',
     id: 'f1914',
     exclude: true,
+    value: 4
   },
   f_19_2: {
     label: '19.2 дата, до которой установлена инвалидность (день, месяц, год)',
@@ -889,115 +926,139 @@ export default {
   f_19_3: {
     label: '19.3 период, в течение которого гражданин находился на инвалидности на момент направления на медико-социальную экспертизу (нужное отметить)',
     id: 'f193',
-    name: 'f_19_3_group',
-    exclude: true,
+    name: 'f_19_3',
+    validators: {
+    },
+    errors: {}
   },
   f_19_3_1: {
     label: '19.3.1 один год',
     id: 'f1931',
     exclude: true,
+    value: 1
   },
   f_19_3_2: {
     label: '19.3.2 два года',
     id: 'f1932',
     exclude: true,
+    value: 2
   },
   f_19_3_3: {
     label: '19.3.3 три года',
     id: 'f1933',
     exclude: true,
+    value: 3
   },
   f_19_3_4: {
     label: '19.3.4 четыре и более лет',
     id: 'f1934',
     exclude: true,
+    value: 4
   },
   f_19_4: {
     label: '19.4 формулировка причины инвалидности, имеющейся на момент направления на медико-социальную экспертизу (нужное отметить)',
     id: 'f194',
-    name: 'f_19_4_group',
-    exclude: true,
+    name: 'f_19_4',
+    validators: {
+    },
+    errors: {}
   },
   f_19_4_1: {
     label: '19.4.1 общее заболевание',
     id: 'f1941',
     exclude: true,
+    value: 1
   },
   f_19_4_2: {
     label: '19.4.2 инвалидность с детства',
     id: 'f1942',
     exclude: true,
+    value: 2
   },
   f_19_4_3: {
     label: '19.4.3 профессиональное заболевание',
     id: 'f1943',
     exclude: true,
+    value: 3
   },
   f_19_4_4: {
     label: '19.4.4 трудовое увечье',
     id: 'f1944',
     exclude: true,
+    value: 4
   },
   f_19_4_5: {
     label: '19.4.5 военная травма',
     id: 'f1945',
     exclude: true,
+    value: 5
   },
   f_19_4_6: {
     label: '19.4.6 заболевание получено в период военной службы',
     id: 'f1946',
     exclude: true,
+    value: 6
   },
   f_19_4_7: {
     label: '19.4.7 заболевание, полученное при исполнении иных обязанностей военной службы (служебных обязанностей), связано с катастрофой на Чернобыльской АЭС',
     id: 'f1947',
     exclude: true,
+    value: 7
   },
   f_19_4_8: {
     label: '19.4.8 заболевание радиационно обусловленное получено при исполнении обязанностей военной службы (служебных обязанностей) в связи с катастрофой на Чернобыльской АЭС',
     id: 'f1948',
     exclude: true,
+    value: 8
   },
   f_19_4_9: {
     label: '19.4.9 заболевание связано с катастрофой на Чернобыльской АЭС',
     id: 'f1949',
     exclude: true,
+    value: 9
   },
   f_19_4_10: {
     label: '19.4.10 заболевание связано с аварией на ПО «Маяк»',
     id: 'f19410',
     exclude: true,
+    value: 10
   },
   f_19_4_11: {
     label: '19.4.11 заболевание,\n' +
       'полученное при исполнении иных обязанностей военной службы (служебных обязанностей), связано с аварией на ПО «Маяк»',
     id: 'f19411',
     exclude: true,
+    value: 11
   },
   f_19_4_12: {
     label: '19.4.12 заболевание связано с последствиями радиационных воздействий',
     id: 'f19412',
     exclude: true,
+    value: 12
   },
   f_19_4_13: {
     label: '19.4.13 заболевание радиационно обусловленное получено при исполнении обязанностей военной службы (служебных обязанностей) в связи с непосредственным участием в действиях подразделений особого риска',
     id: 'f19413',
     exclude: true,
+    value: 13
   },
   f_19_4_14: {
     label: '19.4.14 инвалидность с детства вследствие ранения (контузии, увечья), связанного с боевыми действиями в период Великой Отечественной войны 1941-1945 годов',
     id: 'f19414',
     exclude: true,
+    value: 14
   },
   f_19_4_15: {
     label: '19.4.15 заболевание (ранение, контузия, увечье), полученное лицом, обслуживавшим действующие воинские части Вооруженных Сил СССР и Вооруженных Сил Российской Федерации, находившиеся на территориях других государств в период ведения в этих государствах боевых действий',
     id: 'f19415',
     exclude: true,
+    value: 15
   },
   f_19_4_16: {
     label: '19.4.16 иные причины, установленные законодательством Российской Федерации (указать):',
     id: 'f19416',
     exclude: true,
+    value: 16
   },
   f_19_4_16_text: {
     validators: {
@@ -1410,7 +1471,9 @@ export default {
     }),
   },
   f_25_1: {
-    exclude: true,
+    validators: {
+    },
+    errors: {}
   },
   f_25_2: {
     label: '25.2. № ЭЛН',
@@ -1424,46 +1487,71 @@ export default {
     errors: {}
   },
 
+  f_26: {
+    validators: {
+    },
+    errors: {}
+  },
   f_26_1: {
     label: '26.1 востановление нарушенных функций',
     id: 'f261',
+    name: 'f_26_1',
     exclude: true,
+    value: 1
+  },
+  f_26_1_i: {
+    validators: {
+    },
+    errors: {},
   },
   f_26_1_1: {
     label: '26.1.1 полное',
     id: 'f2611',
     exclude: true,
+    value: 1
   },
   f_26_1_2: {
     label: '26.1.2 частичное',
     id: 'f2612',
     exclude: true,
+    value: 2
   },
   f_26_1_3: {
     label: '26.1.3 положительные результаты отсутствуют',
     id: 'f2613',
     exclude: true,
+    value: 3
   },
 
   f_26_2: {
     label: '26.2 достижение компенсации утраченных либо отсутствующих функций',
     id: 'f262',
+    name: 'f_26_2',
     exclude: true,
+    value: 2
+  },
+  f_26_2_i: {
+    validators: {
+    },
+    errors: {},
   },
   f_26_2_1: {
     label: '26.2.1 полное',
     id: 'f2621',
     exclude: true,
+    value: 1
   },
   f_26_2_2: {
     label: '26.2.2 частичное',
     id: 'f2622',
     exclude: true,
+    value: 2
   },
   f_26_2_3: {
     label: '26.2.3 положительные результаты отсутствуют',
     id: 'f2623',
     exclude: true,
+    value: 3
   },
 
   f_27_1: {
@@ -1585,7 +1673,9 @@ export default {
     label: '30.1 основное заболевание',
     id: 'f301',
     type: 'entry',
-    data: new EntryComponentConstructor(TextareaT1Component, '', {
+    data: new EntryComponentConstructor(TextareaT1Component, {
+      value: 'OCR'
+    }, {
       className: 'form-control',
       id: 'f301',
       rows: 12,
@@ -1703,77 +1793,95 @@ export default {
   f_31: {
     label: '31 Клинический прогноз',
     id: 'f31',
-    exclude: true,
+    validators: {
+    },
+    errors: {}
   },
   f_31_1: {
     label: '31.1 благоприятный',
     id: 'f311',
     exclude: true,
+    value: 1
   },
   f_31_2: {
     label: '31.2 относительно благоприятный',
     id: 'f312',
     exclude: true,
+    value: 2
   },
   f_31_3: {
     label: '31.3 сомнительный (неопределенный)',
     id: 'f313',
     exclude: true,
+    value: 3
   },
   f_31_4: {
     label: '31.4 неблагоприятный (нужное подчеркнуть)',
     id: 'f314',
     exclude: true,
+    value: 4
   },
   f_32: {
     label: '32 Реабилитационный потенциал',
     id: 'f32',
-    exclude: true,
+    validators: {
+    },
+    errors: {}
   },
   f_32_1: {
     label: '32.1 высокий',
     id: 'f321',
     exclude: true,
+    value: 1
   },
   f_32_2: {
     label: '32.2 удовлетворительный',
     id: 'f322',
     exclude: true,
+    value: 2
   },
   f_32_3: {
     label: '32.3 низкий',
     id: 'f323',
     exclude: true,
+    value: 3
   },
   f_32_4: {
     label: '32.4 отсутствует (нужное подчеркнуть)',
     id: 'f324',
     exclude: true,
+    value: 4
   },
   f_33: {
     label: '33 Реабилитационный прогноз',
     id: 'f33',
-    exclude: true,
+    validators: {
+    },
+    errors: {}
   },
   f_33_1: {
     label: '33.1 благоприятный',
     id: 'f331',
     exclude: true,
+    value: 1
   },
   f_33_2: {
     label: '33.2 относительно благоприятный',
     id: 'f332',
     exclude: true,
+    value: 2
   },
   f_33_3: {
     label: '33.3 сомнительный (неопределенный)',
     id: 'f333',
     exclude: true,
+    value: 3
   },
   f_33_4: {
     label: '33.4 неблагоприятный (нужное подчеркнуть)',
     id: 'f334',
     exclude: true,
+    value: 4
   },
 
   f_34: {

@@ -453,6 +453,7 @@ export default {
         f_31_1: controls.f_31_1,
         f_31_2: controls.f_31_2,
         f_31_3: controls.f_31_3,
+        f_31_4: controls.f_31_4,
       }
     },
     f_32: {
@@ -461,6 +462,7 @@ export default {
         f_32_1: controls.f_32_1,
         f_32_2: controls.f_32_2,
         f_32_3: controls.f_32_3,
+        f_32_4: controls.f_32_4,
       }
     },
     f_33: {
@@ -469,6 +471,7 @@ export default {
         f_33_1: controls.f_33_1,
         f_33_2: controls.f_33_2,
         f_33_3: controls.f_33_3,
+        f_33_4: controls.f_33_4,
       }
     },
   },

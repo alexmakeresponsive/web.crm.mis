@@ -23,6 +23,7 @@ import { filter } from 'rxjs/operators';
             `
 })
 export class TextareaT1Component {
+  @Input() data;
   @Input() parameters;
   @Output() emitter:EventEmitter<any> = new EventEmitter();
 
@@ -43,8 +44,10 @@ export class TextareaT1Component {
       validators.push(validator['body']);
     }
 
+    let value = this.data.hasOwnProperty('value') ? this.data.value : '';
+
     return new FormGroup({
-      [this.parameters.formControlName]: new FormControl('', validators),
+      [this.parameters.formControlName]: new FormControl(value, validators),
     });
   }
 
