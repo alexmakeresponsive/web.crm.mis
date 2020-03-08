@@ -26,23 +26,25 @@ export class PageServiceMsaTicketJournalItemComponent {
   }
 
   ngOnInit() {
-    console.log('init!');
+    // console.log('init!');
 
     this.putData();
   }
 
   async putData() {
     if (this.storageData.ticketJournal.length === 0) {
-      console.log('putData, load data');
+      // console.log('putData, load data');
       await this.loadData();
     }
 
-    console.log(this.storageData.ticketJournal);
-      console.log('putData, go');
+    // console.log(this.storageData.ticketJournal);
+    //   console.log('putData, go');
 
     this.route.paramMap.subscribe(params => {
       this.dataIsFetched = true;
       this.data = this.storageData.ticketJournal[+params.get('id')];
+
+      // console.log(this.data);
     });
   }
 
@@ -59,7 +61,7 @@ export class PageServiceMsaTicketJournalItemComponent {
 
 
     await this.http.post<MsaResponse>(
-      'http://0.0.0.0:8204/ticket/result',
+      'http://0.0.0.0:8204/ticket/journal',
       {},
       {
         headers: headers
@@ -69,7 +71,7 @@ export class PageServiceMsaTicketJournalItemComponent {
         res => {
           // console.log("res: ", res.data);
 
-          console.log('data loaded');
+          // console.log('data loaded');
           this.storageData.ticketJournal = res.data;
 
           // this.route.paramMap.subscribe(params => {

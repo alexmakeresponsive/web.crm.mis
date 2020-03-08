@@ -190,7 +190,6 @@ export default {
       }
     },
     errors: {},
-    value: 'Gorchakov'
   },
   f_6_name_first: {
     label: '6.2 Имя',
@@ -207,7 +206,6 @@ export default {
       }
     },
     errors: {},
-    value: 'Alexandr'
   },
   f_6_name_patronymic: {
     label: '6.3 Отчество',
@@ -248,7 +246,6 @@ export default {
       }
     },
     errors: {},
-    value: 20
   },
 
   f_8: {
@@ -1678,7 +1675,6 @@ export default {
     id: 'f301',
     type: 'entry',
     data: new EntryComponentConstructor(TextareaT1Component, {
-      value: 'OCR'
     }, {
       className: 'form-control',
       id: 'f301',

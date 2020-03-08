@@ -21,6 +21,12 @@ export class TableTb1Component implements OnInit {
   objectKeys = Object.keys;
 
   ngOnInit() {
+    if(!this.data) {
+      this.data = JSON.parse('{}');
+    } else {
+      this.data = JSON.parse(this.data);
+    }
+
     this.dataClone = this.data;
     this.dataTemplate = Object.values(this.dataClone);
   }

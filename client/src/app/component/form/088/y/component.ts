@@ -19,9 +19,10 @@ import {EntryWrapper} from "../../../../entry/wrapper";
   styleUrls: ['./component.scss']
 })
 export class Form088yComponent implements OnInit, AfterViewInit {
-  @Input() payloadFromServer = {
-    t_25: JSON.parse('{}') // create new table in db for t_25
-  };
+  @Input() payloadFromServer;
+
+  private urlSubmit;
+  private id;
 
   private controls = controls;
   private groups   = groups;
@@ -58,9 +59,15 @@ export class Form088yComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit() {
-    // console.log('ngOnInit');
     this.form = this.createFormGroup();
                 this.subscribeToFieldStatusChanges();
+
+    this.urlSubmit = !this.payloadFromServer ? 'http://0.0.0.0:8204/ticket' : 'http://0.0.0.0:8204/ticket/update';
+    this.id        = !this.payloadFromServer ? null : this.payloadFromServer.id;
+
+    if (!this.payloadFromServer) {
+         this.payloadFromServer = {};
+    }
   }
 
   ngAfterViewInit() {
@@ -68,6 +75,8 @@ export class Form088yComponent implements OnInit, AfterViewInit {
 
     // console.log('formInitStatus: ready');
     this.formInitStatus = 'ready';
+
+    console.log(this.formControls);
   }
 
   buildFormControls() {
@@ -325,10 +334,21 @@ export class Form088yComponent implements OnInit, AfterViewInit {
 
     for(let key of Object.keys(this.formControls)) {
       if(this.formControls[key].hasOwnProperty('multiple')) {
-        console.log('getFormData: multiple detected');
+        let value = {};
+        for (let index of Object.keys(this.formControls[key].list)) {
+          value[+index+1] = {id: +index+1};
+          for (let controlName of Object.keys(this.formControls[key].list[index])) {
+            value[+index+1][controlName] = this.formControls[key].list[index][controlName].value;
+          }
+          result[key] = JSON.stringify(value);
+        }
         continue;
       }
       result[key] = this.formControls[key].value;
+    }
+
+    if (this.payloadFromServer.id) {
+      result['id'] = this.payloadFromServer.id;
     }
 
     this.formData = result;
@@ -447,8 +467,9 @@ export class Form088yComponent implements OnInit, AfterViewInit {
     this.hideMessage();
     this.getFormData();
 
-    console.log(this.formData);
+
     console.log('Form valid!!');
+    return;
 
     this.formMessageType = 'info';
     this.formMessage.nativeElement.innerHTML ='Форма отправляется';
@@ -474,7 +495,7 @@ export class Form088yComponent implements OnInit, AfterViewInit {
         headers = headers.set('Authorization', 'Bearer ' + token);
 
     await this.http.post<MsaResponse>(
-      'http://0.0.0.0:8204/ticket',
+      this.urlSubmit,
       {
         data: this.formData
       },
