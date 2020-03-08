@@ -9,6 +9,7 @@ import groups   from './config/groups';
 
 import MsaResponse from "../../../../model/msa/Response";
 import {AuthService} from "../../../../auth.service";
+import {EventService} from "../../../../event.service";
 
 import {EntryWrapper} from "../../../../entry/wrapper";
 
@@ -56,6 +57,7 @@ export class Form088yComponent implements OnInit, AfterViewInit {
     private renderer: Renderer2,
     private authService: AuthService,
     private http: HttpClient,
+    private eventService: EventService
   ) { }
 
   ngOnInit() {
@@ -509,6 +511,11 @@ export class Form088yComponent implements OnInit, AfterViewInit {
 
           if (!this.payloadFromServer.id) {
             this.form.reset();
+          }
+
+          if (this.payloadFromServer.id) {
+            // fire event for update storage.data
+            this.eventService.updateTicketJournalItem();
           }
 
           setTimeout(() => {

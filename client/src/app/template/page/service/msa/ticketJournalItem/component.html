@@ -7,7 +7,7 @@
     </div>
     <div class="col-9">
       <div *ngIf="dataIsFetched">
-        <h3>Результаты по {{data.f_6_name_last + ' ' + data.f_6_name_first + ' ' + data.f_6_patronymic}}</h3>
+        <h3>Результаты по {{dataHead.f_6_name_last + ' ' + dataHead.f_6_name_first + ' ' + dataHead.f_6_patronymic}}</h3>
         <a routerLink="/service/msa/journal">Назад</a>
         <p></p>
         <form-088-y [payloadFromServer]="data"></form-088-y>

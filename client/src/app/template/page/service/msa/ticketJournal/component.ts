@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import tableHeaderData from './config/header';
@@ -11,7 +11,7 @@ import MsaResponseRemove from "../../../../../model/msa/ResponseRemove";
   selector: 'page-action-msa-journal',
   templateUrl: './component.html',
 })
-export class PageServiceMsaTicketJournalComponent {
+export class PageServiceMsaTicketJournalComponent implements OnDestroy {
   tableHeader = tableHeaderData;
   tableBody = [];
   dataIsFetched:boolean = false;
@@ -22,6 +22,10 @@ export class PageServiceMsaTicketJournalComponent {
     private storageData: StorageData
   ) {
     this.putData();
+  }
+
+  ngOnDestroy() {
+    // console.log('destroy PageServiceMsaTicketJournalComponent')
   }
 
   async putData() {

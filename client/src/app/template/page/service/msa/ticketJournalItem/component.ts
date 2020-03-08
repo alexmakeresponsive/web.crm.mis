@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import {StorageData} from "../../../../../storage.data";
 import {AuthService} from "../../../../../auth.service";
+import {EventService} from "../../../../../event.service";
 import MsaResponse from "../../../../../model/msa/Response";
 
 @Component({
@@ -13,11 +14,13 @@ import MsaResponse from "../../../../../model/msa/Response";
 })
 export class PageServiceMsaTicketJournalItemComponent {
   data: any;
+  dataHead:any = {};
   dataIsFetched: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private authService: AuthService,
+    private eventService: EventService,
     private http: HttpClient,
     private storageData: StorageData
   )
@@ -27,31 +30,56 @@ export class PageServiceMsaTicketJournalItemComponent {
 
   ngOnInit() {
     // console.log('init!');
+    this.eventService.skipClicked.subscribe( value => {
+      if(value) {
+        this.refreshData();
+      }
+    });
 
     this.putData();
   }
 
   async putData() {
+    // if browser refresh page
     if (this.storageData.ticketJournal.length === 0) {
-      // console.log('putData, load data');
       await this.loadData();
     }
 
-    // console.log(this.storageData.ticketJournal);
-    //   console.log('putData, go');
-
     this.route.paramMap.subscribe(params => {
-      this.dataIsFetched = true;
+
       this.data = this.storageData.ticketJournal[+params.get('id')];
 
-      // console.log(this.data);
+      for (let key of Object.keys(this.data)) {
+        if (key.match(/f_6_name_/i)) {
+          this.dataHead[key] = this.data[key];
+        }
+      }
+
+      this.dataIsFetched = true;
+    });
+
+    console.log(this.data);
+  }
+
+  async refreshData() {
+    await this.loadData();
+
+    this.route.paramMap.subscribe(params => {
+
+      const data = this.storageData.ticketJournal[+params.get('id')];
+
+      for (let key of Object.keys(data)) {
+        if (key.match(/f_6_name_/i)) {
+          this.dataHead[key] = data[key];
+        }
+      }
+
+      this.dataIsFetched = true;
     });
   }
 
 
   async loadData() {
-    // console.log('loadData...');
-
     const keychain = this.authService.getKeyChain();
 
     const token    = keychain.tokenAccessList !== null ? keychain.tokenAccessList.msa : '';
@@ -69,15 +97,7 @@ export class PageServiceMsaTicketJournalItemComponent {
     ).toPromise()
       .then(
         res => {
-          // console.log("res: ", res.data);
-
-          // console.log('data loaded');
           this.storageData.ticketJournal = res.data;
-
-          // this.route.paramMap.subscribe(params => {
-          //   this.dataIsFetched = true;
-          //   this.data = this.storageData.ticketJournal[+params.get('id') -1];
-          // });
         },
         rej => {
           console.log("rej: ", rej);
