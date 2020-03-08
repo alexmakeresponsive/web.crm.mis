@@ -42,11 +42,11 @@ export class TableRowTbR1EntryComponent implements OnInit, AfterViewInit {
           validators.push(col[fieldKey].validators[validatorName].body);
         }
 
-        formGroupOptions[fieldKey] = new FormControl('', validators);
+        let value = this.payload.hasOwnProperty(fieldKey) ? this.payload[fieldKey] : '';
+
+        formGroupOptions[fieldKey] = new FormControl(value, validators);
       }
     }
-
-    // console.log(formGroupOptions)
 
     return new FormGroup(formGroupOptions);
   }

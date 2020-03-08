@@ -1411,16 +1411,16 @@ export default {
     }
   },
 
-  f_25_t_r: {
+  f_25: {
     exclude: true,
     type: 'entry',
     data: new EntryComponentConstructor(TableRowTbR1EntryComponent, {}, {
       multiple: true,
       multipleType: 'tr.1',
-      formControlName: 'f_25_t_r',
+      formControlName: 'f_25',
       body: {
         col_2: {
-          f_25_t_r_1: {
+          f_25_1: {
             label: 'Дата начала временной нетрудоспособности',
             validators: {
               pattern: {
@@ -1430,7 +1430,7 @@ export default {
             },
             errors: {}
           },
-          f_25_t_r_2: {
+          f_25_2: {
             label: 'Дата окончания временной нетрудоспособности',
             validators: {
               pattern: {
@@ -1440,7 +1440,7 @@ export default {
             },
             errors: {}
           },
-          f_25_t_r_3: {
+          f_25_3: {
             label: 'Число месяцев и дней временной нетрудоспособности',
             validators: {
               pattern: {
@@ -1452,7 +1452,7 @@ export default {
           },
         },
         col_3: {
-          f_25_t_r_4: {
+          f_25_4: {
             label: 'Диагноз',
             validators: {
               pattern: {

@@ -59,15 +59,17 @@ export class Form088yComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit() {
-    this.form = this.createFormGroup();
-                this.subscribeToFieldStatusChanges();
-
     this.urlSubmit = !this.payloadFromServer ? 'http://0.0.0.0:8204/ticket' : 'http://0.0.0.0:8204/ticket/update';
     this.id        = !this.payloadFromServer ? null : this.payloadFromServer.id;
 
     if (!this.payloadFromServer) {
          this.payloadFromServer = {};
     }
+
+    console.log(this.payloadFromServer);
+
+    this.form = this.createFormGroup();
+                this.subscribeToFieldStatusChanges();
   }
 
   ngAfterViewInit() {
@@ -76,7 +78,7 @@ export class Form088yComponent implements OnInit, AfterViewInit {
     // console.log('formInitStatus: ready');
     this.formInitStatus = 'ready';
 
-    console.log(this.formControls);
+    // console.log(this.formControls);
   }
 
   buildFormControls() {
@@ -368,7 +370,7 @@ export class Form088yComponent implements OnInit, AfterViewInit {
         validators.push(validator['body']);
       }
 
-      let value = this.controls[controlName].hasOwnProperty('value') ? this.controls[controlName].value : '';
+      let value = this.payloadFromServer.hasOwnProperty(controlName) ? this.payloadFromServer[controlName] : '';
 
       if (validators.length === 0) {
         FormGroupOptions[controlName] = new FormControl(value);
@@ -467,9 +469,8 @@ export class Form088yComponent implements OnInit, AfterViewInit {
     this.hideMessage();
     this.getFormData();
 
-
+    console.log(this.formData);
     console.log('Form valid!!');
-    return;
 
     this.formMessageType = 'info';
     this.formMessage.nativeElement.innerHTML ='Форма отправляется';

@@ -384,7 +384,7 @@ export default {
   },
   f_25_group: {
     f_25_t_h: controls.f_25_t_h,
-    f_25_t_r: controls.f_25_t_r,
+    f_25: controls.f_25,
     f_25_1: controls.f_25_1,
     f_25_2: controls.f_25_2,
   },
