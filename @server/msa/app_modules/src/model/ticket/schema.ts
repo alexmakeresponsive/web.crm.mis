@@ -11,9 +11,9 @@ export default <Iterable>{
 
     f_5:                                'TINYINT',
 
-    name_last:                              'VARCHAR(50)',
-    name_first:                             'VARCHAR(50)',
-    patronymic:                             'VARCHAR(50)',
+    f_6_name_last:                              'VARCHAR(50)',
+    f_6_name_first:                             'VARCHAR(50)',
+    f_6_patronymic:                             'VARCHAR(50)',
 
     f_7_1:                              'DATE',
     f_7_2:                              'TINYINT',

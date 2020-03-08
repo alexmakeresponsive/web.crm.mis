@@ -66,8 +66,6 @@ export class Form088yComponent implements OnInit, AfterViewInit {
          this.payloadFromServer = {};
     }
 
-    console.log(this.payloadFromServer);
-
     this.form = this.createFormGroup();
                 this.subscribeToFieldStatusChanges();
   }
@@ -469,7 +467,7 @@ export class Form088yComponent implements OnInit, AfterViewInit {
     this.hideMessage();
     this.getFormData();
 
-    console.log(this.formData);
+
     console.log(this.urlSubmit);
     console.log('Form valid!!');
 
@@ -509,7 +507,9 @@ export class Form088yComponent implements OnInit, AfterViewInit {
         res => {
           console.log(res);
 
-          this.form.reset();
+          if (!this.payloadFromServer.id) {
+            this.form.reset();
+          }
 
           setTimeout(() => {
             this.formMessageType = 'success';

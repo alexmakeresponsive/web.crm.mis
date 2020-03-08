@@ -27,7 +27,7 @@ export const createDataMap = (data:any) => {
                 value = '0';
             }
             if(typeof data[key] === 'string') {
-                value = data[key].length !== 0 ? '"' + data[key] + '"' : null;
+                value = data[key].length !== 0 ? "'" + data[key] + "'" : null;
             }
             if(typeof data[key] === 'number') {
                 value = '"' + data[key] + '"';
@@ -41,4 +41,47 @@ export const createDataMap = (data:any) => {
         result.values = result.values.slice(0, -2);
 
     return result;
+};
+
+export const createDataMapForUpdate = (data:any) => {
+
+    let result = {
+        id:    data.id,
+        query: ''
+    };
+
+    for (let key of Object.keys(schema)) {
+        if (key === 'id') {
+            continue;
+        }
+
+        let value = null;
+
+        if (data.hasOwnProperty(key)) {
+
+            // for undefined, null, other...
+            value = null;
+
+            if(data[key] === true) {
+                value = '1';
+            }
+            if(data[key] === false) {
+                value = '0';
+            }
+            if(typeof data[key] === 'string') {
+                value = data[key].length !== 0 ? "'" + data[key] + "'" : null;
+            }
+            if(typeof data[key] === 'number') {
+                value = '"' + data[key] + '"';
+            }
+        }
+
+        result.query += key + ' = ' + value + ', ';
+    }
+        result.query = result.query.slice(0, -2);
+
+
+    // console.log(result);
+
+  return result;
 };

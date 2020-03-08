@@ -16,3 +16,19 @@ export const addItem = (data:any) => {
     })
 };
 
+export const updateItem = (data:any) => {
+
+    const table = 'ticket';
+    const query = `UPDATE ${table} SET ${data.query} WHERE id = ${data.id}`;
+
+    return new Promise((resolve, reject) => {
+        connection.query(query, (err, rows, fields) => {
+            if (err) {
+                return reject(err);
+            };
+
+            return resolve(rows);
+        });
+    })
+};
+

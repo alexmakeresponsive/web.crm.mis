@@ -23,6 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 
 
 app.post("/ticket",  routeTicket.addItem);
+app.post("/ticket/update",  routeTicket.updateItem);
 app.post("/ticket/result",  routeTicketResult.getTable);
 app.post("/ticket/result/remove",  routeTicketResult.removeItem);
 app.post("/ticket/journal",  routeTicketJournal.getTable);
