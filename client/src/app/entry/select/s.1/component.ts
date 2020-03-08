@@ -4,7 +4,7 @@ import { Component, Input } from '@angular/core';
   templateUrl: './component.html'
 })
 export class SelectS1Component {
-  @Input() data: string[];
+  @Input() payload: string[];
 
   formData = {component: 'SelectS1Component'};
 

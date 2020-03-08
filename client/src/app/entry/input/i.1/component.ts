@@ -22,6 +22,7 @@ import {StorageData} from "../../../storage.data";
             `,
 })
 export class InputI1Component {
+  @Input() payload;
   @Input() parameters;
 
   formInputI1:FormGroup;
@@ -48,8 +49,10 @@ export class InputI1Component {
       validators.push(validator['body']);
     }
 
+    let value = this.payload ? this.payload : '';
+
     return new FormGroup({
-      [this.parameters.formControlName]: new FormControl('', validators),
+      [this.parameters.formControlName]: new FormControl(value, validators),
     });
   }
 

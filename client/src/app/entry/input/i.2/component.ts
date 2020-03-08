@@ -25,6 +25,7 @@ import { filter } from 'rxjs/operators';
             `
 })
 export class InputI2Component implements OnInit {
+  @Input() payload;
   @Input() parameters;
   @Output() emitter:EventEmitter<any> = new EventEmitter();
 
@@ -45,8 +46,10 @@ export class InputI2Component implements OnInit {
       validators.push(validator['body']);
     }
 
+    let value = this.payload ? this.payload : '';
+
     return new FormGroup({
-      [this.parameters.formControlName]: new FormControl('', validators),
+      [this.parameters.formControlName]: new FormControl(value, validators),
     });
   }
 

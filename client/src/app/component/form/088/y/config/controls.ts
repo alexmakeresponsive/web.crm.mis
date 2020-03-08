@@ -579,7 +579,7 @@ export default {
     type: 'entry',
     col: 6,
     entry: true,
-    data: new EntryComponentConstructor(SelectS1Component, [
+    component: new EntryComponentConstructor(SelectS1Component, [
       'Паспорт',
       'Водительское удостоверение',
       'Свидетельство о рождении',
@@ -649,7 +649,7 @@ export default {
     id: 'f1711',
     col: 6,
     entry: true,
-    data: new EntryComponentConstructor(SelectS1Component, [
+    component: new EntryComponentConstructor(SelectS1Component, [
       'Паспорт',
       'Доверенность',
     ], {}),
@@ -719,7 +719,7 @@ export default {
     id: 'f1721',
     col: 6,
     entry: true,
-    data: new EntryComponentConstructor(SelectS1Component, [
+    component: new EntryComponentConstructor(SelectS1Component, [
       'Свидетельство о рождении',
       'Доверенность',
     ], {}),
@@ -1136,7 +1136,7 @@ export default {
     label: '20.1 наименование и адрес образовательной организации, в которой гражданин получает образование',
     id: 'f201',
     type: 'entry',
-    data: new EntryComponentConstructor(InputI1Component, '', {
+    component: new EntryComponentConstructor(InputI1Component, '', {
       className: 'form-control',
       formControlName: 'f_20_1',
       id: 'f201',
@@ -1192,7 +1192,7 @@ export default {
     label: '20.3 профессия (специальность), для получения которой проводится обучение',
     id: 'f203',
     type: 'entry',
-    data: new EntryComponentConstructor(TextareaT1Component, '', {
+    component: new EntryComponentConstructor(TextareaT1Component, '', {
       className: 'form-control',
       formControlName: 'f_20_3',
       id: 'f203',
@@ -1212,7 +1212,7 @@ export default {
     label: '21.1 основная профессия (специальность, должность)',
     id: 'f211',
     type: 'entry',
-    data: new EntryComponentConstructor(InputI2Component, '', {
+    component: new EntryComponentConstructor(InputI2Component, '', {
       className: 'form-control',
       formControlName: 'f_21_1',
       id: 'f211',
@@ -1235,7 +1235,7 @@ export default {
     label: '21.2 квалификация (класс, разряд, категория, звание)',
     id: 'f212',
     type: 'entry',
-    data: new EntryComponentConstructor(InputI2Component, '', {
+    component: new EntryComponentConstructor(InputI2Component, '', {
       className: 'form-control',
       formControlName: 'f_21_2',
       id: 'f212',
@@ -1258,7 +1258,7 @@ export default {
     label: '21.3 стаж работы',
     id: 'f213',
     type: 'entry',
-    data: new EntryComponentConstructor(InputI2Component, '', {
+    component: new EntryComponentConstructor(InputI2Component, '', {
       className: 'form-control',
       formControlName: 'f_21_3',
       id: 'f213',
@@ -1277,7 +1277,7 @@ export default {
     label: '21.4 выполняемая работа на момент направления на медико-социальную экспертизу с указанием профессии (специальности, должности)',
     id: 'f214',
     type: 'entry',
-    data: new EntryComponentConstructor(TextareaT1Component, '', {
+    component: new EntryComponentConstructor(TextareaT1Component, '', {
       className: 'form-control',
       formControlName: 'f_21_4',
       id: 'f214',
@@ -1296,7 +1296,7 @@ export default {
     label: '21.5 условия и характер выполняемого труда',
     id: 'f215',
     type: 'entry',
-    data: new EntryComponentConstructor(TextareaT1Component, '', {
+    component: new EntryComponentConstructor(TextareaT1Component, '', {
       className: 'form-control',
       formControlName: 'f_21_5',
       id: 'f215',
@@ -1315,7 +1315,7 @@ export default {
     label: '21.6 место работы (наименование организации)',
     id: 'f216',
     type: 'entry',
-    data: new EntryComponentConstructor(InputI2Component, '', {
+    component: new EntryComponentConstructor(InputI2Component, '', {
       className: 'form-control',
       formControlName: 'f_21_6',
       id: 'f216',
@@ -1334,7 +1334,7 @@ export default {
     label: '21.7 адрес места работы',
     id: 'f217',
     type: 'entry',
-    data: new EntryComponentConstructor(TextareaT1Component, '', {
+    component: new EntryComponentConstructor(TextareaT1Component, '', {
       className: 'form-control',
       formControlName: 'f_21_7',
       id: 'f217',
@@ -1414,7 +1414,7 @@ export default {
   f_25: {
     exclude: true,
     type: 'entry',
-    data: new EntryComponentConstructor(TableRowTbR1EntryComponent, {}, {
+    component: new EntryComponentConstructor(TableRowTbR1EntryComponent, {}, {
       multiple: true,
       multipleType: 'tr.1',
       formControlName: 'f_25',
@@ -1674,7 +1674,7 @@ export default {
     label: '30.1 основное заболевание',
     id: 'f301',
     type: 'entry',
-    data: new EntryComponentConstructor(TextareaT1Component, {
+    component: new EntryComponentConstructor(TextareaT1Component, {
     }, {
       className: 'form-control',
       id: 'f301',
@@ -1698,7 +1698,7 @@ export default {
     label: '30.2 код основного заболевания по МКБ',
     id: 'f302',
     type: 'entry',
-    data: new EntryComponentConstructor(InputI2Component, '', {
+    component: new EntryComponentConstructor(InputI2Component, '', {
       className: 'form-control',
       id: 'f302',
       col: 3,
@@ -1717,7 +1717,7 @@ export default {
     label: '30.3 осложнения основного заболевания',
     id: 'f303',
     type: 'entry',
-    data: new EntryComponentConstructor(TextareaT1Component, '', {
+    component: new EntryComponentConstructor(TextareaT1Component, '', {
       className: 'form-control',
       id: 'f303',
       rows: 4,
@@ -1736,7 +1736,7 @@ export default {
     label: '30.4 сопутствующие заболевания',
     id: 'f304',
     type: 'entry',
-    data: new EntryComponentConstructor(TextareaT1Component, '', {
+    component: new EntryComponentConstructor(TextareaT1Component, '', {
       className: 'form-control',
       id: 'f304',
       rows: 4,
@@ -1755,7 +1755,7 @@ export default {
     label: '30.5 коды сопутствующих заболеваний по МКБ',
     id: 'f305',
     type: 'entry',
-    data: new EntryComponentConstructor(InputI2Component, '', {
+    component: new EntryComponentConstructor(InputI2Component, '', {
       className: 'form-control',
       id: 'f305',
       col: 12,
@@ -1774,7 +1774,7 @@ export default {
     label: '30.6 осложнения сопутствующих заболеваний',
     id: 'f306',
     type: 'entry',
-    data: new EntryComponentConstructor(TextareaT1Component, '', {
+    component: new EntryComponentConstructor(TextareaT1Component, '', {
       className: 'form-control',
       id: 'f306',
       rows: 12,
@@ -1888,7 +1888,7 @@ export default {
     label: '34 Рекомендуемые мероприятия по медицинской реабилитации или абилитации',
     id: 'f34',
     type: 'entry',
-    data: new EntryComponentConstructor(TextareaT1Component, '', {
+    component: new EntryComponentConstructor(TextareaT1Component, '', {
       className: 'form-control',
       id: 'f34',
       rows: 12,
@@ -1907,7 +1907,7 @@ export default {
     label: '35 Рекомендуемые мероприятия по реконструктивной хирургии',
     id: 'f35',
     type: 'entry',
-    data: new EntryComponentConstructor(TextareaT1Component, '', {
+    component: new EntryComponentConstructor(TextareaT1Component, '', {
       className: 'form-control',
       id: 'f35',
       rows: 6,
@@ -1926,7 +1926,7 @@ export default {
     label: '36 Рекомендуемые мероприятия по протезированию и ортезированию',
     id: 'f36',
     type: 'entry',
-    data: new EntryComponentConstructor(TextareaT1Component, '', {
+    component: new EntryComponentConstructor(TextareaT1Component, '', {
       className: 'form-control',
       id: 'f36',
       rows: 4,
@@ -1945,7 +1945,7 @@ export default {
     label: '37 Санаторно-курортное лечение',
     id: 'f37',
     type: 'entry',
-    data: new EntryComponentConstructor(TextareaT1Component, '', {
+    component: new EntryComponentConstructor(TextareaT1Component, '', {
       className: 'form-control',
       id: 'f37',
       rows: 2,

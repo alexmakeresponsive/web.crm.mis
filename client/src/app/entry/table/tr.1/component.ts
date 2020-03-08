@@ -9,7 +9,6 @@ import { filter } from 'rxjs/operators';
 })
 export class TableRowTbR1EntryComponent implements OnInit, AfterViewInit {
   @Input() parameters;
-  @Input() data;
   @Input() payload;
 
   @Output() emitterData:EventEmitter<any>      = new EventEmitter();

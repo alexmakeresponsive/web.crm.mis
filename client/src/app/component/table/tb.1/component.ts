@@ -6,8 +6,8 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 })
 export class TableTb1Component implements OnInit {
   @Input() dataHead;
-  @Input() dataRow;
-  @Input() data;
+  @Input() component;
+  @Input() payload;
            dataClone;
            /*
            * [{..}, {f_25_t_1: '', f_25_t_2: '', f_25_t_3: '', f_25_t_4: ''}, {..}]
@@ -21,13 +21,13 @@ export class TableTb1Component implements OnInit {
   objectKeys = Object.keys;
 
   ngOnInit() {
-    if(!this.data) {
-      this.data = JSON.parse('{}');
+    if(!this.payload) {
+      this.payload = JSON.parse('{}');
     } else {
-      this.data = JSON.parse(this.data);
+      this.payload = JSON.parse(this.payload);
     }
 
-    this.dataClone = this.data;
+    this.dataClone = this.payload;
     this.dataTemplate = Object.values(this.dataClone);
   }
 
@@ -38,7 +38,7 @@ export class TableTb1Component implements OnInit {
 
     this.emitterAction.emit({
       action: 'removeEntryComponentInstance',
-      formControlName: this.dataRow.parameters.formControlName,
+      formControlName: this.component.parameters.formControlName,
       payload: {
         id: id,
       }
@@ -48,7 +48,7 @@ export class TableTb1Component implements OnInit {
   removeTdAll() {
     this.emitterAction.emit({
       action: 'removeAllEntryComponentInstance',
-      formControlName: this.dataRow.parameters.formControlName,
+      formControlName: this.component.parameters.formControlName,
       payload: this.dataTemplate
     });
 
@@ -73,7 +73,7 @@ export class TableTb1Component implements OnInit {
 
     this.emitterAction.emit({
       action: 'addEntryComponentInstance',
-      formControlName: this.dataRow.parameters.formControlName,
+      formControlName: this.component.parameters.formControlName,
       payload: {
         id: idMaxNext,
       }

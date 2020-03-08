@@ -338,7 +338,8 @@
             </div>
           </div>
           <div *ngIf="groups.f_16_group[controlName].main.type === 'entry'">
-            <entry-wrapper [data]="groups.f_16_group[controlName].main.data"></entry-wrapper>
+            <entry-wrapper  [payload]="payloadFromServer[controlName]"
+                            [component]="groups.f_16_group[controlName].main.component"></entry-wrapper>
           </div>
         </div>
       </div>
@@ -406,7 +407,8 @@
                 <label [for]=groups.f_17_group[controlName].childs[controlChL1Name].main.id>
                   {{groups.f_17_group[controlName].childs[controlChL1Name].main.label}}
                 </label>
-                <entry-wrapper [data]="groups.f_17_group[controlName].childs[controlChL1Name].main.data"></entry-wrapper>
+                <entry-wrapper  [payload]="payloadFromServer[controlChL1Name]"
+                                [component]="groups.f_17_group[controlName].childs[controlChL1Name].main.component"></entry-wrapper>
               </div>
             </div>
           </div>
@@ -484,7 +486,8 @@
             {{groups.f_20_group[controlName].main.label}}
           </label>
           <div *ngIf="groups.f_20_group[controlName].main.type === 'entry'">
-            <entry-wrapper [data]="groups.f_20_group[controlName].main.data"></entry-wrapper>
+            <entry-wrapper  [payload]="payloadFromServer[controlName]"
+                            [component]="groups.f_20_group[controlName].main.component"></entry-wrapper>
           </div>
           <div *ngIf="groups.f_20_group[controlName].childs">
             <div class="form-item-sm" *ngFor="let controlChL1Name of objectKeys(groups.f_20_group[controlName].childs)">
@@ -518,7 +521,8 @@
             {{groups.f_21_group[controlName].label}}
           </label>
           <div *ngIf="groups.f_21_group[controlName].type === 'entry'">
-            <entry-wrapper [data]="groups.f_21_group[controlName].data"
+            <entry-wrapper [payload]="payloadFromServer[controlName]"
+                           [component]="groups.f_21_group[controlName].component"
                            (emitterData)="setDataFromEntryComponent($event)"
                            (emitterInstance)="getInstanceEntryComponent($event)"
             ></entry-wrapper>
@@ -574,9 +578,9 @@
         25. Частота и длительность временной нетрудоспособности (сведения за последние 12 месяцев)
       </p>
       <div class="label-text form-item">
-        <table-tb-1  [data]="payloadFromServer.f_25"
+        <table-tb-1  [payload]="payloadFromServer.f_25"
                      [dataHead]="groups.f_25_group.f_25_t_h.data.head"
-                     [dataRow]="groups.f_25_group.f_25.data"
+                     [component]="groups.f_25_group.f_25.component"
                      (emitterData)="setDataFromEntryComponent($event)"
                      (emitterInstance)="getInstanceEntryComponent($event)"
                      (emitterAction)="actionController($event)"></table-tb-1>
@@ -705,7 +709,8 @@
             {{groups.f_30_group[controlName].label}}
           </label>
           <div *ngIf="groups.f_30_group[controlName].type === 'entry'">
-            <entry-wrapper [data]="groups.f_30_group[controlName].data"
+            <entry-wrapper [payload]="payloadFromServer[controlName]"
+                           [component]="groups.f_30_group[controlName].component"
                            (emitterData)="setDataFromEntryComponent($event)"
                            (emitterInstance)="getInstanceEntryComponent($event)"
             ></entry-wrapper>
@@ -737,7 +742,8 @@
             {{groups.f_3437_group[controlName].label}}
           </label>
           <div *ngIf="groups.f_3437_group[controlName].type === 'entry'">
-            <entry-wrapper [data]="groups.f_3437_group[controlName].data"></entry-wrapper>
+            <entry-wrapper  [payload]="payloadFromServer[controlName]"
+                            [component]="groups.f_3437_group[controlName].component"></entry-wrapper>
           </div>
         </div>
       </div>

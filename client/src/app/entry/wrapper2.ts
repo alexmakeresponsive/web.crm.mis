@@ -12,7 +12,7 @@ import { EntryDirective } from "./directive";
             `
 })
 export class EntryWrapper2 implements OnInit {
-  @Input() data: EntryComponentConstructor;
+  @Input() component: EntryComponentConstructor;
   @Input() payload: any;
   @ViewChild(EntryDirective, {static: true}) entryHost: EntryDirective;
 
@@ -24,13 +24,12 @@ export class EntryWrapper2 implements OnInit {
   constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
 
   ngOnInit() {
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.data.component);
+    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.component.component);
     const viewContainerRef = this.entryHost.viewContainerRef;
           viewContainerRef.clear();
     const componentRef = viewContainerRef.createComponent(componentFactory);
 
-    (<any>componentRef.instance).data       = this.data.data;
-    (<any>componentRef.instance).parameters = this.data.parameters;
+    (<any>componentRef.instance).parameters = this.component.parameters;
     (<any>componentRef.instance).payload    = this.payload;
 
     if (componentRef.instance.hasOwnProperty('emitterData')) {

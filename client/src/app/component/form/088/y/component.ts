@@ -470,6 +470,7 @@ export class Form088yComponent implements OnInit, AfterViewInit {
     this.getFormData();
 
     console.log(this.formData);
+    console.log(this.urlSubmit);
     console.log('Form valid!!');
 
     this.formMessageType = 'info';

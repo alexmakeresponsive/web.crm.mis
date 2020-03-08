@@ -14,7 +14,8 @@ import { EntryDirective } from "./directive";
             `
 })
 export class EntryWrapper implements OnInit {
-  @Input() data: EntryComponentConstructor;
+  @Input() payload: any;   //MsaForm088yData type
+  @Input() component: EntryComponentConstructor;
   @ViewChild(EntryDirective, {static: true}) entryHost: EntryDirective;
 
   @Output() emitterData:EventEmitter<any>     = new EventEmitter();
@@ -24,13 +25,13 @@ export class EntryWrapper implements OnInit {
   constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
 
   ngOnInit() {
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.data.component);
+    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.component.component);
     const viewContainerRef = this.entryHost.viewContainerRef;
           viewContainerRef.clear();
     const componentRef = viewContainerRef.createComponent(componentFactory);
 
-    (<any>componentRef.instance).data       = this.data.data;
-    (<any>componentRef.instance).parameters = this.data.parameters;
+    (<any>componentRef.instance).payload       = this.payload;  // payloadFromServer
+    (<any>componentRef.instance).parameters = this.component.parameters;
 
     if (componentRef.instance.hasOwnProperty('emitter')) {
       componentRef.instance.emitter.subscribe((data) => {

@@ -18,7 +18,7 @@
 
 <div *ngFor="let item of dataTemplate">
       <entry-wrapper-2
-        [data]="dataRow"
+        [component]="component"
         [payload]="item"
         (emitterData)="setDataFromEntryComponent($event)"
         (emitterInstance)="getInstanceEntryComponent($event)"
