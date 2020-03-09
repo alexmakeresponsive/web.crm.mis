@@ -7,8 +7,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Subscription, Observable, throwError } from 'rxjs';
 import { retry, catchError, delay } from 'rxjs/operators';
 
-import { CheckResponse } from './model/auth/check.response'
-import { Keychain } from './model/auth/keychain'
+import { CheckResponse } from './service/security/model/auth/check.response'
+import { Keychain } from './service/security/model/auth/keychain'
 
 import { AuthorizationService } from "./authorization.service";
 

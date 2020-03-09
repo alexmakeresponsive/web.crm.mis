@@ -4,8 +4,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import tableHeaderData from './config/header';
 import {AuthService} from "../../../../auth.service";
 import {StorageData} from "../../../../storage.data";
-import MsaResponse from "../../../../model/msa/Response";
-import MsaResponseRemove from "../../../../model/msa/ResponseRemove";
+import MsaResponse from "../../../../domain/msa/model/ticket/Response";
+import MsaResponseRemove from "../../../../domain/msa/model/ticket/ResponseRemove";
 
 @Component({
   selector: 'page-action-msa-journal',

@@ -7,7 +7,7 @@ import { filter } from 'rxjs/operators';
 import controls from './config/controls';
 import groups   from './config/groups';
 
-import MsaResponse from "../../../../../../model/msa/Response";
+import MsaResponse from "../../../../model/ticket/Response";
 import {AuthService} from "../../../../../../auth.service";
 import {EventService} from "../../../../../../event.service";
 

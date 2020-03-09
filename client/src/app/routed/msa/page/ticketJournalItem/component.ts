@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {StorageData} from "../../../../storage.data";
 import {AuthService} from "../../../../auth.service";
 import {EventService} from "../../../../event.service";
-import MsaResponse from "../../../../model/msa/Response";
+import MsaResponse from "../../../../domain/msa/model/ticket/Response";
 
 @Component({
   selector: 'page-service-msa-journal-item',
