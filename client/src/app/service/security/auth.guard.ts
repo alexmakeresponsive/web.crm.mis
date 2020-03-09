@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { AuthService } from "./auth.service";
 
-import { CheckResponse } from './service/security/model/auth/check.response'
+import { CheckResponse } from './model/auth/check.response'
 
 
 @Injectable({providedIn: 'root'})

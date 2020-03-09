@@ -7,7 +7,7 @@ import { Subscription, Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 
 import { Router } from '@angular/router';
-import { AuthService } from "../../../../../auth.service";
+import { AuthService } from "../../../../../service/security/auth.service";
 
 @Component({
   selector: 'form-sign-in',

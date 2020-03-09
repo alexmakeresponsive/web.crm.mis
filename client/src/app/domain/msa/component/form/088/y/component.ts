@@ -8,8 +8,8 @@ import controls from './config/controls';
 import groups   from './config/groups';
 
 import MsaResponse from "../../../../model/ticket/Response";
-import {AuthService} from "../../../../../../auth.service";
-import {EventService} from "../../../../../../event.service";
+import {AuthService} from "../../../../../../service/security/auth.service";
+import {EventService} from "../../../../../../service/event/event.service";
 
 import {EntryWrapper} from "../../../../../../widget/entry/collection/wrapper";
 

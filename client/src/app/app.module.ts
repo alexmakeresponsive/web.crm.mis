@@ -13,7 +13,7 @@ import {MsaRoutedModule}                        from "./routed/msa/msa-routed.mo
 import {DashboardModule}                        from "./domain/dashboard/dashboard.module";
 import {DashboardRoutedModule}                  from "./routed/dashboard/dashboard-routed.module";
 
-import { CookieInterceptor }                    from './cookie.interceptor';
+import { CookieInterceptor }                    from './service/http/cookie.interceptor';
 
 import { AppComponent }                         from './app.component';
 

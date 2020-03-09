@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import {StorageData} from "../../../../storage.data";
-import {AuthService} from "../../../../auth.service";
-import {EventService} from "../../../../event.service";
+import {StorageData} from "../../../../service/storage/storage.data";
+import {AuthService} from "../../../../service/security/auth.service";
+import {EventService} from "../../../../service/event/event.service";
 import MsaResponse from "../../../../domain/msa/model/ticket/Response";
 
 @Component({
