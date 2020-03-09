@@ -5,15 +5,13 @@ import { NgModule }                             from '@angular/core';
 
 import { AppRoutingModule }                     from './app-routing.module';
 
-import { HTTP_INTERCEPTORS }                    from '@angular/common/http';
+import {HttpServiceModule}                      from "./service/http/http-service.module";
 
 import {MsaModule}                              from "./domain/msa/msa.module";
 import {MsaRoutedModule}                        from "./routed/msa/msa-routed.module";
 
 import {DashboardModule}                        from "./domain/dashboard/dashboard.module";
 import {DashboardRoutedModule}                  from "./routed/dashboard/dashboard-routed.module";
-
-import { CookieInterceptor }                    from './service/http/cookie.interceptor';
 
 import { AppComponent }                         from './app.component';
 
@@ -22,7 +20,6 @@ import { AppComponent }                         from './app.component';
   declarations: [
     AppComponent,
   ],
-
   imports: [
     BrowserModule,
 
@@ -35,13 +32,8 @@ import { AppComponent }                         from './app.component';
 
     DashboardModule,
     DashboardRoutedModule,
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: CookieInterceptor,
-      multi: true
-    }
+
+    HttpServiceModule
   ],
   bootstrap: [AppComponent]
 })
