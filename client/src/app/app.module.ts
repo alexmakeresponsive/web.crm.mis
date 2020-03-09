@@ -37,8 +37,9 @@ import { PageServiceMsaTicketResultComponent } from './template/page/service/msa
 import { PageServiceMsaTicketResultItemComponent } from './template/page/service/msa/ticketResultItem/component';
 import { PageServiceMsaTicketJournalItemComponent } from './template/page/service/msa/ticketJournalItem/component';
 
-import {TableTb1Component} from "./component/table/tb.1/component";
+
 import {Form088yComponent} from "./component/form/088/y/component";
+import {DefaultModule} from "./widget/default/default.module";
 
 
 
@@ -67,7 +68,6 @@ import {Form088yComponent} from "./component/form/088/y/component";
     PageServiceMsaTicketResultItemComponent,
     PageServiceMsaTicketJournalItemComponent,
 
-    TableTb1Component,
     Form088yComponent,
   ],
 
@@ -84,6 +84,7 @@ import {Form088yComponent} from "./component/form/088/y/component";
     NgbModule,
 
     EntryModule,
+    DefaultModule,
 
     RouterModule.forRoot([
       { path: '', component: PageMainHomeComponent, canActivate: [AuthGuard]  },
