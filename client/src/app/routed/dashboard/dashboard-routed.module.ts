@@ -17,8 +17,6 @@ import {PartNavHomeComponent}                   from "./part/nav/home/component"
 import {PartNavMainComponent}                   from "./part/nav/main/component";
 
 
-
-
 @NgModule({
   declarations: [
     PageDashboardAboutComponent,
@@ -29,13 +27,6 @@ import {PartNavMainComponent}                   from "./part/nav/main/component"
     PartHeaderComponent,
     PartNavHomeComponent,
     PartNavMainComponent
-  ],
-
-  exports: [
-    PageDashboardAboutComponent,
-    PageDashboardErrorComponent,
-    PageDashboardHomeComponent,
-    PageDashboardLoginComponent
   ],
   imports: [
     NgbModule,

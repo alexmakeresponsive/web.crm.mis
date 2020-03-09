@@ -16,6 +16,7 @@ import {PartNavMsaComponent}                        from "./part/nav/component";
 import {PartHeaderMsaComponent}                     from "./part/header/component";
 import {MsaModule} from "../../domain/msa/msa.module";
 
+
 @NgModule({
   declarations: [
     PageServiceMsaRemdJournalComponent,
@@ -27,15 +28,6 @@ import {MsaModule} from "../../domain/msa/msa.module";
 
     PartNavMsaComponent,
     PartHeaderMsaComponent
-  ],
-
-  exports: [
-    PageServiceMsaRemdJournalComponent,
-    PageServiceMsaTicketComponent,
-    PageServiceMsaTicketJournalComponent,
-    PageServiceMsaTicketJournalItemComponent,
-    PageServiceMsaTicketResultComponent,
-    PageServiceMsaTicketResultItemComponent,
   ],
   imports: [
     NgbModule,
