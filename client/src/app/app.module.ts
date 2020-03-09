@@ -9,7 +9,6 @@ import { Routes, RouterModule, Router } from '@angular/router';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import {SharedModule} from "./service/shared/shared.module";
 import {EntryModule}  from "./widget/entry/entry.module";
 
 
@@ -84,7 +83,6 @@ import {Form088yComponent} from "./component/form/088/y/component";
 
     NgbModule,
 
-    SharedModule,
     EntryModule,
 
     RouterModule.forRoot([
