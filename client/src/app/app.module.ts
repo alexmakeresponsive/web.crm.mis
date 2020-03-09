@@ -10,6 +10,9 @@ import { Routes, RouterModule, Router } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import {EntryModule}  from "./widget/entry/entry.module";
+import {DefaultModule} from "./widget/default/default.module";
+
+import {MsaModule} from "./domain/msa/msa.module";
 
 
 import { CookieInterceptor } from './cookie.interceptor';
@@ -38,12 +41,6 @@ import { PageServiceMsaTicketResultItemComponent } from './template/page/service
 import { PageServiceMsaTicketJournalItemComponent } from './template/page/service/msa/ticketJournalItem/component';
 
 
-import {Form088yComponent} from "./component/form/088/y/component";
-import {DefaultModule} from "./widget/default/default.module";
-
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,8 +64,6 @@ import {DefaultModule} from "./widget/default/default.module";
     PageServiceMsaTicketResultComponent,
     PageServiceMsaTicketResultItemComponent,
     PageServiceMsaTicketJournalItemComponent,
-
-    Form088yComponent,
   ],
 
   imports: [
@@ -85,6 +80,8 @@ import {DefaultModule} from "./widget/default/default.module";
 
     EntryModule,
     DefaultModule,
+
+    MsaModule,
 
     RouterModule.forRoot([
       { path: '', component: PageMainHomeComponent, canActivate: [AuthGuard]  },
