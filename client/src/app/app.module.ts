@@ -13,6 +13,7 @@ import {EntryModule}  from "./widget/entry/entry.module";
 import {DefaultModule} from "./widget/default/default.module";
 
 import {MsaModule} from "./domain/msa/msa.module";
+import {DashboardModule} from "./domain/dashboard/dashboard.module";
 
 
 import { CookieInterceptor } from './cookie.interceptor';
@@ -82,6 +83,7 @@ import { PageServiceMsaTicketJournalItemComponent } from './template/page/servic
     DefaultModule,
 
     MsaModule,
+    DashboardModule,
 
     RouterModule.forRoot([
       { path: '', component: PageMainHomeComponent, canActivate: [AuthGuard]  },
