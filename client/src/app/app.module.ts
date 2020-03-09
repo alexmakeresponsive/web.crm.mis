@@ -1,16 +1,11 @@
 import { BrowserModule }                        from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule }     from '@angular/forms';
+
 import { HttpClientModule }                     from '@angular/common/http';
 import { NgModule }                             from '@angular/core';
-
-import {NgbModule}                              from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule }                     from './app-routing.module';
 
 import { HTTP_INTERCEPTORS }                    from '@angular/common/http';
-
-import {EntryModule}                            from "./widget/entry/entry.module";
-import {DefaultModule}                          from "./widget/default/default.module";
 
 import {MsaModule}                              from "./domain/msa/msa.module";
 import {MsaRoutedModule}                        from "./routed/msa/msa-routed.module";
@@ -31,17 +26,9 @@ import { AppComponent }                         from './app.component';
   imports: [
     BrowserModule,
 
-    FormsModule,
-    ReactiveFormsModule,
-
     HttpClientModule,
 
     AppRoutingModule,
-
-    NgbModule,
-
-    EntryModule,
-    DefaultModule,
 
     MsaModule,
     MsaRoutedModule,
