@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './component.html',
   styleUrls: ['./component.styl']
 })
-export class PageMainAboutComponent {
+export class PageDashboardAboutComponent {
   constructor() {
   }
 }

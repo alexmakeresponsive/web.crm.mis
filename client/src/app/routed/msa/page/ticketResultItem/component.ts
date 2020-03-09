@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import {StorageData} from "../../../../../storage.data";
-import {AuthService} from "../../../../../auth.service";
-import MsaResponse from "../../../../../model/msa/Response";
+import {StorageData} from "../../../../storage.data";
+import {AuthService} from "../../../../auth.service";
+import MsaResponse from "../../../../model/msa/Response";
 
 @Component({
   selector: 'page-service-msa-result-item',

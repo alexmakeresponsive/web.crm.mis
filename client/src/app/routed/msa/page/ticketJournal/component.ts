@@ -1,21 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { AuthService } from "../../../../../auth.service";
-import { StorageData } from "../../../../../storage.data";
-import MsaResponse from "../../../../../model/msa/Response";
-
 import tableHeaderData from './config/header';
-import MsaResponseRemove from "../../../../../model/msa/ResponseRemove";
+import {AuthService} from "../../../../auth.service";
+import {StorageData} from "../../../../storage.data";
+import MsaResponse from "../../../../model/msa/Response";
+import MsaResponseRemove from "../../../../model/msa/ResponseRemove";
 
 @Component({
-  selector: 'page-action-msa-result',
+  selector: 'page-action-msa-journal',
   templateUrl: './component.html',
-  styleUrls: ['./component.styl']
 })
-export class PageServiceMsaTicketResultComponent {
+export class PageServiceMsaTicketJournalComponent implements OnDestroy {
   tableHeader = tableHeaderData;
-  tableBody   = [];
+  tableBody = [];
   dataIsFetched:boolean = false;
 
   constructor(
@@ -26,10 +24,14 @@ export class PageServiceMsaTicketResultComponent {
     this.putData();
   }
 
+  ngOnDestroy() {
+    // console.log('destroy PageServiceMsaTicketJournalComponent')
+  }
+
   async putData() {
     await this.loadData();
 
-    this.tableBody = Object.values(this.storageData.ticketResult);
+    this.tableBody = Object.values(this.storageData.ticketJournal);
   }
 
   async loadData() {
@@ -40,12 +42,12 @@ export class PageServiceMsaTicketResultComponent {
     const token    = keychain.tokenAccessList !== null ? keychain.tokenAccessList.msa : '';
 
     let headers = new HttpHeaders();
-        headers = headers.set('Authorization', 'Bearer ' + token);
+    headers = headers.set('Authorization', 'Bearer ' + token);
 
 
 
     await this.http.post<MsaResponse>(
-      'http://0.0.0.0:8204/ticket/result',
+      'http://0.0.0.0:8204/ticket/journal',
       {},
       {
         headers: headers
@@ -53,7 +55,7 @@ export class PageServiceMsaTicketResultComponent {
     ).toPromise()
       .then(
         res => {
-          this.storageData.ticketResult = res.data;
+          this.storageData.ticketJournal = res.data;
           this.dataIsFetched = true;
         },
         rej => {
@@ -68,11 +70,11 @@ export class PageServiceMsaTicketResultComponent {
     const token    = keychain.tokenAccessList !== null ? keychain.tokenAccessList.msa : '';
 
     let headers = new HttpHeaders();
-        headers = headers.set('Authorization', 'Bearer ' + token);
+    headers = headers.set('Authorization', 'Bearer ' + token);
 
 
     this.http.post<MsaResponseRemove>(
-      'http://0.0.0.0:8204/ticket/result/remove',
+      'http://0.0.0.0:8204/ticket/journal/remove',
       {
         id_item: id
       },
@@ -85,7 +87,7 @@ export class PageServiceMsaTicketResultComponent {
           console.log("res: ", res);
 
           const id       = res.id_item;
-          const storage  = this.storageData.ticketResult;
+          const storage  = this.storageData.ticketJournal;
 
           delete storage[id];
 

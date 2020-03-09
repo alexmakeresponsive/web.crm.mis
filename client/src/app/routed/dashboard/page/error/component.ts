@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'page-main-home',
+  selector: 'page-main-error',
   templateUrl: './component.html',
   styleUrls: ['./component.styl']
 })
-export class PageMainHomeComponent {
-  constructor() {
-  }
+export class PageDashboardErrorComponent {
+
 }
