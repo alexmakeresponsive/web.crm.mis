@@ -9,7 +9,8 @@ import { Routes, RouterModule, Router } from '@angular/router';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import {SelectModule} from 'ng2-select';
+import {SharedModule} from "./service/shared/shared.module";
+import {EntryModule}  from "./widget/entry/entry.module";
 
 
 import { CookieInterceptor } from './cookie.interceptor';
@@ -40,21 +41,11 @@ import { PageServiceMsaTicketJournalItemComponent } from './template/page/servic
 import {TableTb1Component} from "./component/table/tb.1/component";
 import {Form088yComponent} from "./component/form/088/y/component";
 
-import { EntryWrapper }   from "./entry/wrapper";
-import { EntryWrapper2 }   from "./entry/wrapper2";
-import { EntryDirective } from "./entry/directive";
 
-import {SelectS1Component}    from './entry/select/s.1/component';
-import {InputI1Component}     from "./entry/input/i.1/component";
-import {InputI2Component}     from "./entry/input/i.2/component";
-import {TextareaT1Component}  from "./entry/textarea/t.1/component";
-import {TableRowTbR1EntryComponent} from "./entry/table/tr.1/component";
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-
     AppComponent,
 
     PartHeaderDefaultComponent,
@@ -79,26 +70,11 @@ import {TableRowTbR1EntryComponent} from "./entry/table/tr.1/component";
 
     TableTb1Component,
     Form088yComponent,
-
-    SelectS1Component,
-    InputI1Component, InputI2Component,
-    TextareaT1Component,
-    TableRowTbR1EntryComponent,
-
-    EntryWrapper,
-    EntryWrapper2,
-    EntryDirective
-  ],
-
-  entryComponents: [
-    SelectS1Component,
-    InputI1Component, InputI2Component,
-    TextareaT1Component,
-    TableRowTbR1EntryComponent,
   ],
 
   imports: [
     BrowserModule,
+
     FormsModule,
     ReactiveFormsModule,
 
@@ -107,13 +83,13 @@ import {TableRowTbR1EntryComponent} from "./entry/table/tr.1/component";
     AppRoutingModule,
 
     NgbModule,
-    SelectModule,
+
+    SharedModule,
+    EntryModule,
 
     RouterModule.forRoot([
       { path: '', component: PageMainHomeComponent, canActivate: [AuthGuard]  },
       { path: 'about', component: PageMainAboutComponent, canActivate: [AuthGuard]  },
-
-      // { path: 'service/msa/ticket', component: PageServiceMsaTicketComponent, canActivate: [AuthGuard /*,AuthorizationGuard*/]  },
 
       { path: 'login', component: PageMainLoginComponent},
 

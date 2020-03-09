@@ -11,7 +11,7 @@ import MsaResponse from "../../../../model/msa/Response";
 import {AuthService} from "../../../../auth.service";
 import {EventService} from "../../../../event.service";
 
-import {EntryWrapper} from "../../../../entry/wrapper";
+import {EntryWrapper} from "../../../../widget/entry/collection/wrapper";
 
 
 @Component({

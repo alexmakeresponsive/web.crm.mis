@@ -3,7 +3,6 @@ import { FormGroup, FormControl } from '@angular/forms';
 
 import { filter } from 'rxjs/operators';
 
-import {StorageData} from "../../../storage.data";
 
 @Component({
   template: `
@@ -31,7 +30,6 @@ export class InputI1Component {
   objectKeys = Object.keys;
 
   constructor(
-    private storageData: StorageData
   ) {
 
   }
