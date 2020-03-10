@@ -91,7 +91,7 @@ export class Form088yComponent implements OnInit, AfterViewInit {
         if(this.formControls[component.parameters.formControlName] === undefined) {   // for next iteration
           this.formControls[component.parameters.formControlName] = {
             multiple: true,
-            list: []  // use object instead array
+            list: []
           };
         }
 
@@ -414,11 +414,11 @@ export class Form088yComponent implements OnInit, AfterViewInit {
   }
 
   scrollToTop() {
-    window.scrollTo(0, 0); // values are x,y-offset
+    window.scrollTo(0, 0);
   }
 
   scrollToDown() {
-    window.scrollTo(0, document.body.scrollHeight); // values are x,y-offset
+    window.scrollTo(0, document.body.scrollHeight);
   }
 
   showMessage(options) {
@@ -476,7 +476,7 @@ export class Form088yComponent implements OnInit, AfterViewInit {
     this.renderer.setStyle(this.formMessage.nativeElement, 'top', (top + 'px'));
 
 
-    // do http
+
     const keychain = this.authService.getKeyChain();
 
     const token    = keychain.tokenAccessList !== null ? keychain.tokenAccessList.msa : '';

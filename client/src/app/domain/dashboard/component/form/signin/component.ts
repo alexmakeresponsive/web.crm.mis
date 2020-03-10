@@ -54,7 +54,6 @@ export class FormSignInComponent implements OnInit{
       {
         data: customerData
       }
-      // this.httpOptions
     ).pipe(
       retry(0),
       catchError(this.handleError.bind(this))

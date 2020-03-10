@@ -60,11 +60,6 @@ export class PageServiceMsaTicketResultItemComponent {
       .then(
         res => {
           this.storageData.ticketResult = res.data;
-
-          // this.route.paramMap.subscribe(params => {
-          //   this.dataIsFetched = true;
-          //   this.data = this.storageData.ticketResult[+params.get('id') -1];
-          // });
         },
         rej => {
 

@@ -1219,10 +1219,10 @@ export default {
           body: Validators.pattern('[a-zA-Z ]*'),
           errorText: 'Профессия указана некорретно'
         },
-        // required: {
-        //   body: Validators.required,
-        //   errorText: 'Поле не заполнено'
-        // }
+        required: {
+          body: Validators.required,
+          errorText: 'Поле не заполнено'
+        }
       },
       errors: {}
     }),
@@ -1242,10 +1242,10 @@ export default {
           body: Validators.pattern('[a-zA-Z0-9 ]*'),
           errorText: 'Квалификация указана некорретно'
         },
-        // required: {
-        //   body: Validators.required,
-        //   errorText: 'Поле не заполнено'
-        // }
+        required: {
+          body: Validators.required,
+          errorText: 'Поле не заполнено'
+        }
       },
       errors: {}
     }),

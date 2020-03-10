@@ -16,18 +16,8 @@ export class AuthorizationGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ):boolean {
-
     const userRole = this.authService.user.role;
 
-    // AuthorizationList = this.AuthorizationService.AuthorizationList;
-    // roleList = AuthorizationList[ProtectedComponentName].roleList
-
-    // how get ProtectedComponent here ?
-
-    // if ( roleList.indexOf(userRole) !== -1 ) {
-    //    return true;
-    // }
-
-          return false;
+    return false;
   }
 }

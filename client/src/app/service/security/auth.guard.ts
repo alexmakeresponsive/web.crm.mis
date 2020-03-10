@@ -22,8 +22,6 @@ export class AuthGuard implements CanActivate {
   ):Promise<any> | boolean {
 
     return this.canActivateWorker2();
-
-    // return this.authService.isAuth2();
   }
 
   async canActivateWorker2() {
