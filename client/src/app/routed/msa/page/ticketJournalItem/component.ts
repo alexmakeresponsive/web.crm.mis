@@ -49,7 +49,7 @@ export class PageServiceMsaTicketJournalItemComponent {
       this.data = this.storageData.ticketJournal[+params.get('id')];
 
       for (let key of Object.keys(this.data)) {
-        if (key.match(/f_6_name_/i)) {
+        if (key.match(/f_6_/i)) {
           this.dataHead[key] = this.data[key];
         }
       }

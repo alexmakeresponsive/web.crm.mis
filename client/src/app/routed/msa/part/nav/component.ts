@@ -24,14 +24,6 @@ export class PartNavMsaComponent {
       href: '/service/msa/ticket',
     },
     {
-      title: 'Сведения о результатах проведённой МСЭ',
-      href: '/service/msa/result'
-    },
-    {
-      title: 'Журнал обмена с РЭМД',
-      href: '/service/msa/remd'
-    },
-    {
       title: 'Журнал направлений на МСЭ',
       href: '/service/msa/journal'
     },
