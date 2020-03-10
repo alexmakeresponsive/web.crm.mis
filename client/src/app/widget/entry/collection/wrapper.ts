@@ -30,8 +30,10 @@ export class EntryWrapper implements OnInit {
           viewContainerRef.clear();
     const componentRef = viewContainerRef.createComponent(componentFactory);
 
-    (<any>componentRef.instance).payload       = this.payload;  // payloadFromServer
-    (<any>componentRef.instance).parameters = this.component.parameters;
+    (<any>componentRef.instance).payload        = this.payload;  // payloadFromServer
+
+    (<any>componentRef.instance).parameters     = this.component.parameters;
+    (<any>componentRef.instance).data           = this.component.data;
 
     if (componentRef.instance.hasOwnProperty('emitter')) {
       componentRef.instance.emitter.subscribe((data) => {
