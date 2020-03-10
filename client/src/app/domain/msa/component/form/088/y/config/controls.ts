@@ -43,7 +43,7 @@ export default {
     id: 'f4',
     validators: {
       pattern: {
-        body: Validators.pattern('[0-9 w/+]*'),
+        body: Validators.pattern('[[12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])]*'),
         errorText: 'Дата указана некорретно'
       }
     },
@@ -208,7 +208,7 @@ export default {
     tag: 'input-date-picker',
     validators: {
       pattern: {
-        body: Validators.pattern('[0-9. ]*'),
+        body: Validators.pattern('[[12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])]*'),
         errorText: 'Дата введена некорретно'
       }
     },
@@ -628,7 +628,7 @@ export default {
     id: 'f164',
     validators: {
       pattern: {
-        body: Validators.pattern('[0-9 ]*'),
+        body: Validators.pattern('[[12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])]*'),
         errorText: 'Дата выдачи указана некорретно'
       }
     },
@@ -710,7 +710,7 @@ export default {
     id: 'f1714',
     validators: {
       pattern: {
-        body: Validators.pattern('[0-9 ]*'),
+        body: Validators.pattern('[[12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])]*'),
         errorText: 'Дата выдачи указана некорретно'
       }
     },
@@ -791,7 +791,7 @@ export default {
     id: 'f1724',
     validators: {
       pattern: {
-        body: Validators.pattern('[0-9 ]*'),
+        body: Validators.pattern('[[12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])]*'),
         errorText: 'Дата выдачи указана некорретно'
       }
     },
@@ -936,8 +936,8 @@ export default {
     col: 6,
     validators: {
       pattern: {
-        body: Validators.pattern('[0-9 ]*'),
-        errorText: 'Поле заполнено некорретно'
+        body: Validators.pattern('[[12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])]*'),
+        errorText: 'Дата указана некорретно'
       }
     },
     errors: {}
@@ -1133,7 +1133,7 @@ export default {
     col: 6,
     validators: {
       pattern: {
-        body: Validators.pattern('[0-9 ]*'),
+        body: Validators.pattern('[[12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])]*'),
         errorText: 'Поле заполнено некорретно'
       }
     },
@@ -1444,7 +1444,7 @@ export default {
             label: 'Дата начала временной нетрудоспособности',
             validators: {
               pattern: {
-                body: Validators.pattern('[0-9 ]*'),
+                body: Validators.pattern('[[12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])]*'),
                 errorText: 'Дата указана некорретно'
               }
             },
@@ -1454,7 +1454,7 @@ export default {
             label: 'Дата окончания временной нетрудоспособности',
             validators: {
               pattern: {
-                body: Validators.pattern('[0-9 ]*'),
+                body: Validators.pattern('[[12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])]*'),
                 errorText: 'Дата указана некорретно'
               }
             },
