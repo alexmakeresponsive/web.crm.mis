@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
 import { filter } from 'rxjs/operators';
@@ -6,7 +6,7 @@ import { filter } from 'rxjs/operators';
 
 @Component({
   template: `
-              <div [formGroup]="formInputI1">
+              <div [formGroup]="form">
                 <input type="text"
                        [className]="parameters.className"
                        [id]="parameters.id"
@@ -20,12 +20,12 @@ import { filter } from 'rxjs/operators';
               </div>
             `,
 })
-export class InputI1Component {
+export class InputI1Component implements OnInit {
   @Input() payload;
   @Input() parameters;
+  @Output() emitter:EventEmitter<any> = new EventEmitter();
 
-  formInputI1:FormGroup;
-  formData = {component: 'InputI1Component'};
+  form:FormGroup;
 
   objectKeys = Object.keys;
 
@@ -35,7 +35,7 @@ export class InputI1Component {
   }
 
   ngOnInit() {
-    this.formInputI1 = this.createFormGroup();
+    this.form = this.createFormGroup();
 
     this.subscribeToFieldStatusChanges();
   }
@@ -55,10 +55,10 @@ export class InputI1Component {
   }
 
   subscribeToFieldStatusChanges() {
-    this.formInputI1.get(this.parameters.formControlName).statusChanges
+    this.form.get(this.parameters.formControlName).statusChanges
       .pipe(
         filter((status: string) => {
-          this.parameters.errors = this.formInputI1.get(this.parameters.formControlName).errors;
+          this.parameters.errors = this.form.get(this.parameters.formControlName).errors;
 
           if (!this.parameters.errors) {
                this.parameters.errors = {}
@@ -67,9 +67,5 @@ export class InputI1Component {
           return false;
         }))
       .subscribe(() => {});
-  }
-
-  getFormValue() {
-    return this.formInputI1.value;
   }
 }

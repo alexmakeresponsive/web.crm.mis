@@ -57,7 +57,7 @@ export default {
   f_6_group: {
     f_6_name_last: controls.f_6_name_last,
     f_6_name_first: controls.f_6_name_first,
-    f_6_name_patronymic: controls.f_6_name_patronymic
+    f_6_patronymic: controls.f_6_patronymic
   },
   f_7_group: {
     f_7_1: controls.f_7_1,
@@ -437,6 +437,10 @@ export default {
     f_27_8: {
       main: controls.f_27_8,
     },
+  },
+  f_2829_group: {
+    f_28: controls.f_28,
+    f_29: controls.f_29,
   },
   f_30_group: {
     f_30_1: controls.f_30_1,

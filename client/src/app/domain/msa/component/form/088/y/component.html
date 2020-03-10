@@ -65,7 +65,7 @@
           <!--radio-->
           <div class="custom-control custom-radio form-item-xs" *ngFor="let controlName of objectKeys(groups.f_5_group)">
             <input type="radio" [id]=groups.f_5_group[controlName].main.id
-                   formControlName="f_5_group"
+                   formControlName="f_5"
                    [value]="groups.f_5_group[controlName].main.value"
                    class="custom-control-input" checked="">
             <label class="custom-control-label" [for]=groups.f_5_group[controlName].main.id>
@@ -147,7 +147,7 @@
       <!--radio-->
       <div class="custom-control custom-radio form-item-xs" *ngFor="let controlName of objectKeys(groups.f_9_group)">
         <input type="radio" [id]=groups.f_9_group[controlName].id class="custom-control-input" checked=""
-               formControlName="f_9_group"
+               formControlName="f_9"
                [value]="groups.f_9_group[controlName].value">
         <label class="custom-control-label" [for]=groups.f_9_group[controlName].id>
           {{groups.f_9_group[controlName].label}}
@@ -161,7 +161,7 @@
       <!--radio-->
       <div class="custom-control custom-radio form-item-xs" *ngFor="let controlName of objectKeys(groups.f_10_group)">
         <input type="radio" [id]=groups.f_10_group[controlName].id class="custom-control-input" checked=""
-               formControlName="f_10_group"
+               formControlName="f_10"
                [value]="groups.f_10_group[controlName].value">
         <label class="custom-control-label" [for]=groups.f_10_group[controlName].id>
           {{groups.f_10_group[controlName].label}}
@@ -223,7 +223,7 @@
       <!--radio-->
       <div class="custom-control custom-radio form-item-xs" *ngFor="let controlName of objectKeys(groups.f_13_group)">
         <input type="radio" [id]=groups.f_13_group[controlName].main.id
-               formControlName="f_13_group"
+               formControlName="f_13"
                [value]="groups.f_13_group[controlName].main.value"
                class="custom-control-input" checked="">
         <label class="custom-control-label" [for]=groups.f_13_group[controlName].main.id>
@@ -493,7 +493,10 @@
           </label>
           <div *ngIf="groups.f_20_group[controlName].main.type === 'entry'">
             <entry-wrapper  [payload]="payloadFromServer[controlName]"
-                            [component]="groups.f_20_group[controlName].main.component"></entry-wrapper>
+                            [component]="groups.f_20_group[controlName].main.component"
+                            (emitterData)="setDataFromEntryComponent($event)"
+                            (emitterInstance)="getInstanceEntryComponent($event)"
+            ></entry-wrapper>
           </div>
           <div *ngIf="groups.f_20_group[controlName].childs">
             <div class="form-item-sm" *ngFor="let controlChL1Name of objectKeys(groups.f_20_group[controlName].childs)">
@@ -625,13 +628,13 @@
             <label for="f26a1">
               № программы:
             </label>
-            <input type="text" class="form-control" id="f26a1" placeholder="">
+            <input type="text" class="form-control" id="f26a1" placeholder="" formControlName="f_26_programm_number">
           </div>
           <div class="col-4">
             <label for="f26a2">
               № протокола:
             </label>
-            <input type="text" class="form-control" id="f26a2" placeholder="">
+            <input type="text" class="form-control" id="f26a2" placeholder="" formControlName="f_26_protol_number">
           </div>
         </div>
       </div>
@@ -693,13 +696,23 @@
             <label for="f28">
               28.Состояние здоровья гражданина при направлении на медико-социальную экспертизу
             </label>
-            <textarea class="form-control" rows="12" id="f28"></textarea>
+            <textarea class="form-control" rows="12" id="f28" formControlName="f_28"></textarea>
+            <span *ngFor="let validatorName of objectKeys(groups.f_2829_group.f_28.validators)">
+              <small class="message error" *ngIf="groups.f_2829_group.f_28.errors[validatorName]">
+                {{groups.f_2829_group.f_28.validators[validatorName].errorText}}
+              </small>
+            </span>
           </div>
           <div class="col-12">
             <label for="f29">
               29. Сведения о медицинских обследованиях, необходимых для получения клинико- функциональных данных в зависимости от заболевания при проведении медико- социальной экспертизы:
             </label>
-            <textarea class="form-control" rows="12" id="f29"></textarea>
+            <textarea class="form-control" rows="12" id="f29" formControlName="f_29"></textarea>
+            <span *ngFor="let validatorName of objectKeys(groups.f_2829_group.f_29.validators)">
+              <small class="message error" *ngIf="groups.f_2829_group.f_29.errors[validatorName]">
+                {{groups.f_2829_group.f_29.validators[validatorName].errorText}}
+              </small>
+            </span>
           </div>
         </div>
       </div>
@@ -731,6 +744,7 @@
           {{groups.f_3133_group[controlName].main.label}}
         </label>
         <!--radio-->
+        {{controlName}}
         <div class="custom-control custom-radio form-item-xs" *ngFor="let controlChL1Name of objectKeys(groups.f_3133_group[controlName].childs)">
           <input type="radio" [id]=groups.f_3133_group[controlName].childs[controlChL1Name].id
                  [formControlName]="controlName"
@@ -749,7 +763,10 @@
           </label>
           <div *ngIf="groups.f_3437_group[controlName].type === 'entry'">
             <entry-wrapper  [payload]="payloadFromServer[controlName]"
-                            [component]="groups.f_3437_group[controlName].component"></entry-wrapper>
+                            [component]="groups.f_3437_group[controlName].component"
+                            (emitterData)="setDataFromEntryComponent($event)"
+                            (emitterInstance)="getInstanceEntryComponent($event)"
+            ></entry-wrapper>
           </div>
         </div>
       </div>

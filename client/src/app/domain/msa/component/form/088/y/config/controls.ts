@@ -43,14 +43,14 @@ export default {
     id: 'f4',
     validators: {
       pattern: {
-        body: Validators.pattern('[0-9 ]*'),
+        body: Validators.pattern('[0-9 w/+]*'),
         errorText: 'Дата указана некорретно'
       }
     },
     errors: {}
   },
 
-  f_5_group: {
+  f_5: {
     validators: {
     },
     errors: {},
@@ -59,50 +59,43 @@ export default {
     label: '5.1 установление группы инвалидности',
     id: 'f51',
     exclude: true,
-    name: 'f_5_group',
-    value: '1'
+    value: 1
   },
   f_5_2: {
     label: '5.2 установление категории «ребенок-инвалид»',
     id: 'f52',
     exclude: true,
-    name: 'f_5_group',
-    value: '2'
+    value: 2
   },
   f_5_3: {
     label: '5.3 установление причины инвалидности',
     id: 'f53',
     exclude: true,
-    name: 'f_5_group',
-    value: '3'
+    value: 3
   },
   f_5_4: {
     label: '5.4 установление времени наступления инвалидности',
     id: 'f54',
     exclude: true,
-    name: 'f_5_group',
-    value: '4'
+    value: 4
   },
   f_5_5: {
     label: '5.5 установление установление срока инвалидности',
     id: 'f55',
     exclude: true,
-    name: 'f_5_group',
-    value: '5'
+    value: 5
   },
   f_5_6: {
     label: '5.6 определение степени утраты профессиональной трудоспособности в процентах',
     id: 'f56',
     exclude: true,
-    name: 'f_5_group',
-    value: '6'
+    value: 6
   },
   f_5_7: {
     label: '5.7 определение стойкой утраты трудоспособности сотрудника органа внутренних дел Российской Федерации',
     id: 'f57',
     exclude: true,
-    name: 'f_5_group',
-    value: '7'
+    value: 7
   },
   f_5_8: {
     label: '5.8 определение нуждаемости по состоянию здоровья в постоянном постороннем уходе (помощи, надзоре) отца, матери, жены, родного брата, родной сестры,\n' +
@@ -113,22 +106,19 @@ export default {
       'проходящего военную службу по контракту).',
     id: 'f58',
     exclude: true,
-    name: 'f_5_group',
-    value: '8'
+    value: 8
   },
   f_5_9: {
     label: '5.9. определение причины смерти инвалида, а также лица, пострадавшего в результате несчастного случая на производстве, профессионального заболевания, катастрофы на Чернобыльской АЭС и других радиационных и техногенных катастроф либо в результате ранения, контузии, увечья или заболевания, полученных в период прохождения военной службы, в случаях, когда законодательством Российской Федерации предусматривается предоставление семье умершего мер социальной поддержки',
     id: 'f59',
     exclude: true,
-    name: 'f_5_group',
-    value: '9'
+    value: 9
   },
   f_5_10: {
     label: '5.10 разработка индивидуальной программы реабилитации или абилитации инвалида (ребенка-инвалида)',
     id: 'f510',
     exclude: true,
-    name: 'f_5_group',
-    value: '10'
+    value: 10
   },
   f_5_11: {
     label: '5.11 разработка программы\n' +
@@ -138,29 +128,25 @@ export default {
       'производстве професссионального заболевания',
     id: 'f511',
     exclude: true,
-    name: 'f_5_group',
-    value: '11'
+    value: 11
   },
   f_5_12: {
     label: '5.12 выдача дубликата справки, подтверждающей факт установления инвалидности, степени утраты профессиональной трудоспособности в процентах',
     id: 'f512',
     exclude: true,
-    name: 'f_5_group',
-    value: '12'
+    value: 12
   },
   f_5_13: {
     label: '5.13 выдача новой справки, подтверждающей факт установления инвалидности, в случае изменения фамилии, имени, отчества, даты рождения гражданина',
     id: 'f513',
     exclude: true,
-    name: 'f_5_group',
-    value: '13'
+    value: 13
   },
   f_5_14: {
     label: '5.14 иные цели, установленные законодательством Российской Федерации (указать)',
     id: 'f514',
     exclude: true,
-    name: 'f_5_group',
-    value: '14'
+    value: 14
   },
   f_5_14_text: {
     validators: {
@@ -204,7 +190,7 @@ export default {
     },
     errors: {},
   },
-  f_6_name_patronymic: {
+  f_6_patronymic: {
     label: '6.3 Отчество',
     id: 'f63',
     validators: {
@@ -254,16 +240,16 @@ export default {
     label: '8.1 мужской',
     id: 'f81',
     exclude: true,
-    value: '1'
+    value: 1
   },
   f_8_2: {
     label: '8.2 женский',
     id: 'f82',
     exclude: true,
-    value: '2'
+    value: 2
   },
 
-  f_9_group: {
+  f_9: {
     validators: {
     },
     errors: {}
@@ -272,22 +258,22 @@ export default {
     label: '9.1 гражданин Российской Федерации',
     id: 'f91',
     exclude: true,
-    value: '1'
+    value: 1
   },
   f_9_2: {
     label: '9.2 гражданин иностранного государства, находящийся на территории Российской Федерации',
     id: 'f92',
     exclude: true,
-    value: '2'
+    value: 2
   },
   f_9_3: {
     label: '9.3 лицо без гражданства, находящееся на территории Российской Федерации',
     id: 'f93',
     exclude: true,
-    value: '3'
+    value: 3
   },
 
-  f_10_group: {
+  f_10: {
     validators: {
     },
     errors: {}
@@ -296,14 +282,14 @@ export default {
     label: '10.1 гражданин, состоящий на воинском учете',
     id: 'f101',
     exclude: true,
-    value: '1'
+    value: 1
   },
   f_10_2: {
     label: '10.2 гражданин, не состоящий на воинском учете, но обязанный состоять\n' +
       '  на воинском учете',
     id: 'f102',
     exclude: true,
-    value: '2'
+    value: 2
   },
 
   f_11_1: {
@@ -362,13 +348,13 @@ export default {
     label: '11.5.1 городское поселение',
     id: 'f1151',
     exclude: true,
-    value: '1'
+    value: 1
   },
   f_11_5_2: {
     label: '11.5.2 сельское поселение',
     id: 'f1152',
     exclude: true,
-    value: '2'
+    value: 2
   },
   f_11_6: {
     label: '11.6 наименование населенного пункта',
@@ -437,7 +423,7 @@ export default {
     value: false
   },
 
-  f_13_group: {
+  f_13: {
     validators: {
     },
     errors: {}
@@ -1106,6 +1092,7 @@ export default {
     label: '19.4.17 формулировки причин инвалидности, установленные в соответствии с законодательством, действовавшим на момент установления инвалидности (указать)',
     id: 'f19417',
     exclude: true,
+    value: 17
   },
   f_19_4_17_text: {
     validators: {
@@ -1521,6 +1508,24 @@ export default {
     errors: {}
   },
 
+  f_26_programm_number: {
+    validators: {
+      pattern: {
+        body: Validators.pattern('[0-9 ]*'),
+        errorText: 'Поле заполнено некорретно'
+      }
+    },
+    errors: {}
+  },
+  f_26_protol_number: {
+    validators: {
+      pattern: {
+        body: Validators.pattern('[0-9 ]*'),
+        errorText: 'Поле заполнено некорретно'
+      }
+    },
+    errors: {}
+  },
   f_26: {
     validators: {
     },
@@ -1698,6 +1703,25 @@ export default {
       pattern: {
         body: Validators.pattern('[a-z ]*'),
         errorText: 'Поле заполнено некорретно'
+      }
+    },
+    errors: {}
+  },
+
+  f_28: {
+    validators: {
+      pattern: {
+        body: Validators.pattern('[а-яА-Я0-9 ]*'),
+        errorText: 'Состояние здоровья указано некорретно'
+      }
+    },
+    errors: {}
+  },
+  f_29: {
+    validators: {
+      pattern: {
+        body: Validators.pattern('[а-яА-Я0-9 ]*'),
+        errorText: 'Сведения указаны некорретно'
       }
     },
     errors: {}

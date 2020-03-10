@@ -76,6 +76,8 @@ export class Form088yComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.buildFormControls();
 
+    console.log(this.payloadFromServer);
+
     this.formInitStatus = 'ready';
   }
 

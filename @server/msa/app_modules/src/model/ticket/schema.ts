@@ -46,22 +46,22 @@ export default <Iterable>{
     f_15:                                'BIGINT',
 
     f_16_1:                              'VARCHAR(20)',
-    f_16_2_series:                       'SMALLINT',
-    f_16_2_number:                       'MEDIUMINT',
+    f_16_2_1:                       'SMALLINT',
+    f_16_2_2:                       'MEDIUMINT',
     f_16_3:                              'VARCHAR(200)',
-    f_16_4:                              'VARCHAR(20)',
+    f_16_4:                              'DATE',
 
     f_17_1_1:                             'VARCHAR(20)',
-    f_17_1_2_series:                      'SMALLINT',
-    f_17_1_2_number:                      'MEDIUMINT',
+    f_17_1_2_1:                      'SMALLINT',
+    f_17_1_2_2:                      'MEDIUMINT',
     f_17_1_3:                             'VARCHAR(200)',
-    f_17_1_4:                             'VARCHAR(20)',
+    f_17_1_4:                             'DATE',
 
     f_17_2_1:                             'VARCHAR(20)',
-    f_17_2_2_series:                      'SMALLINT',
-    f_17_2_2_number:                      'MEDIUMINT',
+    f_17_2_2_1:                      'SMALLINT',
+    f_17_2_2_2:                      'MEDIUMINT',
     f_17_2_3:                             'VARCHAR(200)',
-    f_17_2_4:                             'VARCHAR(20)',
+    f_17_2_4:                             'DATE',
 
     f_17_3_1:                             'VARCHAR(200)',
     f_17_3_2:                             'VARCHAR(100)',
@@ -74,12 +74,12 @@ export default <Iterable>{
     f_18:                               'TINYINT',     // msa_level
 
     f_19_1:                              'TINYINT',
-    f_19_2:                              'VARCHAR(20)',
+    f_19_2:                              'DATE',
     f_19_3:                              'TINYINT',
     f_19_4:                              'TINYINT',
     f_19_5:                              'TINYINT',
     f_19_6:                              'TINYINT',
-    f_19_7:                              'VARCHAR(20)',
+    f_19_7:                              'DATE',
     f_19_8:                              'TINYINT',
 
     f_20_1:                                'VARCHAR(200)',
@@ -108,8 +108,9 @@ export default <Iterable>{
     f_26_programm_number:               'VARCHAR(50)',
     f_26_protol_number:                 'VARCHAR(50)',
 
-    f_26_1:                             'BOOLEAN',
-    f_26_2:                             'BOOLEAN',
+    f_26:                                 'TINYINT',
+    f_26_1_i:                             'TINYINT',
+    f_26_2_i:                             'TINYINT',
 
     f_27_1:                              'DECIMAL(5,2)',
     f_27_2:                              'DECIMAL(5,2)',
@@ -131,9 +132,9 @@ export default <Iterable>{
     f_30_5:                              'VARCHAR(100)',
     f_30_6:                              'TEXT',
 
-    f_31:                               'VARCHAR(20)',
-    f_32:                               'VARCHAR(20)',
-    f_33:                               'VARCHAR(20)',
+    f_31:                               'TINYINT',
+    f_32:                               'TINYINT',
+    f_33:                               'TINYINT',
     f_34:                               'TEXT',
     f_35:                               'TEXT',
     f_36:                               'TEXT',
