@@ -25,7 +25,7 @@ export class PageServiceMsaTicketJournalComponent implements OnDestroy {
   }
 
   ngOnDestroy() {
-    // console.log('destroy PageServiceMsaTicketJournalComponent')
+
   }
 
   async putData() {
@@ -35,8 +35,6 @@ export class PageServiceMsaTicketJournalComponent implements OnDestroy {
   }
 
   async loadData() {
-    // console.log('loadData...');
-
     const keychain = this.authService.getKeyChain();
 
     const token    = keychain.tokenAccessList !== null ? keychain.tokenAccessList.msa : '';
@@ -59,7 +57,7 @@ export class PageServiceMsaTicketJournalComponent implements OnDestroy {
           this.dataIsFetched = true;
         },
         rej => {
-          console.log("rej: ", rej);
+
         }
       );
   }
@@ -84,8 +82,6 @@ export class PageServiceMsaTicketJournalComponent implements OnDestroy {
     ).toPromise()
       .then(
         res => {
-          console.log("res: ", res);
-
           const id       = res.id_item;
           const storage  = this.storageData.ticketJournal;
 
@@ -95,7 +91,7 @@ export class PageServiceMsaTicketJournalComponent implements OnDestroy {
 
         },
         rej => {
-          console.log("rej: ", rej);
+
         }
       );
   }

@@ -10,7 +10,6 @@ export class EventService {
   }
 
   updateTicketJournalItem() {
-    console.log('updateTicketJournalItem..');
     this.skipClicked.next(true);
   }
 }

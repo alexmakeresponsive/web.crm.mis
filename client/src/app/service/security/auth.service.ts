@@ -43,8 +43,6 @@ export class AuthService  {
 
   refreshTokenListBackground() {
 
-    console.log('start refreshTokenListBackground...');
-
     if (this.user.status.auth === 'not-authorized') {
       return false;
     }
@@ -61,7 +59,6 @@ export class AuthService  {
         retry(0),
         catchError(this.handleError.bind(this))
       ).subscribe(r => {
-        console.log('refreshTokenListBackground: ', r);
 
         this.keychain.tokenAccessList = r.tokenAccessList;
         this.keychain.tokenRefresh    = r.tokenRefresh;
@@ -79,7 +76,6 @@ export class AuthService  {
       errorMessage = `Error: ${error.error.message}`;
     } else {
       // server-side error
-      console.log(error);
     }
     return throwError(errorMessage);
   }
@@ -91,7 +87,6 @@ export class AuthService  {
 
     this.user.status.auth = 'authorized';
 
-    // console.log('r: ', r);
     this.authorizationService.RoleList = r.roleList;
 
     this.keychain.tokenAccessList = r.tokenAccessList;
@@ -128,7 +123,6 @@ export class AuthService  {
       retry(0),
       catchError(this.handleError.bind(this))
     ).subscribe(r => {
-      console.log('logout');
       this.router.navigateByUrl('/login');
     });
   }
@@ -136,16 +130,11 @@ export class AuthService  {
   isAuth() {
     const status = this.user.status.auth;
 
-    // console.log(status);
-
     if (status === 'authorized') {
       return true;
     }
 
     return new Promise((res, rej) => {
-
-      // console.log('fetch status...');
-
       this.http.get<any>(
           'http://0.0.0.0:8202/auth/check',
           {}
@@ -154,13 +143,9 @@ export class AuthService  {
           catchError(this.handleError.bind(this))
         ).subscribe(r => {
           if(r.status === 'authorized') {
-            // console.log('user is authorized');
-
             this.user.status.auth = 'authorized';
             res(true);
           } else {
-            // console.log('user is not-authorized');
-
             this.user.status.auth = 'not-authorized';
             this.router.navigateByUrl('login');
             res(false);
@@ -168,18 +153,6 @@ export class AuthService  {
         });
     });
   }
-
-  // async isAuth2() {
-  //   this.async2data = await this.http.get<CheckResponse>(
-  //     'http://0.0.0.0:8202/auth/check',
-  //     {}
-  //   ).toPromise();
-  //
-  //   // console.log(this.async2data);
-  //   console.log('isAuth2');
-  //
-  //   return false;
-  // }
 
   async isAuth3() {
     try {
@@ -189,7 +162,6 @@ export class AuthService  {
       ).toPromise()
         .then(
           (r:any) => {
-            // console.log("res: ", res);
             this.async2data = r;
             this.async2dataIsFetched = true;
 
@@ -199,16 +171,12 @@ export class AuthService  {
             this.keychain.tokenRefresh    = r.tokenRefresh;
           },
           rej => {
-            // console.log("rej: ", rej);
             this.async2dataIsFetched = false;
           }
         );
     } catch (e) {
-      console.log(e);
+
     }
-
-
-    // console.log('isAuth2');
 
     return false;
   }

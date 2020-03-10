@@ -26,15 +26,6 @@ export class AuthGuard implements CanActivate {
     // return this.authService.isAuth2();
   }
 
-  // async canActivateWorker() {
-  //
-  //   const data = await this.authService.isAuth();
-  //
-  //   console.log(data);
-  //
-  //   return data;
-  // }
-
   async canActivateWorker2() {
 
     await this.authService.isAuth3();
@@ -44,7 +35,7 @@ export class AuthGuard implements CanActivate {
       return false;
     }
 
-    let async2data =  this.authService.async2data;    // console.log(async2data);
+    let async2data =  this.authService.async2data;
 
     if(async2data.status === 'authorized') {
       return true;

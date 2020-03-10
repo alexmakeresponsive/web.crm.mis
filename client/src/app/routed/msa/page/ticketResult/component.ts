@@ -33,8 +33,6 @@ export class PageServiceMsaTicketResultComponent {
   }
 
   async loadData() {
-    // console.log('loadData...');
-
     const keychain = this.authService.getKeyChain();
 
     const token    = keychain.tokenAccessList !== null ? keychain.tokenAccessList.msa : '';
@@ -57,7 +55,7 @@ export class PageServiceMsaTicketResultComponent {
           this.dataIsFetched = true;
         },
         rej => {
-          console.log("rej: ", rej);
+
         }
       );
   }
@@ -82,8 +80,6 @@ export class PageServiceMsaTicketResultComponent {
     ).toPromise()
       .then(
         res => {
-          console.log("res: ", res);
-
           const id       = res.id_item;
           const storage  = this.storageData.ticketResult;
 
@@ -93,7 +89,7 @@ export class PageServiceMsaTicketResultComponent {
 
         },
         rej => {
-          console.log("rej: ", rej);
+
         }
       );
   }

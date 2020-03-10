@@ -29,7 +29,6 @@ export class PageServiceMsaTicketJournalItemComponent {
   }
 
   ngOnInit() {
-    // console.log('init!');
     this.eventService.skipClicked.subscribe( value => {
       if(value) {
         this.refreshData();
@@ -57,8 +56,6 @@ export class PageServiceMsaTicketJournalItemComponent {
 
       this.dataIsFetched = true;
     });
-
-    console.log(this.data);
   }
 
   async refreshData() {
@@ -100,7 +97,7 @@ export class PageServiceMsaTicketJournalItemComponent {
           this.storageData.ticketJournal = res.data;
         },
         rej => {
-          console.log("rej: ", rej);
+
         }
       );
   }

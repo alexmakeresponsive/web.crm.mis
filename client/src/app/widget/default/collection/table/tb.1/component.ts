@@ -32,7 +32,6 @@ export class TableTb1Component implements OnInit {
   }
 
   removeTd(id) {
-    console.log('tb.1, id delete: ', id);
     delete this.dataClone[id];
     this.dataTemplate = Object.values(this.dataClone);
 
@@ -57,7 +56,6 @@ export class TableTb1Component implements OnInit {
   }
 
   addTd() {
-    console.log('addTd');
     let idMax;
     let idMaxNext;
 

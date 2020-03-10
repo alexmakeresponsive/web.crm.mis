@@ -26,19 +26,13 @@ export class PageServiceMsaTicketResultItemComponent {
   }
 
   ngOnInit() {
-    console.log('init!');
-
     this.putData();
   }
 
   async putData() {
     if (this.storageData.ticketResult.length === 0) {
-      console.log('putData, load data');
       await this.loadData();
     }
-
-    console.log(this.storageData.ticketResult);
-      console.log('putData, go');
 
     this.route.paramMap.subscribe(params => {
       this.dataIsFetched = true;
@@ -48,8 +42,6 @@ export class PageServiceMsaTicketResultItemComponent {
 
 
   async loadData() {
-    // console.log('loadData...');
-
     const keychain = this.authService.getKeyChain();
 
     const token    = keychain.tokenAccessList !== null ? keychain.tokenAccessList.msa : '';
@@ -67,9 +59,6 @@ export class PageServiceMsaTicketResultItemComponent {
     ).toPromise()
       .then(
         res => {
-          // console.log("res: ", res.data);
-
-          console.log('data loaded');
           this.storageData.ticketResult = res.data;
 
           // this.route.paramMap.subscribe(params => {
@@ -78,7 +67,7 @@ export class PageServiceMsaTicketResultItemComponent {
           // });
         },
         rej => {
-          console.log("rej: ", rej);
+
         }
       );
   }

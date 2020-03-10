@@ -60,8 +60,6 @@ export class InputI1Component {
         filter((status: string) => {
           this.parameters.errors = this.formInputI1.get(this.parameters.formControlName).errors;
 
-          // console.log(this.parameters.errors);
-
           if (!this.parameters.errors) {
                this.parameters.errors = {}
           }

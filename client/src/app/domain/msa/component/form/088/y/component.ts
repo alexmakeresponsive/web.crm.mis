@@ -76,16 +76,11 @@ export class Form088yComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.buildFormControls();
 
-    // console.log('formInitStatus: ready');
     this.formInitStatus = 'ready';
-
-    // console.log(this.formControls);
   }
 
   buildFormControls() {
     this.formControls = Object.assign({}, this.form.controls);
-
-    // console.log(this.form.controls);
 
     for (let key of Object.keys(this.entryComponentInstanceCollection)) {
 
@@ -114,9 +109,6 @@ export class Form088yComponent implements OnInit, AfterViewInit {
         this.formControls[key] = component.form.controls[key];
       }
     }
-
-    // console.log(this.entryComponentInstanceCollection);
-    // console.log(this.formControls);
   }
 
   subscribeToFieldStatusChanges() {
@@ -197,7 +189,6 @@ export class Form088yComponent implements OnInit, AfterViewInit {
       //                                        controlName_levelValue } }
       //
       if(this.formControls[key].hasOwnProperty('multiple')) {
-        // console.log('getLabelForRequiredFields: multiple detected');
         for (let id of Object.keys(this.formControls[key].list)) {
           for (let controlName of Object.keys(this.formControls[key].list[id])) {
             if (this.formControls[key].list[id][controlName].errors === null) {
@@ -470,10 +461,6 @@ export class Form088yComponent implements OnInit, AfterViewInit {
     this.hideMessage();
     this.getFormData();
 
-
-    console.log(this.urlSubmit);
-    console.log('Form valid!!');
-
     this.formMessageType = 'info';
     this.formMessage.nativeElement.innerHTML ='Форма отправляется';
     this.renderer.setStyle(this.formMessage.nativeElement, 'display', 'block');
@@ -508,7 +495,6 @@ export class Form088yComponent implements OnInit, AfterViewInit {
     ).toPromise()
       .then(
         res => {
-          console.log(res);
 
           if (!this.payloadFromServer.id) {
             this.form.reset();
@@ -530,7 +516,7 @@ export class Form088yComponent implements OnInit, AfterViewInit {
           }, 3000);
         },
         rej => {
-          console.log("rej: ", rej);
+
         }
       );
   }
@@ -561,8 +547,6 @@ export class Form088yComponent implements OnInit, AfterViewInit {
   // fire beetwen ngOnInit and ngAfterViewInit
   // and when add new entry component
   getInstanceEntryComponent(instance) {
-    // console.log(instance);
-    // console.log('getInstanceEntryComponent..');
 
     let key = instance.parameters.formControlName;
 
@@ -570,13 +554,10 @@ export class Form088yComponent implements OnInit, AfterViewInit {
         key = instance.parameters.formControlName + '_' + instance.payload.id;
     }
 
-    // console.log(key);
-
     this.entryComponentInstanceCollection[key] = instance;
 
 
     if (this.formInitStatus === 'ready') {
-      // console.log('getInstanceEntryComponent: buildFormControls...');
       this.buildFormControls();
     }
   }
@@ -616,11 +597,9 @@ export class Form088yComponent implements OnInit, AfterViewInit {
       delete this.entryComponentInstanceCollection[key];
     }
 
-    console.log('removeAllEntryComponentInstance');
   }
 
   addEntryComponentInstance(res) {
     const key = res.formControlName + '_' + res.payload.id;
-    // console.log(key);
   }
 }

@@ -64,10 +64,6 @@ export class TextareaT1Component {
         filter((status: string) => {
           this.parameters.errors = this.form.get(this.parameters.formControlName).errors;
 
-          // console.log(this.parameters.errors);
-
-          console.log(this.form.value);
-
           if (!this.parameters.errors) {
             this.parameters.errors = {}
           }
