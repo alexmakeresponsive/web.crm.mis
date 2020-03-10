@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { AuthService } from "../../../../service/security/auth.service";
-import { StorageData } from "../../../../service/storage/storage.data";
-import MsaResponse from "../../../../domain/msa/model/ticket/Response";
+import { AuthService } from "@SecurityServiceModule/auth.service";
+import { StorageData } from "@StorageServiceModule/storage.data";
+import MsaResponse from "@MsaDomainModule/model/ticket/Response";
 
 import tableHeaderData from './config/header';
-import MsaResponseRemove from "../../../../domain/msa/model/ticket/ResponseRemove";
+import MsaResponseRemove from "@MsaDomainModule/model/ticket/ResponseRemove";
 
 @Component({
   selector: 'page-action-msa-result',

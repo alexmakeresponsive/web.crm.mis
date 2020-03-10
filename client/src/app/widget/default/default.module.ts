@@ -2,7 +2,7 @@ import { NgModule }                     from '@angular/core';
 import { CommonModule }                 from '@angular/common';
 
 import {TableTb1Component}              from "./collection/table/tb.1/component";
-import {EntryModule}                    from "../entry/entry.module";
+import {EntryModule}                    from "@EntryWidgetModule/entry.module";
 
 @NgModule({
   declarations: [

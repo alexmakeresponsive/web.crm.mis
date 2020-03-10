@@ -7,11 +7,12 @@ import { filter } from 'rxjs/operators';
 import controls from './config/controls';
 import groups   from './config/groups';
 
-import MsaResponse from "../../../../model/ticket/Response";
-import {AuthService} from "../../../../../../service/security/auth.service";
-import {EventService} from "../../../../../../service/event/event.service";
+import MsaResponse    from "@MsaDomainModule/model/ticket/Response";
 
-import {EntryWrapper} from "../../../../../../widget/entry/collection/wrapper";
+import {AuthService}  from "@SecurityServiceModule/auth.service";
+import {EventService} from "@EventServiceModule/event.service";
+
+import {EntryWrapper} from "@EntryWidgetModule/collection/wrapper";
 
 
 @Component({

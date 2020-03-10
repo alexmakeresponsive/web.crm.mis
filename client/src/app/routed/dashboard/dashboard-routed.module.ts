@@ -3,9 +3,9 @@ import { CommonModule }                         from '@angular/common';
 
 import {NgbModule}                              from '@ng-bootstrap/ng-bootstrap';
 
-import {DashboardModule}                        from "../../domain/dashboard/dashboard.module";
+import {DashboardModule}                        from "@DashboardDomainModule/dashboard.module";
 
-import {AppRoutingModule}                       from "../../app-routing.module";
+import {AppRoutingModule}                       from "@AppModule/app-routing.module";
 
 import {PageDashboardAboutComponent}            from "./page/about/component";
 import {PageDashboardErrorComponent}            from "./page/error/component";

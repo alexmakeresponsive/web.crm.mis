@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import {StorageData} from "../../../../service/storage/storage.data";
-import {AuthService} from "../../../../service/security/auth.service";
-import {EventService} from "../../../../service/event/event.service";
-import MsaResponse from "../../../../domain/msa/model/ticket/Response";
+import {StorageData} from "@StorageServiceModule/storage.data";
+import {AuthService} from "@SecurityServiceModule/auth.service";
+import {EventService} from "@EventServiceModule/event.service";
+import MsaResponse from "@MsaDomainModule/model/ticket/Response";
 
 @Component({
   selector: 'page-service-msa-journal-item',

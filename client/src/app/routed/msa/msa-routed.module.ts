@@ -3,7 +3,7 @@ import { CommonModule }                         from '@angular/common';
 
 import {NgbModule}                              from '@ng-bootstrap/ng-bootstrap';
 
-import {AppRoutingModule}                       from "../../app-routing.module";
+import {AppRoutingModule}                       from "@AppModule/app-routing.module";
 
 import {PageServiceMsaRemdJournalComponent}         from "./page/remdJournal/component";
 import {PageServiceMsaTicketComponent}              from "./page/ticket/component";
@@ -14,7 +14,7 @@ import {PageServiceMsaTicketResultItemComponent}    from "./page/ticketResultIte
 
 import {PartNavMsaComponent}                        from "./part/nav/component";
 import {PartHeaderMsaComponent}                     from "./part/header/component";
-import {MsaModule} from "../../domain/msa/msa.module";
+import {MsaModule}                                  from "@MsaDomainModule/msa.module";
 
 
 @NgModule({

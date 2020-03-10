@@ -1,11 +1,11 @@
 import {Validators} from '@angular/forms';
 
-import {EntryComponentConstructor}          from "../../../../../../../widget/entry/collection/constructor";
-import {SelectS1Component}                  from "../../../../../../../widget/entry/collection/select/s.1/component";
-import {TextareaT1Component}                from "../../../../../../../widget/entry/collection/textarea/t.1/component";
-import {InputI1Component}                   from "../../../../../../../widget/entry/collection/input/i.1/component";
-import {InputI2Component}                   from "../../../../../../../widget/entry/collection/input/i.2/component";
-import {TableRowTbR1EntryComponent}         from "../../../../../../../widget/entry/collection/table/tr.1/component";
+import {EntryComponentConstructor}          from "@EntryWidgetModule/collection/constructor";
+import {SelectS1Component}                  from "@EntryWidgetModule/collection/select/s.1/component";
+import {TextareaT1Component}                from "@EntryWidgetModule/collection/textarea/t.1/component";
+import {InputI1Component}                   from "@EntryWidgetModule/collection/input/i.1/component";
+import {InputI2Component}                   from "@EntryWidgetModule/collection/input/i.2/component";
+import {TableRowTbR1EntryComponent}         from "@EntryWidgetModule/collection/table/tr.1/component";
 
 export default {
   f_1: {

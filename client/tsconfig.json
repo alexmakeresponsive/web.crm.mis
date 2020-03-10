@@ -1,7 +1,20 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "./src",
+    "paths": {
+      "@AppModule/*": 			  ["app/*"],
+      "@DashboardDomainModule/*": ["app/domain/dashboard/*"],
+      "@MsaDomainModule/*":       ["app/domain/msa/*"],
+
+      "@DefaultWidgetModule/*":   ["app/widget/default/*"],
+      "@EntryWidgetModule/*":     ["app/widget/entry/*"],
+
+      "@SecurityServiceModule/*": ["app/service/security/*"],
+      "@EventServiceModule/*":    ["app/service/event/*"],
+      "@StorageServiceModule/*":  ["app/service/storage/*"],
+      "@HttpServiceModule/*":     ["app/service/http/*"]
+    },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
