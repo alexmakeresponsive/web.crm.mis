@@ -339,7 +339,10 @@
           </div>
           <div *ngIf="groups.f_16_group[controlName].main.type === 'entry'">
             <entry-wrapper  [payload]="payloadFromServer[controlName]"
-                            [component]="groups.f_16_group[controlName].main.component"></entry-wrapper>
+                            [component]="groups.f_16_group[controlName].main.component"
+                            (emitterData)="setDataFromEntryComponent($event)"
+                            (emitterInstance)="getInstanceEntryComponent($event)"
+            ></entry-wrapper>
           </div>
         </div>
       </div>
@@ -408,7 +411,10 @@
                   {{groups.f_17_group[controlName].childs[controlChL1Name].main.label}}
                 </label>
                 <entry-wrapper  [payload]="payloadFromServer[controlChL1Name]"
-                                [component]="groups.f_17_group[controlName].childs[controlChL1Name].main.component"></entry-wrapper>
+                                [component]="groups.f_17_group[controlName].childs[controlChL1Name].main.component"
+                                (emitterData)="setDataFromEntryComponent($event)"
+                                (emitterInstance)="getInstanceEntryComponent($event)"
+                ></entry-wrapper>
               </div>
             </div>
           </div>

@@ -577,10 +577,24 @@ export default {
     col: 6,
     entry: true,
     component: new EntryComponentConstructor(SelectS1Component, [
-      'Паспорт',
-      'Водительское удостоверение',
-      'Свидетельство о рождении',
-    ], {}),
+      {
+        text: 'Паспорт',
+        id: '1'
+      },
+      {
+        text: 'Водительское удостоверение',
+        id: '2'
+      },
+      {
+        text: 'Свидетельство о рождении',
+        id: '3'
+      }
+    ], {
+      formControlName: 'f_16_1',
+      validators: {
+      },
+      errors: {}
+    }),
     exclude: true,
     name: 'f_16_1',
   },
@@ -647,9 +661,20 @@ export default {
     col: 6,
     entry: true,
     component: new EntryComponentConstructor(SelectS1Component, [
-      'Паспорт',
-      'Доверенность',
-    ], {}),
+      {
+        id: 1,
+        text: 'Паспорт',
+      },
+      {
+        id: 2,
+        text: 'Доверенность',
+      }
+    ], {
+      formControlName: 'f_17_1_1',
+      validators: {
+      },
+      errors: {}
+    }),
     exclude: true,
     name: 'f_17_1',
   },
@@ -717,9 +742,20 @@ export default {
     col: 6,
     entry: true,
     component: new EntryComponentConstructor(SelectS1Component, [
-      'Свидетельство о рождении',
-      'Доверенность',
-    ], {}),
+      {
+        id: 1,
+        text: 'Свидетельство о рождении',
+      },
+      {
+        id: 2,
+        text: 'Доверенность',
+      }
+    ], {
+      formControlName: 'f_17_2_1',
+      validators: {
+      },
+      errors: {}
+    }),
     exclude: true,
     name: 'f_17_2_1',
   },

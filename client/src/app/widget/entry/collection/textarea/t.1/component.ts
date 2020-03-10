@@ -22,7 +22,7 @@ import { filter } from 'rxjs/operators';
               </div>
             `
 })
-export class TextareaT1Component {
+export class TextareaT1Component implements OnInit {
   @Input() payload;
   @Input() parameters;
   @Output() emitter:EventEmitter<any> = new EventEmitter();

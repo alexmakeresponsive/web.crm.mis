@@ -1,13 +1,24 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+
+import { filter } from 'rxjs/operators';
 
 @Component({
   templateUrl: './component.html'
 })
-export class SelectS1Component {
+export class SelectS1Component implements OnInit {
   @Input() payload: string;
+  @Input() parameters;
+
   @Input() data: string[];
 
-  formData = {component: 'SelectS1Component'};
+  @Output() emitter:EventEmitter<any> = new EventEmitter();
+
+  form:FormGroup;
+  index:number = 0;
+
+  objectKeys = Object.keys;
+
 
   private value:any = {};
   private _disabledV:string = '0';
@@ -23,11 +34,15 @@ export class SelectS1Component {
   }
 
   public selected(value:any):void {
-
+    this.form.patchValue({
+      [this.parameters.formControlName]: value.id
+    });
   }
 
   public removed(value:any):void {
-
+    this.form.patchValue({
+      [this.parameters.formControlName]: ''
+    });
   }
 
   public typed(value:any):void {
@@ -38,7 +53,41 @@ export class SelectS1Component {
     this.value = value;
   }
 
-  getFormValue() {
-    return {data: 'some select data'}
+  ngOnInit() {
+    this.form = this.createFormGroup();
+                this.subscribeToFieldStatusChanges();
+
+    if (this.payload) {
+      this.index = +this.payload - 1;
+    }
+  }
+
+  createFormGroup() {
+    const validators = [];
+
+    for (let validator of Object.values(this.parameters.validators)) {
+      validators.push(validator['body']);
+    }
+
+    let value = this.payload ? this.payload : '';
+
+    return new FormGroup({
+      [this.parameters.formControlName]: new FormControl(value, validators),
+    });
+  }
+
+  subscribeToFieldStatusChanges() {
+    this.form.get(this.parameters.formControlName).statusChanges
+      .pipe(
+        filter((status: string) => {
+          this.parameters.errors = this.form.get(this.parameters.formControlName).errors;
+
+          if (!this.parameters.errors) {
+            this.parameters.errors = {}
+          }
+
+          return false;
+        }))
+      .subscribe(() => {});
   }
 }

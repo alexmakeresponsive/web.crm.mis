@@ -1,11 +1,16 @@
-<ng-select [allowClear]="true"
-           [items]="data"
+<div [formGroup]="form">
+  <ng-select
+             [items]="data"
+             [active]="[data[index]]"
+             (data)="refreshValue($event)"
+             (selected)="selected($event)"
+             (removed)="removed($event)"
+             (typed)="typed($event)"
 
-           (data)="refreshValue($event)"
-           (selected)="selected($event)"
-           (removed)="removed($event)"
-           (typed)="typed($event)"
-
-           name="passport-type"
-           placeholder="Не выбран">
-</ng-select>
+             name=""
+             placeholder="Не выбран">
+  </ng-select>
+  <input type="hidden" name="passport-type"
+         [formControlName]="parameters.formControlName"
+  >
+</div>
