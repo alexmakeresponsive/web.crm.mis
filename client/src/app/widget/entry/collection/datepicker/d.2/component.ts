@@ -33,7 +33,10 @@ export class DatePickerD2Component implements OnInit {
 
   ngOnInit() {
     this.form = this.createFormGroup();
-    this.setDate();
+
+    if (this.payload) {
+      this.setDate();
+    }
   }
 
   createFormGroup() {
