@@ -139,28 +139,14 @@ export class Form088yComponent implements OnInit, AfterViewInit {
     for (let key of Object.keys(this.formControls)) {
       // if multiple
       if(this.formControls[key].hasOwnProperty('multiple')) {
-        for (let id of Object.keys(this.formControls[key].list)) {
-          for (let controlName of Object.keys(this.formControls[key].list[id])) {
-            if (this.formControls[key].list[id][controlName].errors === null) {
-              continue;
-            }
-
-            let resultId = +id + 1;
-            let formControlId = key + '_' + resultId;
-
-            let resultKey     = controlName + '_' + resultId;
-
-            if (this.formControls[key].list[id][controlName].errors !== null) {
-              for (let colName of Object.keys(this.entryComponentInstanceCollection[formControlId].parameters.body)) {
-                if (!this.entryComponentInstanceCollection[formControlId].parameters.body[colName].hasOwnProperty(controlName)) {
-                  continue;
-                }
-
-                result.push(this.entryComponentInstanceCollection[formControlId].parameters.body[colName][controlName].label);
-              }
-            }
-          }
-        }
+        result = [
+          ...result,
+          ...this.controls[key].iterator.label.default({
+            key:                              key,
+            list:                             this.formControls[key].list,
+            entryComponentInstanceCollection: this.entryComponentInstanceCollection
+          })
+        ];
         continue;
       }
       // if multiple
@@ -189,27 +175,14 @@ export class Form088yComponent implements OnInit, AfterViewInit {
       //                                        controlName_levelValue } }
       //
       if(this.formControls[key].hasOwnProperty('multiple')) {
-        for (let id of Object.keys(this.formControls[key].list)) {
-          for (let controlName of Object.keys(this.formControls[key].list[id])) {
-            if (this.formControls[key].list[id][controlName].errors === null) {
-              continue;
-            }
-
-            let resultId = +id + 1;
-            let formControlId = key + '_' + resultId;
-
-            let resultKey     = controlName + '_' + resultId;
-
-            if (this.formControls[key].list[id][controlName].errors.required) {
-              for (let colName of Object.keys(this.entryComponentInstanceCollection[formControlId].parameters.body)) {
-                if (!this.entryComponentInstanceCollection[formControlId].parameters.body[colName].hasOwnProperty(controlName)) {
-                  continue;
-                }
-                result[resultKey] = this.entryComponentInstanceCollection[formControlId].parameters.body[colName][controlName].label
-              }
-            }
-          }
-        }
+        result = {
+          ...result,
+          ...this.controls[key].iterator.label.require({
+            key:                              key,
+            list:                             this.formControls[key].list,
+            entryComponentInstanceCollection: this.entryComponentInstanceCollection
+          })
+        };
         continue;
       }
       // if multiple
@@ -283,25 +256,11 @@ export class Form088yComponent implements OnInit, AfterViewInit {
         // if multiple
         if(this.formControls[component.parameters.formControlName].hasOwnProperty('multiple')) {
 
-          let payloadId = component.payload.id;
-          let listCollection =  this.formControls[component.parameters.formControlName].list[+payloadId - 1];
-
-          let formControlId = component.parameters.formControlName + '_' + payloadId;
-
-          for (let controlName of Object.keys(listCollection)) {
-            if (listCollection[controlName].errors === null) {
-              continue;
-            }
-
-            if (listCollection[controlName].errors.hasOwnProperty('required')) {
-              for (let colName of Object.keys(this.entryComponentInstanceCollection[formControlId].parameters.body)) {
-                if (!this.entryComponentInstanceCollection[formControlId].parameters.body[colName].hasOwnProperty(controlName)) {
-                  continue;
-                }
-                  this.entryComponentInstanceCollection[formControlId].parameters.body[colName][controlName].errors[payloadId] = {required:true};
-              }
-            }
-          }
+          this.controls[component.parameters.formControlName].iterator.error.require({
+            component:                        component,
+            formControls:                     this.formControls,
+            entryComponentInstanceCollection: this.entryComponentInstanceCollection
+          });
           continue;
         }
         // if multiple

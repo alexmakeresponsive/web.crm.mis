@@ -10,6 +10,9 @@ import {TableRowTbR1EntryComponent}         from "@EntryWidgetModule/collection/
 import {DatePickerD1Component}              from "@EntryWidgetModule/collection/datepicker/d.1/component";
 import {DatePickerD2Component}              from "@EntryWidgetModule/collection/datepicker/d.2/component";
 
+import TableRowTr1LabelIterator                  from "@EntryWidgetModule/collection/table/tr.1/iterator/label";
+import TableRowTr1ErrorIterator                  from "@EntryWidgetModule/collection/table/tr.1/iterator/error";
+
 export default {
   f_1: {
     label: '1. Номер и дата протокола врачебной комиссии медицинской организации, содержащего решение о направлении\n' +
@@ -1469,7 +1472,6 @@ export default {
     type: 'entry',
     component: new EntryComponentConstructor(TableRowTbR1EntryComponent, {}, {
       multiple: true,
-      multipleType: 'tr.1',
       formControlName: 'f_25',
       body: {
         col_2: {
@@ -1522,6 +1524,10 @@ export default {
         }
       }
     }),
+    iterator: {
+      label: TableRowTr1LabelIterator,
+      error: TableRowTr1ErrorIterator
+    }
   },
   f_25_1: {
     validators: {
