@@ -7,17 +7,26 @@
       </td>
       <td width="80%">
         <div *ngFor="let dataItemCol2ItemName of objectKeys(parameters.body.col_2)" class="form-item-sm">
-          <input type="text" class="form-control"
-                 (keyup)="onKeyUp($event)"
-                 [formControlName]="dataItemCol2ItemName"
-          >
-          <span *ngFor="let validatorName of objectKeys(parameters.body.col_2[dataItemCol2ItemName].validators)">
-            <span *ngIf="parameters.body.col_2[dataItemCol2ItemName].errors[payload.id]">
-              <small class="message error" *ngIf="parameters.body.col_2[dataItemCol2ItemName].errors[payload.id][validatorName]">
-                {{parameters.body.col_2[dataItemCol2ItemName].validators[validatorName].errorText}}
-              </small>
+          <div *ngIf="!parameters.body.col_2[dataItemCol2ItemName].entry">
+            <input type="text" class="form-control"
+                   (keyup)="onKeyUp($event)"
+                   [formControlName]="dataItemCol2ItemName"
+            >
+            <span *ngFor="let validatorName of objectKeys(parameters.body.col_2[dataItemCol2ItemName].validators)">
+              <span *ngIf="parameters.body.col_2[dataItemCol2ItemName].errors[payload.id]">
+                <small class="message error" *ngIf="parameters.body.col_2[dataItemCol2ItemName].errors[payload.id][validatorName]">
+                  {{parameters.body.col_2[dataItemCol2ItemName].validators[validatorName].errorText}}
+                </small>
+              </span>
             </span>
-          </span>
+          </div>
+          <div *ngIf="parameters.body.col_2[dataItemCol2ItemName].entry">
+            <entry-wrapper-2  [payload]="payload"
+                            [component]="parameters.body.col_2[dataItemCol2ItemName].component"
+                            (emitterData)="setDataFromEntryComponent($event)"
+                            (emitterInstance)="getInstanceEntryComponent($event)"
+            ></entry-wrapper-2>
+          </div>
         </div>
       </td>
       <td width="10%">

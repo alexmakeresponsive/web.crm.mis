@@ -12,6 +12,8 @@ export class TableRowTr2EntryComponent implements OnInit, AfterViewInit {
   @Input() payload;
 
   @Output() emitterData:EventEmitter<any>      = new EventEmitter();
+  @Output() emitterInstance:EventEmitter<any> = new EventEmitter();
+
   @Output() emitterAction:EventEmitter<any>    = new EventEmitter();
   @Output() emitterAfterInit:EventEmitter<any> = new EventEmitter();
 
@@ -21,12 +23,13 @@ export class TableRowTr2EntryComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.form = this.createFormGroup();
-
-    this.subscribeToFieldStatusChanges();
+                this.subscribeToFieldStatusChanges();
   }
 
   ngAfterViewInit() {
-    this.emitterAfterInit.emit({});
+    if (this.parameters.type === 'notChildEntry') {
+      this.emitterAfterInit.emit({});
+    }
   }
 
   createFormGroup() {
@@ -36,6 +39,10 @@ export class TableRowTr2EntryComponent implements OnInit, AfterViewInit {
     for (let col of Object.values(this.parameters.body)) {
       for (let fieldKey of  Object.keys(col)) {
         let validators = [];
+
+        if(col[fieldKey].exclude) {
+          continue;
+        }
 
         for (let validatorName of Object.keys(col[fieldKey].validators)) {
           validators.push(col[fieldKey].validators[validatorName].body);
@@ -90,5 +97,15 @@ export class TableRowTr2EntryComponent implements OnInit, AfterViewInit {
       action: 'removeTd',
       id: id
     });
+  }
+
+  setDataFromEntryComponent(res) {
+    this.emitterData.emit(res);
+  }
+
+  getInstanceEntryComponent(instance) {
+    this.form.controls = instance.form.controls;
+
+    this.emitterAfterInit.emit({});
   }
 }

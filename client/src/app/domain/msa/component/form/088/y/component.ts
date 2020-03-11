@@ -516,7 +516,6 @@ export class Form088yComponent implements OnInit, AfterViewInit {
   // fire beetwen ngOnInit and ngAfterViewInit
   // and when add new entry component
   getInstanceEntryComponent(instance) {
-
     let key = instance.parameters.formControlName;
 
     if (instance.parameters.multiple) {

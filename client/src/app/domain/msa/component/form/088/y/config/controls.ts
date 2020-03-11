@@ -565,13 +565,22 @@ export default {
         col_2: {
           f_14_1_1: {
             label: 'Телефон',
-            validators: {
-              minlength: {
-                body: Validators.minLength(16),
-                errorText: 'Телефон указан некорретно'
-              }
-            },
-            errors: {}
+            entry: true,
+            component: new EntryComponentConstructor(InputDecoratePhoneI1Component, [
+            ], {
+              multiple: false,
+              formControlName: 'f_14_1_1',
+              className: 'form-control',
+              id: 'f141',
+              validators: {
+                pattern: {
+                  body: Validators.minLength(16),
+                  errorText: 'Телефон введён некорретно'
+                }
+              },
+              errors: {}
+            }),
+            exclude: true,
           },
         }
       }
@@ -608,6 +617,7 @@ export default {
     component: new EntryComponentConstructor(TableRowTr2EntryComponent, {}, {
       multiple: true,
       formControlName: 'f_14_2',
+      type: 'notChildEntry',
       body: {
         col_2: {
           f_14_2_1: {

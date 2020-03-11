@@ -25,6 +25,11 @@ export class InputDecoratePhoneI1Component implements OnInit {
   @Input() parameters;
   @Output() emitter:EventEmitter<any> = new EventEmitter();
 
+  @Output() emitterData:EventEmitter<any>      = new EventEmitter();
+  @Output() emitterInstance:EventEmitter<any> = new EventEmitter();
+
+  @Output() emitterAfterInit:EventEmitter<any> = new EventEmitter();
+
   form:FormGroup;
 
   objectKeys = Object.keys;
@@ -36,8 +41,11 @@ export class InputDecoratePhoneI1Component implements OnInit {
 
   ngOnInit() {
     this.form = this.createFormGroup();
+                this.subscribeToFieldStatusChanges();
+  }
 
-    this.subscribeToFieldStatusChanges();
+  ngAfterViewInit() {
+    this.emitterAfterInit.emit({});
   }
 
   createFormGroup() {
@@ -47,7 +55,7 @@ export class InputDecoratePhoneI1Component implements OnInit {
       validators.push(validator['body']);
     }
 
-    let value = this.payload ? this.payload : '';
+    let value = this.payload[this.parameters.formControlName] ? this.payload[this.parameters.formControlName] : '';
 
     return new FormGroup({
       [this.parameters.formControlName]: new FormControl(value, validators),
