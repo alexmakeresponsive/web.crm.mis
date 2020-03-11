@@ -339,7 +339,7 @@ export class Form088yComponent implements OnInit, AfterViewInit {
         continue;
       }
 
-      if(typeof this.formControls[key].value === 'object') {
+      if(typeof this.formControls[key].value === 'object' && this.formControls[key].value !== null) {
         if (this.formControls[key].value.hasOwnProperty('date')) {
           result[key] = this.formControls[key].value.formatted;
           continue;
@@ -468,6 +468,8 @@ export class Form088yComponent implements OnInit, AfterViewInit {
 
     this.hideMessage();
     this.getFormData();
+
+    console.log(this.formData);
 
     this.formMessageType = 'info';
     this.formMessage.nativeElement.innerHTML ='Форма отправляется';

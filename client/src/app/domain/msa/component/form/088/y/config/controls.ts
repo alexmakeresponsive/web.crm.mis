@@ -210,14 +210,16 @@ export default {
   f_7_1: {
     label: '7.1 Дата рождения (день, месяц, год)',
     id: 'f71',
-    tag: 'input-date-picker',
-    validators: {
-      pattern: {
-        body: Validators.pattern('[[12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])]*'),
-        errorText: 'Дата введена некорретно'
-      }
-    },
-    errors: {}
+    entry: true,
+    component: new EntryComponentConstructor(DatePickerD2Component, [
+    ], {
+      formControlName: 'f_7_1',
+      id: 'f71',
+      validators: {
+      },
+      errors: {}
+    }),
+    exclude: true,
   },
   f_7_2: {
     label: '7.2 Возраст (число полных лет, для ребенка в возрасте до 1 года - число полных месяцев)',
@@ -631,13 +633,16 @@ export default {
   f_16_4: {
     label: '16.4 дата выдачи (день, месяц, год):',
     id: 'f164',
-    validators: {
-      pattern: {
-        body: Validators.pattern('[[12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])]*'),
-        errorText: 'Дата выдачи указана некорретно'
-      }
-    },
-    errors: {}
+    entry: true,
+    component: new EntryComponentConstructor(DatePickerD2Component, [
+    ], {
+      formControlName: 'f_16_4',
+      id: 'f164',
+      validators: {
+      },
+      errors: {}
+    }),
+    exclude: true,
   },
 
   f_17_1: {
@@ -701,7 +706,7 @@ export default {
   f_17_1_3: {
     label: '17.1.3 кем выдан',
     id: 'f1713',
-    col: 9,
+    col: 12,
     validators: {
       pattern: {
         body: Validators.pattern('[0-9a-zA-Z ]*'),
@@ -713,13 +718,17 @@ export default {
   f_17_1_4: {
     label: '17.1.4 дата выдачи (день, месяц, год)',
     id: 'f1714',
-    validators: {
-      pattern: {
-        body: Validators.pattern('[[12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])]*'),
-        errorText: 'Дата выдачи указана некорретно'
-      }
-    },
-    errors: {}
+    col: 6,
+    entry: true,
+    component: new EntryComponentConstructor(DatePickerD2Component, [
+    ], {
+      formControlName: 'f_17_1_4',
+      id: 'f1714',
+      validators: {
+      },
+      errors: {}
+    }),
+    exclude: true,
   },
   f_17_2: {
     label: '17.2 документ, удостоверяющий личность',
@@ -782,7 +791,7 @@ export default {
   f_17_2_3: {
     label: '17.2.3 кем выдан',
     id: 'f1723',
-    col: 9,
+    col: 12,
     validators: {
       pattern: {
         body: Validators.pattern('[0-9a-zA-Z ]*'),
@@ -794,13 +803,17 @@ export default {
   f_17_2_4: {
     label: '17.2.4 дата выдачи (день, месяц, год)',
     id: 'f1724',
-    validators: {
-      pattern: {
-        body: Validators.pattern('[[12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])]*'),
-        errorText: 'Дата выдачи указана некорретно'
-      }
-    },
-    errors: {}
+    col: 6,
+    entry: true,
+    component: new EntryComponentConstructor(DatePickerD2Component, [
+    ], {
+      formControlName: 'f_17_2_4',
+      id: 'f1724',
+      validators: {
+      },
+      errors: {}
+    }),
+    exclude: true,
   },
   f_17_3: {
     label: '17.3 контактная информация',
@@ -939,13 +952,16 @@ export default {
     label: '19.2 дата, до которой установлена инвалидность (день, месяц, год)',
     id: 'f192',
     col: 6,
-    validators: {
-      pattern: {
-        body: Validators.pattern('[[12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])]*'),
-        errorText: 'Дата указана некорретно'
-      }
-    },
-    errors: {}
+    entry: true,
+    component: new EntryComponentConstructor(DatePickerD2Component, [
+    ], {
+      formControlName: 'f_19_2',
+      id: 'f192',
+      validators: {
+      },
+      errors: {}
+    }),
+    exclude: true,
   },
   f_19_3: {
     label: '19.3 период, в течение которого гражданин находился на инвалидности на момент направления на медико-социальную экспертизу (нужное отметить)',
@@ -1136,13 +1152,16 @@ export default {
     label: '19.7 дата, до которой установлена степень утраты профессиональной трудоспособности в процентах (день, месяц, год',
     id: 'f197',
     col: 6,
-    validators: {
-      pattern: {
-        body: Validators.pattern('[[12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])]*'),
-        errorText: 'Поле заполнено некорретно'
-      }
-    },
-    errors: {}
+    entry: true,
+    component: new EntryComponentConstructor(DatePickerD2Component, [
+    ], {
+      formControlName: 'f_19_7',
+      id: 'f197',
+      validators: {
+      },
+      errors: {}
+    }),
+    exclude: true,
   },
   f_19_8: {
     label: '19.8 степени утраты профессиональной трудоспособности (в процентах), установленные по повторным несчастным случаям на производстве и профессиональным заболеваниям, и даты, до которых они установлены',

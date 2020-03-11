@@ -3,7 +3,7 @@ import {FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
 
 import {filter} from 'rxjs/operators';
 
-import {INgxMyDpOptions} from 'ngx-mydatepicker';
+import {INgxMyDpOptions, IMyDateModel} from 'ngx-mydatepicker';
 // other imports here...
 @Component({
   templateUrl: './component.html',
@@ -14,6 +14,9 @@ export class DatePickerD2Component implements OnInit {
   @Input() payload;
   @Input() parameters;
   @Output() emitter:EventEmitter<any> = new EventEmitter();
+
+
+  formControlNameInner;
 
 
   myOptions: INgxMyDpOptions = {
@@ -32,6 +35,8 @@ export class DatePickerD2Component implements OnInit {
 
 
   ngOnInit() {
+    this.formControlNameInner = this.parameters.formControlName + '_i';
+
     this.form = this.createFormGroup();
 
     if (this.payload) {
@@ -40,28 +45,27 @@ export class DatePickerD2Component implements OnInit {
   }
 
   createFormGroup() {
-    const validators = [];
-
-    for (let validator of Object.values(this.parameters.validators)) {
-      validators.push(validator['body']);
-    }
-
     let value = this.payload ? this.payload : '';
 
     return new FormGroup({
-      [this.parameters.formControlName]: new FormControl(value, validators),
+      [this.formControlNameInner]: new FormControl(value, []),
+      [this.parameters.formControlName]: new FormControl(value, []),
     });
   }
 
   setDate(): void {
     let list = this.payload.split('-');
 
-    this.form.patchValue({[this.parameters.formControlName]: {
+    this.form.patchValue({[this.formControlNameInner]: {
         date: {
           year:   Number(list[0]),
           month:  Number(list[1]),
           day:    Number(list[2]),
         }
     }});
+  }
+
+  onDateChanged(event: IMyDateModel): void {
+    this.form.patchValue({[this.parameters.formControlName]: event.formatted});
   }
 }

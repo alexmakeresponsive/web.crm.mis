@@ -114,13 +114,22 @@
         </label>
         <div class="row form-item-sm">
           <div class="col-6">
-            <input type="text" class="form-control" [id]=groups.f_7_group[controlName].id placeholder=""
-                   [formControlName]=controlName>
-            <span *ngFor="let validatorName of objectKeys(groups.f_7_group[controlName].validators)">
-                  <small class="message error" *ngIf="groups.f_7_group[controlName].errors[validatorName]">
-                    {{groups.f_7_group[controlName].validators[validatorName].errorText}}
-                  </small>
-                </span>
+            <div *ngIf="!groups.f_7_group[controlName].entry">
+              <input type="text" class="form-control" [id]=groups.f_7_group[controlName].id placeholder=""
+                     [formControlName]=controlName>
+              <span *ngFor="let validatorName of objectKeys(groups.f_7_group[controlName].validators)">
+                <small class="message error" *ngIf="groups.f_7_group[controlName].errors[validatorName]">
+                  {{groups.f_7_group[controlName].validators[validatorName].errorText}}
+                </small>
+              </span>
+            </div>
+            <div *ngIf="groups.f_7_group[controlName].entry">
+              <entry-wrapper  [payload]="payloadFromServer[controlName]"
+                              [component]="groups.f_7_group[controlName].component"
+                              (emitterData)="setDataFromEntryComponent($event)"
+                              (emitterInstance)="getInstanceEntryComponent($event)"
+              ></entry-wrapper>
+            </div>
           </div>
         </div>
       </div>
@@ -309,13 +318,22 @@
             </label>
             <div class="row form-item-sm" *ngIf="!groups.f_16_group[controlName].childs">
               <div class="col-6">
-                <input type="text" class="form-control" [id]=groups.f_16_group[controlName].main.id placeholder=""
-                       [formControlName]=controlName>
-                <span *ngFor="let validatorName of objectKeys(groups.f_16_group[controlName].main.validators)">
-                      <small class="message error" *ngIf="groups.f_16_group[controlName].main.errors[validatorName]">
-                        {{groups.f_16_group[controlName].main.validators[validatorName].errorText}}
-                      </small>
-                    </span>
+                <div *ngIf="groups.f_16_group[controlName].main.entry">
+                  <entry-wrapper  [payload]="payloadFromServer[controlName]"
+                                  [component]="groups.f_16_group[controlName].main.component"
+                                  (emitterData)="setDataFromEntryComponent($event)"
+                                  (emitterInstance)="getInstanceEntryComponent($event)"
+                  ></entry-wrapper>
+                </div>
+                <div *ngIf="!groups.f_16_group[controlName].main.entry">
+                  <input type="text" class="form-control" [id]=groups.f_16_group[controlName].main.id placeholder=""
+                         [formControlName]=controlName>
+                  <span *ngFor="let validatorName of objectKeys(groups.f_16_group[controlName].main.validators)">
+                    <small class="message error" *ngIf="groups.f_16_group[controlName].main.errors[validatorName]">
+                      {{groups.f_16_group[controlName].main.validators[validatorName].errorText}}
+                    </small>
+                  </span>
+                </div>
               </div>
             </div>
             <div class="row" *ngIf="groups.f_16_group[controlName].childs">
@@ -367,16 +385,16 @@
             </div>
           </div>
           <div class="row" *ngIf="groups.f_17_group[controlName].childs">
-            <div class="field-wrapper-end
+            <div class="field-wrapper-end form-item-sm
                             col-{{groups.f_17_group[controlName].childs[controlChL1Name].main.col? groups.f_17_group[controlName].childs[controlChL1Name].main.col : 3}}"
                  *ngFor="let controlChL1Name of objectKeys(groups.f_17_group[controlName].childs)">
-              <div *ngIf="!groups.f_17_group[controlName].childs[controlChL1Name].main.entry">
+              <div class="amr" *ngIf="!groups.f_17_group[controlName].childs[controlChL1Name].main.entry">
 
                 <label [for]=groups.f_17_group[controlName].childs[controlChL1Name].main.id>
                   {{groups.f_17_group[controlName].childs[controlChL1Name].main.label}}
                 </label>
                 <div *ngIf="!groups.f_17_group[controlName].childs[controlChL1Name].childs">
-                  <input type="text" class="form-control form-item-sm" [id]=groups.f_17_group[controlName].childs[controlChL1Name].main.id placeholder=""
+                  <input type="text" class="form-control" [id]=groups.f_17_group[controlName].childs[controlChL1Name].main.id placeholder=""
                          [formControlName]=controlChL1Name>
                   <span *ngFor="let validatorName of objectKeys(groups.f_17_group[controlName].childs[controlChL1Name].main.validators)">
                         <small class="message error" *ngIf="groups.f_17_group[controlName].childs[controlChL1Name].main.errors[validatorName]">
@@ -392,7 +410,7 @@
                         <label [for]=groups.f_17_group[controlName].childs[controlChL1Name].childs[controlChL2Name].id>
                           {{groups.f_17_group[controlName].childs[controlChL1Name].childs[controlChL2Name].label}}
                         </label>
-                        <input type="text" class="form-control form-item-sm" [id]=groups.f_17_group[controlName].childs[controlChL1Name].childs[controlChL2Name].id placeholder=""
+                        <input type="text" class="form-control" [id]=groups.f_17_group[controlName].childs[controlChL1Name].childs[controlChL2Name].id placeholder=""
                                [formControlName]=controlChL2Name>
                         <span *ngFor="let validatorName of objectKeys(groups.f_17_group[controlName].childs[controlChL1Name].childs[controlChL2Name].validators)">
                               <small class="message error" *ngIf="groups.f_17_group[controlName].childs[controlChL1Name].childs[controlChL2Name].errors[validatorName]">
@@ -469,11 +487,24 @@
             <!--radio-->
           </div>
         </div>
-        <div class="row form-item-sm" *ngIf="!groups.f_19_group[controlName].childs">
-          <div class="col-{{groups.f_19_group[controlName].main.col? groups.f_19_group[controlName].main.col : 12}}">
-            <div class="label-text">
-              <input type="text" class="form-control" [id]=groups.f_19_group[controlName].main.id placeholder=""
-                     [formControlName]=controlName>
+        <div class="form-item-sm label-text" *ngIf="!groups.f_19_group[controlName].childs">
+          <div *ngIf="!groups.f_19_group[controlName].main.entry">
+            <div class="row">
+              <div class="col-{{groups.f_19_group[controlName].main.col? groups.f_19_group[controlName].main.col : 12}}">
+                <input type="text" class="form-control" [id]=groups.f_19_group[controlName].main.id placeholder=""
+                       [formControlName]=controlName>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="groups.f_19_group[controlName].main.entry">
+            <div class="row">
+              <div class="col-6">
+                <entry-wrapper  [payload]="payloadFromServer[controlName]"
+                                [component]="groups.f_19_group[controlName].main.component"
+                                (emitterData)="setDataFromEntryComponent($event)"
+                                (emitterInstance)="getInstanceEntryComponent($event)"
+                ></entry-wrapper>
+              </div>
             </div>
           </div>
         </div>

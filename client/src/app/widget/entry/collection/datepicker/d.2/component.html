@@ -1,10 +1,10 @@
 <div [formGroup]="form">
   <div class="input-group">
     <input readonly class="form-control" style="float:none" placeholder="ГГГГ-ММ-ДД" ngx-mydatepicker
-           [formControlName]="parameters.formControlName"
+           [formControlName]="formControlNameInner"
            [id]="parameters.id"
-           [options]="myOptions" #dp="ngx-mydatepicker"/>
-
+           [options]="myOptions" #dp="ngx-mydatepicker"
+           (dateChanged)="onDateChanged($event)" />
       <span class="input-group-btn">
             <button type="button" class="btn btn-default btn-danger btn-middle" (click)="dp.clearDate()">
                 <i class="glyphicon glyphicon-remove"></i>
@@ -22,4 +22,5 @@
             </button>
         </span>
   </div>
+  <input readonly type="hidden" [formControlName]="parameters.formControlName">
 </div>
