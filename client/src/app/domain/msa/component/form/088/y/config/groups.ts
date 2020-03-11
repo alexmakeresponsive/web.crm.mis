@@ -137,8 +137,10 @@ export default {
     }
   },
   f_14_group: {
-    f_14_1: controls.f_14_1,
-    f_14_2: controls.f_14_2,
+    f_14_1:     controls.f_14_1,
+    f_14_1_t_h: controls.f_14_1_t_h,
+    f_14_2:     controls.f_14_2,
+    f_14_2_t_h: controls.f_14_2_t_h,
   },
 
   f_15: controls.f_15,

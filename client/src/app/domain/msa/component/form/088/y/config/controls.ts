@@ -7,11 +7,14 @@ import {InputI1Component}                   from "@EntryWidgetModule/collection/
 import {InputI2Component}                   from "@EntryWidgetModule/collection/input/default/i.2/component";
 import {InputDecoratePhoneI1Component}      from "@EntryWidgetModule/collection/input/decorate/phone/i.d.p.1/component";
 import {TableRowTbR1EntryComponent}         from "@EntryWidgetModule/collection/table/tr.1/component";
+import {TableRowTr2EntryComponent}          from "@EntryWidgetModule/collection/table/tr.2/component";
 import {DatePickerD1Component}              from "@EntryWidgetModule/collection/datepicker/d.1/component";
 import {DatePickerD2Component}              from "@EntryWidgetModule/collection/datepicker/d.2/component";
 
 import TableRowTr1LabelIterator                  from "@EntryWidgetModule/collection/table/tr.1/iterator/label";
 import TableRowTr1ErrorIterator                  from "@EntryWidgetModule/collection/table/tr.1/iterator/error";
+import TableRowTr2LabelIterator                  from "@EntryWidgetModule/collection/table/tr.2/iterator/label";
+import TableRowTr2ErrorIterator                  from "@EntryWidgetModule/collection/table/tr.2/iterator/error";
 
 export default {
   f_1: {
@@ -532,35 +535,98 @@ export default {
     errors: {}
   },
 
-  f_14_1: {
-    label: '14.1 контактные телефоны',
-    id: 'f141',
-    entry: true,
-    component: new EntryComponentConstructor(InputDecoratePhoneI1Component, [
-    ], {
-      formControlName: 'f_14_1',
-      className: 'form-control',
-      id: 'f141',
-      validators: {
-        pattern: {
-          body: Validators.minLength(16),
-          errorText: 'Телефон введён некорретно'
-        }
-      },
-      errors: {}
-    }),
+  f_14_1_t_h: {
     exclude: true,
+    data: {
+      head: {
+        col_1: {
+          text: '№ п/п',
+          width: '10%'
+        },
+        col_2: {
+          text: 'Телефон',
+          width: '80%',
+        },
+        col_3: {
+          text: 'Действия',
+          width: '10%'
+        },
+      },
+    }
   },
-  f_14_2: {
-    label: '14.2 адрес электронной почты',
-    id: 'f142',
-    validators: {
-      email: {
-        body: Validators.email,
-        errorText: 'Aдрес электронной почты введён некорретно'
+
+  f_14_1: {
+    exclude: true,
+    type: 'entry',
+    component: new EntryComponentConstructor(TableRowTr2EntryComponent, {}, {
+      multiple: true,
+      formControlName: 'f_14_1',
+      body: {
+        col_2: {
+          f_14_1_1: {
+            label: 'Телефон',
+            validators: {
+              minlength: {
+                body: Validators.minLength(16),
+                errorText: 'Телефон указан некорретно'
+              }
+            },
+            errors: {}
+          },
+        }
       }
-    },
-    errors: {}
+    }),
+    iterator: {
+      label: TableRowTr2LabelIterator,
+      error: TableRowTr2ErrorIterator
+    }
+  },
+
+  f_14_2_t_h: {
+    exclude: true,
+    data: {
+      head: {
+        col_1: {
+          text: '№ п/п',
+          width: '10%'
+        },
+        col_2: {
+          text: 'Aдрес электронной почты',
+          width: '80%',
+        },
+        col_3: {
+          text: 'Действия',
+          width: '10%'
+        },
+      },
+    }
+  },
+
+  f_14_2: {
+    exclude: true,
+    type: 'entry',
+    component: new EntryComponentConstructor(TableRowTr2EntryComponent, {}, {
+      multiple: true,
+      formControlName: 'f_14_2',
+      body: {
+        col_2: {
+          f_14_2_1: {
+            label: 'Aдрес электронной почты',
+            validators: {
+              email: {
+                body: Validators.email,
+                errorText: 'Aдрес электронной почты введён некорретно'
+              }
+            },
+            errors: {}
+          },
+        }
+      }
+    }),
+    iterator: {
+      label: TableRowTr2LabelIterator,
+      error: TableRowTr2ErrorIterator
+    }
   },
 
   f_15: {

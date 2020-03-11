@@ -2,11 +2,12 @@ import { NgModule }                     from '@angular/core';
 import { CommonModule }                 from '@angular/common';
 
 import {TableTb1Component}              from "./collection/table/tb.1/component";
+import {TableTb2Component}              from "./collection/table/tb.2/component";
 import {EntryModule}                    from "@EntryWidgetModule/entry.module";
 
 @NgModule({
   declarations: [
-    TableTb1Component
+    TableTb1Component, TableTb2Component
   ],
   imports: [
     CommonModule,
@@ -15,7 +16,7 @@ import {EntryModule}                    from "@EntryWidgetModule/entry.module";
   exports: [
     CommonModule,
 
-    TableTb1Component
+    TableTb1Component, TableTb2Component
   ],
 })
 export class DefaultModule { }
