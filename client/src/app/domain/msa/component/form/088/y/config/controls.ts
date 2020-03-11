@@ -3,8 +3,9 @@ import {Validators} from '@angular/forms';
 import {EntryComponentConstructor}          from "@EntryWidgetModule/collection/constructor";
 import {SelectS1Component}                  from "@EntryWidgetModule/collection/select/s.1/component";
 import {TextareaT1Component}                from "@EntryWidgetModule/collection/textarea/t.1/component";
-import {InputI1Component}                   from "@EntryWidgetModule/collection/input/i.1/component";
-import {InputI2Component}                   from "@EntryWidgetModule/collection/input/i.2/component";
+import {InputI1Component}                   from "@EntryWidgetModule/collection/input/default/i.1/component";
+import {InputI2Component}                   from "@EntryWidgetModule/collection/input/default/i.2/component";
+import {InputDecoratePhoneI1Component}      from "@EntryWidgetModule/collection/input/decorate/phone/i.d.p.1/component";
 import {TableRowTbR1EntryComponent}         from "@EntryWidgetModule/collection/table/tr.1/component";
 import {DatePickerD1Component}              from "@EntryWidgetModule/collection/datepicker/d.1/component";
 import {DatePickerD2Component}              from "@EntryWidgetModule/collection/datepicker/d.2/component";
@@ -531,13 +532,21 @@ export default {
   f_14_1: {
     label: '14.1 контактные телефоны',
     id: 'f141',
-    validators: {
-      pattern: {
-        body: Validators.pattern('[0-9 ]*'),
-        errorText: 'Телефон введён некорретно'
-      }
-    },
-    errors: {}
+    entry: true,
+    component: new EntryComponentConstructor(InputDecoratePhoneI1Component, [
+    ], {
+      formControlName: 'f_14_1',
+      className: 'form-control',
+      id: 'f141',
+      validators: {
+        pattern: {
+          body: Validators.minLength(16),
+          errorText: 'Телефон введён некорретно'
+        }
+      },
+      errors: {}
+    }),
+    exclude: true,
   },
   f_14_2: {
     label: '14.2 адрес электронной почты',

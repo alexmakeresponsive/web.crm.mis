@@ -278,13 +278,22 @@
         </label>
         <div class="row form-item-sm">
           <div class="col-6">
-            <input type="text" class="form-control" [id]=groups.f_14_group[controlName].id placeholder=""
-                   [formControlName]=controlName>
-            <span *ngFor="let validatorName of objectKeys(groups.f_14_group[controlName].validators)">
-                  <small class="message error" *ngIf="groups.f_14_group[controlName].errors[validatorName]">
-                    {{groups.f_14_group[controlName].validators[validatorName].errorText}}
-                  </small>
-                </span>
+            <div *ngIf="!groups.f_14_group[controlName].entry">
+              <input type="text" class="form-control" [id]=groups.f_14_group[controlName].id placeholder=""
+                     [formControlName]=controlName>
+              <span *ngFor="let validatorName of objectKeys(groups.f_14_group[controlName].validators)">
+              <small class="message error" *ngIf="groups.f_14_group[controlName].errors[validatorName]">
+                {{groups.f_14_group[controlName].validators[validatorName].errorText}}
+              </small>
+            </span>
+            </div>
+            <div *ngIf="groups.f_14_group[controlName].entry">
+              <entry-wrapper  [payload]="payloadFromServer[controlName]"
+                              [component]="groups.f_14_group[controlName].component"
+                              (emitterData)="setDataFromEntryComponent($event)"
+                              (emitterInstance)="getInstanceEntryComponent($event)"
+              ></entry-wrapper>
+            </div>
           </div>
         </div>
       </div>

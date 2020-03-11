@@ -9,8 +9,9 @@ import { NgxMyDatePickerModule }        from 'ngx-mydatepicker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {SelectS1Component}              from "./collection/select/s.1/component";
-import {InputI1Component}               from "./collection/input/i.1/component";
-import {InputI2Component}               from "./collection/input/i.2/component";
+import {InputI1Component}               from "./collection/input/default/i.1/component";
+import {InputI2Component}               from "./collection/input/default/i.2/component";
+import {InputDecoratePhoneI1Component}  from "./collection/input/decorate/phone/i.d.p.1/component";
 import {TextareaT1Component}            from "./collection/textarea/t.1/component";
 import {TableRowTbR1EntryComponent}     from "./collection/table/tr.1/component";
 import {DatePickerD1Component}          from "./collection/datepicker/d.1/component";
@@ -19,16 +20,17 @@ import {DatePickerD2Component}          from "./collection/datepicker/d.2/compon
 import {EntryWrapper}                   from "./collection/wrapper";
 import {EntryWrapper2}                  from "./collection/wrapper2";
 import {EntryDirective}                 from "./collection/directive";
+import {PhoneMaskDirective}             from "./directive/input/decorate/phone/m.1";
 
 
 @NgModule({
   declarations: [
     EntryWrapper,
     EntryWrapper2,
-    EntryDirective,
+    EntryDirective, PhoneMaskDirective,
 
     SelectS1Component,
-    InputI1Component, InputI2Component,
+    InputI1Component, InputI2Component, InputDecoratePhoneI1Component,
     TextareaT1Component,
     TableRowTbR1EntryComponent,
     DatePickerD1Component,
@@ -36,7 +38,7 @@ import {EntryDirective}                 from "./collection/directive";
   ],
   entryComponents: [
     SelectS1Component,
-    InputI1Component, InputI2Component,
+    InputI1Component, InputI2Component, InputDecoratePhoneI1Component,
     TextareaT1Component,
     TableRowTbR1EntryComponent,
     DatePickerD1Component,
@@ -55,10 +57,9 @@ import {EntryDirective}                 from "./collection/directive";
   exports: [
     EntryWrapper,
     EntryWrapper2,
-    EntryDirective,
 
     SelectS1Component,
-    InputI1Component, InputI2Component,
+    InputI1Component, InputI2Component, InputDecoratePhoneI1Component,
     TextareaT1Component,
     TableRowTbR1EntryComponent,
     DatePickerD1Component,
