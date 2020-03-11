@@ -13,9 +13,11 @@ import { filter } from 'rxjs/operators';
                        [formControlName]="parameters.formControlName"
                 >
                 <span *ngFor="let validatorName of objectKeys(parameters.validators)">
-                  <small class="message error" *ngIf="parameters.errors[validatorName]">
-                    {{parameters.validators[validatorName].errorText}}
-                  </small>
+                  <span *ngIf="parameters.errors[payload.id]">
+                    <small class="message error" *ngIf="parameters.errors[payload.id][validatorName]">
+                      {{parameters.validators[validatorName].errorText}}
+                    </small>
+                  </span>
                 </span>
               </div>
             `,
@@ -66,10 +68,10 @@ export class InputDecoratePhoneI1Component implements OnInit {
     this.form.get(this.parameters.formControlName).statusChanges
       .pipe(
         filter((status: string) => {
-          this.parameters.errors = this.form.get(this.parameters.formControlName).errors;
+          this.parameters.errors[this.payload.id] = this.form.get(this.parameters.formControlName).errors;
 
-          if (!this.parameters.errors) {
-               this.parameters.errors = {}
+          if (!this.parameters.errors[this.payload.id]) {
+               this.parameters.errors[this.payload.id] = {}
           }
 
           return false;

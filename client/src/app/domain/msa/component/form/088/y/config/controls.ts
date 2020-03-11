@@ -573,7 +573,7 @@ export default {
               className: 'form-control',
               id: 'f141',
               validators: {
-                pattern: {
+                minlength: {
                   body: Validators.minLength(16),
                   errorText: 'Телефон введён некорретно'
                 }
