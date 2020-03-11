@@ -1,7 +1,10 @@
 import { NgModule }                     from '@angular/core';
 import { CommonModule }                 from '@angular/common';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {SelectModule} from 'ng2-select';
+
+import {NgbModule}                      from '@ng-bootstrap/ng-bootstrap';
+import {SelectModule}                   from 'ng2-select';
+import { NgxMyDatePickerModule }        from 'ngx-mydatepicker';
+
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -10,6 +13,8 @@ import {InputI1Component}               from "./collection/input/i.1/component";
 import {InputI2Component}               from "./collection/input/i.2/component";
 import {TextareaT1Component}            from "./collection/textarea/t.1/component";
 import {TableRowTbR1EntryComponent}     from "./collection/table/tr.1/component";
+import {DatePickerD1Component}          from "./collection/datepicker/d.1/component";
+import {DatePickerD2Component}          from "./collection/datepicker/d.2/component";
 
 import {EntryWrapper}                   from "./collection/wrapper";
 import {EntryWrapper2}                  from "./collection/wrapper2";
@@ -26,19 +31,23 @@ import {EntryDirective}                 from "./collection/directive";
     InputI1Component, InputI2Component,
     TextareaT1Component,
     TableRowTbR1EntryComponent,
+    DatePickerD1Component,
+    DatePickerD2Component
   ],
   entryComponents: [
     SelectS1Component,
     InputI1Component, InputI2Component,
     TextareaT1Component,
     TableRowTbR1EntryComponent,
+    DatePickerD1Component,
+    DatePickerD2Component
   ],
   imports: [
     CommonModule,
 
     NgbModule,
-
     SelectModule,
+    NgxMyDatePickerModule.forRoot(),
 
     FormsModule,
     ReactiveFormsModule,
@@ -52,6 +61,8 @@ import {EntryDirective}                 from "./collection/directive";
     InputI1Component, InputI2Component,
     TextareaT1Component,
     TableRowTbR1EntryComponent,
+    DatePickerD1Component,
+    DatePickerD2Component,
 
     CommonModule,
 

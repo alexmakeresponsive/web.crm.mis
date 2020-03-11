@@ -6,6 +6,8 @@ import {TextareaT1Component}                from "@EntryWidgetModule/collection/
 import {InputI1Component}                   from "@EntryWidgetModule/collection/input/i.1/component";
 import {InputI2Component}                   from "@EntryWidgetModule/collection/input/i.2/component";
 import {TableRowTbR1EntryComponent}         from "@EntryWidgetModule/collection/table/tr.1/component";
+import {DatePickerD1Component}              from "@EntryWidgetModule/collection/datepicker/d.1/component";
+import {DatePickerD2Component}              from "@EntryWidgetModule/collection/datepicker/d.2/component";
 
 export default {
   f_1: {
@@ -39,15 +41,18 @@ export default {
     value: false
   },
   f_4: {
-    label: '4. Дата выдачи направления на МСЭ',
     id: 'f4',
-    validators: {
-      pattern: {
-        body: Validators.pattern('[[12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])]*'),
-        errorText: 'Дата указана некорретно'
-      }
-    },
-    errors: {}
+    label: '4. Дата выдачи направления на МСЭ',
+    entry: true,
+    component: new EntryComponentConstructor(DatePickerD2Component, [
+    ], {
+      formControlName: 'f_4',
+      id: 'f4',
+      validators: {
+      },
+      errors: {}
+    }),
+    exclude: true,
   },
 
   f_5: {

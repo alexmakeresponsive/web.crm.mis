@@ -40,17 +40,15 @@
       </div>
       <div class="label-text">
         <div class="row">
-          <div class="col-6">
+          <div class="col-5 col-lg-6">
             <label [for]="groups.f_1234_group.f_4.id">
               {{groups.f_1234_group.f_4.label}}
             </label>
-            <input type="text" class="form-control" [id]="groups.f_1234_group.f_4.id" placeholder=""
-                   formControlName="f_4">
-            <span *ngFor="let validatorName of objectKeys(groups.f_1234_group.f_4.validators)">
-              <small class="message error" *ngIf="groups.f_1234_group.f_4.errors[validatorName]">
-                {{groups.f_1234_group.f_4.validators[validatorName].errorText}}
-              </small>
-            </span>
+            <entry-wrapper  [payload]="payloadFromServer.f_4"
+                            [component]="groups.f_1234_group.f_4.component"
+                            (emitterData)="setDataFromEntryComponent($event)"
+                            (emitterInstance)="getInstanceEntryComponent($event)"
+            ></entry-wrapper>
           </div>
         </div>
       </div>

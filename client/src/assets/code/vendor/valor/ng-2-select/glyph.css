@@ -351,6 +351,13 @@
 .glyphicon-calendar:before {
   content: "\e109";
 }
+.glyphicon-calendar-2 {
+  width: 2.2rem;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAcCAYAAAAEN20fAAAABHNCS…nlUDaO1vpZRO5NS0x48sIwfPc87xg4B04MCzQi8hIEwe4bl1DnFMCN2zsAAAAASUVORK5CYII=)!important;
+  background-repeat: no-repeat;
+  background-size: 23px;
+  background-position: 50%;
+}
 .glyphicon-random:before {
   content: "\e110";
 }

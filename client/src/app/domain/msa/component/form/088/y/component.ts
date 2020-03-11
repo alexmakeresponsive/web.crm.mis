@@ -76,8 +76,6 @@ export class Form088yComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.buildFormControls();
 
-    console.log(this.payloadFromServer);
-
     this.formInitStatus = 'ready';
   }
 
@@ -340,6 +338,14 @@ export class Form088yComponent implements OnInit, AfterViewInit {
         }
         continue;
       }
+
+      if(typeof this.formControls[key].value === 'object') {
+        if (this.formControls[key].value.hasOwnProperty('date')) {
+          result[key] = this.formControls[key].value.formatted;
+          continue;
+        }
+      }
+
       result[key] = this.formControls[key].value;
     }
 
