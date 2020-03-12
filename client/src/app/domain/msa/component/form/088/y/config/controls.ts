@@ -10,6 +10,7 @@ import {TableRowTbR1EntryComponent}         from "@EntryWidgetModule/collection/
 import {TableRowTr2EntryComponent}          from "@EntryWidgetModule/collection/table/tr.2/component";
 import {DatePickerD1Component}              from "@EntryWidgetModule/collection/datepicker/d.1/component";
 import {DatePickerD2Component}              from "@EntryWidgetModule/collection/datepicker/d.2/component";
+import {ModalM1EntryComponent}              from "@EntryWidgetModule/collection/modal/m.1/component";
 
 import TableRowTr1LabelIterator                  from "@EntryWidgetModule/collection/table/tr.1/iterator/label";
 import TableRowTr1ErrorIterator                  from "@EntryWidgetModule/collection/table/tr.1/iterator/error";
@@ -21,13 +22,16 @@ export default {
     label: '1. Номер и дата протокола врачебной комиссии медицинской организации, содержащего решение о направлении\n' +
       'гражданина на медико-социальную экспертизу',
     id: 'f1',
-    validators: {
-      pattern: {
-        body: Validators.pattern('[0-9 ]*'),
-        errorText: 'Номер и дата протокола указаны некорретно'
-      }
-    },
-    errors: {}
+    entry: true,
+    component: new EntryComponentConstructor(ModalM1EntryComponent, [
+    ], {
+      formControlName: 'f_1',
+      id: 'f1',
+      validators: {
+      },
+      errors: {}
+    }),
+    exclude: true,
   },
   f_2: {
     label: '2. Гражданин по состоянию здоровья не может явиться в бюро (главное бюро, Федеральное бюро)\n' +

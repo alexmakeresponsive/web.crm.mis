@@ -7,24 +7,15 @@
   <form class="form-color-theme" [formGroup]="form" (ngSubmit)="doSubmit()">
 
     <div class="form-fields-group-wrapper">
-      <div class="label-text">
-        <div class="row form-item">
-          <div class="col-10">
-            <label [for]="groups.f_1234_group.f_1.id">
-              {{groups.f_1234_group.f_1.label}}
-            </label>
-            <input type="text" class="form-control" [id]="groups.f_1234_group.f_1.id" placeholder=""
-                   formControlName="f_1">
-            <span *ngFor="let validatorName of objectKeys(groups.f_1234_group.f_1.validators)">
-              <small class="message error" *ngIf="groups.f_1234_group.f_1.errors[validatorName]">
-                {{groups.f_1234_group.f_1.validators[validatorName].errorText}}
-              </small>
-            </span>
-          </div>
-          <div class="col-2 d-flex align-items-end">
-            <button type="button" class="btn btn-primary">Добавить</button>
-          </div>
-        </div>
+      <div class="label-text form-item">
+        <label [for]="groups.f_1234_group.f_1.id">
+          {{groups.f_1234_group.f_1.label}}
+        </label>
+        <entry-wrapper-2 [payload]="payloadFromServer.f_1"
+                         [component]="groups.f_1234_group.f_1.component"
+                         (emitterData)="setDataFromEntryComponent($event)"
+                         (emitterInstance)="getInstanceEntryComponent($event)"
+        ></entry-wrapper-2>
       </div>
       <div class="custom-control custom-checkbox form-item-xs">
         <input type="checkbox" class="custom-control-input" [id]="groups.f_1234_group.f_2.id" formControlName="f_2">

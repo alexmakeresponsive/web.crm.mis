@@ -14,12 +14,14 @@ import {InputI2Component}               from "./collection/input/default/i.2/com
 import {InputDecoratePhoneI1Component}  from "./collection/input/decorate/phone/i.d.p.1/component";
 import {TextareaT1Component}            from "./collection/textarea/t.1/component";
 import {TableRowTbR1EntryComponent}     from "./collection/table/tr.1/component";
-import {TableRowTr2EntryComponent}     from "./collection/table/tr.2/component";
+import {TableRowTr2EntryComponent}      from "./collection/table/tr.2/component";
 import {DatePickerD1Component}          from "./collection/datepicker/d.1/component";
 import {DatePickerD2Component}          from "./collection/datepicker/d.2/component";
+import {ModalM1EntryComponent}          from "./collection/modal/m.1/component";
 
 import {EntryWrapper}                   from "./collection/wrapper";
 import {EntryWrapper2}                  from "./collection/wrapper2";
+
 import {EntryDirective}                 from "./collection/directive";
 import {PhoneMaskDirective}             from "./directive/input/decorate/phone/m.1";
 
@@ -35,7 +37,8 @@ import {PhoneMaskDirective}             from "./directive/input/decorate/phone/m
     TextareaT1Component,
     TableRowTbR1EntryComponent, TableRowTr2EntryComponent,
     DatePickerD1Component,
-    DatePickerD2Component
+    DatePickerD2Component,
+    ModalM1EntryComponent,
   ],
   entryComponents: [
     SelectS1Component,
@@ -43,7 +46,8 @@ import {PhoneMaskDirective}             from "./directive/input/decorate/phone/m
     TextareaT1Component,
     TableRowTbR1EntryComponent, TableRowTr2EntryComponent,
     DatePickerD1Component,
-    DatePickerD2Component
+    DatePickerD2Component,
+    ModalM1EntryComponent,
   ],
   imports: [
     CommonModule,
@@ -65,6 +69,7 @@ import {PhoneMaskDirective}             from "./directive/input/decorate/phone/m
     TableRowTbR1EntryComponent, TableRowTr2EntryComponent,
     DatePickerD1Component,
     DatePickerD2Component,
+    ModalM1EntryComponent,
 
     CommonModule,
 
