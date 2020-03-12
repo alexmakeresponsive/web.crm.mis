@@ -6,9 +6,14 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 import { filter } from 'rxjs/operators';
 
+import MsaResponse                    from "@MsaDomainModule/model/ticket/Response";
+import {AuthService}                  from "@SecurityServiceModule/auth.service";
+import { HttpClient, HttpHeaders }    from '@angular/common/http';
+
 
 @Component({
-  templateUrl: './component.html'
+  templateUrl: './component.html',
+  styleUrls: ['./component.styl'],
 })
 export class ModalM1EntryComponent implements OnInit, AfterViewInit {
   @Input() parameters;
@@ -20,20 +25,55 @@ export class ModalM1EntryComponent implements OnInit, AfterViewInit {
   @Output() emitterAction:EventEmitter<any>    = new EventEmitter();
 
   form:FormGroup;
+  formModal:FormGroup;
 
   objectKeys = Object.keys;
 
   closeResult: string;
 
-  constructor(private modalService: NgbModal) {}
+  dataIsFetched: boolean = false;
+  data:any;
+  dataItem:any = '';
+
+
+  constructor(
+    private authService: AuthService,
+    private http: HttpClient,
+    private modalService: NgbModal
+  )
+  {
+
+  }
+
   open(content) {
+    this.putData();
+
     this.modalService.open(content, {
       ariaLabelledBy: 'modal-basic-title',
       size: 'xl',
       scrollable: true,
     }).result.then((result) => {
+      // click to bottom button
+
+      let id = this.formModal.get(this.parameters.formModalControlName).value;
+
+      if (!id) {
+        return;
+      }
+
+      let value = this.parameters.rendererControlNameById(id, this.data);
+
+      this.form.patchValue({
+        [this.parameters.formControlNameHidden]: id
+      });
+
+      this.form.patchValue({
+        [this.parameters.formControlName]: value
+      });
+
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
+      // click to header button
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
@@ -49,8 +89,10 @@ export class ModalM1EntryComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.form = this.createFormGroup();
-                this.subscribeToFieldStatusChanges();
+    this.form      = this.createFormGroup();
+    this.formModal = this.createFormModalGroup();
+
+                     this.subscribeToFieldStatusChanges();
   }
 
   ngAfterViewInit() {
@@ -58,17 +100,21 @@ export class ModalM1EntryComponent implements OnInit, AfterViewInit {
   }
 
   createFormGroup() {
+    let valueHidden = this.payload ? this.payload : null;
 
-    const validators = [];
-
-    for (let validator of Object.values(this.parameters.validators)) {
-      validators.push(validator['body']);
+    if (valueHidden) {
+      this.loadItemData(valueHidden);
     }
 
-    let value = this.payload ? this.payload : '';
-
     return new FormGroup({
-      [this.parameters.formControlName]: new FormControl(value, validators),
+      [this.parameters.formControlNameHidden]: new FormControl(valueHidden, []),
+      [this.parameters.formControlName]: new FormControl('', []),
+    });
+  }
+
+  createFormModalGroup() {
+    return new FormGroup({
+      [this.parameters.formModalControlName]: new FormControl(null, []),
     });
   }
 
@@ -88,14 +134,88 @@ export class ModalM1EntryComponent implements OnInit, AfterViewInit {
       });
   }
 
-  remove(id) {
-    this.emitterAction.emit({
-      action: 'remove',
-      id: id
+  remove() {
+    this.formModal.patchValue({
+      [this.parameters.formModalControlName]: null
+    });
+
+    this.form.patchValue({
+      [this.parameters.formControlNameHidden]: null
+    });
+    this.form.patchValue({
+      [this.parameters.formControlName]: ''
     });
   }
 
-  loadData() {
+  select(id) {
+    this.formModal.patchValue({
+      [this.parameters.formModalControlName]: id
+    });
+  }
 
+  async putData() {
+    if (this.dataIsFetched) {
+      return;
+    }
+
+    await this.loadData();
+
+    this.dataIsFetched = true;
+  }
+
+  async loadData() {
+    const keychain = this.authService.getKeyChain();
+
+    const token    = keychain.tokenAccessList !== null ? keychain.tokenAccessList.msa : '';
+
+    let headers = new HttpHeaders();
+        headers = headers.set('Authorization', 'Bearer ' + token);
+
+
+    await this.http.post<MsaResponse>(
+      'http://0.0.0.0:8203/dc/protocol/list',
+      {},
+      {
+        headers: headers
+      }
+    ).toPromise()
+      .then(
+        res => {
+          this.data = res.data;
+        },
+        rej => {
+        }
+      );
+  }
+
+  async loadItemData(id) {
+    const keychain = this.authService.getKeyChain();
+
+    const token    = keychain.tokenAccessList !== null ? keychain.tokenAccessList.msa : '';
+
+    let headers = new HttpHeaders();
+    headers = headers.set('Authorization', 'Bearer ' + token);
+
+
+    await this.http.post<MsaResponse>(
+      'http://0.0.0.0:8203/dc/protocol/item',
+      {
+        id: id
+      },
+      {
+        headers: headers
+      }
+    ).toPromise()
+      .then(
+        res => {
+          this.dataItem = res.data;
+
+          this.form.patchValue({
+            [this.parameters.formControlName]: this.parameters.rendererControlName(this.dataItem)
+          });
+        },
+        rej => {
+        }
+      );
   }
 }

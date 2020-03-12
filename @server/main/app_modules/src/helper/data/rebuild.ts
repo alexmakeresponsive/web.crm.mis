@@ -1,4 +1,4 @@
-import schema            from "../../model/ticket/schema";
+import schema            from "../../model/dcProtocol/schema";
 import moment            from "moment";
 
 export const idPrimaryKey = (data:any) => {
@@ -7,8 +7,8 @@ export const idPrimaryKey = (data:any) => {
 
     for (let item of data) {
         for (let key of Object.keys(item)) {
-            if (schema[key] === 'DATE' && item[key]) {
-                item[key] = moment(item[key]).format('YYYY-MM-DD');
+            if (schema[key] === 'DATETIME' && item[key]) {
+                item[key] = moment(item[key]).format('YYYY-MM-DD HH:mm');
                 continue;
             }
             if (!item[key] && typeof item[key] !== 'number') {

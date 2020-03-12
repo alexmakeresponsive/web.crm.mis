@@ -1,23 +1,65 @@
 <div [formGroup]="form">
   <div class="row">
     <div class="col-6">
-      <input readonly type="text" class="form-control" [formControlName]="parameters.formControlName">
+      <div class="btn-container">
+        <input readonly type="text" class="form-control" [formControlName]="parameters.formControlName">
+        <input type="hidden"                             [formControlName]="parameters.formControlNameHidden">
+        <button type="button" class="btn btn-default btn-danger btn-right" (click)="remove()">
+          <i class="glyphicon glyphicon-remove"></i>
+        </button>
+      </div>
     </div>
-    <div class="col-2">
+    <div class="col-6">
       <button type="button" class="btn btn-primary" (click)="open(content)">Добавить</button>
     </div>
   </div>
 </div>
-<div>
+<div [formGroup]="formModal">
   <ng-template #content let-modal>
     <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+      <h4 class="modal-title" id="modal-basic-title">
+        {{parameters.options.modalName}}
+      </h4>
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col" *ngFor="let text of parameters.options.head">
+            {{text}}
+          </th>
+        </tr>
+        </thead>
+        <tbody *ngIf="data">
+        <tr *ngFor="let key of objectKeys(data)" (click)="select(data[key].id)">
+          <td>
+            <div class="custom-control custom-radio">
+              <input type="radio"
+                     [formControlName]="parameters.formModalControlName"
+                     [value]=data[key].id
+                     id="{{parameters.formModalControlName + '_' + data[key].id}}"
+                     class="custom-control-input" checked="">
+              <label class="custom-control-label"
+                     for="{{parameters.formModalControlName + '_' + data[key].id}}">
+              </label>
+            </div>
+          </td>
+          <td>
+            {{data[key].number}}
+          </td>
+          <td>
+            {{data[key].date}}
+          </td>
+          <td>
+            {{data[key].description}}
+          </td>
+        </tr>
+        </tbody>
+      </table>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Применить</button>

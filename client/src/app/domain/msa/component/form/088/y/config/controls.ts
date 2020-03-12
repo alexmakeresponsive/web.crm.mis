@@ -25,7 +25,23 @@ export default {
     entry: true,
     component: new EntryComponentConstructor(ModalM1EntryComponent, [
     ], {
+      options: {
+        modalName: 'Окно выбора протокола',
+        head: [
+          'Номер протокола',
+          'Дата',
+          'Описание',
+        ]
+      },
+      formControlNameHidden: 'protocol_id',
       formControlName: 'f_1',
+      rendererControlNameById: (id, data) => {
+        return data[id].number + ' от ' + data[id].date;
+      },
+      rendererControlName: (data) => {
+        return data.number + ' от ' + data.date
+      },
+      formModalControlName: 'f_1_radio',
       id: 'f1',
       validators: {
       },
