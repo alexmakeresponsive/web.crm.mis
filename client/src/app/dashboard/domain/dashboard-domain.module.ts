@@ -24,4 +24,4 @@ import {FormSignInComponent} from "./component/form/signin/component";
     FormSignInComponent
   ],
 })
-export class DashboardModule { }
+export class DashboardDomainModule { }

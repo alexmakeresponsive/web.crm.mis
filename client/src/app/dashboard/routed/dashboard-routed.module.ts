@@ -3,7 +3,7 @@ import { CommonModule }                         from '@angular/common';
 
 import {NgbModule}                              from '@ng-bootstrap/ng-bootstrap';
 
-import {DashboardModule}                        from "@AppModule/dashboard/domain/dashboard.module";
+import {DashboardDomainModule}                  from "@AppModule/dashboard/domain/dashboard-domain.module";
 
 import {AppRoutingModule}                       from "@AppModule/app-routing.module";
 
@@ -31,7 +31,7 @@ import {PartNavMainComponent}                   from "./part/nav/main/component"
   imports: [
     NgbModule,
 
-    DashboardModule,
+    DashboardDomainModule,
 
     AppRoutingModule,
   ]

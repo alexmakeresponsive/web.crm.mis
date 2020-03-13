@@ -3,8 +3,10 @@ import { ActivatedRoute} from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import {StorageData} from "@AppModule/common/service/storage/storage.data";
-import {AuthService} from "@AppModule/auth/auth.service";
+import {AuthService} from "@AppModule/common/service/auth/auth.service";
 import MsaResponse from "@AppModule/msa/domain/model/ticket/Response";
+
+import {MsaTicketService} from "@MsaModule/service/ticket/msa-ticket.service";
 
 @Component({
   selector: 'page-service-msa-result-item',
@@ -18,6 +20,7 @@ export class PageServiceMsaTicketResultItemComponent {
   constructor(
     private route: ActivatedRoute,
     private authService: AuthService,
+    private msaTicketService: MsaTicketService,
     private http: HttpClient,
     private storageData: StorageData
   )
@@ -42,21 +45,7 @@ export class PageServiceMsaTicketResultItemComponent {
 
 
   async loadData() {
-    const keychain = this.authService.getKeyChain();
-
-    const token    = keychain.tokenAccessList !== null ? keychain.tokenAccessList.msa : '';
-
-    let headers = new HttpHeaders();
-    headers = headers.set('Authorization', 'Bearer ' + token);
-
-
-    await this.http.post<MsaResponse>(
-      'http://0.0.0.0:8204/ticket/result',
-      {},
-      {
-        headers: headers
-      }
-    ).toPromise()
+    await this.msaTicketService.getResultStream().toPromise()
       .then(
         res => {
           this.storageData.ticketResult = res.data;

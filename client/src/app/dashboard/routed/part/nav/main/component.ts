@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import {Router } from '@angular/router';
-import {AuthService} from "@AppModule/auth/auth.service";
+import {AuthService} from "@AppModule/common/service/auth/auth.service";
 
 
 @Component({

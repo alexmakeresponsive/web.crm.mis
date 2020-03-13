@@ -7,7 +7,9 @@ import { Subscription, Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 
 import { Router } from '@angular/router';
-import { AuthService } from "@AppModule/auth/auth.service";
+import { AuthService } from "@CommonServiceAuthModule/auth.service";
+
+import {DashboardAuthService} from "@DashboardModule/service/auth/dashboard-auth.service";
 
 @Component({
   selector: 'form-sign-in',
@@ -31,7 +33,8 @@ export class FormSignInComponent implements OnInit{
   constructor(
     private http: HttpClient,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private dashboardAuthService: DashboardAuthService
     ) {
   }
 
@@ -46,20 +49,12 @@ export class FormSignInComponent implements OnInit{
     });
   }
 
-  onSubmit(): Observable<any> | Subscription {
-    const customerData = this.form.value;
-
-    return this.http.post<any>(
-      'http://0.0.0.0:8202/auth/login',
-      {
-        data: customerData
-      }
-    ).pipe(
+  onSubmit() {
+    this.dashboardAuthService.login(this.form.value).pipe(
       retry(0),
       catchError(this.handleError.bind(this))
     ).subscribe(r => {
       this.errorCurrentText = '';
-
       this.authService.login(r);
     });
   }

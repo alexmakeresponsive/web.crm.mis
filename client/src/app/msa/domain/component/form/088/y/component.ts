@@ -9,10 +9,12 @@ import groups   from './config/groups';
 
 import MsaResponse    from "@AppModule/msa/domain/model/ticket/Response";
 
-import {AuthService}  from "@AppModule/auth/auth.service";
+import {AuthService}  from "@AppModule/common/service/auth/auth.service";
 import {EventService} from "@AppModule/common/service/event/event.service";
 
 import {EntryWrapper} from "@AppModule/common/widget/entry/collection/wrapper";
+
+import {MsaTicketService} from "@MsaModule/service/ticket/msa-ticket.service";
 
 
 @Component({
@@ -57,12 +59,12 @@ export class Form088yComponent implements OnInit, AfterViewInit {
   constructor(
     private renderer: Renderer2,
     private authService: AuthService,
+    private msaTicketService: MsaTicketService,
     private http: HttpClient,
     private eventService: EventService
   ) { }
 
   ngOnInit() {
-    this.urlSubmit = !this.payloadFromServer ? 'http://0.0.0.0:8204/ticket' : 'http://0.0.0.0:8204/ticket/update';
     this.id        = !this.payloadFromServer ? null : this.payloadFromServer.id;
 
     if (!this.payloadFromServer) {
@@ -401,6 +403,13 @@ export class Form088yComponent implements OnInit, AfterViewInit {
     this.renderer.setStyle(this.formMessage.nativeElement, 'display', 'none');
   }
 
+  getSream(formData) {
+    if (!this.payloadFromServer) {
+      return this.msaTicketService.getTicketAddStream(formData);
+    }
+      return this.msaTicketService.getTicketUpdateStream(formData);
+  }
+
   async doSubmit() {
 
     this.formValidateRequired();
@@ -444,24 +453,7 @@ export class Form088yComponent implements OnInit, AfterViewInit {
     }
     this.renderer.setStyle(this.formMessage.nativeElement, 'top', (top + 'px'));
 
-
-
-    const keychain = this.authService.getKeyChain();
-
-    const token    = keychain.tokenAccessList !== null ? keychain.tokenAccessList.msa : '';
-
-    let headers = new HttpHeaders();
-        headers = headers.set('Authorization', 'Bearer ' + token);
-
-    await this.http.post<MsaResponse>(
-      this.urlSubmit,
-      {
-        data: this.formData
-      },
-      {
-        headers: headers
-      }
-    ).toPromise()
+    await this.getSream(this.formData).toPromise()
       .then(
         res => {
 

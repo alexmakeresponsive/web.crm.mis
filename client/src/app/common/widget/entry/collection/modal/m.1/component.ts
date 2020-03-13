@@ -7,7 +7,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { filter } from 'rxjs/operators';
 
 import MsaResponse                    from "@AppModule/msa/domain/model/ticket/Response";
-import {AuthService}                  from "@AppModule/auth/auth.service";
+import {AuthService}                  from "@AppModule/common/service/auth/auth.service";
 import { HttpClient, HttpHeaders }    from '@angular/common/http';
 
 

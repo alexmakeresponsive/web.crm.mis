@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from "@AppModule/auth/auth.service";
+import {AuthService} from "@AppModule/common/service/auth/auth.service";
 
 @Component({
   selector: 'part-header-msa',

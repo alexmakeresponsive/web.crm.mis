@@ -5,14 +5,13 @@
     "paths": {
       "@AppModule/*": 			      ["app/*"],
 
-      "@AuthModule/*":            ["app/auth/*"],
-
       "@DashboardModule/*":       ["app/dashboard/*"],
       "@MsaModule/*":             ["app/msa/*"],
 
       "@ComontWidgetDefaulModule/*":   ["app/common/widget/default/*"],
       "@ComonWidgetEntryModule/*":     ["app/common/widget/entry/*"],
 
+      "@CommonServiceAuthModule/*":     ["app/common/service/auth/*"],
       "@CommonServiceEventModule/*":    ["app/common/service/event/*"],
       "@CommonServiceStorageModule/*":  ["app/common/service/storage/*"],
       "@CommonServiceHttpModule/*":     ["app/common/service/http/*"]

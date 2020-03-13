@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { AuthService } from "@AppModule/auth/auth.service";
+import { AuthService } from "@AppModule/common/service/auth/auth.service";
 import { StorageData } from "@AppModule/common/service/storage/storage.data";
 import MsaResponse from "@AppModule/msa/domain/model/ticket/Response";
 
 import tableHeaderData from './config/header';
 import MsaResponseRemove from "@AppModule/msa/domain/model/ticket/ResponseRemove";
+
+import {MsaTicketService} from "@MsaModule/service/ticket/msa-ticket.service";
 
 @Component({
   selector: 'page-action-msa-result',
@@ -20,6 +22,7 @@ export class PageServiceMsaTicketResultComponent {
 
   constructor(
     private authService: AuthService,
+    private msaTicketService: MsaTicketService,
     private http: HttpClient,
     private storageData: StorageData
   ) {
@@ -33,22 +36,7 @@ export class PageServiceMsaTicketResultComponent {
   }
 
   async loadData() {
-    const keychain = this.authService.getKeyChain();
-
-    const token    = keychain.tokenAccessList !== null ? keychain.tokenAccessList.msa : '';
-
-    let headers = new HttpHeaders();
-        headers = headers.set('Authorization', 'Bearer ' + token);
-
-
-
-    await this.http.post<MsaResponse>(
-      'http://0.0.0.0:8204/ticket/result',
-      {},
-      {
-        headers: headers
-      }
-    ).toPromise()
+    await this.msaTicketService.getResultStream().toPromise()
       .then(
         res => {
           this.storageData.ticketResult = res.data;
@@ -61,23 +49,7 @@ export class PageServiceMsaTicketResultComponent {
   }
 
   removeItem(id) {
-    const keychain = this.authService.getKeyChain();
-
-    const token    = keychain.tokenAccessList !== null ? keychain.tokenAccessList.msa : '';
-
-    let headers = new HttpHeaders();
-        headers = headers.set('Authorization', 'Bearer ' + token);
-
-
-    this.http.post<MsaResponseRemove>(
-      'http://0.0.0.0:8204/ticket/result/remove',
-      {
-        id_item: id
-      },
-      {
-        headers: headers
-      }
-    ).toPromise()
+    this.msaTicketService.getResultRemoveItemStream(id).toPromise()
       .then(
         res => {
           const id       = res.id_item;

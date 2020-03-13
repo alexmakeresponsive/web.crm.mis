@@ -2,10 +2,11 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import tableHeaderData from './config/header';
-import {AuthService} from "@AppModule/auth/auth.service";
+import {AuthService} from "@AppModule/common/service/auth/auth.service";
 import {StorageData} from "@AppModule/common/service/storage/storage.data";
 import MsaResponse from "@AppModule/msa/domain/model/ticket/Response";
 import MsaResponseRemove from "@AppModule/msa/domain/model/ticket/ResponseRemove";
+import {MsaTicketService} from "@MsaModule/service/ticket/msa-ticket.service";
 
 @Component({
   selector: 'page-action-msa-journal',
@@ -19,6 +20,7 @@ export class PageServiceMsaTicketJournalComponent implements OnDestroy {
   constructor(
     private authService: AuthService,
     private http: HttpClient,
+    private msaTicketService: MsaTicketService,
     private storageData: StorageData
   ) {
     this.putData();
@@ -35,22 +37,7 @@ export class PageServiceMsaTicketJournalComponent implements OnDestroy {
   }
 
   async loadData() {
-    const keychain = this.authService.getKeyChain();
-
-    const token    = keychain.tokenAccessList !== null ? keychain.tokenAccessList.msa : '';
-
-    let headers = new HttpHeaders();
-    headers = headers.set('Authorization', 'Bearer ' + token);
-
-
-
-    await this.http.post<MsaResponse>(
-      'http://0.0.0.0:8204/ticket/journal',
-      {},
-      {
-        headers: headers
-      }
-    ).toPromise()
+    await this.msaTicketService.getJournalStream().toPromise()
       .then(
         res => {
           this.storageData.ticketJournal = res.data;
@@ -63,23 +50,7 @@ export class PageServiceMsaTicketJournalComponent implements OnDestroy {
   }
 
   removeItem(id) {
-    const keychain = this.authService.getKeyChain();
-
-    const token    = keychain.tokenAccessList !== null ? keychain.tokenAccessList.msa : '';
-
-    let headers = new HttpHeaders();
-    headers = headers.set('Authorization', 'Bearer ' + token);
-
-
-    this.http.post<MsaResponseRemove>(
-      'http://0.0.0.0:8204/ticket/journal/remove',
-      {
-        id_item: id
-      },
-      {
-        headers: headers
-      }
-    ).toPromise()
+    this.msaTicketService.getJournalRemoveItemStream(id).toPromise()
       .then(
         res => {
           const id       = res.id_item;

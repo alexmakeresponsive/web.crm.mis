@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 
-import {AuthGuard}                                        from "./auth/auth.guard";
+import {AuthGuard}                                        from "./common/service/auth/auth.guard";
 
 import {PageDashboardHomeComponent}                       from "./dashboard/routed/page/home/component";
 import {PageDashboardAboutComponent}                      from "./dashboard/routed/page/about/component";
