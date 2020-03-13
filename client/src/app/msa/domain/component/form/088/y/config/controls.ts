@@ -55,6 +55,7 @@ export default {
     entry: true,
     component: new EntryComponentConstructor(ModalM2EntryComponent, [
     ], {
+      formControlName: 'f_signature',
       options: {
         modalTitle: {
           main:  'Окно выбора председателя врачебной комиссии',
