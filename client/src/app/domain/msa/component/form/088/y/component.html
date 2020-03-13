@@ -778,7 +778,6 @@
           {{groups.f_3133_group[controlName].main.label}}
         </label>
         <!--radio-->
-        {{controlName}}
         <div class="custom-control custom-radio form-item-xs" *ngFor="let controlChL1Name of objectKeys(groups.f_3133_group[controlName].childs)">
           <input type="radio" [id]=groups.f_3133_group[controlName].childs[controlChL1Name].id
                  [formControlName]="controlName"
@@ -803,6 +802,16 @@
             ></entry-wrapper>
           </div>
         </div>
+      </div>
+    </div>
+
+    <div class="form-fields-group-wrapper">
+      <div class="label-text">
+        <entry-wrapper-2 [payload]="payloadFromServer.f_signature"
+                         [component]="groups.f_signature_group.f_signature.component"
+                         (emitterData)="setDataFromEntryComponent($event)"
+                         (emitterInstance)="getInstanceEntryComponent($event)"
+        ></entry-wrapper-2>
       </div>
     </div>
 

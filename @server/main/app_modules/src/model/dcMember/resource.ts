@@ -15,3 +15,19 @@ export const getList = () => {
         });
     })
 };
+
+export const getListSelected = (idListStr:any) => {
+
+    const table = 'dc_member';
+    const query = `SELECT * FROM ${table} WHERE id IN (${idListStr})`;
+
+    return new Promise((resolve, reject) => {
+        connection.query(query, (err, rows, fields) => {
+            if (err) {
+                return reject(err);
+            };
+
+            return resolve(rows);
+        });
+    })
+};

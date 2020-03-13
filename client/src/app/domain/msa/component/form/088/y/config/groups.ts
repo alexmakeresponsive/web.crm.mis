@@ -8,6 +8,9 @@ export default {
     f_4: controls.f_4,
     // f_4_date: controls.f_4_date,
   },
+  f_signature_group: {
+    f_signature: controls.f_signature,
+  },
   f_5_group: {
     f_5_1: {
       main: controls.f_5_1,

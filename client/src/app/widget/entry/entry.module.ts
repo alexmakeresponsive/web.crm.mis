@@ -18,6 +18,7 @@ import {TableRowTr2EntryComponent}      from "./collection/table/tr.2/component"
 import {DatePickerD1Component}          from "./collection/datepicker/d.1/component";
 import {DatePickerD2Component}          from "./collection/datepicker/d.2/component";
 import {ModalM1EntryComponent}          from "./collection/modal/m.1/component";
+import {ModalM2EntryComponent}          from "./collection/modal/m.2/component";
 
 import {EntryWrapper}                   from "./collection/wrapper";
 import {EntryWrapper2}                  from "./collection/wrapper2";
@@ -38,7 +39,7 @@ import {PhoneMaskDirective}             from "./directive/input/decorate/phone/m
     TableRowTbR1EntryComponent, TableRowTr2EntryComponent,
     DatePickerD1Component,
     DatePickerD2Component,
-    ModalM1EntryComponent,
+    ModalM1EntryComponent, ModalM2EntryComponent,
   ],
   entryComponents: [
     SelectS1Component,
@@ -47,7 +48,7 @@ import {PhoneMaskDirective}             from "./directive/input/decorate/phone/m
     TableRowTbR1EntryComponent, TableRowTr2EntryComponent,
     DatePickerD1Component,
     DatePickerD2Component,
-    ModalM1EntryComponent,
+    ModalM1EntryComponent, ModalM2EntryComponent,
   ],
   imports: [
     CommonModule,
@@ -69,12 +70,12 @@ import {PhoneMaskDirective}             from "./directive/input/decorate/phone/m
     TableRowTbR1EntryComponent, TableRowTr2EntryComponent,
     DatePickerD1Component,
     DatePickerD2Component,
-    ModalM1EntryComponent,
+    ModalM1EntryComponent, ModalM2EntryComponent,
 
     CommonModule,
 
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule, PhoneMaskDirective,
   ],
 })
 export class EntryModule { }

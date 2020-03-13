@@ -11,6 +11,7 @@ import {TableRowTr2EntryComponent}          from "@EntryWidgetModule/collection/
 import {DatePickerD1Component}              from "@EntryWidgetModule/collection/datepicker/d.1/component";
 import {DatePickerD2Component}              from "@EntryWidgetModule/collection/datepicker/d.2/component";
 import {ModalM1EntryComponent}              from "@EntryWidgetModule/collection/modal/m.1/component";
+import {ModalM2EntryComponent}              from "@EntryWidgetModule/collection/modal/m.2/component";
 
 import TableRowTr1LabelIterator                  from "@EntryWidgetModule/collection/table/tr.1/iterator/label";
 import TableRowTr1ErrorIterator                  from "@EntryWidgetModule/collection/table/tr.1/iterator/error";
@@ -49,6 +50,47 @@ export default {
     }),
     exclude: true,
   },
+
+  f_signature: {
+    entry: true,
+    component: new EntryComponentConstructor(ModalM2EntryComponent, [
+    ], {
+      options: {
+        modalTitle: {
+          main:  'Окно выбора председателя врачебной комиссии',
+          other: 'Окно выбора членов врачебной комиссии',
+        },
+        listLabel: {
+          main:  'Председатель врачебной комиссии',
+          other: 'Члены врачебной комиссии',
+        },
+        head: [
+          'ФИО',
+          'Квалификация',
+          'Департамент',
+          'Должность',
+        ]
+      },
+      formControlNameHidden: {
+        parent:  'f_signature',
+        main:     'f_signature_main',
+        other:    'f_signature_other',
+      },
+      formModalControlName: {
+        main:  'f_modal_main',
+        other: 'f_modal_other',
+      },
+      renderValueMain: (data) => {
+        return data.name_last + ' ' + data.name_first + ' ' + data.name_patronymic;
+      },
+      id: 'f_signature',
+      validators: {
+      },
+      errors: {}
+    }),
+    exclude: true,
+  },
+
   f_2: {
     label: '2. Гражданин по состоянию здоровья не может явиться в бюро (главное бюро, Федеральное бюро)\n' +
       'медико-социальной экспертизы: медико-социальную экспертизу необходимо проводить',

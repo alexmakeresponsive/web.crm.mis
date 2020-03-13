@@ -138,5 +138,7 @@ export default <Iterable>{
     f_34:                               'TEXT',
     f_35:                               'TEXT',
     f_36:                               'TEXT',
-    f_37:                               'TEXT'
+    f_37:                               'TEXT',
+
+    f_signature:                        'VARCHAR(1000)'
 };
