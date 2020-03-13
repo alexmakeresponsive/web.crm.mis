@@ -19,9 +19,10 @@ app.use(express.urlencoded({ extended: false }));
 
 
 
-app.post("/dc/member/list",  routeDcMember.getData);
-app.post("/dc/protocol/list",  routeDcProtocol.getData);
-app.post("/dc/protocol/item",  routeDcProtocol.getItemData);
+app.post("/dc/member/list",             routeDcMember.getData);
+app.post("/dc/member/item/selected",    routeDcMember.getSelectedData);
+app.post("/dc/protocol/list",           routeDcProtocol.getData);
+app.post("/dc/protocol/item",           routeDcProtocol.getItemData);
 
 
 app.use(function(req, res, next) {
