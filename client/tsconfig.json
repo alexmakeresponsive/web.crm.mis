@@ -3,17 +3,19 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
-      "@AppModule/*": 			  ["app/*"],
-      "@DashboardDomainModule/*": ["app/domain/dashboard/*"],
-      "@MsaDomainModule/*":       ["app/domain/msa/*"],
+      "@AppModule/*": 			      ["app/*"],
 
-      "@DefaultWidgetModule/*":   ["app/widget/default/*"],
-      "@EntryWidgetModule/*":     ["app/widget/entry/*"],
+      "@AuthModule/*":            ["app/auth/*"],
 
-      "@SecurityServiceModule/*": ["app/service/security/*"],
-      "@EventServiceModule/*":    ["app/service/event/*"],
-      "@StorageServiceModule/*":  ["app/service/storage/*"],
-      "@HttpServiceModule/*":     ["app/service/http/*"]
+      "@DashboardModule/*":       ["app/dashboard/*"],
+      "@MsaModule/*":             ["app/msa/*"],
+
+      "@ComontWidgetDefaulModule/*":   ["app/common/widget/default/*"],
+      "@ComonWidgetEntryModule/*":     ["app/common/widget/entry/*"],
+
+      "@CommonServiceEventModule/*":    ["app/common/service/event/*"],
+      "@CommonServiceStorageModule/*":  ["app/common/service/storage/*"],
+      "@CommonServiceHttpModule/*":     ["app/common/service/http/*"]
     },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
