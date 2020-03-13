@@ -6,7 +6,7 @@ import {StorageData} from "@AppModule/common/service/storage/storage.data";
 import {AuthService} from "@AppModule/common/service/auth/auth.service";
 import MsaResponse from "@AppModule/msa/domain/model/ticket/Response";
 
-import {MsaTicketService} from "@MsaModule/service/ticket/msa-ticket.service";
+import {MsaTicketService} from "@MsaModule/service/http/msa-ticket.service";
 
 @Component({
   selector: 'page-service-msa-result-item',

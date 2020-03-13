@@ -5,12 +5,14 @@ import { FormsModule, ReactiveFormsModule }     from '@angular/forms';
 import {EntryModule}                            from "@AppModule/common/widget/entry/entry.module";
 import {DefaultModule}                          from "@AppModule/common/widget/default/default.module";
 
-import {Form088yComponent}                      from "./component/form/088/y/component";
-
+import {Form088yComponent}                      from "./component/form/088/y/body/component";
+import {Form088yMessageBoxComponent}            from "./component/form/088/y/part/message-box/component";
+import {Form088yButtonBoxComponent}             from "./component/form/088/y/part/button-box/component";
+import {Form088yWrapperComponent}               from "./component/form/088/y/part/wrapper/component";
 
 @NgModule({
   declarations: [
-    Form088yComponent
+    Form088yComponent, Form088yMessageBoxComponent, Form088yButtonBoxComponent, Form088yWrapperComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,7 @@ import {Form088yComponent}                      from "./component/form/088/y/com
     FormsModule,
     ReactiveFormsModule,
 
-    Form088yComponent
+    Form088yWrapperComponent
   ],
 })
 export class MsaModule { }

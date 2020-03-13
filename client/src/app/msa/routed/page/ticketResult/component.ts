@@ -8,7 +8,7 @@ import MsaResponse from "@AppModule/msa/domain/model/ticket/Response";
 import tableHeaderData from './config/header';
 import MsaResponseRemove from "@AppModule/msa/domain/model/ticket/ResponseRemove";
 
-import {MsaTicketService} from "@MsaModule/service/ticket/msa-ticket.service";
+import {MsaTicketService} from "@MsaModule/service/http/msa-ticket.service";
 
 @Component({
   selector: 'page-action-msa-result',

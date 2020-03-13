@@ -7,14 +7,14 @@ import { filter } from 'rxjs/operators';
 import controls from './config/controls';
 import groups   from './config/groups';
 
-import MsaResponse    from "@AppModule/msa/domain/model/ticket/Response";
+import MsaResponse    from "@MsaModule/domain/model/ticket/Response";
 
-import {AuthService}  from "@AppModule/common/service/auth/auth.service";
-import {EventService} from "@AppModule/common/service/event/event.service";
+import {AuthService}  from "@CommonServiceAuthModule/auth.service";
+import {Form088YEventService} from "@MsaModule/service/event/form-088-y-event.service";
 
-import {EntryWrapper} from "@AppModule/common/widget/entry/collection/wrapper";
+import {EntryWrapper} from "@ComonWidgetEntryModule/collection/wrapper";
 
-import {MsaTicketService} from "@MsaModule/service/ticket/msa-ticket.service";
+import {MsaTicketService} from "@MsaModule/service/http/msa-ticket.service";
 
 
 @Component({
@@ -25,7 +25,6 @@ import {MsaTicketService} from "@MsaModule/service/ticket/msa-ticket.service";
 export class Form088yComponent implements OnInit, AfterViewInit {
   @Input() payloadFromServer;
 
-  private urlSubmit;
   private id;
 
   private controls = controls;
@@ -40,20 +39,17 @@ export class Form088yComponent implements OnInit, AfterViewInit {
 
   private formValidateStatus:boolean          = false;
 
-  private formMessageType:string       = 'light';
-
   objectKeys = Object.keys;
 
   private formInitStatus:string = 'not-ready';
 
-
-  @ViewChild('containerBtn', {static: false}) containerBtn: ElementRef;
-  @ViewChild('formMessage', {static: false}) formMessage: ElementRef;
-  @ViewChild('formWrapper', {static: false}) formWrapper: ElementRef;
+  private messageContainer = {
+    validation: '',
+    validationRequired: '',
+  };
 
   @ViewChild(EntryWrapper, {static: false})
   private entryWrapper: EntryWrapper;
-
 
 
   constructor(
@@ -61,18 +57,32 @@ export class Form088yComponent implements OnInit, AfterViewInit {
     private authService: AuthService,
     private msaTicketService: MsaTicketService,
     private http: HttpClient,
-    private eventService: EventService
+    private eventService: Form088YEventService
   ) { }
 
   ngOnInit() {
-    this.id        = !this.payloadFromServer ? null : this.payloadFromServer.id;
-
     if (!this.payloadFromServer) {
          this.payloadFromServer = {};
     }
 
     this.form = this.createFormGroup();
                 this.subscribeToFieldStatusChanges();
+
+    this.eventService.submit.subscribe( resolve => {
+      if (!resolve) {
+        return;
+      }
+
+      this.submitForm();
+    });
+
+    this.eventService.reset.subscribe( resolve => {
+      if (!resolve) {
+        return;
+      }
+
+      this.resetForm();
+    });
   }
 
   ngAfterViewInit() {
@@ -218,7 +228,7 @@ export class Form088yComponent implements OnInit, AfterViewInit {
             message = message.trim();
             message += '.';
 
-      this.formMessage.nativeElement.innerHTML = message;
+      this.messageContainer.validation = message;
 
       this.formValidateStatus = false;
     } else {
@@ -276,7 +286,7 @@ export class Form088yComponent implements OnInit, AfterViewInit {
         }
       }
 
-      this.formMessage.nativeElement.innerHTML = message;
+      this.messageContainer.validationRequired = message;
 
       this.formValidateStatus = false;
     } else {
@@ -343,81 +353,33 @@ export class Form088yComponent implements OnInit, AfterViewInit {
     return new FormGroup(FormGroupOptions);
   }
 
-  @HostListener('window:scroll', ['$event'])
-  scrollHandler(event) {
-    if (document.body.scrollTop <= 396 || document.documentElement.scrollTop <= 396) {
-      const top = 246 + 150 + 30 - window.pageYOffset;
-      this.renderer.setStyle(this.containerBtn.nativeElement, 'top', (top + 'px'));
-      this.renderer.setStyle(this.containerBtn.nativeElement, 'bottom', 'auto');
-    }
-
-    if (document.body.scrollTop > 396 || document.documentElement.scrollTop > 396) {
-      this.renderer.setStyle(this.containerBtn.nativeElement, 'top', (30 + 'px'));
-      this.renderer.setStyle(this.containerBtn.nativeElement, 'bottom', 'auto');
-    }
-
-      const bottomBreakpoint = document.body.clientHeight - window.innerHeight - 30;
-      const bottom =  window.innerHeight + window.pageYOffset - document.body.clientHeight - 45 + 90;
-
-
-      const formMessagePositionTop = window.pageYOffset - 150 + 30;
-      const formMessagePositionBottom = document.body.clientHeight - 150 - 45 -47;
-
-    if (document.body.scrollTop <= 150 || document.documentElement.scrollTop <= 150) {
-      this.renderer.setStyle(this.formMessage.nativeElement, 'top', (0 + 'px'));
-    }
-    if (document.body.scrollTop > 150 || document.documentElement.scrollTop > 150) {
-      this.renderer.setStyle(this.formMessage.nativeElement, 'top', (formMessagePositionTop + 'px'));
-    }
-
-    if ( document.body.scrollTop > (bottomBreakpoint)
-      || document.documentElement.scrollTop > (bottomBreakpoint)) {
-
-      this.renderer.setStyle(this.containerBtn.nativeElement, 'top', 'auto');
-      this.renderer.setStyle(this.containerBtn.nativeElement, 'bottom', (bottom + 'px'));
-
-      this.renderer.setStyle(this.formMessage.nativeElement, 'top', (formMessagePositionBottom + 'px'));
-    }
-
-
-  }
-
-  scrollToTop() {
-    window.scrollTo(0, 0);
-  }
-
-  scrollToDown() {
-    window.scrollTo(0, document.body.scrollHeight);
-  }
-
-  showMessage(options) {
-    this.formMessageType = options.color;
-    this.renderer.setStyle(this.formMessage.nativeElement, 'display', 'block');
-
-    setTimeout(() => {
-      this.renderer.setStyle(this.formMessage.nativeElement, 'display', 'none');
-    }, options.timeout);
-  }
-
-  hideMessage() {
-    this.renderer.setStyle(this.formMessage.nativeElement, 'display', 'none');
-  }
-
   getSream(formData) {
-    if (!this.payloadFromServer) {
+
+    if (!this.payloadFromServer.hasOwnProperty('id')) {
       return this.msaTicketService.getTicketAddStream(formData);
     }
       return this.msaTicketService.getTicketUpdateStream(formData);
   }
 
-  async doSubmit() {
+  resetForm() {
+    this.form.reset();
+
+    this.eventService.showMessage({
+      text: 'Форма очищена',
+      status: 'success',
+      timeout: 2000
+    });
+  }
+
+  async submitForm() {
 
     this.formValidateRequired();
 
     if(!this.formValidateStatus) {
-      this.showMessage({
-        color: 'danger',
-        timeout: 16000
+      this.eventService.showMessage({
+        text: this.messageContainer.validationRequired,
+        status: 'danger',
+        timeout: 8000
       });
 
       return;
@@ -426,32 +388,29 @@ export class Form088yComponent implements OnInit, AfterViewInit {
     this.formValidate();
 
     if(!this.formValidateStatus) {
-      this.showMessage({
-        color: 'danger',
-        timeout: 16000
+      this.eventService.showMessage({
+        text: this.messageContainer.validation,
+        status: 'danger',
+        timeout: 8000
       });
 
       return;
     }
 
-    this.hideMessage();
+    this.eventService.showMessage({});
     this.getFormData();
+
 
     console.log(this.formData);
 
-    this.formMessageType = 'info';
-    this.formMessage.nativeElement.innerHTML ='Форма отправляется';
-    this.renderer.setStyle(this.formMessage.nativeElement, 'display', 'block');
-    this.renderer.setStyle(this.formWrapper.nativeElement, 'opacity', '0.5');
+    this.eventService.showMessage({
+      text: 'Форма отправляется',
+      status: 'info',
+      timeout: 60000
+    });
 
 
-    let top = window.pageYOffset;
-    if (window.pageYOffset <= 150 ) {
-      top = 0;
-    } else {
-      top = window.pageYOffset - 120;
-    }
-    this.renderer.setStyle(this.formMessage.nativeElement, 'top', (top + 'px'));
+
 
     await this.getSream(this.formData).toPromise()
       .then(
@@ -462,34 +421,20 @@ export class Form088yComponent implements OnInit, AfterViewInit {
           }
 
           if (this.payloadFromServer.id) {
-            // fire event for update storage.data
-            this.eventService.updateTicketJournalItem();
+
           }
 
-          setTimeout(() => {
-            this.formMessageType = 'success';
-            this.formMessage.nativeElement.innerHTML ='Форма сохранена';
-          }, 1000);
-
-          setTimeout(() => {
-            this.renderer.setStyle(this.formWrapper.nativeElement, 'opacity', '1');
-            this.renderer.setStyle(this.formMessage.nativeElement, 'display', 'none');
-          }, 3000);
+          this.eventService.showMessage({});
+          this.eventService.showMessage({
+            text: 'Форма сохранена',
+            status: 'success',
+            timeout: 2000
+          });
         },
         rej => {
 
         }
       );
-  }
-
-  doClear() {
-    this.formMessage.nativeElement.innerHTML ='Форма очищена';
-    this.form.reset();
-
-    this.showMessage({
-      color: 'success',
-      timeout: 2000
-    });
   }
 
   // fire when input in entry component change value

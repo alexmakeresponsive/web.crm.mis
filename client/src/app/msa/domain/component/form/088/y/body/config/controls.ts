@@ -1,22 +1,22 @@
 import {Validators} from '@angular/forms';
 
-import {EntryComponentConstructor}          from "@AppModule/common/widget/entry/collection/constructor";
-import {SelectS1Component}                  from "@AppModule/common/widget/entry/collection/select/s.1/component";
-import {TextareaT1Component}                from "@AppModule/common/widget/entry/collection/textarea/t.1/component";
-import {InputI1Component}                   from "@AppModule/common/widget/entry/collection/input/default/i.1/component";
-import {InputI2Component}                   from "@AppModule/common/widget/entry/collection/input/default/i.2/component";
-import {InputDecoratePhoneI1Component}      from "@AppModule/common/widget/entry/collection/input/decorate/phone/i.d.p.1/component";
-import {TableRowTbR1EntryComponent}         from "@AppModule/common/widget/entry/collection/table/tr.1/component";
-import {TableRowTr2EntryComponent}          from "@AppModule/common/widget/entry/collection/table/tr.2/component";
-import {DatePickerD1Component}              from "@AppModule/common/widget/entry/collection/datepicker/d.1/component";
-import {DatePickerD2Component}              from "@AppModule/common/widget/entry/collection/datepicker/d.2/component";
-import {ModalM1EntryComponent}              from "@AppModule/common/widget/entry/collection/modal/m.1/component";
-import {ModalM2EntryComponent}              from "@AppModule/common/widget/entry/collection/modal/m.2/component";
+import {EntryComponentConstructor}          from "@ComonWidgetEntryModule/collection/constructor";
+import {SelectS1Component}                  from "@ComonWidgetEntryModule/collection/select/s.1/component";
+import {TextareaT1Component}                from "@ComonWidgetEntryModule/collection/textarea/t.1/component";
+import {InputI1Component}                   from "@ComonWidgetEntryModule/collection/input/default/i.1/component";
+import {InputI2Component}                   from "@ComonWidgetEntryModule/collection/input/default/i.2/component";
+import {InputDecoratePhoneI1Component}      from "@ComonWidgetEntryModule/collection/input/decorate/phone/i.d.p.1/component";
+import {TableRowTbR1EntryComponent}         from "@ComonWidgetEntryModule/collection/table/tr.1/component";
+import {TableRowTr2EntryComponent}          from "@ComonWidgetEntryModule/collection/table/tr.2/component";
+import {DatePickerD1Component}              from "@ComonWidgetEntryModule/collection/datepicker/d.1/component";
+import {DatePickerD2Component}              from "@ComonWidgetEntryModule/collection/datepicker/d.2/component";
+import {ModalM1EntryComponent}              from "@ComonWidgetEntryModule/collection/modal/m.1/component";
+import {ModalM2EntryComponent}              from "@ComonWidgetEntryModule/collection/modal/m.2/component";
 
-import TableRowTr1LabelIterator                  from "@AppModule/common/widget/entry/collection/table/tr.1/iterator/label";
-import TableRowTr1ErrorIterator                  from "@AppModule/common/widget/entry/collection/table/tr.1/iterator/error";
-import TableRowTr2LabelIterator                  from "@AppModule/common/widget/entry/collection/table/tr.2/iterator/label";
-import TableRowTr2ErrorIterator                  from "@AppModule/common/widget/entry/collection/table/tr.2/iterator/error";
+import TableRowTr1LabelIterator                  from "@ComonWidgetEntryModule/collection/table/tr.1/iterator/label";
+import TableRowTr1ErrorIterator                  from "@ComonWidgetEntryModule/collection/table/tr.1/iterator/error";
+import TableRowTr2LabelIterator                  from "@ComonWidgetEntryModule/collection/table/tr.2/iterator/label";
+import TableRowTr2ErrorIterator                  from "@ComonWidgetEntryModule/collection/table/tr.2/iterator/error";
 
 export default {
   f_1: {

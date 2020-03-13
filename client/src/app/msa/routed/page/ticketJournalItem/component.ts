@@ -7,7 +7,7 @@ import {AuthService} from "@AppModule/common/service/auth/auth.service";
 import {EventService} from "@AppModule/common/service/event/event.service";
 import MsaResponse from "@AppModule/msa/domain/model/ticket/Response";
 
-import {MsaTicketService} from "@MsaModule/service/ticket/msa-ticket.service";
+import {MsaTicketService} from "@MsaModule/service/http/msa-ticket.service";
 
 @Component({
   selector: 'page-service-msa-journal-item',
