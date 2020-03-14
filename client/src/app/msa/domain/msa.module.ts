@@ -29,7 +29,7 @@ import {Form088yWrapperComponent}               from "./component/form/088/y/par
     FormsModule,
     ReactiveFormsModule,
 
-    Form088yWrapperComponent, Form088yMessageBoxComponent
+    Form088yWrapperComponent, Form088yMessageBoxComponent, Form088yButtonBoxComponent
   ],
 })
 export class MsaModule { }

@@ -1,15 +1,17 @@
 .wrapper-form-message {
   position: absolute;
-  left: 0px;
-  right: 0px;
-  height: 100px;
+  left:  15px;
+  right: 15px;
 }
 .form-message {
-  display: none;
+  //display: none;
   z-index: 100;
 }
 
 .wrapper-form-message.sticky-top {
   position: fixed;
   top: 30px;
+  left: auto;
+  right: auto;
+  width: 690px;
 }

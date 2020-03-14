@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, Renderer2, HostListener, OnInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, Renderer2, HostListener, OnInit, AfterViewInit } from '@angular/core';
 
 import {Form088YEventService} from "@MsaModule/service/event/form-088-y-event.service";
 
@@ -7,7 +7,7 @@ import {Form088YEventService} from "@MsaModule/service/event/form-088-y-event.se
   templateUrl: './component.html',
   styleUrls: ['./component.scss']
 })
-export class Form088yButtonBoxComponent implements OnInit {
+export class Form088yButtonBoxComponent implements OnInit, AfterViewInit {
   @ViewChild('containerBtn', {static: false}) containerBtn: ElementRef;
 
   constructor(
@@ -15,17 +15,22 @@ export class Form088yButtonBoxComponent implements OnInit {
     private eventService: Form088YEventService
   ) { }
 
+
+  headerHeight          = 150;
+  containerBtnOffsetTop = 0;
+
   @HostListener('window:scroll', ['$event'])
   scrollHandler(event) {
-    if (document.body.scrollTop <= 396 || document.documentElement.scrollTop <= 396) {
-      const top = 246 + 150 + 30 - window.pageYOffset;
-      this.renderer.setStyle(this.containerBtn.nativeElement, 'top', (top + 'px'));
-      this.renderer.setStyle(this.containerBtn.nativeElement, 'bottom', 'auto');
+    if (document.body.scrollTop <= this.containerBtnOffsetTop
+      || document.documentElement.scrollTop <= this.containerBtnOffsetTop
+    ) {
+      this.renderer.removeClass(this.containerBtn.nativeElement, 'sticky-top');
     }
 
-    if (document.body.scrollTop > 396 || document.documentElement.scrollTop > 396) {
-      this.renderer.setStyle(this.containerBtn.nativeElement, 'top', (30 + 'px'));
-      this.renderer.setStyle(this.containerBtn.nativeElement, 'bottom', 'auto');
+    if (document.body.scrollTop > this.containerBtnOffsetTop
+      || document.documentElement.scrollTop > this.containerBtnOffsetTop
+    ) {
+      this.renderer.addClass(this.containerBtn.nativeElement, 'sticky-top');
     }
 
     const bottomBreakpoint = document.body.clientHeight - window.innerHeight - 30;
@@ -34,8 +39,6 @@ export class Form088yButtonBoxComponent implements OnInit {
     if ( document.body.scrollTop > (bottomBreakpoint)
       || document.documentElement.scrollTop > (bottomBreakpoint)) {
 
-      this.renderer.setStyle(this.containerBtn.nativeElement, 'top', 'auto');
-      this.renderer.setStyle(this.containerBtn.nativeElement, 'bottom', (bottom + 'px'));
     }
   }
 
@@ -57,5 +60,9 @@ export class Form088yButtonBoxComponent implements OnInit {
 
   ngOnInit() {
 
+  }
+
+  ngAfterViewInit() {
+    this.containerBtnOffsetTop = this.headerHeight + this.containerBtn.nativeElement.offsetTop;
   }
 }
