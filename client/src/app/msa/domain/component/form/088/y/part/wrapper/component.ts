@@ -1,4 +1,8 @@
-import { Component, ViewChild, ElementRef, Renderer2, HostListener, OnInit, Input } from '@angular/core';
+import { Component,
+  ViewChild, ElementRef, Renderer2, HostListener,
+  OnInit, AfterViewInit, OnDestroy,
+  Input
+} from '@angular/core';
 
 import {Form088YEventService} from "@MsaModule/service/event/form-088-y-event.service";
 
@@ -7,10 +11,12 @@ import {Form088YEventService} from "@MsaModule/service/event/form-088-y-event.se
   templateUrl: './component.html',
   styleUrls: ['./component.scss']
 })
-export class Form088yWrapperComponent implements OnInit {
+export class Form088yWrapperComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() payloadFromServer;
 
   @ViewChild('formWrapper', {static: false}) formWrapper: ElementRef;
+
+  wrapperSubscriber;
 
   constructor(
     private renderer: Renderer2,
@@ -26,7 +32,11 @@ export class Form088yWrapperComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.eventService.wrapper.subscribe( message => {
+
+  }
+
+  ngAfterViewInit() {
+    this.wrapperSubscriber = this.eventService.wrapper.subscribe( message => {
       if(!message) {
         return;
       }
@@ -39,5 +49,9 @@ export class Form088yWrapperComponent implements OnInit {
         this.show();
       }
     });
+  }
+
+  ngOnDestroy() {
+    this.wrapperSubscriber.unsubscribe();
   }
 }

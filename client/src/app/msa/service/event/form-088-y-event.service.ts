@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 
 declare type Wrapper = {
@@ -8,31 +8,28 @@ declare type Wrapper = {
 }
 
 declare type Message = {
-  text: string;
-  status:string;
-  timeout:number;
+  action: string;
+  text?: string;
+  status?:string;
+  timeout?:number;
 }
 
+declare type Button = {
+  action: string;
+}
 
 @Injectable({providedIn: 'root'})
 export class Form088YEventService {
 
-  submit: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  reset:  BehaviorSubject<boolean> = new BehaviorSubject(false);
-
-  wrapper: BehaviorSubject<Wrapper> = new BehaviorSubject(null);
-
-  message: BehaviorSubject<Message> = new BehaviorSubject(null);
+  button:  Subject<Button>  = new Subject();
+  wrapper: Subject<Wrapper> = new Subject();
+  message: Subject<Message> = new Subject();
 
   constructor() {
   }
 
-  submitForm() {
-    this.submit.next(true);
-  }
-
-  resetForm() {
-    this.reset.next(true);
+  clickButton(message) {
+    this.button.next(message);
   }
 
   notifyWrapper(message) {

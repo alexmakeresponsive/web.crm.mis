@@ -40,11 +40,11 @@ export class Form088yButtonBoxComponent implements OnInit {
   }
 
   doSubmit() {
-    this.eventService.submitForm();
+    this.eventService.clickButton({action: 'submit'});
   }
 
   doClear() {
-    this.eventService.resetForm();
+    this.eventService.clickButton({action: 'reset'});
   }
 
   scrollToTop() {

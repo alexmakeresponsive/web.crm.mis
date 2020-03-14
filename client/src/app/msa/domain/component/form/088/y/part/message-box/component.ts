@@ -1,4 +1,8 @@
-import { Component, ViewChild, ElementRef, Renderer2, HostListener, OnInit } from '@angular/core';
+import {
+  Component,
+  ViewChild, ElementRef, Renderer2, HostListener,
+  OnInit, AfterViewInit, OnDestroy
+} from '@angular/core';
 
 import {Form088YEventService} from "@MsaModule/service/event/form-088-y-event.service";
 
@@ -7,10 +11,13 @@ import {Form088YEventService} from "@MsaModule/service/event/form-088-y-event.se
   templateUrl: './component.html',
   styleUrls: ['./component.scss']
 })
-export class Form088yMessageBoxComponent implements OnInit {
+export class Form088yMessageBoxComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('formMessage', {static: false}) formMessage: ElementRef;
+  @ViewChild('formMessageWrapper', {static: false}) formMessageWrapper: ElementRef;
 
   private formMessageType:string = 'light';
+
+  messageSubscriber;
 
   constructor(
     private renderer: Renderer2,
@@ -25,15 +32,15 @@ export class Form088yMessageBoxComponent implements OnInit {
     const formMessagePositionBottom = document.body.clientHeight - 150 - 45 -47;
 
     if (document.body.scrollTop <= 150 || document.documentElement.scrollTop <= 150) {
-      this.renderer.setStyle(this.formMessage.nativeElement, 'top', (0 + 'px'));
+      this.renderer.removeClass(this.formMessageWrapper.nativeElement, 'sticky-top');
     }
     if (document.body.scrollTop > 150 || document.documentElement.scrollTop > 150) {
-      this.renderer.setStyle(this.formMessage.nativeElement, 'top', (formMessagePositionTop + 'px'));
+      this.renderer.addClass(this.formMessageWrapper.nativeElement, 'sticky-top');
     }
 
     if ( document.body.scrollTop > (bottomBreakpoint)
       || document.documentElement.scrollTop > (bottomBreakpoint)) {
-      this.renderer.setStyle(this.formMessage.nativeElement, 'top', (formMessagePositionBottom + 'px'));
+      // this.renderer.setStyle(this.formMessage.nativeElement, 'top', (formMessagePositionBottom + 'px'));
     }
   }
 
@@ -56,17 +63,27 @@ export class Form088yMessageBoxComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.eventService.message.subscribe( message => {
+
+  }
+
+  ngAfterViewInit() {
+    this.messageSubscriber = this.eventService.message.subscribe( message => {
       if(!message) {
         return;
       }
 
-      if(!Object.keys(message).length) {
+      if(message.action === 'hide') {
         this.hideMessage();
-        return;
       }
 
-      this.showMessage(message);
+      if(message.action === 'show') {
+        this.showMessage(message);
+      }
+
     });
+  }
+
+  ngOnDestroy() {
+    this.messageSubscriber.unsubscribe();
   }
 }

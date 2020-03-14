@@ -1,4 +1,9 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, Renderer2, HostListener, Input } from '@angular/core';
+import {
+  Component,
+  OnInit, AfterViewInit, OnDestroy,
+  ViewChild, ElementRef, Renderer2, HostListener,
+  Input
+} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -22,7 +27,7 @@ import {MsaTicketService} from "@MsaModule/service/http/msa-ticket.service";
   templateUrl: './component.html',
   styleUrls: ['./component.scss']
 })
-export class Form088yComponent implements OnInit, AfterViewInit {
+export class Form088yComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() payloadFromServer;
 
   private id;
@@ -51,6 +56,7 @@ export class Form088yComponent implements OnInit, AfterViewInit {
   @ViewChild(EntryWrapper, {static: false})
   private entryWrapper: EntryWrapper;
 
+  buttonSubscriber;
 
   constructor(
     private renderer: Renderer2,
@@ -67,28 +73,31 @@ export class Form088yComponent implements OnInit, AfterViewInit {
 
     this.form = this.createFormGroup();
                 this.subscribeToFieldStatusChanges();
-
-    this.eventService.submit.subscribe( resolve => {
-      if (!resolve) {
-        return;
-      }
-
-      this.submitForm();
-    });
-
-    this.eventService.reset.subscribe( resolve => {
-      if (!resolve) {
-        return;
-      }
-
-      this.resetForm();
-    });
   }
 
   ngAfterViewInit() {
     this.buildFormControls();
 
     this.formInitStatus = 'ready';
+
+    this.buttonSubscriber =  this.eventService.button.subscribe( message => {
+      if (!message) {
+        return;
+      }
+
+      if (message.action === 'submit') {
+        this.submitForm();
+      }
+
+      if (message.action === 'reset') {
+        this.resetForm();
+      }
+
+    });
+  }
+
+  ngOnDestroy() {
+    this.buttonSubscriber.unsubscribe();
   }
 
   buildFormControls() {
@@ -365,6 +374,7 @@ export class Form088yComponent implements OnInit, AfterViewInit {
     this.form.reset();
 
     this.eventService.showMessage({
+      action: 'show',
       text: 'Форма очищена',
       status: 'success',
       timeout: 2000
@@ -377,6 +387,7 @@ export class Form088yComponent implements OnInit, AfterViewInit {
 
     if(!this.formValidateStatus) {
       this.eventService.showMessage({
+        action: 'show',
         text: this.messageContainer.validationRequired,
         status: 'danger',
         timeout: 8000
@@ -389,6 +400,7 @@ export class Form088yComponent implements OnInit, AfterViewInit {
 
     if(!this.formValidateStatus) {
       this.eventService.showMessage({
+        action: 'show',
         text: this.messageContainer.validation,
         status: 'danger',
         timeout: 8000
@@ -397,20 +409,15 @@ export class Form088yComponent implements OnInit, AfterViewInit {
       return;
     }
 
-    this.eventService.showMessage({});
+    this.eventService.showMessage({action: 'hide'});
     this.getFormData();
 
-
-    console.log(this.formData);
-
     this.eventService.showMessage({
+      action: 'show',
       text: 'Форма отправляется',
       status: 'info',
       timeout: 60000
     });
-
-
-
 
     await this.getSream(this.formData).toPromise()
       .then(
@@ -424,12 +431,15 @@ export class Form088yComponent implements OnInit, AfterViewInit {
 
           }
 
-          this.eventService.showMessage({});
-          this.eventService.showMessage({
-            text: 'Форма сохранена',
-            status: 'success',
-            timeout: 2000
-          });
+          setTimeout(()=> {
+            this.eventService.showMessage({action: 'hide'});
+            this.eventService.showMessage({
+              action: 'show',
+              text: 'Форма сохранена',
+              status: 'success',
+              timeout: 2000
+            });
+          }, 2000);
         },
         rej => {
 
