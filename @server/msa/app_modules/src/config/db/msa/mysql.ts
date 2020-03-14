@@ -1,8 +1,9 @@
-import manager            from 'nconf';
-import path, {dirname}    from 'path';
-
-export default manager.argv()
-    .env()
-    .file({
-        file: path.join(__dirname, "db.mysql.config.json")
-    });
+export const configMysql = {
+    "host":      "172.17.0.5",
+    "port":      "3306",
+    "db":        {
+        "main": "main"
+    },
+    "user":      "nodeuser",
+    "password":  "U^O&Tg2e23%^fH"
+};

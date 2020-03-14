@@ -1,4 +1,4 @@
-export default class MsaResponse {
+export type MsaResponse = {
   trust:boolean;
   status?:string;
   message?:string;

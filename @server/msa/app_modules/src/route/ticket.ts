@@ -2,7 +2,7 @@ import express, {NextFunction, Request, Response} from 'express';
 
 
 import helperAuthCheck from '../helper/auth/check';
-import MsaResponse from "../type/Response";
+import {MsaResponse} from "../type/Response";
 
 import * as ticketModeltResource from '../model/ticket/resource';
 import * as ticketModelModel     from '../model/ticket/model';

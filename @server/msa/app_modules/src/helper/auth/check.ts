@@ -1,6 +1,6 @@
 import generatorTokenJWT from 'jsonwebtoken';
 
-import AccessToken from '../../type/AccessToken'
+import {AccessToken} from '../../type/AccessToken'
 import * as userResource from '../../model/user/resource';
 
 

@@ -1,4 +1,4 @@
-export default class AccessToken {
+export type AccessToken = {
     id_user:number;
     id_service:string;
     list_user_role:string;

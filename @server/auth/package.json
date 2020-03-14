@@ -6,7 +6,8 @@
   "scripts": {
     "dv": "nodemon ./app_modules/src/bootstrap.ts",
     "dv-mon": "nodemon ./app_modules/src/bootstrap/db/session/test/mongo.ts",
-    "pd": "node --loader ./app_modules/js/loader.js ./app_modules/js/bin/www"
+    "pd-loader": "node --loader ./app_modules/js/loader.js ./app_modules/js/bin/www",
+    "pd": "node ./app_modules/dist/bootstrap.js"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +22,8 @@
     "@types/express-session": "^1.15.16",
     "@types/http-errors": "^1.6.3",
     "@types/jsonwebtoken": "^8.3.7",
+    "@types/mongodb": "^3.5.2",
+    "@types/mongoose": "^5.7.6",
     "@types/morgan": "^1.7.37",
     "@types/mysql": "^2.15.8",
     "@types/nconf": "^0.10.0",
@@ -36,6 +39,7 @@
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.24.0",
     "mongodb": "^3.5.3",
+    "mongoose": "^5.9.4",
     "morgan": "^1.9.1",
     "mysql": "^2.18.1",
     "nconf": "^0.10.0"

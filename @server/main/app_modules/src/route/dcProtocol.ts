@@ -2,7 +2,7 @@ import express, {NextFunction, Request, Response} from 'express';
 
 
 import helperAuthCheck from '../helper/auth/check';
-import MsaResponse from "../type/Response";
+import {MsaResponse} from "../type/Response";
 
 import * as dcProtocolModeltResource from '../model/dcProtocol/resource';
 import * as helperDataRebuild from "../helper/data/rebuild";

@@ -3,7 +3,7 @@ import express, {NextFunction, Request, Response} from 'express';
 
 import helperAuthCheck from '../helper/auth/check';
 import * as helperDataRebuild from '../helper/data/rebuild';
-import MsaResponse from "../type/Response";
+import {MsaResponse} from "../type/Response";
 import * as ticketJournalResource from '../model/ticketJournal/resource';
 
 

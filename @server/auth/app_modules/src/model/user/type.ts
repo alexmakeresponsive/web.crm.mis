@@ -7,5 +7,5 @@ export type User  = {
     password_hash_user:string;
     salt_user:string;
     created_at_user:string;
-    login_user;
+    login_user:string;
 };

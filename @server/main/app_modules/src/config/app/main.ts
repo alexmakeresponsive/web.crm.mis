@@ -1,8 +1,6 @@
-import manager            from 'nconf';
-import path, {dirname}    from 'path';
-
-export default manager.argv()
-    .env()
-    .file({
-        file: path.join(__dirname, "app.config.json")
-    });
+export const configApp = {
+    "port": 3000,
+    "path": {
+        "root": "/app/app_modules"
+    }
+};

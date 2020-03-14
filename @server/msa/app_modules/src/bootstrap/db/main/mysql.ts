@@ -1,11 +1,11 @@
 import mysql from 'mysql';
-import config from '../../../config/db/msa/mysql';
+import {configMysql} from '../../../config/db/msa/mysql';
 
 var connection = mysql.createConnection({
-    host:       config.get('host'),
-    database:   config.get('db').main,
-    user:       config.get('user'),
-    password:   config.get('password'),
+    host:       configMysql['host'],
+    database:   configMysql['db'].main,
+    user:       configMysql['user'],
+    password:   configMysql['password'],
 });
 
 connection.connect((error) => {

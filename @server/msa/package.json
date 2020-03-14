@@ -6,7 +6,8 @@
   "scripts": {
     "dv": "nodemon ./app_modules/src/bootstrap.ts",
     "dv-mon": "nodemon ./app_modules/src/bootstrap/db/session/test/mongo.ts",
-    "pd": "node --loader ./app_modules/js/loader.js ./app_modules/js/bin/www"
+    "pd-loader": "node --loader ./app_modules/js/loader.js ./app_modules/js/bin/www",
+    "pd": "node ./app_modules/dist/bootstrap.js"
   },
   "keywords": [],
   "author": "",
