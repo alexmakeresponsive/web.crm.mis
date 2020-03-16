@@ -1,5 +1,5 @@
 export const configDbMongoSession = {
-    "host":      "172.17.0.3",
+    "host":      "db.auth.session",
     "port":      "27017",
     "db":        {
         "main": "sessions"

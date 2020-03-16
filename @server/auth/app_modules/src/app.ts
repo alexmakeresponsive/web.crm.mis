@@ -23,7 +23,8 @@ const {
 
 
 app.use(cors({
-    "origin": "http://0.0.0.0:4202",
+    // "origin": "http://0.0.0.0:4202",
+    "origin": "http://icearea.amrxt.ru/",
     "credentials": true
 }));
 
@@ -45,11 +46,13 @@ app.use(session({
     })
 }));
 
+const prefix = '/api/auth/';    // use in nginx.conf
+
 // auth - name of server
-app.post("/auth/login",  routeAnn.login);
-app.post("/auth/logout", routeAnn.logout);
-app.post("/auth/refresh", routeAnn.refresh);
-app.get("/auth/check",  routeAnn.check);
+app.post(prefix + "login",  routeAnn.login);
+app.post(prefix + "logout", routeAnn.logout);
+app.post(prefix + "refresh", routeAnn.refresh);
+app.get(prefix + "check",  routeAnn.check);
 
 
 app.use(function(req, res, next) {

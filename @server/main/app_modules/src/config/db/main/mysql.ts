@@ -1,5 +1,5 @@
 export const configMysql = {
-    "host":      "172.17.0.4",
+    "host":      "db.app.main",
     "port":      "3306",
     "db":        {
         "main": "main"

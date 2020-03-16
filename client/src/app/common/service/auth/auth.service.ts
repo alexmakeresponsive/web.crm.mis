@@ -51,7 +51,7 @@ export class AuthService  {
 
     setTimeout(() => {
       this.http.post<any>(
-        'http://0.0.0.0:8202/auth/refresh',
+        '/api/auth/refresh',
         {
           refreshToken: this.keychain.tokenRefresh
         }
@@ -117,7 +117,7 @@ export class AuthService  {
     this.user.status.auth = 'not-authorized';
 
     this.http.post<any>(
-      'http://0.0.0.0:8202/auth/logout',
+      '/api/auth/logout',
       {}
     ).pipe(
       retry(0),
@@ -136,7 +136,7 @@ export class AuthService  {
 
     return new Promise((res, rej) => {
       this.http.get<any>(
-          'http://0.0.0.0:8202/auth/check',
+          '/api/auth/check',
           {}
         ).pipe(
           retry(0),
@@ -157,7 +157,7 @@ export class AuthService  {
   async isAuth3() {
     try {
       await this.http.get<CheckResponse>(
-        'http://0.0.0.0:8202/auth/check',
+        '/api/auth/check',
         {}
       ).toPromise()
         .then(

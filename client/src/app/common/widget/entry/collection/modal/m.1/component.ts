@@ -173,7 +173,7 @@ export class ModalM1EntryComponent implements OnInit, AfterViewInit {
 
 
     await this.http.post<MsaResponse>(
-      'http://0.0.0.0:8203/dc/protocol/list',
+      '/api/main/dc/protocol/list',
       {},
       {
         headers: headers
@@ -198,7 +198,7 @@ export class ModalM1EntryComponent implements OnInit, AfterViewInit {
 
 
     await this.http.post<MsaResponse>(
-      'http://0.0.0.0:8203/dc/protocol/item',
+      '/api/main/dc/protocol/item',
       {
         id: id
       },

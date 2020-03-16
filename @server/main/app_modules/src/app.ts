@@ -9,7 +9,8 @@ import * as routeDcProtocol  from './route/dcProtocol';
 const app              = express();
 
 app.use(cors({
-    "origin": "http://0.0.0.0:4202",
+    // "origin": "http://0.0.0.0:4202",
+    "origin": "http://icearea.amrxt.ru/",
     "credentials": true
 }));
 
@@ -17,12 +18,12 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+const prefix = '/api/main/';
 
-
-app.post("/dc/member/list",             routeDcMember.getData);
-app.post("/dc/member/item/selected",    routeDcMember.getSelectedData);
-app.post("/dc/protocol/list",           routeDcProtocol.getData);
-app.post("/dc/protocol/item",           routeDcProtocol.getItemData);
+app.post(prefix + "dc/member/list",             routeDcMember.getData);
+app.post(prefix + "dc/member/item/selected",    routeDcMember.getSelectedData);
+app.post(prefix + "dc/protocol/list",           routeDcProtocol.getData);
+app.post(prefix + "dc/protocol/item",           routeDcProtocol.getItemData);
 
 
 app.use(function(req, res, next) {

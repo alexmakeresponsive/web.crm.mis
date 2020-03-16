@@ -6,7 +6,8 @@ import MsaResponse from "@MsaModule/domain/model/ticket/Response";
 @Injectable({providedIn: 'root'})
 export class MsaTicketService {
 
-  private url:string = 'http://0.0.0.0:8204/ticket';
+  private prefix     = '/api/msa/';
+  private url:string = this.prefix + 'ticket';
 
   constructor(
     private http: HttpClient,

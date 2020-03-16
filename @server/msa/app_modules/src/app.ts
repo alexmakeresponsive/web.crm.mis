@@ -13,7 +13,8 @@ const app              = express();
 //       appTest.tt();
 
 app.use(cors({
-    "origin": "http://0.0.0.0:4202",
+    // "origin": "http://0.0.0.0:4202",
+    "origin": "http://icearea.amrxt.ru/",
     "credentials": true
 }));
 
@@ -21,13 +22,14 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+const prefix = '/api/msa/';
 
-app.post("/ticket",  routeTicket.addItem);
-app.post("/ticket/update",  routeTicket.updateItem);
-app.post("/ticket/result",  routeTicketResult.getTable);
-app.post("/ticket/result/remove",  routeTicketResult.removeItem);
-app.post("/ticket/journal",  routeTicketJournal.getTable);
-app.post("/ticket/journal/remove",  routeTicketJournal.removeItem);
+app.post(prefix + "ticket",  routeTicket.addItem);
+app.post(prefix + "ticket/update",  routeTicket.updateItem);
+app.post(prefix + "ticket/result",  routeTicketResult.getTable);
+app.post(prefix + "ticket/result/remove",  routeTicketResult.removeItem);
+app.post(prefix + "ticket/journal",  routeTicketJournal.getTable);
+app.post(prefix + "ticket/journal/remove",  routeTicketJournal.removeItem);
 
 
 

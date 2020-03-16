@@ -264,7 +264,7 @@ export class ModalM2EntryComponent implements OnInit, AfterViewInit {
 
 
     await this.http.post<MsaResponse>(
-      'http://0.0.0.0:8203/dc/member/list',
+      '/api/main/dc/member/list',
       {},
       {
         headers: headers
@@ -288,7 +288,7 @@ export class ModalM2EntryComponent implements OnInit, AfterViewInit {
     headers = headers.set('Authorization', 'Bearer ' + token);
 
     await this.http.post<MsaResponse>(
-      'http://0.0.0.0:8203/dc/member/item/selected',
+      '/api/main/dc/member/item/selected',
       {
         idList: idList
       },
