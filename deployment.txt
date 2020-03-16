@@ -1,0 +1,97 @@
+1. check docker engine on hosting: run mysql container, other containers, 
+	do exec command
+	if containers not working, reinstall OS, reinstall docker engine
+2. Check again
+
+3. Pull images
+	docker pull mariadb
+	docker pull mongo
+	docker pull node:13.8.0-alpine3.10
+
+4. Create file structure
+
+mkdir -p /var/www/icearea.amrxt.ru/html
+
+mkdir -p /usr/src/mis \
+	 /usr/src/mis/auth/app/app_modules \
+	 /usr/src/mis/main/app/app_modules \
+	  /usr/src/mis/msa/app/app_modules \
+\
+	 /usr/src/mis/auth/app/docker \
+	 /usr/src/mis/main/app/docker \
+	  /usr/src/mis/msa/app/docker \
+\
+	 /usr/src/mis/auth/db/config \
+	 /usr/src/mis/main/db/config \
+	  /usr/src/mis/msa/db/config \
+\
+	 /usr/src/mis/auth/db/data/dump \
+	 /usr/src/mis/main/db/data/dump \
+	  /usr/src/mis/msa/db/data/dump \
+\
+	 /usr/src/mis/auth/db/data/mount \
+	 /usr/src/mis/main/db/data/mount \
+	  /usr/src/mis/msa/db/data/mount
+
+5. Copy files
+	angular app to 
+		/var/www/icearea.amrxt.ru/html
+	db backups to
+	 	/usr/src/mis/auth/db
+	 	/usr/src/mis/main/db
+	 	/usr/src/mis/msa/db
+	dist(compiled nodejs app) folder to
+		 /usr/src/mis/auth/app/app_modules
+		 /usr/src/mis/main/app/app_modules
+		 /usr/src/mis/msa/app/app_modules
+	Dockerfile and package.json to
+		/usr/src/mis/auth/app
+		/usr/src/mis/main/app
+		/usr/src/mis/msa/app
+	docker.custom.cnf to
+		/usr/src/mis
+		
+
+6. Create and run docker containers
+
+cd /usr/src/mis/auth/app/docker
+docker build -t express.4:mis.server.auth.pdn .
+
+cd /usr/src/mis/main/app/docker
+docker build -t express.4:mis.server.main.pdn .
+
+cd /usr/src/mis/msa/app/docker
+docker build -t express.4:mis.server.msa.pdn .
+
+	Check every container is not stopped
+
+7. copy docker compose file
+	
+
+
+
+7. Create db, setup user, restore data
+
+/etc/mysql/conf.d/mysqld_safe_syslog.cnf
+
+docker exec -it mis.db.auth.main.pdn /bin/bash
+docker exec -it mis.db.main.pdn /bin/bash
+docker exec -it mis.db.msa.pdn /bin/bash
+
+mysql -uroot -ppass
+CREATE DATABASE main;
+
+CREATE USER 'nodeuser' IDENTIFIED BY 'U^O&Tg2e23%^fH';
+GRANT ALL privileges ON `main`.* TO 'nodeuser'@'%';
+FLUSH PRIVILEGES;
+
+mysql -uroot -ppass main < /db/dump.sql
+
+
+6. Install and configure nginx and ufw(firewall)
+	for ufw add ports for
+		nginx, mysql(3306)
+
+
+7. Run app
+

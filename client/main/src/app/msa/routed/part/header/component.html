@@ -1,0 +1,38 @@
+<div class="wrapper">
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="d-flex justify-content-between">
+        <div class="logo d-flex align-items-center">
+            <h2>ТМ:МИС</h2>
+            <h5>Раздел: Направления на МСЭ</h5>
+        </div>
+
+        <div class="d-flex align-items-center">
+          <div class="d-flex">
+            <div class="d-flex flex-column justify-content-center align-items-end">
+              <span>
+                {{userName}}
+              </span>
+              <span>зам. гл. врача по КЭР</span>
+            </div>
+            <div>
+              <img src="/assets/res/image/msa/man-300x300.png" width="60" alt="">
+            </div>
+          </div>
+          <div ngbDropdown placement="bottom-right" class="d-inline-block wrapper-btn-dropdown">
+            <button class="btn btn-outline-primary" id="dropdownBasic2" ngbDropdownToggle>
+              <img src="/assets/res/image/angle-down.png" alt="">
+            </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+              <a ngbDropdownItem routerLink="/">Главная страница</a>
+              <a ngbDropdownItem routerLink="" (click)="logout()">Выйти</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>

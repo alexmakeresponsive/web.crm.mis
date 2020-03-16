@@ -1,0 +1,71 @@
+version: "3"
+
+services:
+  db.auth.session:
+    image: mongo:latest
+    restart: always
+    container_name: mis.db.auth.session.pdn
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongoadmin
+      - MONGO_INITDB_ROOT_PASSWORD=secret
+  db.auth.main:
+    image: mariadb:latest
+    restart: always
+    container_name: mis.db.auth.main.pdn
+    environment:
+      - MYSQL_DATABASE=main
+      - MYSQL_ROOT_PASSWORD=pass
+    volumes:
+    - /usr/src/mis/auth/db/dump:/db
+    - /usr/src/mis/auth/db/config/docker.custom.cnf:/etc/mysql/conf.d/docker.custom.cnf
+  db.app.main:
+    image: mariadb:latest
+    restart: always
+    container_name: mis.db.main.pdn
+    environment:
+      - MYSQL_DATABASE=main
+      - MYSQL_ROOT_PASSWORD=pass
+    volumes:
+      - /usr/src/mis/main/db/dump:/db
+      - /usr/src/mis/main/db/config/docker.custom.cnf:/etc/mysql/conf.d/docker.custom.cnf
+  db.app.msa:
+    image: mariadb:latest
+    restart: always
+    container_name: mis.db.msa.pdn
+    environment:
+      - MYSQL_DATABASE=main
+      - MYSQL_ROOT_PASSWORD=pass
+    volumes:
+      - /usr/src/mis/msa/db/dump:/db
+      - /usr/src/mis/msa/db/config/docker.custom.cnf:/etc/mysql/conf.d/docker.custom.cnf
+  app.auth:
+    image: express.4:mis.server.auth.pdn
+    restart: always
+    container_name: mis.server.auth.pdn
+    depends_on:
+      - db.auth.session
+      - db.auth.main
+    ports:
+    - 8202:3000
+    volumes:
+    - /usr/src/mis/auth/app/app_modules/dist:/usr/src/app/app_modules/dist
+  app.main:
+    image: express.4:mis.server.main.pdn
+    restart: always
+    container_name: mis.server.main.pdn
+    depends_on:
+      - db.app.main
+    ports:
+      - 8203:3000
+    volumes:
+      - /usr/src/mis/main/app/app_modules/dist:/usr/src/app/app_modules/dist
+  app.msa:
+    image: express.4:mis.server.msa.pdn
+    restart: always
+    container_name: mis.server.msa.pdn
+    depends_on:
+      - db.app.msa
+    ports:
+      - 8204:3000
+    volumes:
+      - /usr/src/mis/msa/app/app_modules/dist:/usr/src/app/app_modules/dist

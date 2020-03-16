@@ -1,0 +1,42 @@
+export default [
+    {
+        id_user:            '',
+        name_user:          'Alexandr Gorchakov',
+        status_user:        '100',
+        role_user:          '100',
+        description_user:   '',
+        password_hash_user: '43r90fj',
+        salt_user:          'newi',
+        created_at_user:    '',
+    },
+    {
+        id_user:            '',
+        name_user:          'Admin',
+        status_user:        '100',
+        role_user:          '95',
+        description_user:   '',
+        password_hash_user: '34989jr',
+        salt_user:          'vdfkl',
+        created_at_user:    '',
+    },
+    {
+        id_user:            '',
+        name_user:          'User 1',
+        status_user:        '100',
+        role_user:          '10',
+        description_user:   '',
+        password_hash_user: '8439sds3',
+        salt_user:          'vdf0',
+        created_at_user:    '',
+    },
+    {
+        id_user:            '',
+        name_user:          'User 2',
+        status_user:        '100',
+        role_user:          '10',
+        description_user:   '',
+        password_hash_user: '34590tsd',
+        salt_user:          'cxvj',
+        created_at_user:    '',
+    }
+];

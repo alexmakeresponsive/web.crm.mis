@@ -1,0 +1,16 @@
+<div [formGroup]="form">
+  <ng-select
+             [items]="data"
+             [active]="[data[index]]"
+             (data)="refreshValue($event)"
+             (selected)="selected($event)"
+             (removed)="removed($event)"
+             (typed)="typed($event)"
+
+             name=""
+             placeholder="Не выбран">
+  </ng-select>
+  <input type="hidden"
+         [formControlName]="parameters.formControlName"
+  >
+</div>

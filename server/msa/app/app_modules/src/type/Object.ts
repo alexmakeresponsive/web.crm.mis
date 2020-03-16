@@ -1,0 +1,1 @@
+export type Iterable = { [index: string]: string | null; };

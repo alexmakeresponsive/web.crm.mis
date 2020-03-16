@@ -1,0 +1,30 @@
+.wrapper {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color: rgb(86,106,127);
+  color: white;
+  margin-bottom: 30px;
+}
+
+.logo h2 {
+  margin-right: 15px;
+}
+
+.wrapper-btn-dropdown {
+   & .btn-outline-primary {
+     border-color: transparent;
+     padding: 5px;
+   }
+  & .btn-outline-primary:hover {
+    background-color: transparent;
+    border-color: white;
+  }
+  & .btn-outline-primary:focus {
+    background-color: transparent;
+    border-color: white;
+    box-shadow: none;
+  }
+  & button:after {
+    display: none;
+  }
+}

@@ -1,0 +1,17 @@
+<part-header-msa></part-header-msa>
+
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <part-nav-msa></part-nav-msa>
+    </div>
+    <div class="col-9">
+      <div *ngIf="dataIsFetched">
+        <h3>Результаты по {{dataHead.f_6_name_last + ' ' + dataHead.f_6_name_first + ' ' + dataHead.f_6_patronymic}}</h3>
+        <a routerLink="/service/msa/journal">Назад</a>
+        <p></p>
+        <form-088-y-wrapper [payloadFromServer]="data"></form-088-y-wrapper>
+      </div>
+    </div>
+  </div>
+</div>
