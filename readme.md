@@ -10,6 +10,8 @@
 
 ### Application Server
 
+All servers use NodeJS v.13
+
 * **authentification**
 * **"main"**
 * **"msa"**
@@ -19,16 +21,25 @@
 
 * **session** data: MongoDB v.3
 * **authentification** data: MariaDb v.10
-* **"main"** data: MariaDb v.10
-* **"msa"** data: MariaDb v.10
+* **"main"** data: MariaDB v.10
+* **"msa"** data: MariaDB v.10
 
 
 
 ## Setup
 
-* [development](https://https://github.com/alexmakeresponsive/typescript-mis/blob/master/development.md)
-* [deployment](https://https://github.com/alexmakeresponsive/typescript-mis/blob/master/deployment.md)
+* [development](https://github.com/alexmakeresponsive/typescript-mis/blob/master/development.md)
+* [deployment](https://github.com/alexmakeresponsive/typescript-mis/blob/master/deployment.md)
 
+
+## Demo
+
+Try demo: [link](http://icearea.amrxt.ru)
+
+Access:
+ 
+ * login: developer.amr
+ * password: 43r90fj
 
 
 

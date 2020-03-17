@@ -1,5 +1,27 @@
 # Deployment
 
+## Configure domain
+
+Create A record for domain
+
+
+## Compile app
+
+For server containers run command in container:
+
+```
+tsc -p .
+```
+
+For client(Angular) containers run command in container:
+
+```
+ng build
+```
+
+
+## Deploy
+
 1. Check docker engine on hosting: run mariadb container, other containers, 
 	do exec command
 	If containers not working, reinstall OS, reinstall docker engine.
@@ -109,8 +131,10 @@
 
 9. Install and configure **nginx**
 	
+	for Ubuntu:
+	
 	```
-	cp client/main/app/mis.pdn.conf /usr/local/etc/nginx/servers
+	cp client/main/app/mis.pdn.conf /etc/nginx/sites-available
 	```
 	
 10. Run app

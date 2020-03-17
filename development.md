@@ -29,8 +29,8 @@
         --name mis.db.auth.main.local \
         -e MYSQL_ROOT_PASSWORD=pass \
         -e MYSQL_DATABASE=main \
-        --mount type=bind,source="/Volumes/User HD/work/software/web/code/backend/js/vendor/package/framework/express/home/mis/workdir/server/auth/db/data/dump",target=/var/tmp/dump \
-        --mount type=bind,source="/Volumes/User HD/work/software/web/code/backend/js/vendor/package/framework/express/home/mis/workdir/server/auth/db/config/docker.extra.cnf",target=/etc/mysql/conf.d/docker.custom.cnf \
+        --mount type=bind,source="parh/to/workdir/server/auth/db/data/dump",target=/var/tmp/dump \
+        --mount type=bind,source="parh/to/workdir/server/auth/db/config/docker.extra.cnf",target=/etc/mysql/conf.d/docker.custom.cnf \
         -d mariadb:latest
     ```
     
@@ -44,8 +44,8 @@
         --name mis.db.main.local \
         -e MYSQL_ROOT_PASSWORD=pass \
         -e MYSQL_DATABASE=main \
-        --mount type=bind,source="/Volumes/User HD/work/software/web/code/backend/js/vendor/package/framework/express/home/mis/workdir/server/main/db/data/dump",target=/var/tmp/dump \
-        --mount type=bind,source="/Volumes/User HD/work/software/web/code/backend/js/vendor/package/framework/express/home/mis/workdir/server/main/db/config/docker.extra.cnf",target=/etc/mysql/conf.d/docker.custom.cnf \
+        --mount type=bind,source="parh/to/workdir/server/main/db/data/dump",target=/var/tmp/dump \
+        --mount type=bind,source="parh/to/workdir/server/main/db/config/docker.extra.cnf",target=/etc/mysql/conf.d/docker.custom.cnf \
         -d mariadb:latest
     ```
 
@@ -58,8 +58,8 @@
         --name mis.db.msa.local \
         -e MYSQL_ROOT_PASSWORD=pass \
         -e MYSQL_DATABASE=main \
-        --mount type=bind,source="/Volumes/User HD/work/software/web/code/backend/js/vendor/package/framework/express/home/mis/workdir/server/msa/db/data/dump",target=/var/tmp/dump \
-        --mount type=bind,source="/Volumes/User HD/work/software/web/code/backend/js/vendor/package/framework/express/home/mis/workdir/server/msa/db/config/docker.extra.cnf",target=/etc/mysql/conf.d/docker.custom.cnf \
+        --mount type=bind,source="parh/to/workdir/server/msa/db/data/dump",target=/var/tmp/dump \
+        --mount type=bind,source="parh/to/workdir/server/msa/db/config/docker.extra.cnf",target=/etc/mysql/conf.d/docker.custom.cnf \
         -d mariadb:latest
     ```
 
@@ -102,7 +102,7 @@
         -it --rm \
         --workdir=/usr/src/app \
         --name mis.server.auth.local \
-        --mount type=bind,source="/Volumes/User HD/work/software/web/code/backend/js/vendor/package/framework/express/home/mis/workdir/server/auth/app",target=/usr/src/app \
+        --mount type=bind,source="parh/to/workdir/server/auth/app",target=/usr/src/app \
     ts.tsnode.nodemon:3.8.2 /bin/sh
     ```
 
@@ -116,7 +116,7 @@
         -it --rm \
         --workdir=/usr/src/app \
         --name mis.server.main.local \
-        --mount type=bind,source="/Volumes/User HD/work/software/web/code/backend/js/vendor/package/framework/express/home/mis/workdir/server/main/app",target=/usr/src/app \
+        --mount type=bind,source="parh/to/workdir/server/main/app",target=/usr/src/app \
     ts.tsnode.nodemon:3.8.2 /bin/sh
     ```
 	
@@ -131,7 +131,7 @@
         -it --rm \
         --workdir=/usr/src/app \
         --name mis.server.msa.local \
-        --mount type=bind,source="/Volumes/User HD/work/software/web/code/backend/js/vendor/package/framework/express/home/mis/workdir/server/msa/app",target=/usr/src/app \
+        --mount type=bind,source="parh/to/workdir/server/msa/app",target=/usr/src/app \
     ts.tsnode.nodemon:3.8.2 /bin/sh
     ```
 
@@ -169,7 +169,7 @@
         -it --rm \
         --workdir=/usr/src/app \
         --name mis.client.main.local \
-        --mount type=bind,source="/Volumes/User HD/work/software/web/code/backend/js/vendor/package/framework/express/home/mis/workdir/client/main/app",target=/usr/src/app \
+        --mount type=bind,source="parh/to/workdir/client/main/app",target=/usr/src/app \
     angular:8 /bin/sh
     ```	
 	```
