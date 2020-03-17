@@ -99,6 +99,19 @@ Download assets from [link](https://drive.google.com/file/d/1HpTMscRqREqJax6owD5
     ```
 
 	run containers:
+	
+	Each container must be run in self terminal. After start container terminal open container shell.
+	Run this command for each server container:
+	
+	```
+    npm install
+    ```
+ 
+    and then run this command:
+	
+	```
+    npm run dv
+    ```
 
 	* server auth
 	
