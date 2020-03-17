@@ -159,8 +159,10 @@ Download assets from [link](https://drive.google.com/file/d/1HpTMscRqREqJax6owD5
 
 5. Install and configure **nginx**
 
+    macos
 	```
-	cp client/main/app/mis.local.conf /usr/local/etc/nginx/servers
+    cd client/main/app
+	cp ./mis.local.conf /usr/local/etc/nginx/servers
 	```
 
 
@@ -192,10 +194,17 @@ Download assets from [link](https://drive.google.com/file/d/1HpTMscRqREqJax6owD5
         --name mis.client.main.local \
         --mount type=bind,source="parh/to/workdir/client/main/app",target=/usr/src/app \
     angular:8 /bin/sh
-    ```	
-	```
-	# run angular
-	
-	ng serve --host 0.0.0.0 --disable-host-check
-	```
+    ```
+   
+    Container must be run in self terminal. After start container terminal open container shell.
+   	Run this command:
+   	
+    ```
+    npm install
+    ```
 
+    and then run this command:
+   	
+   	```
+    ng serve --host 0.0.0.0 --disable-host-check
+    ```
