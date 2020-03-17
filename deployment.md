@@ -39,7 +39,7 @@ ng build
 	* client:
 	
 	```
-	mkdir -p /var/www/icearea.amrxt.ru/html
+	mkdir -p /var/www/domain_name/html
 	```
 	
 	* server:
@@ -66,7 +66,7 @@ ng build
 5. Copy files
 
 	* angular app to 
-		`/var/www/icearea.amrxt.ru/html`
+		`/var/www/domain_name/html`
 
 	* db backups to
 
