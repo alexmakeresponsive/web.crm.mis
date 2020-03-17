@@ -1,16 +1,29 @@
-run db
+# Development
 
-(1) # db auth session
-    docker run \
+1. Create network
+
+	```
+	docker network create --subnet 10.1.0.0/16 --driver=bridge mis.network
+	```
+
+2. Run db containers
+
+	* db auth session
+	
+	```
+	docker run \
         --net mis.network \
         --ip=10.1.2.1 \
         --name mis.db.auth.session.local \
         -e MONGO_INITDB_ROOT_USERNAME=mongoadmin \
         -e MONGO_INITDB_ROOT_PASSWORD=secret \
         -d mongo:latest
+    ```
+    
+    * db auth main
 
-(2) # db auth main
-    docker run \
+	```
+	docker run \
         --net mis.network \
         --ip=10.1.2.2 \
         --name mis.db.auth.main.local \
@@ -19,8 +32,12 @@ run db
         --mount type=bind,source="/Volumes/User HD/work/software/web/code/backend/js/vendor/package/framework/express/home/mis/workdir/server/auth/db/data/dump",target=/var/tmp/dump \
         --mount type=bind,source="/Volumes/User HD/work/software/web/code/backend/js/vendor/package/framework/express/home/mis/workdir/server/auth/db/config/docker.extra.cnf",target=/etc/mysql/conf.d/docker.custom.cnf \
         -d mariadb:latest
+    ```
+    
 
-(3) # db main
+	* db main
+
+    ```
     docker run \
         --net mis.network \
         --ip=10.1.2.3 \
@@ -30,8 +47,11 @@ run db
         --mount type=bind,source="/Volumes/User HD/work/software/web/code/backend/js/vendor/package/framework/express/home/mis/workdir/server/main/db/data/dump",target=/var/tmp/dump \
         --mount type=bind,source="/Volumes/User HD/work/software/web/code/backend/js/vendor/package/framework/express/home/mis/workdir/server/main/db/config/docker.extra.cnf",target=/etc/mysql/conf.d/docker.custom.cnf \
         -d mariadb:latest
+    ```
 
-(4) # db msa
+	* db msa
+
+    ```
     docker run \
         --net mis.network \
         --ip=10.1.2.4 \
@@ -41,31 +61,41 @@ run db
         --mount type=bind,source="/Volumes/User HD/work/software/web/code/backend/js/vendor/package/framework/express/home/mis/workdir/server/msa/db/data/dump",target=/var/tmp/dump \
         --mount type=bind,source="/Volumes/User HD/work/software/web/code/backend/js/vendor/package/framework/express/home/mis/workdir/server/msa/db/config/docker.extra.cnf",target=/etc/mysql/conf.d/docker.custom.cnf \
         -d mariadb:latest
+    ```
 
+3. Update db containers
 
+    ```
     docker exec -it mis.db.auth.main.local /bin/bash
     docker exec -it mis.db.main.local /bin/bash
     docker exec -it mis.db.msa.local /bin/bash
 
+	## do for each container	
     mysql -uroot -ppass
+    mysql -uroot -ppass main < /var/tmp/dump/dump.sql
 
+	## do for each container	
     CREATE USER 'nodeuser' IDENTIFIED BY 'U^O&Tg2e23%^fH';
     GRANT ALL privileges ON `main`.* TO 'nodeuser'@'%';
     FLUSH PRIVILEGES;
+    ```
 
-    mysql -uroot -ppass main < /var/tmp/dump/dump.sql
 
+4. Run server containers
 
-run server
-
-prepare
+	create image:
+    
+    ```
     cd server
     docker build -f ./docker.file.dev -t ts.tsnode.nodemon:3.8.2 .
+    ```
 
-run
+	run containers:
 
-(1) # server auth
-    docker run \
+	* server auth
+	
+	```
+	docker run \
         --net mis.network \
         --ip=10.1.2.21 \
         -p 8202:3000 \
@@ -74,9 +104,12 @@ run
         --name mis.server.auth.local \
         --mount type=bind,source="/Volumes/User HD/work/software/web/code/backend/js/vendor/package/framework/express/home/mis/workdir/server/auth/app",target=/usr/src/app \
     ts.tsnode.nodemon:3.8.2 /bin/sh
+    ```
 
-(2) # server main
-    docker run \
+	*  server main
+
+	```
+	docker run \
         --net mis.network \
         --ip=10.1.2.22 \
         -p 8203:3000 \
@@ -85,9 +118,13 @@ run
         --name mis.server.main.local \
         --mount type=bind,source="/Volumes/User HD/work/software/web/code/backend/js/vendor/package/framework/express/home/mis/workdir/server/main/app",target=/usr/src/app \
     ts.tsnode.nodemon:3.8.2 /bin/sh
+    ```
+	
 
-(3) # server msa
-    docker run \
+	* server msa
+
+	```
+	docker run \
         --net mis.network \
         --ip=10.1.2.23 \
         -p 8204:3000 \
@@ -96,26 +133,37 @@ run
         --name mis.server.msa.local \
         --mount type=bind,source="/Volumes/User HD/work/software/web/code/backend/js/vendor/package/framework/express/home/mis/workdir/server/msa/app",target=/usr/src/app \
     ts.tsnode.nodemon:3.8.2 /bin/sh
+    ```
 
 
-run client
+5. Install and configure **nginx**
 
-prepare
+	```
+	cp client/main/app/mis.local.conf /usr/local/etc/nginx/servers
+	```
+
+
+6. Add to `/etc/hosts`
+
+	```	    
+    127.0.0.1 mis.local
+    ```
+
+   
+7. run client containers
+
+	create image:
+	
+	```
     cd client/main/app
     docker build -f ./docker.file.dev -t angular:8 .
+    ```
+	
+	run containers:
 
-    // for macos
-    cp ./mis.local.conf /usr/local/etc/nginx/servers
+	* client main
 
-    sudo nano /etc/hosts
-
-    and add:
-
-    127.0.0.1 mis.local
-
-run
-
-(1) # client main
+    ```
     docker run \
         -p 4202:4200 \
         -it --rm \
@@ -123,6 +171,10 @@ run
         --name mis.client.main.local \
         --mount type=bind,source="/Volumes/User HD/work/software/web/code/backend/js/vendor/package/framework/express/home/mis/workdir/client/main/app",target=/usr/src/app \
     angular:8 /bin/sh
-
-    ng serve --host 0.0.0.0 --disable-host-check
+    ```	
+	```
+	# run angular
+	
+	ng serve --host 0.0.0.0 --disable-host-check
+	```
 
