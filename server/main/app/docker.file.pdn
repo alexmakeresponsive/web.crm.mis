@@ -8,4 +8,4 @@ RUN npm install
 
 EXPOSE 3000
 
-CMD [ "node", "./app_modules/dist/bootstrap.js" ]
+CMD npm run pd
