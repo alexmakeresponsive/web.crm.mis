@@ -172,4 +172,5 @@ ng build
 	
 	```
 	cp client/main/app/mis.pdn.conf /etc/nginx/sites-available
+    ln -s /etc/nginx/sites-available/mis.pdn.conf /etc/nginx/sites-enabled
 	```
