@@ -1,6 +1,6 @@
 run db
 
-    # db auth session
+(1) # db auth session
     docker run \
         --net mis.network \
         --ip=10.1.2.1 \
@@ -9,7 +9,7 @@ run db
         -e MONGO_INITDB_ROOT_PASSWORD=secret \
         -d mongo:latest
 
-    # db auth main
+(2) # db auth main
     docker run \
         --net mis.network \
         --ip=10.1.2.2 \
@@ -20,7 +20,7 @@ run db
         --mount type=bind,source="/Volumes/User HD/work/software/web/code/backend/js/vendor/package/framework/express/home/mis/workdir/server/auth/db/config/docker.extra.cnf",target=/etc/mysql/conf.d/docker.custom.cnf \
         -d mariadb:latest
 
-    # db main
+(3) # db main
     docker run \
         --net mis.network \
         --ip=10.1.2.3 \
@@ -31,7 +31,7 @@ run db
         --mount type=bind,source="/Volumes/User HD/work/software/web/code/backend/js/vendor/package/framework/express/home/mis/workdir/server/main/db/config/docker.extra.cnf",target=/etc/mysql/conf.d/docker.custom.cnf \
         -d mariadb:latest
 
-    # db msa
+(4) # db msa
     docker run \
         --net mis.network \
         --ip=10.1.2.4 \
@@ -61,8 +61,10 @@ run server
 prepare
     cd server
     docker build -f ./docker.file.dev -t ts.tsnode.nodemon:3.8.2 .
+
 run
-    # server auth
+
+(1) # server auth
     docker run \
         --net mis.network \
         --ip=10.1.2.21 \
@@ -73,6 +75,7 @@ run
         --mount type=bind,source="/Volumes/User HD/work/software/web/code/backend/js/vendor/package/framework/express/home/mis/workdir/server/auth/app",target=/usr/src/app \
     ts.tsnode.nodemon:3.8.2 /bin/sh
 
+(2) # server main
     docker run \
         --net mis.network \
         --ip=10.1.2.22 \
@@ -83,6 +86,7 @@ run
         --mount type=bind,source="/Volumes/User HD/work/software/web/code/backend/js/vendor/package/framework/express/home/mis/workdir/server/main/app",target=/usr/src/app \
     ts.tsnode.nodemon:3.8.2 /bin/sh
 
+(3) # server msa
     docker run \
         --net mis.network \
         --ip=10.1.2.23 \
@@ -110,7 +114,8 @@ prepare
     127.0.0.1 mis.local
 
 run
-    # client main
+
+(1) # client main
     docker run \
         -p 4202:4200 \
         -it --rm \
