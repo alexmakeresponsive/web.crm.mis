@@ -1,5 +1,13 @@
 # Development
 
+## Download files
+
+Download assets from [link](https://drive.google.com/file/d/1HpTMscRqREqJax6owD5MIUQoxM9-tmpe/view) and copy it to
+`client/main/app/src`
+
+
+## Development
+
 1. Create network
 
 	```
