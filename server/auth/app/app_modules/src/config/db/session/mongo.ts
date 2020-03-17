@@ -1,9 +1,22 @@
-export const configDbMongoSession = {
-    "host":      "db.auth.session",
-    "port":      "27017",
-    "db":        {
-        "main": "sessions"
+import dotenv from 'dotenv';
+       dotenv.config();
+
+type IterableInner = { [index: string]: string; };
+type Iterable    = { [index: string]: IterableInner; };
+
+export const configDbMongoSession = <Iterable>{
+    'development': <IterableInner>{
+        "host":      process.env.DB_SESSION_LOCAL_HOST,
+        "port":      process.env.DB_SESSION_LOCAL_PORT,
+        "db":        "sessions",
+        "user":      "mongoadmin",
+        "password":  "secret"
     },
-    "user":      "mongoadmin",
-    "password":  "secret"
+    'production': <IterableInner>{
+        "host":      process.env.DB_SESSION_PRODUCTION_HOST,
+        "port":      process.env.DB_SESSION_PRODUCTION_PORT,
+        "db":        "sessions",
+        "user":      "mongoadmin",
+        "password":  "secret"
+    }
 };

@@ -72,8 +72,6 @@ docker build -t express.4:mis.server.msa.pdn .
 
 7. Create db, setup user, restore data
 
-/etc/mysql/conf.d/mysqld_safe_syslog.cnf
-
 docker exec -it mis.db.auth.main.pdn /bin/bash
 docker exec -it mis.db.main.pdn /bin/bash
 docker exec -it mis.db.msa.pdn /bin/bash

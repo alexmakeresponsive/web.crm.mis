@@ -1,7 +1,9 @@
 const MongoClient = require('mongodb').MongoClient;
 import {configDbMongoSession} from '../../../config/db/session/mongo';
 
-const uri = `mongodb://${configDbMongoSession['user']}:${configDbMongoSession['password']}@${configDbMongoSession['host']}:${configDbMongoSession['port']}`;
+const env = process.env.NODE_ENV ? process.env.NODE_ENV : 'development';
+
+const uri = `mongodb://${configDbMongoSession[env]['user']}:${configDbMongoSession[env]['password']}@${configDbMongoSession[env]['host']}:${configDbMongoSession[env]['port']}`;
 
 console.log(uri);
 

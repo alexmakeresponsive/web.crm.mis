@@ -4,10 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dv": "nodemon ./app_modules/src/bootstrap.ts",
-    "dv-mon": "nodemon ./app_modules/src/bootstrap/db/session/test/mongo.ts",
-    "pd-loader": "node --loader ./app_modules/js/loader.js ./app_modules/js/bin/www",
-    "pd": "node ./app_modules/dist/bootstrap.js"
+    "dv": "NODE_ENV=development nodemon ./app_modules/src/bootstrap.ts",
+    "pd": "NODE_ENV=production node ./app_modules/dist/bootstrap.js"
   },
   "keywords": [],
   "author": "",
@@ -33,6 +31,7 @@
     "cors": "^2.8.5",
     "crypto-js": "^4.0.0",
     "debug": "^4.1.1",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-session": "^1.17.0",
     "http-errors": "^1.7.3",

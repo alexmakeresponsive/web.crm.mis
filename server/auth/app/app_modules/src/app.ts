@@ -8,18 +8,10 @@ import {configDbMongoSession} from './config/db/session/mongo';
 import * as routeAnn  from './route/ann';
 
 
+
+const env             = process.env.NODE_ENV ? process.env.NODE_ENV : 'development';
 const app              = express();
 const MongoStore = connectSessoinMongo(session);
-
-const {
-    SESSION_MONGO_USERNAME,
-    SESSION_MONGO_PASSWORD,
-    SESSION_MONGO_HOSTNAME,
-    SESSION_MONGO_PORT,
-    SESSION_MONGO_DB
-} = process.env;
-
-
 
 
 app.use(cors({
@@ -42,7 +34,7 @@ app.use(session({
     },
     name: 'mongo.session_id',
     store: new MongoStore({
-        url: `mongodb://${configDbMongoSession['user']}:${configDbMongoSession['password']}@${configDbMongoSession['host']}:${configDbMongoSession['port']}`,
+        url: `mongodb://${configDbMongoSession[env]['user']}:${configDbMongoSession[env]['password']}@${configDbMongoSession[env]['host']}:${configDbMongoSession[env]['port']}`,
     })
 }));
 

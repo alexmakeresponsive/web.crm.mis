@@ -1,0 +1,10 @@
+FROM node:13.8.0-alpine3.10
+
+WORKDIR /usr/src/app
+
+RUN npm install -g \
+    typescript@3.8.2 \
+    ts-node@8.6.2 \
+    nodemon@2.0.2
+
+EXPOSE 3000
