@@ -2,42 +2,42 @@ version: "3"
 
 services:
   db.auth.session:
-    image: mongo:latest
+    image: mongo:4.2-bionic
     restart: always
     container_name: mis.db.auth.session.pdn
     environment:
       - MONGO_INITDB_ROOT_USERNAME=mongoadmin
       - MONGO_INITDB_ROOT_PASSWORD=secret
   db.auth.main:
-    image: mariadb:latest
+    image: mariadb:10.4
     restart: always
     container_name: mis.db.auth.main.pdn
     environment:
       - MYSQL_DATABASE=main
       - MYSQL_ROOT_PASSWORD=pass
     volumes:
-    - /usr/src/mis/auth/db/dump:/db
-    - /usr/src/mis/auth/db/config/docker.custom.cnf:/etc/mysql/conf.d/docker.custom.cnf
+    - /usr/src/mis/auth/db/data/dump:/var/tmp/dump
+    - /usr/src/mis/auth/db/config/docker.extra.cnf:/etc/mysql/conf.d/docker.extra.cnf
   db.app.main:
-    image: mariadb:latest
+    image: mariadb:10.4
     restart: always
     container_name: mis.db.main.pdn
     environment:
       - MYSQL_DATABASE=main
       - MYSQL_ROOT_PASSWORD=pass
     volumes:
-      - /usr/src/mis/main/db/dump:/db
-      - /usr/src/mis/main/db/config/docker.custom.cnf:/etc/mysql/conf.d/docker.custom.cnf
+      - /usr/src/mis/main/db/data/dump:/var/tmp/dump
+      - /usr/src/mis/main/db/config/docker.extra.cnf:/etc/mysql/conf.d/docker.extra.cnf
   db.app.msa:
-    image: mariadb:latest
+    image: mariadb:10.4
     restart: always
     container_name: mis.db.msa.pdn
     environment:
       - MYSQL_DATABASE=main
       - MYSQL_ROOT_PASSWORD=pass
     volumes:
-      - /usr/src/mis/msa/db/dump:/db
-      - /usr/src/mis/msa/db/config/docker.custom.cnf:/etc/mysql/conf.d/docker.custom.cnf
+      - /usr/src/mis/msa/db/data/dump:/var/tmp/dump
+      - /usr/src/mis/msa/db/config/docker.extra.cnf:/etc/mysql/conf.d/docker.extra.cnf
   app.auth:
     image: express.4:mis.server.auth.pdn
     restart: always

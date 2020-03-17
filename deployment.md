@@ -31,8 +31,14 @@ ng build
 3. Pull images
 
 	```
-	docker pull mongo  mariadb node:13.8.0-alpine3.10
+	docker pull mongo  
 	```
+     ```
+    docker pull mariadb
+    ```
+    ```
+    docker pull node:13.8.0-alpine3.10
+    ```
 
 4. Create file structure
 
@@ -80,7 +86,7 @@ ng build
 		 * `/usr/src/mis/main/app/app_modules`
 		 * `/usr/src/mis/msa/app/app_modules`
 		 
-	* docker.file.pdn and package.json from /server/service_name/app to
+	* docker.file.pdn, package.json, .dockerignore, .env from /server/service_name/app to
 		
 		* `/usr/src/mis/auth/app`
 		* `/usr/src/mis/main/app`
@@ -112,7 +118,28 @@ ng build
 
 7. Copy `server/docker.compose.pdn.yml` to `/usr/src/mis`
 
-8. Create db, setup user, restore data
+
+8. Check free space
+
+    ```
+   docker system df
+   ```
+   
+   if vilumes size near 100%, clean volume data
+   
+   ```
+   docker system prune --volumes
+   ```
+
+9. Create db, setup user, restore data
+
+    Run docker-compose, and stop server containers
+    
+    ```
+    cd /usr/src/mis
+    docker-compose -f docker.compose.pdn.yml up -d
+    docker stop mis.server.main.pdn mis.server.auth.pdn mis.server.msa.pdn
+    ``` 
 	
 	```
 	docker exec -it mis.db.auth.main.pdn /bin/bash
@@ -120,14 +147,24 @@ ng build
 	docker exec -it mis.db.msa.pdn /bin/bash
 	
 	# do for each container
+    # if evironment not failed
+    mysql -uroot -ppass main < /var/tmp/dump/dump.sql
 	mysql -uroot -ppass
-   mysql -uroot -ppass main < /var/tmp/dump/dump.sql
+ 
+    # if evironment failed
+ 	mysql
+    CREATE DATABASE main;
+    mysql main < /var/tmp/dump/dump.sql
 	
 	# do for each container	
 	CREATE USER 'nodeuser' IDENTIFIED BY 'U^O&Tg2e23%^fH';
 	GRANT ALL privileges ON `main`.* TO 'nodeuser'@'%';
 	FLUSH PRIVILEGES;
 	```
+    ```
+   docker-compose -f docker.compose.pdn.yml stop
+   docker-compose -f docker.compose.pdn.yml up -d
+   ```
 
 9. Install and configure **nginx**
 	
@@ -136,10 +173,3 @@ ng build
 	```
 	cp client/main/app/mis.pdn.conf /etc/nginx/sites-available
 	```
-	
-10. Run app
-
-	```
-    cd /usr/src/mis
-    docker-compose -f docker.compose.pdn.yml up
-    ```
