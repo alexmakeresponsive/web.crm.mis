@@ -1,6 +1,3 @@
-import dotenv from 'dotenv';
-dotenv.config();
-
 type IterableInner = { [index: string]: string; };
 type Iterable    = { [index: string]: IterableInner; };
 

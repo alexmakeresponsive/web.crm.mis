@@ -1,3 +1,10 @@
+import dotenv from 'dotenv';
+const dotenvRes = dotenv.config();
+
+if (dotenvRes.error) {
+    throw dotenvRes.error;
+}
+
 import express, {NextFunction, Request, Response} from 'express';
 import cors         from 'cors';
 import createError  from 'http-errors';
