@@ -16,6 +16,12 @@ Download assets from [link](https://drive.google.com/file/d/1HpTMscRqREqJax6owD5
 
 2. Run db containers
 
+    create images:
+    
+    
+
+    run containers:
+
 	* db auth session
 	
 	```
@@ -25,7 +31,7 @@ Download assets from [link](https://drive.google.com/file/d/1HpTMscRqREqJax6owD5
         --name mis.db.auth.session.local \
         -e MONGO_INITDB_ROOT_USERNAME=mongoadmin \
         -e MONGO_INITDB_ROOT_PASSWORD=secret \
-        -d mongo:latest
+        -d mongo:4.2-bionic
     ```
     
     * db auth main
@@ -39,7 +45,7 @@ Download assets from [link](https://drive.google.com/file/d/1HpTMscRqREqJax6owD5
         -e MYSQL_DATABASE=main \
         --mount type=bind,source="parh/to/workdir/server/auth/db/data/dump",target=/var/tmp/dump \
         --mount type=bind,source="parh/to/workdir/server/auth/db/config/docker.extra.cnf",target=/etc/mysql/conf.d/docker.custom.cnf \
-        -d mariadb:latest
+        -d mariadb:10.4
     ```
     
 
@@ -54,7 +60,7 @@ Download assets from [link](https://drive.google.com/file/d/1HpTMscRqREqJax6owD5
         -e MYSQL_DATABASE=main \
         --mount type=bind,source="parh/to/workdir/server/main/db/data/dump",target=/var/tmp/dump \
         --mount type=bind,source="parh/to/workdir/server/main/db/config/docker.extra.cnf",target=/etc/mysql/conf.d/docker.custom.cnf \
-        -d mariadb:latest
+        -d mariadb:10.4
     ```
 
 	* db msa
@@ -68,7 +74,7 @@ Download assets from [link](https://drive.google.com/file/d/1HpTMscRqREqJax6owD5
         -e MYSQL_DATABASE=main \
         --mount type=bind,source="parh/to/workdir/server/msa/db/data/dump",target=/var/tmp/dump \
         --mount type=bind,source="parh/to/workdir/server/msa/db/config/docker.extra.cnf",target=/etc/mysql/conf.d/docker.custom.cnf \
-        -d mariadb:latest
+        -d mariadb:10.4
     ```
 
 3. Update db containers

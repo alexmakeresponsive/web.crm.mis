@@ -2,44 +2,32 @@ version: "3"
 
 services:
   db.auth.session:
-    image: mongo:4.2-bionic
+    image: mongo:mis.db.auth.session.pdn
     restart: always
     container_name: mis.db.auth.session.pdn
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=mongoadmin
-      - MONGO_INITDB_ROOT_PASSWORD=secret
   db.auth.main:
-    image: mariadb:10.4
+    image: mariadb:mis.db.auth.main.pdn
     restart: always
     container_name: mis.db.auth.main.pdn
-    environment:
-      - MYSQL_DATABASE=main
-      - MYSQL_ROOT_PASSWORD=pass
     volumes:
     - /usr/src/mis/auth/db/data/dump:/var/tmp/dump
     - /usr/src/mis/auth/db/config/docker.extra.cnf:/etc/mysql/conf.d/docker.extra.cnf
   db.app.main:
-    image: mariadb:10.4
+    image: mariadb:mis.db.main.pdn
     restart: always
     container_name: mis.db.main.pdn
-    environment:
-      - MYSQL_DATABASE=main
-      - MYSQL_ROOT_PASSWORD=pass
     volumes:
       - /usr/src/mis/main/db/data/dump:/var/tmp/dump
       - /usr/src/mis/main/db/config/docker.extra.cnf:/etc/mysql/conf.d/docker.extra.cnf
   db.app.msa:
-    image: mariadb:10.4
+    image: mariadb:mis.db.msa.pdn
     restart: always
     container_name: mis.db.msa.pdn
-    environment:
-      - MYSQL_DATABASE=main
-      - MYSQL_ROOT_PASSWORD=pass
     volumes:
       - /usr/src/mis/msa/db/data/dump:/var/tmp/dump
       - /usr/src/mis/msa/db/config/docker.extra.cnf:/etc/mysql/conf.d/docker.extra.cnf
   app.auth:
-    image: express.4:mis.server.auth.pdn
+    image: node:mis.server.auth.pdn
     restart: always
     container_name: mis.server.auth.pdn
     depends_on:
@@ -50,7 +38,7 @@ services:
     volumes:
     - /usr/src/mis/auth/app/app_modules/dist:/usr/src/app/app_modules/dist
   app.main:
-    image: express.4:mis.server.main.pdn
+    image: node:mis.server.main.pdn
     restart: always
     container_name: mis.server.main.pdn
     depends_on:
@@ -60,7 +48,7 @@ services:
     volumes:
       - /usr/src/mis/main/app/app_modules/dist:/usr/src/app/app_modules/dist
   app.msa:
-    image: express.4:mis.server.msa.pdn
+    image: node:mis.server.msa.pdn
     restart: always
     container_name: mis.server.msa.pdn
     depends_on:

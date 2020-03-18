@@ -26,7 +26,9 @@ ng build
 	do exec command
 	If containers not working, reinstall OS, reinstall docker engine.
 	
+	
 2. Check point `1` again
+
 
 3. Pull images
 
@@ -39,6 +41,7 @@ ng build
     ```
     docker pull node:13.8.0-alpine3.10
     ```
+
 
 4. Create file structure
 
@@ -68,6 +71,7 @@ ng build
 		 /usr/src/mis/main/db/data/mount \
 		  /usr/src/mis/msa/db/data/mount
 	```
+
 
 5. Copy files
 
@@ -99,27 +103,7 @@ ng build
        * `/usr/src/mis/msa/db/config`
 
 
-6. Create and run docker containers
-
-	```
-	cd /usr/src/mis/auth/app
-	docker build -f ./docker.file.pdn -t express.4:mis.server.auth.pdn .
-	```
-	```
-	cd /usr/src/mis/main/app
-	docker build -f ./docker.file.pdn -t express.4:mis.server.main.pdn .
-	```
-	```
-	cd /usr/src/mis/msa/app
-	docker build -f ./docker.file.pdn -t express.4:mis.server.msa.pdn .
-	```
-
-	Check every container is not stopped
-
-7. Copy `server/docker.compose.pdn.yml` to `/usr/src/mis`
-
-
-8. Check free space
+6. Check free space
 
     ```
    docker system df
@@ -130,41 +114,51 @@ ng build
    ```
    docker system prune --volumes
    ```
+   
+7. Create and run docker containers
 
-9. Create db, setup user, restore data
-
-    Run docker-compose, and stop server containers
+    create db containers:
     
     ```
-    cd /usr/src/mis
-    docker-compose -f docker.compose.pdn.yml up -d
-    docker stop mis.server.main.pdn mis.server.auth.pdn mis.server.msa.pdn
-    ``` 
-	
-	```
-	docker exec -it mis.db.auth.main.pdn /bin/bash
-	docker exec -it mis.db.main.pdn /bin/bash
-	docker exec -it mis.db.msa.pdn /bin/bash
-	
-	# do for each container
-    # if evironment not failed
-    mysql -uroot -ppass main < /var/tmp/dump/dump.sql
-	mysql -uroot -ppass
- 
-    # if evironment failed
- 	mysql
-    CREATE DATABASE main;
-    mysql main < /var/tmp/dump/dump.sql
-	
-	# do for each container	
-	CREATE USER 'nodeuser' IDENTIFIED BY 'U^O&Tg2e23%^fH';
-	GRANT ALL privileges ON `main`.* TO 'nodeuser'@'%';
-	FLUSH PRIVILEGES;
-	```
-    ```
-   docker-compose -f docker.compose.pdn.yml stop
-   docker-compose -f docker.compose.pdn.yml up -d
+   cd /usr/src/mis/auth/db
+   docker build -f ./docker.file.session.pdn -t mongo:mis.db.auth.session.pdn .
+   docker build -f ./docker.file.main.pdn -t mariadb:mis.db.auth.main.pdn .
    ```
+   ```
+    cd /usr/src/mis/main/db
+    docker build -f ./docker.file.main.pdn -t mariadb:mis.db.main.pdn .
+    ```
+   ```
+    cd /usr/src/mis/msa/db
+    docker build -f ./docker.file.main.pdn -t mariadb:mis.db.msa.pdn .
+    ```
+    
+    create server containers:
+    
+	```
+	cd /usr/src/mis/auth/app
+	docker build -f ./docker.file.pdn -t node:mis.server.auth.pdn .
+	```
+	```
+	cd /usr/src/mis/main/app
+	docker build -f ./docker.file.pdn -t node:mis.server.main.pdn .
+	```
+	```
+	cd /usr/src/mis/msa/app
+	docker build -f ./docker.file.pdn -t node:mis.server.msa.pdn .
+	```
+
+	Check every container is not stopped
+
+
+8. Run app
+
+    Copy `server/docker.compose.pdn.yml` to `/usr/src/mis`
+
+    run command:
+    ```
+    docker-compose -f docker.compose.pdn.yml up -d
+    ``` 
 
 9. Install and configure **nginx**
 	
