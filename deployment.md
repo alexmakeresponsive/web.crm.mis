@@ -98,9 +98,9 @@ ng build
 		
 	* docker.extra.cnf from /server/service_name/db/config  to
 		
-		* `/usr/src/mis/auth/db/config`
-       * `/usr/src/mis/main/db/config`
-       * `/usr/src/mis/msa/db/config`
+        * `/usr/src/mis/auth/db/config`
+        * `/usr/src/mis/main/db/config`
+        * `/usr/src/mis/msa/db/config`
 
 
 6. Check free space
@@ -121,16 +121,16 @@ ng build
     
     ```
    cd /usr/src/mis/auth/db
-   docker build -f ./docker.file.session.pdn -t mongo:mis.db.auth.session.pdn .
-   docker build -f ./docker.file.main.pdn -t mariadb:mis.db.auth.main.pdn .
+   docker build -f ./docker.file.session -t mongo:mis.db.auth.session.pdn .
+   docker build -f ./docker.file.main -t mariadb:mis.db.auth.main.pdn .
    ```
    ```
     cd /usr/src/mis/main/db
-    docker build -f ./docker.file.main.pdn -t mariadb:mis.db.main.pdn .
+    docker build -f ./docker.file.main -t mariadb:mis.db.main.pdn .
     ```
    ```
     cd /usr/src/mis/msa/db
-    docker build -f ./docker.file.main.pdn -t mariadb:mis.db.msa.pdn .
+    docker build -f ./docker.file.main -t mariadb:mis.db.msa.pdn .
     ```
     
     create server containers:

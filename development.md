@@ -17,8 +17,20 @@ Download assets from [link](https://drive.google.com/file/d/1HpTMscRqREqJax6owD5
 2. Run db containers
 
     create images:
-    
-    
+            
+    ```
+    cd server/auth/db
+    docker build -f ./docker.file.session -t mongo:mis.db.auth.session.local .
+    docker build -f ./docker.file.main -t mariadb:mis.db.auth.main.local .
+    ```
+    ```
+    cd server/auth/db
+    docker build -f ./docker.file.main -t mariadb:mis.db.main.local .
+    ```
+    ```
+    cd server/auth/db
+    docker build -f ./docker.file.main -t mariadb:mis.db.msa.local .
+    ```
 
     run containers:
 
@@ -31,7 +43,7 @@ Download assets from [link](https://drive.google.com/file/d/1HpTMscRqREqJax6owD5
         --name mis.db.auth.session.local \
         -e MONGO_INITDB_ROOT_USERNAME=mongoadmin \
         -e MONGO_INITDB_ROOT_PASSWORD=secret \
-        -d mongo:4.2-bionic
+        -d mongo:mis.db.auth.session.local
     ```
     
     * db auth main
@@ -45,7 +57,7 @@ Download assets from [link](https://drive.google.com/file/d/1HpTMscRqREqJax6owD5
         -e MYSQL_DATABASE=main \
         --mount type=bind,source="parh/to/workdir/server/auth/db/data/dump",target=/var/tmp/dump \
         --mount type=bind,source="parh/to/workdir/server/auth/db/config/docker.extra.cnf",target=/etc/mysql/conf.d/docker.custom.cnf \
-        -d mariadb:10.4
+        -d mariadb:mis.db.auth.main.local
     ```
     
 
@@ -60,7 +72,7 @@ Download assets from [link](https://drive.google.com/file/d/1HpTMscRqREqJax6owD5
         -e MYSQL_DATABASE=main \
         --mount type=bind,source="parh/to/workdir/server/main/db/data/dump",target=/var/tmp/dump \
         --mount type=bind,source="parh/to/workdir/server/main/db/config/docker.extra.cnf",target=/etc/mysql/conf.d/docker.custom.cnf \
-        -d mariadb:10.4
+        -d mariadb:mis.db.main.local
     ```
 
 	* db msa
@@ -74,33 +86,23 @@ Download assets from [link](https://drive.google.com/file/d/1HpTMscRqREqJax6owD5
         -e MYSQL_DATABASE=main \
         --mount type=bind,source="parh/to/workdir/server/msa/db/data/dump",target=/var/tmp/dump \
         --mount type=bind,source="parh/to/workdir/server/msa/db/config/docker.extra.cnf",target=/etc/mysql/conf.d/docker.custom.cnf \
-        -d mariadb:10.4
+        -d mariadb:mis.db.msa.local
     ```
-
-3. Update db containers
-
-    ```
-    docker exec -it mis.db.auth.main.local /bin/bash
-    docker exec -it mis.db.main.local /bin/bash
-    docker exec -it mis.db.msa.local /bin/bash
-
-	## do for each container	
-    mysql -uroot -ppass
-    mysql -uroot -ppass main < /var/tmp/dump/dump.sql
-
-	## do for each container	
-    CREATE USER 'nodeuser' IDENTIFIED BY 'U^O&Tg2e23%^fH';
-    GRANT ALL privileges ON `main`.* TO 'nodeuser'@'%';
-    FLUSH PRIVILEGES;
-    ```
-
 
 4. Run server containers
 
 	create image:
     
     ```
-    cd server/service_name/app
+    cd server/auth/app
+    docker build -f ./docker.file.dev -t ts.tsnode.nodemon:3.8.2 .
+    ```
+    ```
+    cd server/main/app
+    docker build -f ./docker.file.dev -t ts.tsnode.nodemon:3.8.2 .
+    ```
+    ```
+    cd server/msa/app
     docker build -f ./docker.file.dev -t ts.tsnode.nodemon:3.8.2 .
     ```
 
