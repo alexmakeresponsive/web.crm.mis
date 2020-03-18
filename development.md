@@ -24,11 +24,11 @@ Download assets from [link](https://drive.google.com/file/d/1HpTMscRqREqJax6owD5
     docker build -f ./docker.file.main -t mariadb:mis.db.auth.main.local .
     ```
     ```
-    cd server/auth/db
+    cd ../../main/db 
     docker build -f ./docker.file.main -t mariadb:mis.db.main.local .
     ```
     ```
-    cd server/auth/db
+    cd ../../msa/db
     docker build -f ./docker.file.main -t mariadb:mis.db.msa.local .
     ```
 
@@ -98,11 +98,11 @@ Download assets from [link](https://drive.google.com/file/d/1HpTMscRqREqJax6owD5
     docker build -f ./docker.file.dev -t ts.tsnode.nodemon:3.8.2 .
     ```
     ```
-    cd server/main/app
+    cd ../../main/app
     docker build -f ./docker.file.dev -t ts.tsnode.nodemon:3.8.2 .
     ```
     ```
-    cd server/msa/app
+    cd ../../msa/app
     docker build -f ./docker.file.dev -t ts.tsnode.nodemon:3.8.2 .
     ```
 

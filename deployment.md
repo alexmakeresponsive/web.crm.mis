@@ -51,56 +51,22 @@ ng build
 	mkdir -p /var/www/domain_name/html
 	```
 	
-	* server:
-	
- 	```
-	mkdir -p /usr/src/mis \
-		 /usr/src/mis/auth/app/app_modules \
-		 /usr/src/mis/main/app/app_modules \
-		  /usr/src/mis/msa/app/app_modules \
-	\
-		 /usr/src/mis/auth/db/config \
-		 /usr/src/mis/main/db/config \
-		  /usr/src/mis/msa/db/config \
-	\
-		 /usr/src/mis/auth/db/data/dump \
-		 /usr/src/mis/main/db/data/dump \
-		  /usr/src/mis/msa/db/data/dump \
-	\
-		 /usr/src/mis/auth/db/data/mount \
-		 /usr/src/mis/main/db/data/mount \
-		  /usr/src/mis/msa/db/data/mount
-	```
-
 
 5. Copy files
 
-	* angular app to 
-		`/var/www/domain_name/html`
+	* client:
+	
+   		* copy `client/main/app/dist/client` to `/var/www/domain_name/html`
 
-	* db backups to
+	* server
 
-		* `/usr/src/mis/auth/db/data/dump`
-	 	* `/usr/src/mis/main/db/data/dump`
-	 	* `/usr/src/mis/msa/db/data/dump`
-			
-	* dist(compiled nodejs app) folder to
-
-		 * `/usr/src/mis/auth/app/app_modules`
-		 * `/usr/src/mis/main/app/app_modules`
-		 * `/usr/src/mis/msa/app/app_modules`
-		 
-	* docker.file.pdn, package.json, .dockerignore, .env from /server/service_name/app to
+		* copy `server` to `/usr/src`
 		
-		* `/usr/src/mis/auth/app`
-		* `/usr/src/mis/main/app`
-		* `/usr/src/mis/msa/app`
+		* rename folder 
 		
-	* docker.extra.cnf from /server/service_name/db/config  to
-		
-        * `/usr/src/mis/auth/db/config`
-        * `/usr/src/mis/main/db/config`
-        * `/usr/src/mis/msa/db/config`
+		```
+		mv /usr/src/server /usr/src/mis
+		```
 
 
 6. Check free space
@@ -153,10 +119,10 @@ ng build
 
 8. Run app
 
-    Copy `server/docker.compose.pdn.yml` to `/usr/src/mis`
-
     run command:
+    
     ```
+    cd /usr/src/mis
     docker-compose -f docker.compose.pdn.yml up -d
     ``` 
 
