@@ -60,7 +60,7 @@ ng build
 
 	* server
 
-		* copy `server` to `/usr/src`
+		* copy `server` to `/usr/src`, don't copy node_modules
 		
 		* rename folder 
 		
@@ -128,7 +128,7 @@ ng build
     docker run \
         --net mis.network \
         --ip=10.1.2.1 \
-        --restart=always
+        --restart=always \
         --name mis.db.auth.session.pdn \
         -d mongo:mis.db.auth.session.pdn
     ```
@@ -136,7 +136,7 @@ ng build
     docker run \
         --net mis.network \
         --ip=10.1.2.2 \
-        --restart=always
+        --restart=always \
         --name mis.db.auth.main.pdn \
         --mount type=bind,source="/usr/src/mis/auth/db/data/dump",target=/var/tmp/dump \
         --mount type=bind,source="/usr/src/mis/auth/db/config/docker.extra.cnf",target=/etc/mysql/conf.d/docker.custom.cnf \
@@ -146,7 +146,7 @@ ng build
     docker run \
         --net mis.network \
         --ip=10.1.2.3 \
-        --restart=always
+        --restart=always \
         --name mis.db.main.pdn \
         --mount type=bind,source="/usr/src/mis/main/db/data/dump",target=/var/tmp/dump \
         --mount type=bind,source="/usr/src/mis/main/db/config/docker.extra.cnf",target=/etc/mysql/conf.d/docker.custom.cnf \
@@ -156,7 +156,7 @@ ng build
     docker run \
         --net mis.network \
         --ip=10.1.2.4 \
-        --restart=always
+        --restart=always \
         --name mis.db.msa.pdn \
         --mount type=bind,source="/usr/src/mis/msa/db/data/dump",target=/var/tmp/dump \
         --mount type=bind,source="/usr/src/mis/msa/db/config/docker.extra.cnf",target=/etc/mysql/conf.d/docker.custom.cnf \
@@ -169,7 +169,7 @@ ng build
     docker run \
         --net mis.network \
         --ip=10.1.2.21 \
-        --restart=always
+        --restart=always \
         -p 8202:3000 \
         --workdir=/usr/src/app \
         --name mis.server.auth.pdn \
@@ -180,7 +180,7 @@ ng build
     docker run \
         --net mis.network \
         --ip=10.1.2.22 \
-        --restart=always
+        --restart=always \
         -p 8203:3000 \
         --workdir=/usr/src/app \
         --name mis.server.main.pdn \
@@ -191,7 +191,7 @@ ng build
     docker run \
         --net mis.network \
         --ip=10.1.2.23 \
-        --restart=always
+        --restart=always \
         -p 8204:3000 \
         --workdir=/usr/src/app \
         --name mis.server.msa.pdn \
