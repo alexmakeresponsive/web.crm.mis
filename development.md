@@ -94,7 +94,7 @@ Download assets from [link](https://drive.google.com/file/d/1HpTMscRqREqJax6owD5
 	create image:
     
     ```
-    cd server
+    cd server/service_name/app
     docker build -f ./docker.file.dev -t ts.tsnode.nodemon:3.8.2 .
     ```
 
