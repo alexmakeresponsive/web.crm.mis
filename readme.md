@@ -34,7 +34,7 @@ All servers use NodeJS v.13
 
 ## Demo
 
-Try demo: [link](http://icearea.amrxt.ru)
+Try demo: [link](http://mis.amrxt.ru)
 
 Access:
  
