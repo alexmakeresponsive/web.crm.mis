@@ -114,17 +114,91 @@ ng build
 	docker build -f ./docker.file.pdn -t node:mis.server.msa.pdn .
 	```
 
-	Check every container is not stopped
-
-
 8. Run app
 
-    run command:
+    create network
     
     ```
-    cd /usr/src/mis
-    docker-compose -f docker.compose.pdn.yml up -d
+    docker network create --subnet 10.1.0.0/16 --driver=bridge mis.network
+    ```
+
+    run db containers:
+    
+    ```
+    docker run \
+        --net mis.network \
+        --ip=10.1.2.1 \
+        --restart=always
+        --name mis.db.auth.session.pdn \
+        -d mongo:mis.db.auth.session.pdn
+    ```
+    ```
+    docker run \
+        --net mis.network \
+        --ip=10.1.2.2 \
+        --restart=always
+        --name mis.db.auth.main.pdn \
+        --mount type=bind,source="/usr/src/mis/auth/db/data/dump",target=/var/tmp/dump \
+        --mount type=bind,source="/usr/src/mis/auth/db/config/docker.extra.cnf",target=/etc/mysql/conf.d/docker.custom.cnf \
+        -d mariadb:mis.db.auth.main.pdn
     ``` 
+    ```
+    docker run \
+        --net mis.network \
+        --ip=10.1.2.3 \
+        --restart=always
+        --name mis.db.main.pdn \
+        --mount type=bind,source="/usr/src/mis/main/db/data/dump",target=/var/tmp/dump \
+        --mount type=bind,source="/usr/src/mis/main/db/config/docker.extra.cnf",target=/etc/mysql/conf.d/docker.custom.cnf \
+        -d mariadb:mis.db.main.pdn
+    ``` 
+    ```
+    docker run \
+        --net mis.network \
+        --ip=10.1.2.4 \
+        --restart=always
+        --name mis.db.msa.pdn \
+        --mount type=bind,source="/usr/src/mis/msa/db/data/dump",target=/var/tmp/dump \
+        --mount type=bind,source="/usr/src/mis/msa/db/config/docker.extra.cnf",target=/etc/mysql/conf.d/docker.custom.cnf \
+        -d mariadb:mis.db.msa.pdn
+    ``` 
+   
+    run app containers:
+    
+    ```
+    docker run \
+        --net mis.network \
+        --ip=10.1.2.21 \
+        --restart=always
+        -p 8202:3000 \
+        --workdir=/usr/src/app \
+        --name mis.server.auth.pdn \
+        --mount type=bind,source="/usr/src/mis/auth/app/app_modules/dist",target=/usr/src/app/app_modules/dist \
+    -d node:mis.server.auth.pdn
+    ```    
+    ```
+    docker run \
+        --net mis.network \
+        --ip=10.1.2.22 \
+        --restart=always
+        -p 8203:3000 \
+        --workdir=/usr/src/app \
+        --name mis.server.main.pdn \
+        --mount type=bind,source="/usr/src/mis/main/app/app_modules/dist",target=/usr/src/app/app_modules/dist \
+    -d node:mis.server.main.pdn
+    ```    
+    ```
+    docker run \
+        --net mis.network \
+        --ip=10.1.2.23 \
+        --restart=always
+        -p 8204:3000 \
+        --workdir=/usr/src/app \
+        --name mis.server.msa.pdn \
+        --mount type=bind,source="/usr/src/mis/msa/app/app_modules/dist",target=/usr/src/app/app_modules/dist \
+    -d node:mis.server.msa.pdn
+    ```
+    
 
 9. Install and configure **nginx**
 	
