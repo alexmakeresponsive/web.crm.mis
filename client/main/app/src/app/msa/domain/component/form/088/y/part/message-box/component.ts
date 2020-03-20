@@ -15,7 +15,7 @@ export class Form088yMessageBoxComponent implements OnInit, AfterViewInit, OnDes
   @ViewChild('formMessage', {static: false}) formMessage: ElementRef;
   @ViewChild('formMessageWrapper', {static: false}) formMessageWrapper: ElementRef;
 
-  private formMessageType:string = 'light';
+  formMessageType:string = 'light';
 
   messageSubscriber;
 

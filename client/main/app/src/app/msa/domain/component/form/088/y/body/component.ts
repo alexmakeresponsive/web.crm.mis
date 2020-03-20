@@ -30,31 +30,31 @@ import {MsaTicketService} from "@MsaModule/service/http/msa-ticket.service";
 export class Form088yComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() payloadFromServer;
 
-  private id;
+  id;
 
-  private controls = controls;
-  private groups   = groups;
+  controls = controls;
+  groups   = groups;
 
-  private form:FormGroup;
-  private formData:any  = {};
+  form:FormGroup;
+  formData:any  = {};
 
-  private formControls:any = {};
+  formControls:any = {};
 
-  private entryComponentInstanceCollection = {};
+  entryComponentInstanceCollection = {};
 
-  private formValidateStatus:boolean          = false;
+  formValidateStatus:boolean          = false;
 
   objectKeys = Object.keys;
 
-  private formInitStatus:string = 'not-ready';
+  formInitStatus:string = 'not-ready';
 
-  private messageContainer = {
+  messageContainer = {
     validation: '',
     validationRequired: '',
   };
 
   @ViewChild(EntryWrapper, {static: false})
-  private entryWrapper: EntryWrapper;
+  entryWrapper: EntryWrapper;
 
   buttonSubscriber;
 
