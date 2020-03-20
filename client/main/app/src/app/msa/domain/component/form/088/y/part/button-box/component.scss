@@ -6,6 +6,12 @@
   flex-direction: column;
 }
 
+@media (max-width:991px) {
+  .container-btn {
+    max-width:150px
+  }
+}
+
 .container-btn .btn:nth-child(1) {
   margin-bottom: 15px;
 }
