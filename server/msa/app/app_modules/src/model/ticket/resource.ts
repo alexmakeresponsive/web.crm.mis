@@ -1,4 +1,4 @@
-import connection from '../../bootstrap/db/main/mysql';
+import pool from '../../bootstrap/db/main/mysql';
 
 export const addItem = (data:any) => {
 
@@ -6,7 +6,7 @@ export const addItem = (data:any) => {
     const query = `INSERT INTO ${table} (${data.keys}) VALUES (${data.values})`;
 
     return new Promise((resolve, reject) => {
-        connection.query(query, (err, rows, fields) => {
+        pool.query(query, (err, rows, fields) => {
             if (err) {
                 return reject(err);
             };
@@ -22,7 +22,7 @@ export const updateItem = (data:any) => {
     const query = `UPDATE ${table} SET ${data.query} WHERE id = ${data.id}`;
 
     return new Promise((resolve, reject) => {
-        connection.query(query, (err, rows, fields) => {
+        pool.query(query, (err, rows, fields) => {
             if (err) {
                 return reject(err);
             };

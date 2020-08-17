@@ -1,4 +1,4 @@
-import connection from '../../bootstrap/db/main/mysql';
+import pool from '../../bootstrap/db/main/mysql';
 
 export const getList = () => {
 
@@ -6,7 +6,7 @@ export const getList = () => {
     const query = `SELECT * FROM ${table}`;
 
     return new Promise((resolve, reject) => {
-        connection.query(query, (err, rows, fields) => {
+        pool.query(query, (err, rows, fields) => {
             if (err) {
                 return reject(err);
             };
@@ -22,7 +22,7 @@ export const getListSelected = (idListStr:any) => {
     const query = `SELECT * FROM ${table} WHERE id IN (${idListStr})`;
 
     return new Promise((resolve, reject) => {
-        connection.query(query, (err, rows, fields) => {
+        pool.query(query, (err, rows, fields) => {
             if (err) {
                 return reject(err);
             };

@@ -3,18 +3,12 @@ import {configDbMysql} from '../../../config/db/main/mysql';
 
 const env = process.env.NODE_ENV ? process.env.NODE_ENV : 'development';
 
-var connection = mysql.createConnection({
+var pool = mysql.createPool({
     host:       configDbMysql[env]['host'],
     database:   configDbMysql[env]['db'],
     user:       configDbMysql[env]['user'],
     password:   configDbMysql[env]['password'],
+    connectionLimit: configDbMysql[env]['connectionLimit'],
 });
 
-connection.connect((error) => {
-    if(error) {
-        throw error;
-    }
-    console.log('Db connected success');
-});
-
-export default connection;
+export default pool;
