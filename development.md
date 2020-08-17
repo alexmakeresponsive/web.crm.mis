@@ -106,8 +106,6 @@ Download assets from [link](https://drive.google.com/file/d/1HpTMscRqREqJax6owD5
     docker build -f ./docker.file.dev -t ts.tsnode.nodemon:3.8.2 .
     ```
 
-	run containers:
-	
 	Each container must be run in self terminal. After start container terminal open container shell.
 	Run this command for each server container:
 	
@@ -120,6 +118,8 @@ Download assets from [link](https://drive.google.com/file/d/1HpTMscRqREqJax6owD5
 	```
     npm run dv
     ```
+    
+    run containers:
 
 	* server auth
 	
@@ -216,3 +216,14 @@ Download assets from [link](https://drive.google.com/file/d/1HpTMscRqREqJax6owD5
    	```
     ng serve --host 0.0.0.0 --disable-host-check
     ```
+   
+   On the host machine run:
+   
+   ```
+   sudo nginx
+   ```
+   or
+   ```
+   sudo nginx -s reload
+   ```
+   then open url: `http://mis.local`
