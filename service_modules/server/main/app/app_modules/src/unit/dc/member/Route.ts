@@ -3,23 +3,25 @@ import {container} from "tsyringe";
 
 import typeResponseMsa from "type/response/msa";
 
-import * as modelResourse from './model/resource';
+import {modelResourse} from './model/Resource';
 import schema from "./model/schema";
 
 import {factoryDataKey} from "../../../factory/data/Key";
 import {factoryAuthToken} from '../../../factory/auth/Token';
-
-
 
 export default class Member
 {
     private factoryDataKey:factoryDataKey;
     private factoryAuthToken:factoryAuthToken;
 
+    private modelResourse:modelResourse;
+
     constructor()
     {
         this.factoryDataKey   = container.resolve(factoryDataKey);
         this.factoryAuthToken = container.resolve(factoryAuthToken);
+
+        this.modelResourse    = container.resolve(modelResourse);
     }
 
     public async getSelectedData(req:Request)
@@ -46,7 +48,7 @@ export default class Member
 
         idListStr = idListStr.slice(0, -2);
 
-        const data:any = await modelResourse.getListSelected(idListStr);
+        const data:any = await this.modelResourse.getListSelected(idListStr);
 
         const dataRebuilded = this.factoryDataKey.addKey(data, schema);
 
@@ -74,7 +76,7 @@ export default class Member
            };
         }
 
-        const data:any = await modelResourse.getList();
+        const data:any = await this.modelResourse.getList();
 
         const dataRebuilded = this.factoryDataKey.addKey(data, schema);
 

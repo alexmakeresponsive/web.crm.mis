@@ -3,7 +3,7 @@ import {container} from "tsyringe";
 
 import typeResponseMsa from "type/response/msa";
 
-import * as modelResourse from './model/resource';
+import {modelResourse} from './model/Resource';
 import schema from "./model/schema";
 
 import {factoryDataKey} from "../../../factory/data/Key";
@@ -14,10 +14,14 @@ export default class Protocol
     private factoryDataKey:factoryDataKey;
     private factoryAuthToken:factoryAuthToken;
 
+    private modelResourse:modelResourse;
+
     constructor()
     {
         this.factoryDataKey   = container.resolve(factoryDataKey);
         this.factoryAuthToken = container.resolve(factoryAuthToken);
+
+        this.modelResourse = container.resolve(modelResourse);
     }
 
     public async getSelectedData(req:Request)
@@ -37,7 +41,7 @@ export default class Protocol
 
         let id = req.body.id;
 
-        const data:any = await modelResourse.getItem(id);
+        const data:any = await this.modelResourse.getItem(id);
 
         const dataRebuilded = this.factoryDataKey.addKey(data, schema);
 
@@ -65,7 +69,7 @@ export default class Protocol
             };
         }
 
-        const data:any = await modelResourse.getList();
+        const data:any = await this.modelResourse.getList();
 
         const dataRebuilded = this.factoryDataKey.addKey(data, schema);
 
