@@ -2,7 +2,7 @@ import express, {NextFunction, Request, Response} from 'express';
 
 
 import helperAuthCheck from '../helper/auth/check';
-import {MsaResponse} from "../type/Response";
+import typeResponseMsa from "type/response/msa";
 
 import * as dcMemberModeltResource from '../model/dcMember/resource';
 import * as helperDataRebuild from "../helper/data/rebuild";
@@ -12,7 +12,7 @@ export const getSelectedData = async (req:Request, res:Response, next:NextFuncti
     const statusAutchCheck = helperAuthCheck(req);
 
     if (!(await statusAutchCheck).trust) {
-        res.status(403).json(<MsaResponse>{
+        res.status(403).json(<typeResponseMsa>{
             trust:false,
             status: 'fail',
             message: "forbidden",
@@ -36,7 +36,7 @@ export const getSelectedData = async (req:Request, res:Response, next:NextFuncti
     const dataRebuilded = helperDataRebuild.idPrimaryKey(data);
 
     res.status(200).json(
-        <MsaResponse>{
+        <typeResponseMsa>{
             status:'success',
             message:'form data saved',
             data:dataRebuilded
@@ -49,7 +49,7 @@ export const getData = async (req:Request, res:Response, next:NextFunction) => {
     const statusAutchCheck = helperAuthCheck(req);
 
     if (!(await statusAutchCheck).trust) {
-        res.status(403).json(<MsaResponse>{
+        res.status(403).json(<typeResponseMsa>{
             trust:false,
             status: 'fail',
             message: "forbidden",
@@ -64,7 +64,7 @@ export const getData = async (req:Request, res:Response, next:NextFunction) => {
     const dataRebuilded = helperDataRebuild.idPrimaryKey(data);
 
     res.status(200).json(
-        <MsaResponse>{
+        <typeResponseMsa>{
             status:'success',
             message:'form data saved',
             data:dataRebuilded

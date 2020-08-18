@@ -1,6 +1,6 @@
-import {Iterable} from "../../type/Object";
+import Schema from "type/schema/db";
 
-export default <Iterable>{
+export default <Schema>{
     id:                                     'SMALLINT AUTO_INCREMENT PRIMARY KEY',
 
     name_last:                              'VARCHAR(50)',

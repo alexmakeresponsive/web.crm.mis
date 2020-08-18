@@ -1,6 +1,6 @@
 import generatorTokenJWT from 'jsonwebtoken';
 
-import {AccessToken} from '../../type/AccessToken'
+import tokenAccess from 'type/token/access'
 import * as userResource from '../../model/user/resource';
 
 
@@ -12,7 +12,7 @@ export default async (req:any) => {
                      .replace(/\s/g, '');
 
 
-    const tokenDecoded:AccessToken|any = generatorTokenJWT.decode(token);
+    const tokenDecoded:tokenAccess|any = generatorTokenJWT.decode(token);
 
     if(!tokenDecoded) {
         return {
