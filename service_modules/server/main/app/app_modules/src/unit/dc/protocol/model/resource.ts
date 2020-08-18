@@ -1,9 +1,9 @@
-import pool from '../../../bootstrap/db/main/mysql';
+import pool from '../../../../bootstrap/db/main/mysql';
 
-export const getList = () => {
+export const getItem = (id:string) => {
 
-    const table = 'dc_member';
-    const query = `SELECT * FROM ${table}`;
+    const table = 'dc_protocol';
+    const query = `SELECT * FROM ${table} WHERE ID = ${id}`;
 
     return new Promise((resolve, reject) => {
         pool.query(query, (err, rows, fields) => {
@@ -16,10 +16,10 @@ export const getList = () => {
     })
 };
 
-export const getListSelected = (idListStr:any) => {
+export const getList = () => {
 
-    const table = 'dc_member';
-    const query = `SELECT * FROM ${table} WHERE id IN (${idListStr})`;
+    const table = 'dc_protocol';
+    const query = `SELECT * FROM ${table}`;
 
     return new Promise((resolve, reject) => {
         pool.query(query, (err, rows, fields) => {

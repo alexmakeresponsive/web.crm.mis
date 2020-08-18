@@ -2,10 +2,14 @@ import express, {NextFunction, Request, Response} from 'express';
 import {container} from "tsyringe";
 
 import typeResponseMsa from "type/response/msa";
-import * as dcMemberModeltResource from '../../model/dc/member/resource';
 
-import {factoryDataKey} from "../../factory/data/Key";
-import {factoryAuthToken} from '../../factory/auth/Token';
+import * as modelResourse from './model/resource';
+import schema from "./model/schema";
+
+import {factoryDataKey} from "../../../factory/data/Key";
+import {factoryAuthToken} from '../../../factory/auth/Token';
+
+
 
 export default class Member
 {
@@ -42,9 +46,9 @@ export default class Member
 
         idListStr = idListStr.slice(0, -2);
 
-        const data:any = await dcMemberModeltResource.getListSelected(idListStr);
+        const data:any = await modelResourse.getListSelected(idListStr);
 
-        const dataRebuilded = this.factoryDataKey.addKey(data);
+        const dataRebuilded = this.factoryDataKey.addKey(data, schema);
 
         return <typeResponseMsa>{
             trust:false,
@@ -70,9 +74,9 @@ export default class Member
            };
         }
 
-        const data:any = await dcMemberModeltResource.getList();
+        const data:any = await modelResourse.getList();
 
-        const dataRebuilded = this.factoryDataKey.addKey(data);
+        const dataRebuilded = this.factoryDataKey.addKey(data, schema);
 
         return <typeResponseMsa>{
             trust:true,

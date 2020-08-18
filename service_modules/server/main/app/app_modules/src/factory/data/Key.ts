@@ -1,4 +1,4 @@
-import schema from "../../model/dc/protocol/schema";
+import Schema from "type/schema/db";
 import moment from "moment";
 
 import {injectable} from "tsyringe";
@@ -6,7 +6,7 @@ import {injectable} from "tsyringe";
 @injectable()
 export class factoryDataKey
 {
-    public addKey(data:any)
+    public addKey(data:any, schema:Schema)
     {
         let result:any = {};
 

@@ -14,8 +14,8 @@ import cors         from 'cors';
 import createError  from 'http-errors';
 import logger       from 'morgan';
 
-import routeDcMemberClass from './route/dc/Member';
-import routeDcProtocolClass  from './route/dc/Protocol';
+import routeDcMemberClass from './unit/dc/member/Route';
+import routeDcProtocolClass  from './unit/dc/protocol/Route';
 
 const app              = express();
 
