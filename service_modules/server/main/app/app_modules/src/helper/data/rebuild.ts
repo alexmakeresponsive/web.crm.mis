@@ -1,4 +1,4 @@
-import schema            from "../../model/dcProtocol/schema";
+import schema            from "../../model/dc/protocol/schema";
 import moment            from "moment";
 
 export const idPrimaryKey = (data:any) => {

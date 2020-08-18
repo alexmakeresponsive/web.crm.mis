@@ -10,8 +10,8 @@ import cors         from 'cors';
 import createError  from 'http-errors';
 import logger       from 'morgan';
 
-import * as routeDcMember    from './route/dcMember';
-import * as routeDcProtocol  from './route/dcProtocol';
+import * as routeDcMember    from './route/dc/member';
+import * as routeDcProtocol  from './route/dc/protocol';
 
 const app              = express();
 

@@ -1,4 +1,4 @@
-import pool from '../../bootstrap/db/main/mysql';
+import pool from '../../../bootstrap/db/main/mysql';
 
 export const getItem = (id:string) => {
 

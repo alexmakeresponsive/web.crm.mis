@@ -1,4 +1,4 @@
-import connection from '../../../../bootstrap/db/main/mysql';
+import connection from '../../../../../bootstrap/db/main/mysql';
 import members from './data';
 
 // ts-node ./app_modules/src/model/dcMember/migration/2020-03-12-4/migration.ts

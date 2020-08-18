@@ -1,14 +1,14 @@
 import express, {NextFunction, Request, Response} from 'express';
 
 
-import helperAuthCheck from '../helper/auth/check';
+import helperAuthCheck from '../../helper/auth/check';
 import typeResponseMsa from "type/response/msa";
 
-import * as dcProtocolModeltResource from '../model/dcProtocol/resource';
-import * as helperDataRebuild from "../helper/data/rebuild";
+import * as dcMemberModeltResource from '../../model/dc/member/resource';
+import * as helperDataRebuild from "../../helper/data/rebuild";
 
 
-export const getItemData = async (req:Request, res:Response, next:NextFunction) => {
+export const getSelectedData = async (req:Request, res:Response, next:NextFunction) => {
     const statusAutchCheck = helperAuthCheck(req);
 
     if (!(await statusAutchCheck).trust) {
@@ -22,9 +22,16 @@ export const getItemData = async (req:Request, res:Response, next:NextFunction) 
         return;
     }
 
-    let id = req.body.id;
+    const idList = req.body.idList;
+    let idListStr = '';
 
-    const data:any = await dcProtocolModeltResource.getItem(id);
+    for (let id of idList) {
+        idListStr += id + ', '
+    }
+
+    idListStr = idListStr.slice(0, -2);
+
+    const data:any = await dcMemberModeltResource.getListSelected(idListStr);
 
     const dataRebuilded = helperDataRebuild.idPrimaryKey(data);
 
@@ -32,10 +39,11 @@ export const getItemData = async (req:Request, res:Response, next:NextFunction) 
         <typeResponseMsa>{
             status:'success',
             message:'form data saved',
-            data:dataRebuilded[id]
+            data:dataRebuilded
         }
     );
 };
+
 export const getData = async (req:Request, res:Response, next:NextFunction) => {
 
     const statusAutchCheck = helperAuthCheck(req);
@@ -51,7 +59,7 @@ export const getData = async (req:Request, res:Response, next:NextFunction) => {
         return;
     }
 
-    const data:any = await dcProtocolModeltResource.getList();
+    const data:any = await dcMemberModeltResource.getList();
 
     const dataRebuilded = helperDataRebuild.idPrimaryKey(data);
 
