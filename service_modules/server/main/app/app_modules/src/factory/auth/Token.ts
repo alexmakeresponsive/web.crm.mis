@@ -1,14 +1,21 @@
 import generatorTokenJWT from 'jsonwebtoken';
-import {injectable} from "tsyringe";
+import {injectable, container} from "tsyringe";
 
 import tokenAccess from 'type/token/access'
-import * as userResource from '../../model/user/resource';
+import {factoryAuthUser} from './User';
 
 import express, {Request, Response} from 'express';
 
 @injectable()
 export class factoryAuthToken
 {
+    private factoryAuthUser:factoryAuthUser;
+
+    constructor()
+    {
+        this.factoryAuthUser   = container.resolve(factoryAuthUser);
+    }
+
     public async check(req:any)
     {
 
@@ -32,7 +39,7 @@ export class factoryAuthToken
             }
         }
 
-        const r:any = await userResource.findByIdUser(tokenDecoded.id_user);
+        const r:any = await this.factoryAuthUser.findByIdUser(tokenDecoded.id_user);
 
         if (r.length !== 1) {
             return {
