@@ -143,9 +143,10 @@ Download assets from [link](https://drive.google.com/file/d/1HpTMscRqREqJax6owD5
         --ip=10.1.2.22 \
         -p 8203:3000 \
         -it --rm \
-        --workdir=/usr/src/app \
+        --workdir=/usr/src/app/service_modules \
         --name mis.server.main.local \
-        --mount type=bind,source="parh/to/workdir/server/main/app",target=/usr/src/app \
+        --mount type=bind,source="path/to/workdir/service_modules/server/main/app",target=/usr/src/app/service_modules \
+        --mount type=bind,source="path/to/workdir/node_modules",target=/usr/src/app/node_modules \
     ts.tsnode.nodemon:3.8.2 /bin/sh
     ```
 	
