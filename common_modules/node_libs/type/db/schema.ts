@@ -1,3 +1,3 @@
-export default type {
+export type Schema = {
     [index: string]: string | null;
 };

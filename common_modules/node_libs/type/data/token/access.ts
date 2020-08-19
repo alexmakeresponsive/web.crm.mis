@@ -1,4 +1,4 @@
-export default type {
+export type TokenAccess = {
     id_user:number;
     id_service:string;
     list_user_role:string;

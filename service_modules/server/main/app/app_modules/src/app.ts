@@ -7,9 +7,7 @@ if (dotenvRes.error) {
 
 import "reflect-metadata";
 
-import typeResponseMsa from "@commonNodeLibs/type/http/response/msa";
-
-// console.log(typeResponseMsa);
+import {HttpResponseMsa} from "@commonNodeLibs/type/http/response/msa";
 
 import express, {NextFunction, Request, Response} from 'express';
 import cors         from 'cors';
@@ -37,28 +35,28 @@ app.use(express.urlencoded({ extended: false }));
 const prefix = '/api/main/';
 
 app.post(prefix + "dc/member/list", async (req:Request, res:Response) => {
-    let result:typeResponseMsa;
+    let result:HttpResponseMsa;
         result = await routeDcMember.getData(req);
 
   res.status(result.httpCode).json(result);
 });
 
 app.post(prefix + "dc/member/item/selected", async (req:Request, res:Response) => {
-  let result:typeResponseMsa;
+  let result:HttpResponseMsa;
       result = await routeDcMember.getSelectedData(req);
 
   res.status(result.httpCode).json(result);
 });
 
 app.post(prefix + "dc/protocol/list", async (req:Request, res:Response) => {
-    let result:typeResponseMsa;
+    let result:HttpResponseMsa;
         result = await routeDcProtocol.getData(req);
 
   res.status(result.httpCode).json(result);
 });
 
 app.post(prefix + "dc/protocol/item", async (req:Request, res:Response) => {
-  let result:typeResponseMsa;
+  let result:HttpResponseMsa;
       result = await routeDcProtocol.getSelectedData(req);
 
   res.status(result.httpCode).json(result);

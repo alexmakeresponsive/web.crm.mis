@@ -1,5 +1,4 @@
-export default type
-{
+export type HttpResponseMsa = {
   trust:        boolean;
   status?:      string;
   httpCode:     number;

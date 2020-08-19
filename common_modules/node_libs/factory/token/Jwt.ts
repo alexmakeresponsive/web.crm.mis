@@ -1,7 +1,7 @@
 import generatorTokenJWT from 'jsonwebtoken';
 import {injectable, container} from "tsyringe";
 
-import tokenAccess from '../../type/data/token/access'
+import {TokenAccess} from '../../type/data/token/access'
 import {factoryAuthUser} from '../User';
 
 @injectable()
@@ -29,7 +29,7 @@ export class factoryTokenJwt
                          .replace(/\s/g, '');
 
 
-        const tokenDecoded:tokenAccess|any = generatorTokenJWT.decode(token);
+        const tokenDecoded:TokenAccess|any = generatorTokenJWT.decode(token);
 
         if(!tokenDecoded) {
             return {

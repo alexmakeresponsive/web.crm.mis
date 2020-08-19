@@ -1,7 +1,7 @@
 import express, {NextFunction, Request, Response} from 'express';
 import {container} from "tsyringe";
 
-import typeResponseMsa from "@commonNodeLibs/type/http/response/msa";
+import {HttpResponseMsa} from "@commonNodeLibs/type/http/response/msa";
 
 import factoryDataKey from  "../../../common/node_libs/factory/data/Key";
 import {factoryTokenJwt} from '../../../common/node_libs/factory/token/Jwt';
@@ -34,7 +34,7 @@ export default class Protocol
 
         if (!statusAutchCheck.trust)
         {
-            return <typeResponseMsa>{
+            return <HttpResponseMsa>{
                 trust:false,
                 status: 'fail',
                 httpCode: 403,
@@ -49,7 +49,7 @@ export default class Protocol
 
         const dataRebuilded = this.factoryDataKey.addKey(data, schema);
 
-        return <typeResponseMsa>{
+        return <HttpResponseMsa>{
             trust:true,
             status:'success',
             httpCode: 200,
@@ -64,7 +64,7 @@ export default class Protocol
 
         if (!statusAutchCheck.trust)
         {
-            return <typeResponseMsa>{
+            return <HttpResponseMsa>{
                 trust:false,
                 status: 'fail',
                 httpCode: 403,
@@ -77,7 +77,7 @@ export default class Protocol
 
         const dataRebuilded = this.factoryDataKey.addKey(data, schema);
 
-        return <typeResponseMsa>{
+        return <HttpResponseMsa>{
             trust:true,
             status:'success',
             httpCode: 200,
