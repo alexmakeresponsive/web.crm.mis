@@ -1,0 +1,28 @@
+{
+  "name": "web.crm.mis",
+  "private": true,
+  "version": "1.0.0",
+  "description": "## Description",
+  "main": "index.js",
+  "dependencies": {
+    "@types/jsonwebtoken": "^8.5.0",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.27.0",
+    "tsyringe": "^4.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexmakeresponsive/web.crm.mis.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexmakeresponsive/web.crm.mis/issues"
+  },
+  "homepage": "https://github.com/alexmakeresponsive/web.crm.mis#readme"
+}

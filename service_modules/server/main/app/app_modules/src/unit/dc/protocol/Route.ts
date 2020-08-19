@@ -1,32 +1,36 @@
 import express, {NextFunction, Request, Response} from 'express';
 import {container} from "tsyringe";
 
-import typeResponseMsa from "type/http/response/msa";
+import typeResponseMsa from "@commonNodeLibs/type/http/response/msa";
+
+import factoryDataKey from  "../../../common/node_libs/factory/data/Key";
+import {factoryTokenJwt} from '../../../common/node_libs/factory/token/Jwt';
 
 import {modelResourse} from './model/Resource';
 import schema from "./model/schema";
 
-import {factoryDataKey} from "../../../factory/data/Key";
-import {factoryAuthToken} from '../../../factory/auth/Token';
+import pool from '../../../bootstrap/db/main/mysql';
 
 export default class Protocol
 {
     private factoryDataKey:factoryDataKey;
-    private factoryAuthToken:factoryAuthToken;
+    private factoryTokenJwt:factoryTokenJwt;
 
     private modelResourse:modelResourse;
 
     constructor()
     {
         this.factoryDataKey   = container.resolve(factoryDataKey);
-        this.factoryAuthToken = container.resolve(factoryAuthToken);
+        this.factoryTokenJwt = container.resolve(factoryTokenJwt);
+
+        this.factoryTokenJwt.setPool(pool);
 
         this.modelResourse = container.resolve(modelResourse);
     }
 
     public async getSelectedData(req:Request)
     {
-        const statusAutchCheck = await this.factoryAuthToken.check(req);
+        const statusAutchCheck = await this.factoryTokenJwt.check(req);
 
         if (!statusAutchCheck.trust)
         {
@@ -56,7 +60,7 @@ export default class Protocol
 
     public async getData(req:Request)
     {
-        const statusAutchCheck = await this.factoryAuthToken.check(req);
+        const statusAutchCheck = await this.factoryTokenJwt.check(req);
 
         if (!statusAutchCheck.trust)
         {

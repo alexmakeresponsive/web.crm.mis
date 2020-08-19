@@ -60,7 +60,6 @@ Download assets from [link](https://drive.google.com/file/d/1HpTMscRqREqJax6owD5
         -d mariadb:mis.db.auth.main.local
     ```
     
-
 	* db main
 
     ```
@@ -146,7 +145,7 @@ Download assets from [link](https://drive.google.com/file/d/1HpTMscRqREqJax6owD5
         --workdir=/usr/src/app/service_modules \
         --name mis.server.main.local \
         --mount type=bind,source="path/to/workdir/service_modules/server/main/app",target=/usr/src/app/service_modules \
-        --mount type=bind,source="path/to/workdir/node_modules",target=/usr/src/app/node_modules \
+        --mount type=bind,source="path/to/workdir/common_modules",target=/usr/src/app/service_modules/app_modules/src/common \
     ts.tsnode.nodemon:3.8.2 /bin/sh
     ```
 	

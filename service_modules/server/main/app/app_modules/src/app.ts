@@ -7,7 +7,9 @@ if (dotenvRes.error) {
 
 import "reflect-metadata";
 
-import typeResponseMsa from "type/http/response/msa";
+import typeResponseMsa from "@commonNodeLibs/type/http/response/msa";
+
+// console.log(typeResponseMsa);
 
 import express, {NextFunction, Request, Response} from 'express';
 import cors         from 'cors';
