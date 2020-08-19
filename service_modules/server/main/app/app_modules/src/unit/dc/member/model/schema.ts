@@ -1,4 +1,4 @@
-import Schema from "type/schema/db";
+import Schema from "type/db/schema";
 
 export default <Schema>{
     id:                                     'SMALLINT AUTO_INCREMENT PRIMARY KEY',

@@ -1,7 +1,7 @@
 import express, {NextFunction, Request, Response} from 'express';
 import {container} from "tsyringe";
 
-import typeResponseMsa from "type/response/msa";
+import typeResponseMsa from "type/http/response/msa";
 
 import {modelResourse} from './model/Resource';
 import schema from "./model/schema";

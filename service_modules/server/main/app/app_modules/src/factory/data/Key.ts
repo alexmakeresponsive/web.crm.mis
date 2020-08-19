@@ -1,4 +1,4 @@
-import Schema from "type/schema/db";
+import Schema from "type/db/schema";
 import moment from "moment";
 
 import {injectable} from "tsyringe";

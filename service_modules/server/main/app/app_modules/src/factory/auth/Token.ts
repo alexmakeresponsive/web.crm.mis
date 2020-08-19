@@ -1,10 +1,8 @@
 import generatorTokenJWT from 'jsonwebtoken';
 import {injectable, container} from "tsyringe";
 
-import tokenAccess from 'type/token/access'
+import tokenAccess from 'type/data/token/access'
 import {factoryAuthUser} from './User';
-
-import express, {Request, Response} from 'express';
 
 @injectable()
 export class factoryAuthToken
