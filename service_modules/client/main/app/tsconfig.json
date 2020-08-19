@@ -5,8 +5,8 @@
     "paths": {
       "@AppModule/*": 			      ["app/*"],
 
-      "@DashboardModule/*":       ["app/dashboard/*"],
-      "@MsaModule/*":             ["app/msa/*"],
+      "@DashboardModule/*":       ["app/domain/dashboard/*"],
+      "@MsaModule/*":             ["app/domain/msa/*"],
 
       "@ComontWidgetDefaulModule/*":   ["app/common/widget/default/*"],
       "@ComonWidgetEntryModule/*":     ["app/common/widget/entry/*"],

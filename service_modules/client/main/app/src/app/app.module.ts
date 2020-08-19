@@ -6,10 +6,10 @@ import { AppRoutingModule }                     from './app-routing.module';
 
 import {HttpServiceModule}                      from "@CommonServiceHttpModule/http-service.module";
 
-import {MsaModule}                              from "@MsaModule/domain/msa.module";
+import {MsaModule}                              from "@MsaModule/widget/msa.module";
 import {MsaRoutedModule}                        from "@MsaModule/routed/msa-routed.module";
 
-import {DashboardDomainModule}                  from "@DashboardModule/domain/dashboard-domain.module";
+import {DashboardDomainModule}                  from "@DashboardModule/widget/dashboard-domain.module";
 import {DashboardRoutedModule}                  from "@DashboardModule/routed/dashboard-routed.module";
 
 import { AppComponent }                         from './app.component';
