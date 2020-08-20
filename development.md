@@ -55,8 +55,8 @@ Download assets from [link](https://drive.google.com/file/d/1HpTMscRqREqJax6owD5
         --name mis.db.auth.main.local \
         -e MYSQL_ROOT_PASSWORD=pass \
         -e MYSQL_DATABASE=main \
-        --mount type=bind,source="parh/to/workdir/server/auth/db/data/dump",target=/var/tmp/dump \
-        --mount type=bind,source="parh/to/workdir/server/auth/db/config/docker.extra.cnf",target=/etc/mysql/conf.d/docker.custom.cnf \
+        --mount type=bind,source="/path/to/repository/root/service_modules/server/auth/db/data/dump",target=/var/tmp/dump \
+        --mount type=bind,source="/path/to/repository/root/service_modules/server/auth/db/config/docker.extra.cnf",target=/etc/mysql/conf.d/docker.custom.cnf \
         -d mariadb:mis.db.auth.main.local
     ```
     
@@ -69,8 +69,8 @@ Download assets from [link](https://drive.google.com/file/d/1HpTMscRqREqJax6owD5
         --name mis.db.main.local \
         -e MYSQL_ROOT_PASSWORD=pass \
         -e MYSQL_DATABASE=main \
-        --mount type=bind,source="parh/to/workdir/server/main/db/data/dump",target=/var/tmp/dump \
-        --mount type=bind,source="parh/to/workdir/server/main/db/config/docker.extra.cnf",target=/etc/mysql/conf.d/docker.custom.cnf \
+        --mount type=bind,source="/path/to/repository/root/service_modules/server/main/db/data/dump",target=/var/tmp/dump \
+        --mount type=bind,source="/path/to/repository/root/service_modules/server/main/db/config/docker.extra.cnf",target=/etc/mysql/conf.d/docker.custom.cnf \
         -d mariadb:mis.db.main.local
     ```
 
@@ -83,14 +83,14 @@ Download assets from [link](https://drive.google.com/file/d/1HpTMscRqREqJax6owD5
         --name mis.db.msa.local \
         -e MYSQL_ROOT_PASSWORD=pass \
         -e MYSQL_DATABASE=main \
-        --mount type=bind,source="parh/to/workdir/server/msa/db/data/dump",target=/var/tmp/dump \
-        --mount type=bind,source="parh/to/workdir/server/msa/db/config/docker.extra.cnf",target=/etc/mysql/conf.d/docker.custom.cnf \
+        --mount type=bind,source="/path/to/repository/root/service_modules/server/msa/db/data/dump",target=/var/tmp/dump \
+        --mount type=bind,source="/path/to/repository/root/service_modules/server/msa/db/config/docker.extra.cnf",target=/etc/mysql/conf.d/docker.custom.cnf \
         -d mariadb:mis.db.msa.local
     ```
 
 4. Run server containers
 
-	create image:
+	create images:
     
     ```
     cd server/auth/app
@@ -105,20 +105,24 @@ Download assets from [link](https://drive.google.com/file/d/1HpTMscRqREqJax6owD5
     docker build -f ./docker.file.dev -t ts.tsnode.nodemon:3.8.2 .
     ```
 
-	Each container must be run in self terminal. After start container terminal open container shell.
-	Run this command for each server container:
+	> Each container must be run in self terminal. After start container terminal open container shell.
 	
-	```
-    npm install
-    ```
- 
-    and then run this command:
-	
-	```
-    npm run dv
-    ```
-    
     run containers:
+
+    * server common
+    
+    ```
+    docker run \
+             -it --rm \
+             --workdir=/usr/src/app \
+             --name mis.server.common.local \
+             --mount type=bind,source="/path/to/repository/root/common_modules",target=/usr/src/app \
+         ts.tsnode.nodemon:3.8.2 /bin/sh
+   
+    npm install // just one time
+   
+    tsc -p tsconfig.common.json -w
+    ```
 
 	* server auth
 	
@@ -130,26 +134,53 @@ Download assets from [link](https://drive.google.com/file/d/1HpTMscRqREqJax6owD5
         -it --rm \
         --workdir=/usr/src/app \
         --name mis.server.auth.local \
-        --mount type=bind,source="parh/to/workdir/server/auth/app",target=/usr/src/app \
+        --mount type=bind,source="/path/to/repository/root/service_modules/server/auth/app",target=/usr/src/app \
     ts.tsnode.nodemon:3.8.2 /bin/sh
+ 
+    npm install // just one time
+ 
+    npm run dv
     ```
 
 	*  server main
 
 	```
 	docker run \
-        --net mis.network \
-        --ip=10.1.2.22 \
-        -p 8203:3000 \
         -it --rm \
         --workdir=/usr/src/app/service_modules \
         --name mis.server.main.local \
-        --mount type=bind,source="path/to/workdir/service_modules/server/main/app",target=/usr/src/app/service_modules \
-        --mount type=bind,source="path/to/workdir/common_modules",target=/usr/src/app/service_modules/app_modules/src/common \
+        --mount type=bind,source="/path/to/repository/root/service_modules/server/main/app",target=/usr/src/app/service_modules \
+        --mount type=bind,source="/path/to/repository/root/common_modules/node_modules",target=/usr/src/app/node_modules \
     ts.tsnode.nodemon:3.8.2 /bin/sh
+ 
+    npm install // just one time
+ 
+    tsc -p tsconfig.service.json -w
+    ```
+    
+    > Start this container for `tsc` compiler watching on changes in `src` folder
+ 
+    *  server main
+    
+    ```
+    docker run \
+         --net mis.network \
+         --ip=10.1.2.22 \
+         -p 8203:3000 \
+         -it --rm \
+         --workdir=/usr/src/app/service_modules \
+         --name mis.server.main.nodemon.local \
+         --mount type=bind,source="/path/to/repository/root/service_modules/server/main/app",target=/usr/src/app/service_modules \
+         --mount type=bind,source="/path/to/repository/root/common_modules/node_modules",target=/usr/src/app/node_modules \
+    ts.tsnode.nodemon:3.8.2 /bin/sh
+ 
+    node ./app_modules/dist/bootstrap.js
+    // or
+    nodemon ./app_modules/dist/bootstrap.js -w ./app_modules/dist/node_modules/@current
     ```
 	
-
+	> Start this container for `nodemon` watching on changes in `dist` folder
+	
 	* server msa
 
 	```
@@ -160,8 +191,10 @@ Download assets from [link](https://drive.google.com/file/d/1HpTMscRqREqJax6owD5
         -it --rm \
         --workdir=/usr/src/app \
         --name mis.server.msa.local \
-        --mount type=bind,source="parh/to/workdir/server/msa/app",target=/usr/src/app \
+        --mount type=bind,source="/path/to/repository/root/service_modules/server/msa/app",target=/usr/src/app \
     ts.tsnode.nodemon:3.8.2 /bin/sh
+ 
+    npm run dv
     ```
 
 
@@ -200,30 +233,23 @@ Download assets from [link](https://drive.google.com/file/d/1HpTMscRqREqJax6owD5
         -it --rm \
         --workdir=/usr/src/app \
         --name mis.client.main.local \
-        --mount type=bind,source="parh/to/workdir/client/main/app",target=/usr/src/app \
+        --mount type=bind,source="/path/to/repository/root/service_modules/client/main/app",target=/usr/src/app \
     angular:8 /bin/sh
-    ```
    
-    Container must be run in self terminal. After start container terminal open container shell.
-   	Run this command:
-   	
-    ```
-    npm install
-    ```
-
-    and then run this command:
-   	
-   	```
+    npm install  // just one time
+   
     ng serve --host 0.0.0.0 --disable-host-check
     ```
    
-   On the host machine run:
+    > Container must be run in self terminal. After start container terminal open container shell.
+   	
+    On the host machine run:
    
-   ```
-   sudo nginx
-   ```
-   or
-   ```
-   sudo nginx -s reload
-   ```
-   then open url: `http://mis.local`
+    ```
+    sudo nginx
+    ```
+    or
+    ```
+    sudo nginx -s reload
+    ```
+    then open url: `http://mis.local`
