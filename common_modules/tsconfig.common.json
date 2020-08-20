@@ -1,0 +1,27 @@
+{
+  "compilerOptions":
+  {
+    "target": "es5",
+    "module": "commonjs",
+    "lib": ["es2015"],
+
+    "outDir":  "./node_modules/@common",
+    "rootDir": "./common/src",
+
+    "strict": true,
+
+    "moduleResolution": "node",
+    "baseUrl": "./common/src",
+    "paths": {
+      "@common/*": ["*"]
+    },
+
+    "esModuleInterop": true,
+
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+
+    "forceConsistentCasingInFileNames": true
+  },
+  "exclude": ["*.d.ts"]
+}
