@@ -11,7 +11,7 @@ type Iterable    = { [index: string]: IterableInner; };
 let connectionLimitDevelopment = process.env.DB_MAIN_LOCAL_LIMIT_CONNECTION === undefined ? "1" : process.env.DB_MAIN_LOCAL_LIMIT_CONNECTION;
 let connectionLimitProduction  = process.env.DB_MAIN_PRODUCTION_LIMIT_CONNECTION === undefined ? "1" : process.env.DB_MAIN_PRODUCTION_LIMIT_CONNECTION;
 
-export const configMysql = <Iterable>{
+export default <Iterable>{
     'development': <IterableInner>{
         "host":      process.env.DB_MAIN_LOCAL_HOST,
         "port":      process.env.DB_MAIN_LOCAL_PORT,

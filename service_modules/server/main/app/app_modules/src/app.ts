@@ -1,13 +1,13 @@
 import dotenv from 'dotenv';
-const dotenvRes = dotenv.config();
 
-if (dotenvRes.error) {
-    throw dotenvRes.error;
-}
+const   dotenvRes = dotenv.config();
+    if (dotenvRes.error) {
+        throw dotenvRes.error;
+    }
 
 import "reflect-metadata";
 
-import {HttpResponseMsa} from "@commonNodeLibs/type/http/response/msa";
+import {HttpResponseMsa} from "@common/type/http/response/msa";
 
 import express, {NextFunction, Request, Response} from 'express';
 import cors         from 'cors';

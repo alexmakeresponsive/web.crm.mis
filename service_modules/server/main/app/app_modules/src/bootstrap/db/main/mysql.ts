@@ -1,5 +1,5 @@
 import mysql from 'mysql';
-import {configMysql} from '../../../config/db/main/mysql';
+import configMysql from '@current/config/db/main/mysql';
 
 const env = process.env.NODE_ENV ? process.env.NODE_ENV : 'development';
 

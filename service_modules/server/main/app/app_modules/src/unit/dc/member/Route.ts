@@ -1,27 +1,27 @@
 import express, {NextFunction, Request, Response} from 'express';
 import {container} from "tsyringe";
 
-import {HttpResponseMsa} from "@commonNodeLibs/type/http/response/msa";
+import {HttpResponseMsa} from "@common/type/http/response/msa";
 
-import factoryDataKey from  "../../../common/node_libs/factory/data/Key";
-import {factoryTokenJwt} from '../../../common/node_libs/factory/token/Jwt';
+import Key from  "@common/factory/data/Key";
+import Jwt from '@common/factory/token/Jwt';
 
 import {modelResourse} from './model/Resource';
 import schema from "./model/schema";
 
-import pool from '../../../bootstrap/db/main/mysql';
+import pool from '@current/bootstrap/db/main/mysql';
 
 export default class Member
 {
-    private factoryDataKey:factoryDataKey;
-    private factoryTokenJwt:factoryTokenJwt;
+    private factoryDataKey:Key;
+    private factoryTokenJwt:Jwt;
 
     private modelResourse:modelResourse;
 
     constructor()
     {
-        this.factoryDataKey   = container.resolve(factoryDataKey);
-        this.factoryTokenJwt = container.resolve(factoryTokenJwt);
+        this.factoryDataKey   = container.resolve(Key);
+        this.factoryTokenJwt = container.resolve(Jwt);
 
         this.factoryTokenJwt.setPool(pool);
 

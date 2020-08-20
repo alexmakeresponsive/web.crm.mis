@@ -1,0 +1,27 @@
+{
+  "compilerOptions":
+  {
+    "target": "es5",
+    "module": "commonjs",
+    "lib": ["es2015"],
+
+    "outDir":  "./app_modules/dist/node_modules/@current",
+    "rootDir": "./app_modules/src",
+
+    "strict": true,
+
+    "moduleResolution": "node",
+    "baseUrl": "./app_modules/src",
+    "paths": {
+      "@current/*": ["*"]
+    },
+
+    "esModuleInterop": true,
+
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+
+    "forceConsistentCasingInFileNames": true
+  },
+  "exclude": ["**/migration"]
+}

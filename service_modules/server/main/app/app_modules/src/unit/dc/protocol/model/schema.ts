@@ -1,4 +1,4 @@
-import {Schema} from "@commonNodeLibs/type/db/schema";
+import {Schema} from "@common/type/db/schema";
 
 export default <Schema>{
     id:                                     'INT AUTO_INCREMENT PRIMARY KEY',

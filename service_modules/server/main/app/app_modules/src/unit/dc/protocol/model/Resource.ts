@@ -1,4 +1,4 @@
-import pool from '../../../../bootstrap/db/main/mysql';
+import pool from '@current/bootstrap/db/main/mysql';
 
 import {injectable, container} from "tsyringe";
 
