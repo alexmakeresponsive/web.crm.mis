@@ -174,9 +174,7 @@ Download assets from [link](https://drive.google.com/file/d/1HpTMscRqREqJax6owD5
          --mount type=bind,source="/path/to/repository/root/common_modules/node_modules",target=/usr/src/app/node_modules \
     ts.tsnode.nodemon:3.8.2 /bin/sh
  
-    node ./app_modules/dist/bootstrap.js
-    // or
-    nodemon ./app_modules/dist/bootstrap.js -w ./app_modules/dist/node_modules/@current
+    npm run dv
     ```
 	
 	> Start this container for `nodemon` watching on changes in `dist` folder

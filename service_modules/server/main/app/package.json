@@ -4,7 +4,7 @@
   "description": "",
   "main": "./app_modules/dist/bootstrap.js",
   "scripts": {
-    "dv": "NODE_ENV=development nodemon ./app_modules/src/bootstrap.ts",
+    "dv": "NODE_ENV=development nodemon ./app_modules/dist/bootstrap.js -w ./app_modules/dist/node_modules/@current",
     "pd": "NODE_ENV=production node ./app_modules/dist/bootstrap.js"
   },
   "keywords": [],
