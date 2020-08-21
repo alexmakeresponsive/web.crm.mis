@@ -12,7 +12,10 @@
     "moment": "^2.27.0",
     "tsyringe": "^4.3.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "colors": "^1.4.0",
+    "fsmonitor": "^0.2.4"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

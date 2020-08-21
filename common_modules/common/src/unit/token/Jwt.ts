@@ -2,7 +2,7 @@ import generatorTokenJWT from 'jsonwebtoken';
 import {injectable, container} from "tsyringe";
 
 import {TokenAccess} from '@common/type/data/token/access'
-import {factoryAuthUser} from '@common/factory/User';
+import {factoryAuthUser} from '@common/unit/User';
 
 @injectable()
 export default class Jwt

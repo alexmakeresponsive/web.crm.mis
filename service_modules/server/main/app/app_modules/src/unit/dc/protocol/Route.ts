@@ -3,8 +3,8 @@ import {container} from "tsyringe";
 
 import {HttpResponseMsa} from "@common/type/http/response/msa";
 
-import Key from  "@common/factory/data/Key";
-import Jwt from '@common/factory/token/Jwt';
+import Key from  "@common/unit/data/Key";
+import Jwt from '@common/unit/token/Jwt';
 
 import {modelResourse} from './model/Resource';
 import schema from "./model/schema";
