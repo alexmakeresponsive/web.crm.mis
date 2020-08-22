@@ -121,13 +121,9 @@ Download assets from [link](https://drive.google.com/file/d/1HpTMscRqREqJax6owD5
    
     npm install // just one time
    
-    tsc -p tsconfig.common.json -w
+    node ./umodule.js                   // see: https://github.com/alexmakeresponsive/utsm
+    tsc -p tsconfig.common.json -w      // .d.ts shouldn't compile
     ```
-   
-    > After run `tsc ..` command remove dir: `/path/to/repository/root/common_modules/node_modules/@common/type` <br>
-    > Copy `/path/to/repository/root/common_modules/common/src/type` to `/path/to/repository/root/common_modules/node_modules/@common` <br>
-    > Copy `*.d.ts` files from `/path/to/repository/root/common_modules/common/src` to same dirs in `/path/to/repository/root/common_modules/node_modules/@common` <br>
-    > Example: copy `/path/to/repository/root/common_modules/common/src/factory/data/Crypto.d.ts` to `/path/to/repository/root/common_modules/node_modules/@common/factory/data` <br>
 
 	* server auth
 	
