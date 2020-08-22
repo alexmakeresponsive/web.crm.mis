@@ -2,17 +2,17 @@ import generatorTokenJWT from 'jsonwebtoken';
 import {injectable, container} from "tsyringe";
 
 import {TokenAccess} from '@common/type/data/token/access'
-import {factoryAuthUser} from '@common/unit/User';
+import {User} from '@common/unit/User';
 
 @injectable()
 export default class Jwt
 {
-    private factoryAuthUser:factoryAuthUser;
+    private factoryAuthUser:User;
     private pool:any;
 
     constructor()
     {
-        this.factoryAuthUser   = container.resolve(factoryAuthUser);
+        this.factoryAuthUser   = container.resolve(User);
     }
 
     public setPool(pool:any)
