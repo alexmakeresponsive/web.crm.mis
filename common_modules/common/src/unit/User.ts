@@ -1,7 +1,7 @@
 import {injectable} from "tsyringe";
 
 @injectable()
-export class factoryAuthUser
+export class User
 {
     private table:string = 'user';
 
